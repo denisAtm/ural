@@ -1,0 +1,209 @@
+// news-card styles
+.news-card {
+    padding-top: 28px;
+
+    .title-h3 {
+
+        @include media-medium() {
+            display: none;
+        }
+    }
+
+    .title-h2 {
+        display: none;
+
+        @include media-medium() {
+            display: flex;
+        }
+    }
+
+    &__title {
+        padding-bottom: 52px;
+        display: flex;
+
+        @include media-custom(1024px) {
+            padding-bottom: 0;
+        }
+
+        svg {
+            margin-right: 24px;
+
+            @include media-medium() {
+                margin-right: 67px;
+            }
+        }
+    }
+
+    &__grid {
+        display: grid;
+        
+
+        time {
+            font-family: 'Roboto',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+color: var(--dark-color);
+
+@include media-medium() {
+    margin-left: auto;
+}
+
+@include media-custom(1024px) {
+    position: relative;
+    top: -1rem;
+}
+
+@include media-custom(1440px) {
+    top: -1.5rem;
+}
+        }
+    }
+
+    &__main {
+        display: grid;
+        gap: 32px;
+        padding-top: 16px;
+        padding-bottom: 52px;
+
+        @include media-medium() {
+            grid-template-columns: repeat(2,1fr);
+            gap: 19px;
+        }
+
+        @include media-custom(1024px) {
+            margin-left: 5rem;
+            padding-top: 40px;
+            grid-template-columns: max-content 1fr;
+            gap: 102px;
+        }
+
+        @include media-custom(1025px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include media-custom(1440px) {
+            margin-left: 6rem;
+            grid-template-columns: max-content 1fr;
+            gap: 131px;
+        }
+
+        @include media-custom(1450px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        img {
+            width: 100%;
+            @include media-medium() {
+                max-width: toRem(342);
+                height: toRem(290);
+            }
+
+            @include media-custom(769px) {
+                max-width: 100%;
+            }
+
+            @include media-custom(1024px) {
+                max-width: toRem(306);
+                height: toRem(272);
+            }
+
+            @include media-custom(1025px) {
+                max-width: 100%;
+            }
+
+            @include media-custom(1440px) {
+                max-width: toRem(424);
+                height: toRem(360);
+            }
+
+            @include media-custom(1450px) {
+                max-width: 100%;
+            }
+        }
+
+        p {
+            font-family: 'Roboto',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+color: var(--dark-color);
+        }
+    }
+
+    &__prev-next {
+        display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @include media-custom(1024px) {
+                margin-left: 5rem;
+            }
+
+            @include media-custom(1440px) {
+                margin-left: 6rem;
+            }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        strong {
+            font-family: 'Roboto',sans-serif;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+color: var(--dark-color);
+padding-bottom: 16px;
+
+@include media-medium() {
+    display: flex;
+    align-items: center;
+}
+
+span {
+    display: none;
+
+    @include media-medium() {
+        display: block;
+        padding-left: 5px;
+    }
+}
+        }
+
+        time {
+            font-family: 'Roboto',sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+color: var(--dark-color);
+display: none;
+padding-bottom: 8px;
+
+@include media-medium() {
+    display: block;
+}
+        }
+
+        p {
+            font-family: 'Roboto',sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+color: var(--dark-color);
+max-width: toRem(182);
+
+display: none;
+
+@include media-medium() {
+    display: block;
+}
+        }
+    }
+}

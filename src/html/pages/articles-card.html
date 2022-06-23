@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+	@@include('../parts/head.html',{
+	"title":"Карточка статьи"
+	})
+	<body x-data="{mobileMenu: false, mobileSubMenu: false, searchMenu: false, headerSubMenu:false, filter: false, orderForm: false, questionModal: false}" :class="{'mobileMenuOpened': mobileMenu === true || searchMenu === true || filter === true || orderForm === true || questionModal === true}">
+		@@include('../parts/header.html')
+		<main>
+        <nav class="breadcrumbs">
+            <div class="container">
+            <ul role="list">
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">Крошка</a></li>
+                <li><a href="#">Крошка</a></li>
+            </ul>
+        </div>
+        </nav>
+        <section class="articles-card">
+            <div class="container">
+            <div class="articles-card__title-row">
+            <h1 class="title title-h2 articles-card__title">
+                <a class="previous-page-link" href="#">
+                <svg width="18" height="32">
+                <use xlink:href="resources/svgSprites/svgSprite.svg#product-title-arrow"></use>
+                </svg></a>
+                <span>Заголовок статьи</span><span>Как правильно подобрать электродвигатель</span></h1>
+                <h1 class="title title-h3 articles-card__title">
+                    <a class="previous-page-link" href="#">
+                    <svg data-aos="fade-up" data-aos-easing="linear" data-aos-delay="250" width="18" height="32">
+                    <use xlink:href="resources/svgSprites/svgSprite.svg#product-title-arrow"></use>
+                    </svg></a>Как правильно подобрать электродвигатель</h1>
+                    <time datetime="2022.15.03">15.03.2022</time>
+                </div>
+                <div class="articles-card-info">
+                    <time datetime="2022.15.03">15.03.2022</time>
+                    <ul role="list" class="articles-card-info__top-list">
+                        <li>Типы электродвигателей
+                            <ul role="list">
+                                <li>По виду питающего тока</li>
+                                <li>Синхронные электродвигатели</li>
+                                <li>Асинхронные электродвигатели</li>
+                                <li>Вентильные электродвигатели</li>
+                            </ul>
+                        </li>
+                        <li>Расчет мощности</li>
+                        <li>Расчет пускового тока</li>
+                        <li>Режимы работы</li>
+                        <li>Климатическое исполнение</li>
+                        <li>Энергоэффективность</li>
+                    </ul>
+                    <div class="articles-card-info__descr">
+                        <p>Электродвигатель – механизм, преобразующий энергию электрического тока в кинетическую энергию. Современное производство и быт сложно представить без машин с электроприводом. Они используются в насосном оборудовании, системах вентиляции и кондиционирования, в электротранспорте, промышленных станках различных типов и т.д.</p>
+
+                        <p>При выборе электродвигателя необходимо руководствоваться несколькими основными критериями:</p>
+                        <ul role="list" class="articles-card-info__bottom-list">
+                            <li><span>вид электрического тока, питающего оборудование; </span></li>
+                            <li><span>мощность электродвигателя;</span></li>
+                            <li><span>режим работы;</span></li>
+                            <li><span>климатические условия и другие внешние факторы.</span></li>
+                        </ul>
+                        <ul class="articles-card-info__descr-img-list" role="list">
+                            <li data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                            data-aos-duration="1000">
+                                <img loading="lazy" decoding="async" src="resources/images/articles-card-descr-list-img.png" alt="image" width="200" height="200">
+                            </li>
+                            <li data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                            data-aos-duration="1000">
+                                <img loading="lazy" decoding="async" src="resources/images/articles-card-descr-list-img-2.png" alt="image" width="200" height="200">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <article class="articles-card-main-info articles-card-main-info--adaptive">
+                    <h2>Типы двигателей</h2>
+                    <h3>Электродвигатели постоянного  и переменного тока </h3>
+                    <p>В зависимости от используемого электрического тока двигатели делятся на две группы:</p>
+                    <ul role="list" class="articles-card-main-info__list">
+                        <li><span>приводы постоянного тока;</span></li>
+                        <li><span>приводы переменного тока.</span></li>
+                    </ul>
+                    <p>Электродвигатели постоянного тока сегодня применяются не так часто, как раньше. Их практически вытеснили асинхронные двигатели с короткозамкнутым ротором.</p>
+                    <p>Электродвигатель переменного тока компании Able<br>
+                    Главный недостаток электродвигателей постоянного тока – возможность эксплуатации исключительно при наличии источника постоянного тока или преобразователя переменного напряжения в постоянный ток. В современном промышленном производстве обеспечение данного условия требует дополнительных финансовых затрат.</p>
+                        <p>Тем не менее, при существенных недостатках этот тип двигателей отличается высоким пусковым моментом и стабильной работой в условиях больших перегрузок. Приводы данного типа чаще всего применяются в металлургии и станкостроении, устанавливаются на электротранспорт.</p>
+                        <p>Принцип работы электродвигателей переменного тока построен на электромагнитной индукции, возникающей в процессе движения проводящей среды в магнитном поле. Для создания магнитного поля используются обмотки, обтекаемые токами, либо постоянные магниты.</p>
+                        <p>Электродвигатели переменного тока подразделяются на синхронные и асинхронные. У каждой подгруппы есть свои конструктивные и эксплуатационные особенности.</p>
+                        <ul role="list" class="articles-card-main-info__img-list">
+                            <li data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                            data-aos-duration="1000"><img loading="lazy" decoding="async" src="resources/images/articles-card-main-img-1.png" alt="image" width="230" height="300"></li>
+                            <li data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                            data-aos-duration="1000"><img loading="lazy" decoding="async" src="resources/images/articles-card-main-img-2.png" alt="image" width="230" height="300"></li>
+                            <li data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                            data-aos-duration="1000"><img loading="lazy" decoding="async" src="resources/images/articles-card-main-img-3.png" alt="image" width="230" height="300"></li>
+                        </ul>
+                        <div class="articles-card-main-info__formula-img">
+                        <img loading="lazy" decoding="async" src="resources/images/articles-card-main-formula-img.png" alt="image" width="328" height="74" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                        data-aos-duration="1000">
+                    </div>
+                    <div class="articles-card-main-info__formula-lists">
+                        <ul role="list">
+                            <li class="articles-card-main-info__formula-descr-item">P2, 10<sup>5</sup>Па</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li>10</li>
+                        </ul>
+                        <ul role="list">
+                            <li class="articles-card-main-info__formula-descr-item">А, 10<sup>⁻3</sup>Дж/м<sup>3</sup></li>
+                            <li>132</li>
+                            <li>164</li>
+                            <li>190</li>
+                            <li>213</li>
+                            <li>230</li>
+                            <li>245</li>
+                            <li>260</li>
+                            <li>272</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="articles-card-main-info articles-card-main-info--desktop">
+                    <h2>Типы двигателей</h2>
+                    <h3>Электродвигатели постоянного  и переменного тока </h3>
+                    <p>В зависимости от используемого электрического тока двигатели делятся на две группы:</p>
+                    <ul role="list" class="articles-card-main-info__list">
+                        <li><span>приводы постоянного тока;</span></li>
+                        <li><span>приводы переменного тока.</span></li>
+                    </ul>
+                    <p>Электродвигатели постоянного тока сегодня применяются не так часто, как раньше. Их практически вытеснили асинхронные двигатели с короткозамкнутым ротором.</p>
+                    <p>Электродвигатель переменного тока компании Able<br>
+                    Главный недостаток электродвигателей постоянного тока – возможность эксплуатации исключительно при наличии источника постоянного тока или преобразователя переменного напряжения в постоянный ток. В современном промышленном производстве обеспечение данного условия требует дополнительных финансовых затрат.</p>
+                        <p>Тем не менее, при существенных недостатках этот тип двигателей отличается высоким пусковым моментом и стабильной работой в условиях больших перегрузок. Приводы данного типа чаще всего применяются в металлургии и станкостроении, устанавливаются на электротранспорт.</p>
+                        <p>Принцип работы электродвигателей переменного тока построен на электромагнитной индукции, возникающей в процессе движения проводящей среды в магнитном поле. Для создания магнитного поля используются обмотки, обтекаемые токами, либо постоянные магниты.</p>
+                        <p>Электродвигатели переменного тока подразделяются на синхронные и асинхронные. У каждой подгруппы есть свои конструктивные и эксплуатационные особенности.</p>
+                        <ul role="list" class="articles-card-main-info__img-list">
+                            <li data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                            data-aos-duration="1000"><img loading="lazy" decoding="async" src="resources/images/articles-card-main-img-1.png" alt="image" width="230" height="300"></li>
+                            <li data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                            data-aos-duration="1000"><img loading="lazy" decoding="async" src="resources/images/articles-card-main-img-2.png" alt="image" width="230" height="300"></li>
+                            <li data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                            data-aos-duration="1000"><img loading="lazy" decoding="async" src="resources/images/articles-card-main-img-3.png" alt="image" width="230" height="300"></li>
+                        </ul>
+                        <h3>Синхронные электродвигатели</h3>
+                        <p>Синхронные двигатели – оптимальное решение для оборудования с постоянной скоростью работы: генераторов постоянного тока, компрессоров, насосов и др.</p>
+                        <p>Технические характеристики синхронных электродвигателей разных моделей отличаются. Скорость вращения колеблется в диапазоне от 125 до 1000 оборотов/мин, мощность может достигать 10 тысяч кВт.</p>
+                        <p>В конструкции приводов предусмотрена короткозамкнутая обмотка на роторе. Ее наличие позволяет осуществлять асинхронный пуск двигателя. К преимуществам оборудования данного типа относятся высокий КПД и небольшие габариты. Эксплуатация синхронных электродвигателей позволяет сократить потери электричества в сети до минимума.</p>
+                        <h3>Асинхронные электродвигатели
+                        </h3>
+                        <p>Асинхронные электродвигатели переменного тока получили наибольшее распространение в промышленном производстве. Особенностью данных приводов является более высокая частота вращения магнитного поля по сравнению со скоростью вращения ротора.</p>
+                        <p>В современных двигателях для изготовления ротора используется алюминий. Легкий вес этого материала позволяет уменьшить массу электродвигателя, сократить себестоимость его производства.</p>
+                        <p>КПД асинхронного двигателя падает почти вдвое при эксплуатации в режиме низких нагрузок – до 30-50 процентов от номинального показателя. Еще один недостаток таких электроприводов состоит в том, что параметры пускового тока почти втрое превышают рабочие показатели. Для уменьшения пускового тока асинхронного двигателя используются частотные преобразователи или устройства плавного пуска.</p>
+                        <p>Асинхронные электродвигатели удовлетворяют требованиям разных промышленных применений:</p>
+                        <ul role="list" class="articles-card-main-info__list">
+                            <li><span>Для лифтов и другого оборудования, требующего ступенчатого изменения скорости, выпускаются многоскоростные асинхронные приводы.</span></li>
+                            <li><span>При эксплуатации лебедок и металлообрабатывающих станков используются электродвигатели с электромагнитной тормозной системой. Это обусловлено необходимостью остановки привода и фиксации вала при перебоях напряжения или его исчезновения.</span></li>
+                            <li><span>В процессах с пульсирующей нагрузкой или при повторно-кратковременных режимах могут использоваться асинхронные электродвигатели с повышенными параметрами скольжения.</span></li>
+                        </ul>
+                        <h3>Вентильные электродвигатели
+                        </h3>
+                        <p>Группа вентильных электродвигателей включает в себя приводы, в которых регулирование режима эксплуатации осуществляется посредством вентильных преобразователей.</p>
+                        <p> К преимуществам данного оборудования относятся:</p>
+                        <ul role="list" class="articles-card-main-info__list">
+                            <li><span>Высокий эксплуатационный ресурс.</span></li>
+                            <li><span>Простота обслуживания за счет бесконтактного управления.</span></li>
+                            <li><span>Высокая перегрузочная способность, которая в пять раз превышает пусковой момент.</span></li>
+                            <li><span>Широкий диапазон регулирования частоты вращения, который почти вдвое выше диапазона асинхронных электродвигателей.</span></li>
+                            <li><span>Высокий КПД при любой нагрузке – более 90 процентов.</span></li>
+                            <li><span>Небольшие габариты.</span></li>
+                            <li><span>Быстрая окупаемость.</span></li>
+                        </ul>
+                        <h2>Мощность электродвигателя
+                        </h2>
+                        <p>В режиме постоянной или незначительно изменяющейся нагрузки работает большое количество механизмов: вентиляторы, компрессоры, насосы, другая техника. При выборе электродвигателя необходимо ориентироваться на потребляемую оборудованием мощность.</p>
+                        <p>Определить мощность можно расчетным путем, используя формулы и коэффициенты, приведенные ниже.</p>
+                        <p style="margin-bottom: 32px;">Мощность на валу электродвигателя определяется по следующей формуле:</p>
+                        <div class="articles-card-main-info__formula-img">
+                            <img loading="lazy" decoding="async" src="resources/images/formula-img.png" alt="image" width="200" height="200" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                            data-aos-duration="1000">
+                        </div>
+                        <p>где:
+                        <p>Рм – потребляемая механизмом мощность;</p> 
+                        <p>ηп – КПД передачи.</p> 
+                        <p style="margin-bottom: 32px;">Номинальную мощность электродвигателя желательно выбирать больше расчетного значения.</p>
+                        <div class="articles-card-main-info__formula-img">
+                            <img loading="lazy" decoding="async" src="resources/images/articles-card-main-formula-img.png" alt="image" width="328" height="74" style="max-width: 320px;" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                            data-aos-duration="1000">
+                        </div>
+                        <p style="margin-bottom: 32px;">Значение A можно взять из таблицы:</p>
+                    <div class="articles-card-main-info__formula-lists">
+                        <ul role="list">
+                            <li class="articles-card-main-info__formula-descr-item">P2, 10<sup>5</sup>Па</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li>10</li>
+                        </ul>
+                        <ul role="list">
+                            <li class="articles-card-main-info__formula-descr-item">А, 10<sup>⁻3</sup>Дж/м<sup>3</sup></li>
+                            <li>132</li>
+                            <li>164</li>
+                            <li>190</li>
+                            <li>213</li>
+                            <li>230</li>
+                            <li>245</li>
+                            <li>260</li>
+                            <li>272</li>
+                        </ul>
+                    </div>
+                    <p>Остальные технические характеристики, необходимые для расчета мощности двигателя, можно найти в каталогах для каждого типа механизмов.</p>
+                    <p>ВАЖНО! При выборе электродвигателя запас мощности должен быть, но небольшой. При значительном запасе мощности снижается КПД привода. В электродвигателях переменного тока это приводит еще и к снижению коэффициента мощности.</p>
+                </article>
+                <div class="articles-card__prev-next">
+                    <ul class="articles-card__prev" role="list">
+                        <li><a href="#"><strong>Предыдущая<span>статья</span></strong></a></li>
+                        <li><a href="#"><p>Название статьи</p></a></li>
+                    </ul>
+                    <ul class="articles-card__next" role="list">
+                        <li><a href="#"><strong>Следующая<span>статья</span></strong></a></li>
+                        <li><a href="#"><p>Название статьи</p></a></li>
+                    </ul>
+                </div>
+        </section>
+        <script>
+            new SimpleBar(document.querySelector('.articles-card-main-info__formula-lists'));
+        </script>
+		</main>
+		@@include('../parts/footer.html')
+	</body>
+</html>

@@ -1,0 +1,70 @@
+@mixin font-face(
+    $font-family,
+    $file-path,
+    $weight: normal,
+    $style: normal,
+    $font-display: swap
+) {
+    @font-face {
+        font-family: $font-family;
+        font-weight: $weight;
+        font-style: $style;
+        font-display: $font-display;
+        src: url("#{$file-path}.eot");
+        src: url("#{$file-path}.eot?#iefix") format("embedded-opentype"),
+            url("#{$file-path}.woff") format("woff"),
+            url("#{$file-path}.woff2") format("woff2"),
+            url("#{$file-path}.ttf") format("truetype");
+    }
+}
+
+@mixin media-extra-small() {
+    @media (max-width: $mediaWidthSmall) {
+        @content;
+    }
+}
+@mixin media-small() {
+    @media (min-width: $mediaWidthSmall) {
+        @content;
+    }
+}
+@mixin media-medium() {
+    @media (min-width: $mediaWidthMedium) {
+        @content;
+    }
+}
+
+@mixin media-large() {
+    @media (min-width: $mediaWidthLarge) {
+        @content;
+    }
+}
+
+@mixin media-extra-large() {
+    @media (min-width: $mediaWidthExtraLarge) {
+        @content;
+    }
+}
+
+@mixin media-Extra-extra-large() {
+    @media (min-width: $mediaWidthExtraExtraLarge) {
+        @content;
+    }
+}
+
+@mixin media-custom($width) {
+    @media (min-width: $width) {
+        @content;
+    }
+}
+
+@mixin media-custom-max($width) {
+    @media (max-width: $width) {
+        @content;
+    }
+}
+@mixin media-custom-between($minWidth, $maxWidth) {
+    @media (min-width: $minWidth) and (max-width: $maxWidth) {
+        @content;
+    }
+}

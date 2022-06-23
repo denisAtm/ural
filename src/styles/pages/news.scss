@@ -1,0 +1,112 @@
+// news styles
+.news-page {
+    margin-top: 28px;
+
+    &__title {
+        padding-bottom: 52px;
+    }
+
+    &__grid {
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 52px;
+        margin-bottom: 52px;
+
+        @include media-custom(480px) {
+            grid-template-columns: repeat(2,1fr);
+        }
+
+        @include media-medium() {
+            column-gap: 20px;
+            row-gap: 52px;
+        }
+
+        @include media-custom(1024px) {
+            grid-template-columns: repeat(4,1fr);
+        }
+
+        @include media-custom(1440px) {
+            margin-bottom: 47px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        @include media-custom-max(767px) {
+            li:nth-child(n + 7) {
+                display: none;
+            }
+        }
+
+        @include media-custom-max(1023px) {
+            li:nth-child(n + 9) {
+                display: none;
+            }
+        }
+
+
+
+        figure {
+            margin: 0;
+        }
+    
+        picture {
+            margin-bottom: 8px;
+            overflow: hidden;
+            height: 180px;
+            border-radius: 4px;
+
+            @include media-medium() {
+                height: 200px;
+            }
+    
+            @include media-custom(1024px) {
+                height: 220px;
+            }
+        }
+    
+        img {
+            transition: .3s ease-in-out;
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+
+            @include media-medium() {
+                height: 200px;
+            }
+            @include media-custom(1024px) {
+                height: 220px;
+            }
+
+        }
+    
+        img:hover {
+            transform: scale(1.2);
+            opacity: 80%;
+        }
+    
+        time {
+            font-family: 'Roboto',sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            color: var(--grey-dark-color);
+            padding-bottom: 16px;
+            display: block;
+        }
+    
+        h3 {
+            max-width: toRem(238);
+    
+            @include media-medium() {
+                max-width: toRem(209);
+            }
+        }
+    }
+}
+.news-spinner {
+    margin: auto;
+}

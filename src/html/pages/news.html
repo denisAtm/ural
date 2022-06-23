@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+	@@include('../parts/head.html',{
+	"title":"Страница новости"
+	})
+	<body x-data="{mobileMenu: false, mobileSubMenu: false, searchMenu: false, headerSubMenu:false, filter: false, orderForm: false, questionModal: false}" :class="{'mobileMenuOpened': mobileMenu === true || searchMenu === true || filter === true || orderForm === true || questionModal === true}">
+		@@include('../parts/header.html')
+		<main>
+        <nav class="breadcrumbs">
+            <div class="container">
+            <ul role="list">
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">Крошка</a></li>
+                <li><a href="#">Крошка</a></li>
+            </ul>
+        </div>
+        </nav>
+        <section class="news-page">
+            <div class="container">
+            <h1 class="title title-h2 news-page__title">Новости</h1>
+                <ul class="news-page__grid" role="list">
+                    <li data-aos="fade-in" data-aos-delay="200">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="400">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="600">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="800">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="200">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="400">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="600">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="800">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="200">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="400">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="600">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                    <li data-aos="fade-in" data-aos-delay="800">
+                        <a href="#">
+							<figure>
+								<picture>
+								  <img src="resources/images/news-img.jpg" loading="lazy" decoding="async" alt="image" width="328" height="180">
+								</picture>
+								<figcaption>
+									<time datetime="2022-03-15">15.03.2022</time>
+									<h3 class="title title-h3">Заголовок новости на две строки</h3>
+								</figcaption>
+							</figure>
+						</a>
+                    </li>
+                </ul>
+                <img class="news-spinner" loading="lazy" decoding="async" src="resources/images/news-spinner.png" alt="image" width="62" height="62">
+        </section>
+		</main>
+		@@include('../parts/footer.html')
+	</body>
+</html>

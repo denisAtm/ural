@@ -1,0 +1,142 @@
+// contacts styles
+.contacts {
+    padding-top: 28px;
+
+
+    &__title {
+        padding-bottom: clampBuilder(360, 1440, 80, 112);
+    }
+
+    &__grid {
+        display: grid;
+        margin-bottom: 52px;
+
+        @include media-custom(1024px) {
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 0;
+        }
+
+        @include media-custom(1440px) {
+            grid-template-columns: 1fr 644px;
+        }
+    }
+
+    &__info {
+        padding: 0;
+        margin: 0;
+
+        @include media-medium() {
+            display: grid;
+    column-gap: 111px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 40px;
+        }
+
+        @include media-custom(1024px) {
+            column-gap: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+        }
+
+        li:nth-of-type(3),
+        li:nth-of-type(4) {
+            @include media-medium() {
+                grid-column: 2;
+            }
+
+            @include media-custom(1024px) {
+                grid-column: unset;
+            }
+        }
+
+        address {
+            font-family: 'Roboto',sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+color: var(--dark-color);
+padding-bottom: 32px;
+
+@include media-medium() {
+    max-width: 342px;
+}
+@include media-custom(1024px) {
+    max-width: 389px;
+}
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+    &__phone,
+    &__mail {
+            margin-bottom: 24px;
+            font-family: 'Roboto',sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+color: var(--dark-color);
+display: block;
+        }
+
+        &__media {
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: max-content;
+            gap: 16px;
+        }
+
+        &__map {
+
+            &--desktop {
+                display: none;
+
+                @include media-custom(1024px) {
+                    display: block;
+                }
+            }
+
+            &--adaptive {
+                @include media-custom(1024px) {
+                    display: none;
+                }
+            }
+            iframe {
+                @include media-medium() {
+                    height: 288px;
+                }
+
+                @include media-custom(1024px) {
+                    height: 312px;
+                }
+            }
+
+            p {
+                font-family: 'Roboto',sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 20px;
+color: var(--dark-color);
+text-align: left;
+margin: 0 16px;
+margin-top: 1rem;
+
+@include media-medium() {
+    max-width: 660px;
+    margin-left: 32px;
+}
+
+@include media-custom(1024px) {
+    margin-left: 0;
+    margin-right: 0;
+}
+            }
+        }
+}

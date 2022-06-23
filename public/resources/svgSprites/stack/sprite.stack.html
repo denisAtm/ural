@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+		<title>SVG stack preview | svg-sprite</title>
+		<style>@charset "UTF-8";body{padding:0;margin:0;color:#666;background:#fafafa;font-family:Arial,Helvetica,sans-serif;font-size:1em;line-height:1.4}header{display:block;padding:3em 3em 2em 3em;background-color:#fff}header p{margin:2em 0 0 0}section{border-top:1px solid #eee;padding:2em 3em 0 3em}section ul{margin:0;padding:0}section li{display:inline;display:inline-block;background-color:#fff;position:relative;margin:0 2em 2em 0;vertical-align:top;border:1px solid #ccc;padding:1em 1em 3em 1em;cursor:default}.icon-box{margin:0;width:144px;height:144px;position:relative;background:#ccc url("data:image/gif;base64,R0lGODlhDAAMAIAAAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQjk4OTI0MUY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQjk4OTI0MkY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNCOTg5MjNGRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCOTg5MjQwRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAAwADAAAAhaEH6mHmmzcgzJAUG/NVGrfOZ8YLlABADs=") top left repeat;border:1px solid #ccc;display:table-cell;vertical-align:middle;text-align:center}.icon{display:inline;display:inline-block}h1{margin-top:0}h2{margin:0;padding:0;font-size:1em;font-weight:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:absolute;left:1em;right:1em;bottom:1em}footer{display:block;margin:0;padding:0 3em 3em 3em}footer p{margin:0;font-size:.7em}footer a{color:#0f7595;margin-left:0}</style>
+
+<!--
+
+Sprite shape dimensions
+====================================================================================================
+You will need to set the sprite shape dimensions via CSS when you use them as stack SVGs, otherwise
+they would become a huge 100% in size. You may use the following dimension classes for doing so.
+They might well be outsourced to an external stylesheet of course.
+
+-->
+
+<style type="text/css">
+	.svg-21-dims { width: 100px; height: 100px; }
+	.svg-about-company-slider-arrow-dims { width: 24px; height: 46px; }
+	.svg-about-company-slider-arrow-right-dims { width: 24px; height: 46px; }
+	.svg-breadcrumb-arrow-dims { width: 17px; height: 8px; }
+	.svg-card-arrow-dims { width: 75px; height: 8px; }
+	.svg-catalog-filter-arrow-dims { width: 28px; height: 14px; }
+	.svg-chat-btn-icon-dims { width: 44px; height: 44px; }
+	.svg-checked-icon-dims { width: 16px; height: 14px; }
+	.svg-clear-filter-icon-dims { width: 16px; height: 16px; }
+	.svg-filter-btn-icon-dims { width: 28px; height: 20px; }
+	.svg-icon-auth-dims { width: 32px; height: 32px; }
+	.svg-icon-correct-dims { width: 28px; height: 28px; }
+	.svg-icon-dropdown-dims { width: 16px; height: 16px; }
+	.svg-icon-error-dims { width: 28px; height: 28px; }
+	.svg-icon-exit-dims { width: 36px; height: 36px; }
+	.svg-icon-motor-dims { width: 68px; height: 48px; }
+	.svg-icon-phone-dims { width: 24px; height: 32px; }
+	.svg-icon-search-dims { width: 32px; height: 32px; }
+	.svg-icon-slider-left-dims { width: 24px; height: 46px; }
+	.svg-icon-slider-right-dims { width: 24px; height: 46px; }
+	.svg-icon-telegram-dims { width: 32px; height: 32px; }
+	.svg-icon-vk-dims { width: 32px; height: 32px; }
+	.svg-logo-dims { width: 30px; height: 30px; }
+	.svg-menu-icon-back-dims { width: 18px; height: 32px; }
+	.svg-product-title-arrow-dims { width: 18px; height: 32px; }
+	.svg-pros-icon-1-dims { width: 88px; height: 80px; }
+	.svg-pros-icon-2-dims { width: 88px; height: 80px; }
+	.svg-pros-icon-3-dims { width: 88px; height: 80px; }
+	.svg-pros-icon-4-dims { width: 88px; height: 80px; }
+	.svg-required-icon-dims { width: 8px; height: 8px; }
+	.svg-search-icon-close-dims { width: 32px; height: 32px; }
+	.svg-submenu-icon-1-dims { width: 68px; height: 48px; }
+	.svg-submenu-icon-2-dims { width: 68px; height: 48px; }
+	.svg-submenu-icon-3-dims { width: 68px; height: 48px; }
+	.svg-submenu-icon-4-dims { width: 68px; height: 48px; }
+	.svg-submenu-icon-5-dims { width: 68px; height: 48px; }
+	.svg-to-top-icon-dims { width: 44px; height: 44px; }
+</style>
+
+<!--
+====================================================================================================
+-->
+
+	</head>
+	<body>
+		<header>
+			<h1>SVG stack preview</h1>
+			<p>This preview features an SVG stack. Please have a look at the HTML source for further details and be aware of the following constraints:</p>
+			<ul>
+				<li>Your browser has to <a href="http://caniuse.com/#feat=svg-fragment" target="_blank" rel="noopener noreferrer">support SVG fragment identifiers</a> for SVG stacks to work.</li>
+				<li>Support for SVG fragment identifiers hasn't always been that decent. For older browsers you will have to use some prolyfill like <a href="https://github.com/preciousforever/SVG-Stacker/blob/master/fixsvgstack.jquery.js" target="_blank" rel="noopener noreferrer">fixsvgstack.jquery.js</a>.</li>
+			</ul>
+		</header>
+		<section>
+
+<!--
+
+SVG stack
+====================================================================================================
+These SVG images make use of fragment identifiers (IDs) to reference certain portions of the
+external sprite. By default, all shapes inside the sprite are hidden by CSS. The `:target` pseudo
+selector is used to show the very shape that is referenced by the fragment identifier.
+
+-->
+
+			<ul>
+
+				<li title="21">
+					<div class="icon-box">
+
+						<!-- 21 -->
+						<img src="../svgSprite.svg#21" class="svg-21-dims" alt="21"/>
+
+					</div>
+					<h2>21</h2>
+				</li>
+				<li title="about-company-slider-arrow">
+					<div class="icon-box">
+
+						<!-- about-company-slider-arrow -->
+						<img src="../svgSprite.svg#about-company-slider-arrow" class="svg-about-company-slider-arrow-dims" alt="about-company-slider-arrow"/>
+
+					</div>
+					<h2>about-company-slider-arrow</h2>
+				</li>
+				<li title="about-company-slider-arrow-right">
+					<div class="icon-box">
+
+						<!-- about-company-slider-arrow-right -->
+						<img src="../svgSprite.svg#about-company-slider-arrow-right" class="svg-about-company-slider-arrow-right-dims" alt="about-company-slider-arrow-right"/>
+
+					</div>
+					<h2>about-company-slider-arrow-right</h2>
+				</li>
+				<li title="breadcrumb-arrow">
+					<div class="icon-box">
+
+						<!-- breadcrumb-arrow -->
+						<img src="../svgSprite.svg#breadcrumb-arrow" class="svg-breadcrumb-arrow-dims" alt="breadcrumb-arrow"/>
+
+					</div>
+					<h2>breadcrumb-arrow</h2>
+				</li>
+				<li title="card-arrow">
+					<div class="icon-box">
+
+						<!-- card-arrow -->
+						<img src="../svgSprite.svg#card-arrow" class="svg-card-arrow-dims" alt="card-arrow"/>
+
+					</div>
+					<h2>card-arrow</h2>
+				</li>
+				<li title="catalog-filter-arrow">
+					<div class="icon-box">
+
+						<!-- catalog-filter-arrow -->
+						<img src="../svgSprite.svg#catalog-filter-arrow" class="svg-catalog-filter-arrow-dims" alt="catalog-filter-arrow"/>
+
+					</div>
+					<h2>catalog-filter-arrow</h2>
+				</li>
+				<li title="chat-btn-icon">
+					<div class="icon-box">
+
+						<!-- chat-btn-icon -->
+						<img src="../svgSprite.svg#chat-btn-icon" class="svg-chat-btn-icon-dims" alt="chat-btn-icon"/>
+
+					</div>
+					<h2>chat-btn-icon</h2>
+				</li>
+				<li title="checked-icon">
+					<div class="icon-box">
+
+						<!-- checked-icon -->
+						<img src="../svgSprite.svg#checked-icon" class="svg-checked-icon-dims" alt="checked-icon"/>
+
+					</div>
+					<h2>checked-icon</h2>
+				</li>
+				<li title="clear-filter-icon">
+					<div class="icon-box">
+
+						<!-- clear-filter-icon -->
+						<img src="../svgSprite.svg#clear-filter-icon" class="svg-clear-filter-icon-dims" alt="clear-filter-icon"/>
+
+					</div>
+					<h2>clear-filter-icon</h2>
+				</li>
+				<li title="filter-btn-icon">
+					<div class="icon-box">
+
+						<!-- filter-btn-icon -->
+						<img src="../svgSprite.svg#filter-btn-icon" class="svg-filter-btn-icon-dims" alt="filter-btn-icon"/>
+
+					</div>
+					<h2>filter-btn-icon</h2>
+				</li>
+				<li title="icon-auth">
+					<div class="icon-box">
+
+						<!-- icon-auth -->
+						<img src="../svgSprite.svg#icon-auth" class="svg-icon-auth-dims" alt="icon-auth"/>
+
+					</div>
+					<h2>icon-auth</h2>
+				</li>
+				<li title="icon-correct">
+					<div class="icon-box">
+
+						<!-- icon-correct -->
+						<img src="../svgSprite.svg#icon-correct" class="svg-icon-correct-dims" alt="icon-correct"/>
+
+					</div>
+					<h2>icon-correct</h2>
+				</li>
+				<li title="icon-dropdown">
+					<div class="icon-box">
+
+						<!-- icon-dropdown -->
+						<img src="../svgSprite.svg#icon-dropdown" class="svg-icon-dropdown-dims" alt="icon-dropdown"/>
+
+					</div>
+					<h2>icon-dropdown</h2>
+				</li>
+				<li title="icon-error">
+					<div class="icon-box">
+
+						<!-- icon-error -->
+						<img src="../svgSprite.svg#icon-error" class="svg-icon-error-dims" alt="icon-error"/>
+
+					</div>
+					<h2>icon-error</h2>
+				</li>
+				<li title="icon-exit">
+					<div class="icon-box">
+
+						<!-- icon-exit -->
+						<img src="../svgSprite.svg#icon-exit" class="svg-icon-exit-dims" alt="icon-exit"/>
+
+					</div>
+					<h2>icon-exit</h2>
+				</li>
+				<li title="icon-motor">
+					<div class="icon-box">
+
+						<!-- icon-motor -->
+						<img src="../svgSprite.svg#icon-motor" class="svg-icon-motor-dims" alt="icon-motor"/>
+
+					</div>
+					<h2>icon-motor</h2>
+				</li>
+				<li title="icon-phone">
+					<div class="icon-box">
+
+						<!-- icon-phone -->
+						<img src="../svgSprite.svg#icon-phone" class="svg-icon-phone-dims" alt="icon-phone"/>
+
+					</div>
+					<h2>icon-phone</h2>
+				</li>
+				<li title="icon-search">
+					<div class="icon-box">
+
+						<!-- icon-search -->
+						<img src="../svgSprite.svg#icon-search" class="svg-icon-search-dims" alt="icon-search"/>
+
+					</div>
+					<h2>icon-search</h2>
+				</li>
+				<li title="icon-slider-left">
+					<div class="icon-box">
+
+						<!-- icon-slider-left -->
+						<img src="../svgSprite.svg#icon-slider-left" class="svg-icon-slider-left-dims" alt="icon-slider-left"/>
+
+					</div>
+					<h2>icon-slider-left</h2>
+				</li>
+				<li title="icon-slider-right">
+					<div class="icon-box">
+
+						<!-- icon-slider-right -->
+						<img src="../svgSprite.svg#icon-slider-right" class="svg-icon-slider-right-dims" alt="icon-slider-right"/>
+
+					</div>
+					<h2>icon-slider-right</h2>
+				</li>
+				<li title="icon-telegram">
+					<div class="icon-box">
+
+						<!-- icon-telegram -->
+						<img src="../svgSprite.svg#icon-telegram" class="svg-icon-telegram-dims" alt="icon-telegram"/>
+
+					</div>
+					<h2>icon-telegram</h2>
+				</li>
+				<li title="icon-vk">
+					<div class="icon-box">
+
+						<!-- icon-vk -->
+						<img src="../svgSprite.svg#icon-vk" class="svg-icon-vk-dims" alt="icon-vk"/>
+
+					</div>
+					<h2>icon-vk</h2>
+				</li>
+				<li title="logo">
+					<div class="icon-box">
+
+						<!-- logo -->
+						<img src="../svgSprite.svg#logo" class="svg-logo-dims" alt="logo"/>
+
+					</div>
+					<h2>logo</h2>
+				</li>
+				<li title="menu-icon-back">
+					<div class="icon-box">
+
+						<!-- menu-icon-back -->
+						<img src="../svgSprite.svg#menu-icon-back" class="svg-menu-icon-back-dims" alt="menu-icon-back"/>
+
+					</div>
+					<h2>menu-icon-back</h2>
+				</li>
+				<li title="product-title-arrow">
+					<div class="icon-box">
+
+						<!-- product-title-arrow -->
+						<img src="../svgSprite.svg#product-title-arrow" class="svg-product-title-arrow-dims" alt="product-title-arrow"/>
+
+					</div>
+					<h2>product-title-arrow</h2>
+				</li>
+				<li title="pros-icon-1">
+					<div class="icon-box">
+
+						<!-- pros-icon-1 -->
+						<img src="../svgSprite.svg#pros-icon-1" class="svg-pros-icon-1-dims" alt="pros-icon-1"/>
+
+					</div>
+					<h2>pros-icon-1</h2>
+				</li>
+				<li title="pros-icon-2">
+					<div class="icon-box">
+
+						<!-- pros-icon-2 -->
+						<img src="../svgSprite.svg#pros-icon-2" class="svg-pros-icon-2-dims" alt="pros-icon-2"/>
+
+					</div>
+					<h2>pros-icon-2</h2>
+				</li>
+				<li title="pros-icon-3">
+					<div class="icon-box">
+
+						<!-- pros-icon-3 -->
+						<img src="../svgSprite.svg#pros-icon-3" class="svg-pros-icon-3-dims" alt="pros-icon-3"/>
+
+					</div>
+					<h2>pros-icon-3</h2>
+				</li>
+				<li title="pros-icon-4">
+					<div class="icon-box">
+
+						<!-- pros-icon-4 -->
+						<img src="../svgSprite.svg#pros-icon-4" class="svg-pros-icon-4-dims" alt="pros-icon-4"/>
+
+					</div>
+					<h2>pros-icon-4</h2>
+				</li>
+				<li title="required-icon">
+					<div class="icon-box">
+
+						<!-- required-icon -->
+						<img src="../svgSprite.svg#required-icon" class="svg-required-icon-dims" alt="required-icon"/>
+
+					</div>
+					<h2>required-icon</h2>
+				</li>
+				<li title="search-icon-close">
+					<div class="icon-box">
+
+						<!-- search-icon-close -->
+						<img src="../svgSprite.svg#search-icon-close" class="svg-search-icon-close-dims" alt="search-icon-close"/>
+
+					</div>
+					<h2>search-icon-close</h2>
+				</li>
+				<li title="submenu-icon-1">
+					<div class="icon-box">
+
+						<!-- submenu-icon-1 -->
+						<img src="../svgSprite.svg#submenu-icon-1" class="svg-submenu-icon-1-dims" alt="submenu-icon-1"/>
+
+					</div>
+					<h2>submenu-icon-1</h2>
+				</li>
+				<li title="submenu-icon-2">
+					<div class="icon-box">
+
+						<!-- submenu-icon-2 -->
+						<img src="../svgSprite.svg#submenu-icon-2" class="svg-submenu-icon-2-dims" alt="submenu-icon-2"/>
+
+					</div>
+					<h2>submenu-icon-2</h2>
+				</li>
+				<li title="submenu-icon-3">
+					<div class="icon-box">
+
+						<!-- submenu-icon-3 -->
+						<img src="../svgSprite.svg#submenu-icon-3" class="svg-submenu-icon-3-dims" alt="submenu-icon-3"/>
+
+					</div>
+					<h2>submenu-icon-3</h2>
+				</li>
+				<li title="submenu-icon-4">
+					<div class="icon-box">
+
+						<!-- submenu-icon-4 -->
+						<img src="../svgSprite.svg#submenu-icon-4" class="svg-submenu-icon-4-dims" alt="submenu-icon-4"/>
+
+					</div>
+					<h2>submenu-icon-4</h2>
+				</li>
+				<li title="submenu-icon-5">
+					<div class="icon-box">
+
+						<!-- submenu-icon-5 -->
+						<img src="../svgSprite.svg#submenu-icon-5" class="svg-submenu-icon-5-dims" alt="submenu-icon-5"/>
+
+					</div>
+					<h2>submenu-icon-5</h2>
+				</li>
+				<li title="to-top-icon">
+					<div class="icon-box">
+
+						<!-- to-top-icon -->
+						<img src="../svgSprite.svg#to-top-icon" class="svg-to-top-icon-dims" alt="to-top-icon"/>
+
+					</div>
+					<h2>to-top-icon</h2>
+				</li>
+			</ul>
+
+<!--
+====================================================================================================
+-->
+
+		</section>
+		<footer>
+			<p>Generated at Tue, 14 Jun 2022 15:32:45 GMT by <a href="https://github.com/svg-sprite/svg-sprite" target="_blank" rel="noopener noreferrer">svg-sprite</a>.</p>
+		</footer>
+	</body>
+</html>

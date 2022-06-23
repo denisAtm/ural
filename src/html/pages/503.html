@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+	@@include('../parts/head.html',{
+	"title":"503"
+	})
+	<body x-data="{mobileMenu: false, mobileSubMenu: false, searchMenu: false, headerSubMenu:false, filter: false, orderForm: false, questionModal: false}" :class="{'mobileMenuOpened': mobileMenu === true || searchMenu === true || filter === true || orderForm === true || questionModal === true}">
+		@@include('../parts/header.html')
+		<main>
+        <nav class="breadcrumbs">
+            <div class="container">
+            <ul role="list">
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">Крошка</a></li>
+                <li><a href="#">Крошка</a></li>
+            </ul>
+        </div>
+        </nav>
+        <section class="errors-page errors-503-page">
+            <div class="container errors-page__container">
+                    <h1>503</h1> 
+                    <p>Сервис недоступен</p> 
+            </div>  
+        </section>
+		</main>
+		@@include('../parts/footer.html')
+	</body>
+</html>

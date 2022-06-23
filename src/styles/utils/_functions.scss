@@ -1,0 +1,24 @@
+@function toRem($value) {
+    @return calc($value / 16) + rem;
+}
+
+@function clampBuilder(
+    $minViewportWidth,
+    $maxViewportWidth,
+    $minFontSize,
+    $maxFontSize
+) {
+    $minWidthMinimum: calc($minViewportWidth / 100);
+    $minFontSizeInRem: calc($minFontSize / 16);
+    $sizeDifference: $maxFontSize - $minFontSize;
+    $widthDifference: $maxViewportWidth - $minViewportWidth;
+    $sizeCalc: 100 * calc($sizeDifference / $widthDifference);
+    @return clamp(
+        #{$minFontSize}px,
+        calc(
+            #{$minFontSizeInRem}rem +
+                ((1vw - #{$minWidthMinimum}px) * #{$sizeCalc})
+        ),
+        #{$maxFontSize}px
+    );
+}

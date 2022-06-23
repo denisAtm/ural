@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 88 80">
+  <mask id="a" fill="#fff">
+    <path fill-rule="evenodd" d="M78 12a6 6 0 0 1 6 6v18a6 6 0 0 1-6 6H56v4a1 1 0 0 1-1.6.8L48 42h-4a6 6 0 0 1-6-6V18a6 6 0 0 1 6-6h34Z" clip-rule="evenodd"/>
+  </mask>
+  <path fill="#07012E" d="M56 42h-2v-2h2v2Zm-1.6 4.8-1.2 1.6 1.2-1.6ZM48 42v-2h.67l.53.4L48 42Zm34-24a4 4 0 0 0-4-4v-4a8 8 0 0 1 8 8h-4Zm0 18V18h4v18h-4Zm-4 4a4 4 0 0 0 4-4h4a8 8 0 0 1-8 8v-4Zm-22 0h22v4H56v-4Zm-2 6v-4h4v4h-4Zm1.6-.8a1 1 0 0 0-1.6.8h4a3 3 0 0 1-4.8 2.4l2.4-3.2Zm-6.4-4.8 6.4 4.8-2.4 3.2-6.4-4.8 2.4-3.2ZM44 40h4v4h-4v-4Zm-4-4a4 4 0 0 0 4 4v4a8 8 0 0 1-8-8h4Zm0-18v18h-4V18h4Zm4-4a4 4 0 0 0-4 4h-4a8 8 0 0 1 8-8v4Zm13.68 0H44v-4h13.68v4Zm19.69 0H57.68v-4h19.69v4Zm.63 0h-.63v-4H78v4Z" mask="url(#a)"/>
+  <mask id="b" fill="#fff">
+    <path fill-rule="evenodd" d="M16 4a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h12v5.59a1 1 0 0 0 1.7.7L36 36h24a8 8 0 0 0 8-8V12a8 8 0 0 0-8-8H16Z" clip-rule="evenodd"/>
+  </mask>
+  <path fill="#FAFAFA" fill-rule="evenodd" d="M16 4a8 8 0 0 0-8 8v16a8 8 0 0 0 8 8h12v5.59a1 1 0 0 0 1.7.7L36 36h24a8 8 0 0 0 8-8V12a8 8 0 0 0-8-8H16Z" clip-rule="evenodd"/>
+  <path fill="#BE054B" d="M28 36h2v-2h-2v2Zm1.7 6.3 1.42 1.4-1.41-1.4ZM36 36v-2h-.83l-.58.59L36 36ZM10 12a6 6 0 0 1 6-6V2A10 10 0 0 0 6 12h4Zm0 16V12H6v16h4Zm6 6a6 6 0 0 1-6-6H6a10 10 0 0 0 10 10v-4Zm12 0H16v4h12v-4Zm2 7.59V36h-4v5.59h4Zm-1.7-.71a1 1 0 0 1 1.7.7h-4a3 3 0 0 0 5.12 2.13l-2.83-2.83Zm6.29-6.3-6.3 6.3 2.83 2.83 6.3-6.3-2.83-2.82ZM60 34H36v4h24v-4Zm6-6a6 6 0 0 1-6 6v4a10 10 0 0 0 10-10h-4Zm0-16v16h4V12h-4Zm-6-6a6 6 0 0 1 6 6h4A10 10 0 0 0 60 2v4ZM16 6h44V2H16v4Z" mask="url(#b)"/>
+  <path stroke="#07012E" stroke-width="2" d="M29 52a7 7 0 1 1-14 0 7 7 0 0 1 14 0Zm44 0a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+  <path fill="#07012E" fill-rule="evenodd" d="M40 76a18.44 18.44 0 0 0-18-14A18.44 18.44 0 0 0 4 76h36Zm-2.79-2A16.42 16.42 0 0 0 22 64 16.42 16.42 0 0 0 6.79 74H37.2Z" clip-rule="evenodd"/>
+  <path fill="#07012E" fill-rule="evenodd" d="M40 76a18.44 18.44 0 0 0-18-14A18.44 18.44 0 0 0 4 76h36Zm44 0a18.44 18.44 0 0 0-18-14 18.44 18.44 0 0 0-18 14h36Z" clip-rule="evenodd"/>
+</svg>

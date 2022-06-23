@@ -1,0 +1,8 @@
+/* подключение шрифтов */
+
+@include font-face(Montserrat, "../fonts/Montserrat-400", 400);
+@include font-face(Montserrat, "../fonts/Montserrat-600", 600);
+@include font-face(Montserrat, "../fonts/Montserrat-700", 700);
+
+@include font-face(Roboto, "../fonts/Roboto-400", 400);
+@include font-face(Roboto, "../fonts/Roboto-500", 500);
