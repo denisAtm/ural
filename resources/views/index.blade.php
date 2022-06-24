@@ -15,7 +15,7 @@
                     </picture>
                 </div>
                 <div class="cta__info">
-                    <h1 class="title title-h1">Данис на хую повис</h1>
+                    <h1 class="title title-h1">Не надо по жопе</h1>
                     <p class="cta__descr">Производство, подбор и ремонт  всех типов общепромышленных и крановых редукторов.</p>
                 </div>
             </div>
