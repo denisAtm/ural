@@ -3,13 +3,22 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '484ca8036a496b14c41a60f5024b9b5101009b4d',
+        'reference' => 'ec19f0489694c4fe567272933724e7978e024bc6',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'artesaos/seotools' => array(
+            'pretty_version' => 'v0.22.0',
+            'version' => '0.22.0.0',
+            'reference' => '55746e0870d3bb6507479bd846d5528c46a7312e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../artesaos/seotools',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'backpack/crud' => array(
             'pretty_version' => '5.1.0',
             'version' => '5.1.0.0',
@@ -484,7 +493,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '484ca8036a496b14c41a60f5024b9b5101009b4d',
+            'reference' => 'ec19f0489694c4fe567272933724e7978e024bc6',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
