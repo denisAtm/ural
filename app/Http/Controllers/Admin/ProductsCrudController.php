@@ -51,25 +51,25 @@ class ProductsCrudController extends CrudController
         );
         CRUD::addColumn(['name' => 'title', 'type' => 'text','label'=>'Заголовок']);
 
-        CRUD::addColumn(['name' => 'type_of_transmission', 'type' => 'text','label'=>'Тип передачи']);
+//        CRUD::addColumn(['name' => 'type_of_transmission', 'type' => 'text','label'=>'Тип передачи']);
+//
+//        CRUD::addColumn(['name' => 'number_of_transfer_stages', 'type' => 'text','label'=>'Количество передаточных ступеней']);
+//
+//        CRUD::addColumn(['name' => 'gear_ratio', 'type' => 'text','label'=>'Передаточное отношение']);
+//
+//        CRUD::addColumn(['name' => 'location_of_axes', 'type' => 'text','label'=>'Расположение осей']);
+//
+//        CRUD::addColumn(['name' => 'climatic_version', 'type' => 'text','label'=>'Климатическое исполнение']);
+//
+//        CRUD::addColumn(['name' => 'build_option', 'type' => 'text','label'=>'Вариант сборки']);
+//
+//        CRUD::addColumn(['name' => 'state_standard', 'type' => 'text','label'=>'ГОСТ']);
+//
+//        CRUD::addColumn(['name' => 'desc', 'type' => 'text','label'=>'Описание']);
+//
+//        CRUD::addColumn(['name' => 'size', 'type' => 'text','label'=>'Размеры']);
 
-        CRUD::addColumn(['name' => 'number_of_transfer_stages', 'type' => 'text','label'=>'Количество передаточных ступеней']);
-
-        CRUD::addColumn(['name' => 'gear_ratio', 'type' => 'text','label'=>'Передаточное отношение']);
-
-        CRUD::addColumn(['name' => 'location_of_axes', 'type' => 'text','label'=>'Расположение осей']);
-
-        CRUD::addColumn(['name' => 'climatic_version', 'type' => 'text','label'=>'Климатическое исполнение']);
-
-        CRUD::addColumn(['name' => 'build_option', 'type' => 'text','label'=>'Вариант сборки']);
-
-        CRUD::addColumn(['name' => 'state_standard', 'type' => 'text','label'=>'ГОСТ']);
-
-        CRUD::addColumn(['name' => 'desc', 'type' => 'text','label'=>'Описание']);
-
-        CRUD::addColumn(['name' => 'size', 'type' => 'text','label'=>'Размеры']);
-
-        CRUD::addColumn(['name' => 'created_at', 'type' => 'date','label'=>'Дата публикации']);
+//        CRUD::addColumn(['name' => 'created_at', 'type' => 'date','label'=>'Дата публикации']);
 
 //        CRUD::addColumn(['label'     => "Категории",
 //            'type'      => 'select_multiple',

@@ -25,4 +25,5 @@ Route::group([
     Route::crud('number-of-transfer-stages', 'NumberOfTransferStagesCrudController');
     Route::crud('gear-ratio', 'GearRatioCrudController');
     Route::crud('location-of-axes', 'LocationOfAxesCrudController');
+    Route::crud('articles', 'ArticlesCrudController');
 }); // this should be the absolute last line of this file

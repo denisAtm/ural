@@ -11,4 +11,7 @@ class NewsStatus extends Model
     public function news(){
         return $this->hasMany(News::class,'status_id','id');
     }
+    public function articles(){
+        return $this->hasMany(Articles::class,'status_id','id');
+    }
 }
