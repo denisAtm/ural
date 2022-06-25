@@ -37,5 +37,7 @@ Route::get('/articles-card',function (){
     return view('articles-card');
 });
 Route::get('/news',[PageController::class,'news']);
-Route::get('/news/{slug}',[PageController::class,'newsCard']);
+Route::get('/articles',[PageController::class,'articles']);
+Route::get('/articles/{slug}',[PageController::class,'articlesSingle']);
+Route::get('/news/{slug}',[PageController::class,'newsSingle']);
 Route::get('/about',[PageController::class,'aboutPage']);

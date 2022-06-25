@@ -2,7 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sticksy/dist/sticksy.min.js"></script>
 <script src="{{asset('js/main.min.js')}}" defer></script>
-
+@yield('cdn')
 <header class="header">
     <div class="container header__container">
     <button type="button" class="header__hamb-btn" @click="mobileMenu = !mobileMenu;searchMenu = false" :class="{'active': mobileMenu === true}"><span>

@@ -126,6 +126,7 @@ class ArticlesCrudController extends CrudController
             ],'label'=>'Содержание']);
         Widget::add()->type('script')->content('js/slug.js');
         Widget::add()->type('script')->content('js/publishTime.js');
+        Widget::add()->type('script')->content('js/summernote.js');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

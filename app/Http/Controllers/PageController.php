@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutPage;
+use App\Models\Articles;
 use App\Models\Categories;
 use App\Models\GearRatio;
 use App\Models\LocationOfAxes;
@@ -18,7 +19,7 @@ class PageController extends Controller
 
         return view('index',['news'=>$news]);
     }
-    public function newsCard($slug){
+    public function newsSingle($slug){
         $news = News::where('slug',$slug)->first();
         if($news->status->id==1){
             $prev = News::where('id','<',$news->id)->latest('id')->first();
@@ -47,5 +48,20 @@ class PageController extends Controller
         $attr4 = LocationOfAxes::get();
         $products = Categories::where('slug',$slug)->first()->products()->paginate(12);
         return view('catalog',compact(['attr1','attr2','attr3','attr4','slug','products']));
+    }
+
+    public function articles(){
+        $articles = Articles::orderBy('publish_at','desc')->get();
+        return view('articles',['articles'=>$articles]);
+    }
+    public function articlesSingle($slug){
+        $article = Articles::where('slug',$slug)->first();
+        if($article->status->id==1){
+            $prev = News::where('id','<',$article->id)->latest('id')->first();
+            $next = News::where('id','<',$article->id)->oldest('id')->first();
+            return view('articles-single',['article'=>$article,'prev'=>$prev,'next'=>$next]);
+        }else{
+            abort(404);
+        }
     }
 }
