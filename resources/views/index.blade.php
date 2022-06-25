@@ -44,16 +44,20 @@
                         @foreach($categories as $category)
                             <li class="swiper-slide reductor-types__card" data-aos="fade-in" data-aos-delay="{{$loop->iteration*200}}">
                                 <figure>
-                                    <div class="reductor-types__card-top">
-                                        <picture>
-                                            <img src="{{asset('storage/images/categories/'.$category->image)}}" loading="lazy" decoding="async" alt="image" width="241" height="300">
-                                        </picture>
-                                        <div class="reductor-types__descr">
-                                            <p>{{$category->descr}}</p>
+                                    <a href="/catalog/{{$category->slug}}">
+                                        <div class="reductor-types__card-top">
+                                            <picture>
+                                                <img src="{{asset('storage/images/categories/'.$category->image)}}" loading="lazy" decoding="async" alt="image" width="241" height="300">
+                                            </picture>
+                                            <div class="reductor-types__descr">
+                                                <p>{{$category->descr}}</p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                     <figcaption>
-                                        <h3 class="title title-h3">{{$category->name}}</h3>
+                                        <a href="/catalog/{{$category->slug}}">
+                                            <h3 class="title title-h3">{{$category->name}}</h3>
+                                        </a>
                                     </figcaption>
                                 </figure>
                             </li>
