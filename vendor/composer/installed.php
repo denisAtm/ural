@@ -1,30 +1,15 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-<<<<<<< HEAD
         'pretty_version' => '1.0.0+no-version-set',
         'version' => '1.0.0.0',
         'reference' => NULL,
-=======
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'ec19f0489694c4fe567272933724e7978e024bc6',
->>>>>>> e32672f3b2b4fe6867443e3a497af1b397cf71fd
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'artesaos/seotools' => array(
-            'pretty_version' => 'v0.22.0',
-            'version' => '0.22.0.0',
-            'reference' => '55746e0870d3bb6507479bd846d5528c46a7312e',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../artesaos/seotools',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'backpack/crud' => array(
             'pretty_version' => '5.1.0',
             'version' => '5.1.0.0',
@@ -497,15 +482,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-<<<<<<< HEAD
             'pretty_version' => '1.0.0+no-version-set',
             'version' => '1.0.0.0',
             'reference' => NULL,
-=======
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'ec19f0489694c4fe567272933724e7978e024bc6',
->>>>>>> e32672f3b2b4fe6867443e3a497af1b397cf71fd
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
