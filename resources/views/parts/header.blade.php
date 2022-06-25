@@ -15,12 +15,40 @@
             </svg>
         </a>
       </div>
-      <nav class="header__menu" x-data="{headerSubMenu:false}">
+      <nav class="header__menu" x-data="{headerSubMenu1:false}">
         <ul class="header__menu-list" role="list">
           <li @click="headerSubMenu = !headerSubMenu" :class="{'active': headerSubMenu === true}"><a href="#">Каталог</a></li>
-          <li><a href="/about">О компании</a></li>
+          <li @click="headerSubMenu1 = !headerSubMenu1" :class="{'active': headerSubMenu1 === true}"><a href="#">О компании</a></li>
           <li><a href="/contacts">Контакты</a></li>
         </ul>
+          <nav class="header__dropdown-menu-wrapper" x-show="headerSubMenu1" @click.outside="headerSubMenu1 = false" x-transition.origin.top.left.duration.300ms style="display:none;">
+              <ul class="header__dropdown-menu" role="list">
+                  <li>
+                      <a href="/about">
+                          <svg width="68" height="48">
+                              <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#submenu-icon-1')}}"></use>
+                          </svg>
+                          <span>О нас</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/news">
+                          <svg width="68" height="48">
+                              <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#submenu-icon-1')}}"></use>
+                          </svg>
+                          <span>Новости</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/articles">
+                          <svg width="68" height="48">
+                              <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#submenu-icon-1')}}"></use>
+                          </svg>
+                          <span>Статьи</span>
+                      </a>
+                  </li>
+              </ul>
+          </nav>
         <nav class="header__dropdown-menu-wrapper" x-show="headerSubMenu" @click.outside="headerSubMenu = false" x-transition.origin.top.left.duration.300ms style="display:none;">
         <ul class="header__dropdown-menu" role="list">
             @foreach($categories as $category)
