@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     @foreach ($categories as $category)
         <url>
-            <loc>{{ route('category', $category->slug) }}</loc>
-            <lastmod>{{ $category->updated_at->toAtomString() }}</lastmod>
+            <loc>{{url("/")}}/categories/{{ $category->slug }}</loc>
+            <lastmod>{{ $category->updated_at }}</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.8</priority>
         </url>

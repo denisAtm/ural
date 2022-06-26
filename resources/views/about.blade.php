@@ -22,33 +22,36 @@
             <div class="about-company-row about-company-row--1">
                 <div class="container">
                     <div class="about-company-row__info">
-                        <p>{{$about[0]['text']}}</p>
+                        <p>Предприятие развивает и приумножает лучшие традиции производства советских времен, используя технологии современности.</p>
+                        <p>Ведущие позиции поддерживаются накапливаемым знанием, постоянным обучением и развитием персонала, внедрением наиболее эффективных технологий. </p>
                     </div>
                 </div>
-                <img class="about-company-row__img" loading="lazy" decoding="async" src="{{asset('storage/images/about/'.$about[0]->image)}}" alt="image" width="360" height="336" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                <img class="about-company-row__img" loading="lazy" decoding="async" src="resources/images/about-company-img-1.jpg" alt="image" width="360" height="336" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
                      data-aos-duration="1000">
             </div>
             <div class="about-company-row about-company-row--reversed about-company-row--adaptive">
                 <div class="container">
                     <div class="about-company-row__info">
-                        <p>{{$about[1]['text']}}</p>
-                     </div>
+                        <p>Вся продукция, выпускаемая предприятием, в обязательном порядке проходит технический контроль на  соответствие утвержденным техническим условиям, действующим стандартам и нормативам. </p>
+                        <p>Гарантийные обязательства на продукцию «Уралредуктор» устанавливаются в полном соответствии с действующим законодательством РФ и техническими условиями.</p>
+                    </div>
                 </div>
-                <img class="about-company-row__img" loading="lazy" decoding="async" src="{{asset('storage/images/about/'.$about[1]->image)}}" alt="image" width="360" height="336" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                <img class="about-company-row__img" loading="lazy" decoding="async" src="resources/images/about-company-img-2.jpg" alt="image" width="360" height="336" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
                      data-aos-duration="1000">
             </div>
             <div class="about-company-row about-company-row--reversed about-company-row--desktop about-company-row--2">
                 <div class="container">
                     <div class="about-company-row__info">
-                        <p>{{$about[1]['text']}}</p>
+                        <p>Вся продукция, выпускаемая предприятием, в обязательном порядке проходит технический контроль на  соответствие утвержденным техническим условиям, действующим стандартам и нормативам. </p>
+                        <p>Гарантийные обязательства на продукцию «Уралредуктор» устанавливаются в полном соответствии с действующим законодательством РФ и техническими условиями.</p>
                     </div>
-                    <img class="about-company-row__img" loading="lazy" decoding="async" src="{{asset('storage/images/about/'.$about[1]->image)}}" alt="image" width="360" height="336" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                    <img class="about-company-row__img" loading="lazy" decoding="async" src="resources/images/about-company-img-2.jpg" alt="image" width="360" height="336" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
                          data-aos-duration="1000">
                 </div>
             </div>
             <article class="about-company-slider-wrapper">
                 <div class="container">
-                    <h3>{{$about[2]['slogan']}}</h3>
+                    <h3>Репутация «Уралредуктора» перед клиентом – это качество его продукции.</h3>
                 </div>
                 <div class="container about-company-slider-wrapper__container">
                     <ul role="list" class="about-company-slider">
@@ -143,19 +146,19 @@
             <article class="about-company-article about-company-mission">
                 <div class="container about-company-mission__container">
                     <div class="about-company-mission__row">
-                        <h2>{{$about[3]['title']}}</h2>
-                        <p>{{$about[3]['text']}}</p>
+                        <h2>Миссия компании</h2>
+                        <p>Качественное и оптимальное решение для различных потребителей в отраслях промышленного оборудования. </p>
                     </div>
-                    <img loading="lazy" decoding="async" src="{{asset('storage/images/about/'.$about[3]->image)}}" alt="image" width="328" height="328" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                    <img loading="lazy" decoding="async" src="resources/images/about-company-mission-img.jpg" alt="image" width="328" height="328" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
                          data-aos-duration="1000">
                 </div>
             </article>
             <article class="about-company-article about-company-projection">
                 <div class="container about-company-projection__container">
                     <div class="about-company-projection__row">
-                        <h2>{{$about[4]['title']}}</h2>
-                        <p>{{$about[4]['text']}}</p>
-                        <img loading="lazy" decoding="async" src="{{asset('storage/images/about/'.$about[4]->image)}}" alt="image" width="328" height="208" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                        <h2>Проектирование</h2>
+                        <p>Используя современные технологии,методы проектирования и 25 летний опыт наших специалистов, наша компания расширила свои границы в лице клиентов как лидеров по качественному проектированию редукторов, что,несомненно, делает нас лучшими на рынке промышленных редукторов. </p>
+                        <img loading="lazy" decoding="async" src="resources/images/about-company-projection-img.jpg" alt="image" width="328" height="208" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
                              data-aos-duration="1000">
                     </div>
                 </div>
@@ -163,8 +166,8 @@
             <article class="about-company-article about-company-production">
                 <div class="container about-company-production__container">
                     <div class="about-company-production__row">
-                        <h2>{{$about[5]['title']}}</h2>
-                        <p>{{$about[5]['text']}}</p>
+                        <h2>Прозводство</h2>
+                        <p>Компания имеет свое предприятие по изготовлению различных типов редукторов, совершенствует и продвигает идеалогию современного метода производства редукторов, что делает нашу продукцию эталоном качества, а для клиентов мы остаемся надежными поставщиками с долгосрочными отношениями.</p>
                     </div>
                     <ul class="about-company-production__gallery" role="list">
                         <li>
@@ -197,8 +200,8 @@
             <article class="about-company-article about-company-repair">
                 <div class="container about-company-repair__container">
                     <div class="about-company-repair__row">
-                        <h2>{{$about[6]['title']}}</h2>
-                        <p>{{$about[6]['text']}}</p>
+                        <h2>Ремонт</h2>
+                        <p>Наша компания предоставляет клиентам качественный ремонт всех типов редукторов общемашиностроительного назначения любых Европейских и Российских заводов-изготовителей, в том числе и по предоставленным Т3 или чертежам заказчика с возможностью выезда наших специалистов для проведения замеров и других прилегаемых задач.</p>
                     </div>
                 </div>
                 <img loading="lazy" decoding="async" src="resources/images/about-company-repair-img.jpg" alt="image" width="284" height="356" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
@@ -207,8 +210,8 @@
             <article class="about-company-article about-company-upgrade">
                 <div class="container about-company-upgrade__container">
                     <div class="about-company-upgrade__row">
-                        <h2>{{$about[7]['title']}}</h2>
-                        <p>{{$about[7]['text']}}</p>
+                        <h2>Модернизация</h2>
+                        <p>Современные методы проектирования позволяют производить не только ремонт, но и модернизацию устаревших редукторов, мотор-редукторов на более современные и качественные варианты продукции.</p>
                         <ul class="about-company-upgrade__gallery" role="list">
                             <li><img data-aos="fade-up" data-aos-anchor-placement="top-bottom"
                                      data-aos-duration="1000" loading="lazy" decoding="async" src="resources/images/about-company-upgrade-img-1.jpg" alt="image" width="328" height="256"></li>
