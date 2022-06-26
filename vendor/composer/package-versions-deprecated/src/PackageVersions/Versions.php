@@ -34,6 +34,7 @@ final class Versions
      */
     const VERSIONS          = array (
   'backpack/crud' => '5.1.0@9e1de794137ceb1ade1fa35e3b9366f97285efb3',
+  'backpack/permissionmanager' => '6.0.15@9245f8d17ac673fabd2c4230a43657c2a5bda250',
   'brick/math' => '0.9.3@ca57d18f028f84f777b2168cd1911b0dee2343ae',
   'composer/package-versions-deprecated' => '1.11.99.5@b4f54f74ef3453349c24a845d22392cd31e65f1d',
   'creativeorange/gravatar' => 'v1.0.22@0eed243a16bcd01e618036f9b8021526ea26f64a',
@@ -80,6 +81,7 @@ final class Versions
   'ralouphie/getallheaders' => '3.0.3@120b605dfeb996808c31b6477290a714d356e822',
   'ramsey/collection' => '1.2.2@cccc74ee5e328031b15640b51056ee8d3bb66c0a',
   'ramsey/uuid' => '4.3.1@8505afd4fea63b81a85d3b7b53ac3cb8dc347c28',
+  'spatie/laravel-permission' => '5.5.4@cb86fd87b43fcfc493c3f2b1de6fad100c078146',
   'symfony/console' => 'v6.1.1@6187424023fbffcd757789aeb517c9161b1eabee',
   'symfony/css-selector' => 'v6.1.0@05c40f02f621609404b8820ff8bc39acb46e19cf',
   'symfony/deprecation-contracts' => 'v3.1.0@07f1b9cc2ffee6aaafcf4b710fbc38ff736bd918',

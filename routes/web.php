@@ -24,9 +24,7 @@ Route::get('/clear', function() {
  });
 Route::get('/', [PageController::class,'index']);
 Route::get('/catalog/{slug}',[PageController::class,'catalog']);
-Route::get('/single',function (){
-    return view('single');
-});
+Route::get('/catalog/{catSlug}/{slug}',[PageController::class,'single']);
 
 Route::get('/contacts',function (){
     return view('contacts');
@@ -42,6 +40,7 @@ Route::get('/articles',[PageController::class,'articles']);
 Route::get('/articles/{slug}',[PageController::class,'articlesSingle']);
 Route::get('/news/{slug}',[PageController::class,'newsSingle']);
 Route::get('/about',[PageController::class,'aboutPage']);
+Route::post('/storeProductImages',[\App\Http\Controllers\Admin\ProductsCrudController::class,'storeImages'])->name('storeProductImages');
 /* Sitemap */
 Route::get('/sitemap', [SitemapController::class,'index']);
 Route::get('/sitemap/products', [SitemapController::class,'products']);

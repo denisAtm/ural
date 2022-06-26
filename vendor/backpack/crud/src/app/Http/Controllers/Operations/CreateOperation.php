@@ -74,7 +74,7 @@ trait CreateOperation
 
         // execute the FormRequest authorization and validation, if one is required
         $request = $this->crud->validateRequest();
-
+//        dd($request);
         // register any Model Events defined on fields
         $this->crud->registerFieldEvents();
 

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use App\Models\Image as ImageModel;
 class Products extends Model
 {
     use CrudTrait;
@@ -39,7 +40,11 @@ class Products extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
+    public function getMainImageThumbnail(){
+        $image = $this->images()->where('position','1')->first();
+        $path = 'storage/thumbnails/products/'.$image->name;
+        return '<img src = "{{asset('.$path.')}}" alt="image">';
+    }
 
     public static function boot()
     {
@@ -61,20 +66,17 @@ class Products extends Model
     public function status(){
         return $this->belongsTo(NewsStatus::class);
     }
-    public function categories(){
-        return $this->belongsToMany(Categories::class,'category_product','product_id','category_id');
+    public function series(){
+        return $this->belongsTo(Series::class);
     }
-    public function typeOfTransmission(){
-        return $this->belongsTo(TypeOfTransmission::class,'type_of_transmission');
+    public function images(){
+        return $this->hasMany(ImageModel::class);
     }
     public function numberOfTransferStages(){
         return $this->belongsTo(NumberOfTransferStages::class,'number_of_transfer_stages');
     }
     public function locationOfAxes(){
         return $this->belongsTo(LocationOfAxes::class,'location_of_axes');
-    }
-    public function gearRatio(){
-        return $this->belongsTo(GearRatio::class,'gear_ratio');
     }
     /*
     |--------------------------------------------------------------------------
@@ -105,8 +107,8 @@ class Products extends Model
         $path = 'products';
         $this->attributes['image'] = StoreImage::storeImage($value,$path);
     }
-    public function setSizeAttribute($value, MotorSizesDataToArray $action, Request $request){
-        $value = $action->handle($request);
-        $this->attributes['size'] = $value;
-    }
+//    public function setSizeAttribute($value, MotorSizesDataToArray $action, Request $request){
+//        $value = $action->handle($request);
+//        $this->attributes['size'] = $value;
+//    }
 }

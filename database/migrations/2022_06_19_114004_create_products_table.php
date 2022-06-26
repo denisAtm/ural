@@ -15,18 +15,15 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('image');
-            $table->string('type_of_transmission');
-            $table->string('number_of_transfer_stages');
-            $table->string('gear_ratio');
-            $table->string('location_of_axes');
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->boolean('gost');
+            $table->foreignId('number_of_transfer_stages')->constrained('number_of_transfer_stages')->onDelete('cascade');
+            $table->foreignId('location_of_axes')->constrained('location_of_axes')->onDelete('cascade');
+            $table->foreignId('series_id')->constrained('series')->onDelete('cascade');
             $table->string('climatic_version');
-            $table->string('build_option');
-            $table->string('state_standard');
             $table->longText('desc');
             $table->longText('size');
-            $table->string('slug')->unique();
             $table->foreignId('status_id')->default(1)->constrained('news_statuses');
             $table->timestamps();
         });

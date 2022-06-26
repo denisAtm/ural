@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('number_of_transfer_stages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
             $table->timestamps();
         });
     }

@@ -9,6 +9,8 @@ use App\Models\GearRatio;
 use App\Models\LocationOfAxes;
 use App\Models\News;
 use App\Models\NumberOfTransferStages;
+use App\Models\Products;
+use App\Models\Series;
 use App\Models\TypeOfTransmission;
 use Illuminate\Http\Request;
 
@@ -46,8 +48,14 @@ class PageController extends Controller
         $attr2 = NumberOfTransferStages::get();
         $attr3 = GearRatio::get();
         $attr4 = LocationOfAxes::get();
-        $products = Categories::where('slug',$slug)->first()->products()->paginate(12);
-        return view('catalog',compact(['attr1','attr2','attr3','attr4','slug','products']));
+        $category = Categories::where('slug',$slug)->first();
+        $series = $category->series;
+        return view('catalog',compact(['attr1','attr2','attr3','attr4','slug','series']));
+    }
+
+    public function single($catSlug,$slug){
+        $product = Products::where('slug',$slug)->first();
+        return view('single',compact(['product']));
     }
 
     public function articles(){

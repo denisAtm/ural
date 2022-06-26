@@ -50,7 +50,7 @@ class NewsCrudController extends CrudController
 
             ]
         );
-        CRUD::addColumn(['name' => 'title', 'type' => 'text','label'=>'Заголовок']);
+        CRUD::addColumn(['name' => 'name', 'type' => 'text','label'=>'Заголовок']);
         CRUD::addColumn(['name' => 'created_at', 'type' => 'date','label'=>'Дата публикации']);
         CRUD::addColumn(['label'     => "Тэги",
             'type'      => 'select_multiple',
@@ -74,7 +74,7 @@ class NewsCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(NewsRequest::class);
-        CRUD::addField(['name' => 'title', 'type' => 'text','label'=>'Заголовок','wrapper'   => [
+        CRUD::addField(['name' => 'name', 'type' => 'text','label'=>'Заголовок','wrapper'   => [
             'class'      => 'form-group col-md-6'
         ],]);
         CRUD::addField([
@@ -88,7 +88,6 @@ class NewsCrudController extends CrudController
                 'class'      => 'form-group col-md-6'
             ],
         ]);
-        Widget::add()->type('script')->content('js/slug.js');
         CRUD::addField(['label'     => "Статус",
             'type'      => 'select',
             'name'      => 'status_id',
@@ -114,7 +113,7 @@ class NewsCrudController extends CrudController
             ],'label'=>'Содержание']);
         CRUD::addField(['name' => 'image', 'type' => 'upload','label'=>'Изображение','upload'=>true]);
 
-
+        Widget::add()->type('script')->content('js/slug.js');
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

@@ -61,18 +61,7 @@ class CategoriesCrudController extends CrudController
         CRUD::addColumn(['name' => 'name', 'type' => 'text','label'=>'Название','wrapper'   => [
             'class'      => 'form-group col-md-6'
         ],]);
-        CRUD::addField([
-            'name'=>'slug',
-            'label'=>'SLUG',
-            'type'=>'text',
-            'attributes' => [
-                'readonly'    => 'readonly',
-            ], // change the HTML attributes of your input
-            'wrapper'   => [
-                'class'      => 'form-group col-md-6'
-            ],
-        ]);
-        Widget::add()->type('script')->content('js/slug.js');
+
         CRUD::addColumn(['name' => 'descr', 'type' => 'text','label'=>'Описание']);
 
         /**
@@ -91,11 +80,24 @@ class CategoriesCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(CategoriesRequest::class);
-        CRUD::addField(['name' => 'name', 'type' => 'text','label'=>'Название']);
-        CRUD::addField(['name' => 'slug', 'type' => 'text','label'=>'slug']);
+        CRUD::addField(['name' => 'name', 'type' => 'text','label'=>'Название','wrapper'   => [
+            'class'      => 'form-group col-md-6'
+        ],]);
+        CRUD::addField([
+            'name'=>'slug',
+            'label'=>'SLUG',
+            'type'=>'text',
+            'attributes' => [
+                'readonly'    => 'readonly',
+            ], // change the HTML attributes of your input
+            'wrapper'   => [
+                'class'      => 'form-group col-md-6'
+            ],
+        ]);
         CRUD::addField(['name' => 'descr', 'type'  => 'text','label'=>'Описание']);
         CRUD::addField(['name' => 'image', 'type' => 'upload','label'=>'Изображение','upload'=>true]);
         CRUD::addField(['name' => 'icon', 'type' => 'upload','label'=>'Иконка','upload'=>true]);
+        Widget::add()->type('script')->content('js/slug.js');
 
 
         /**

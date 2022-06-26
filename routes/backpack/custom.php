@@ -26,4 +26,9 @@ Route::group([
     Route::crud('gear-ratio', 'GearRatioCrudController');
     Route::crud('location-of-axes', 'LocationOfAxesCrudController');
     Route::crud('articles', 'ArticlesCrudController');
+    Route::crud('group', 'GroupCrudController');
+    Route::crud('paw', 'PawCrudController');
+    Route::crud('flange', 'FlangeCrudController');
+    Route::crud('build-options', 'BuildOptionsCrudController');
+    Route::crud('series', 'SeriesCrudController');
 }); // this should be the absolute last line of this file

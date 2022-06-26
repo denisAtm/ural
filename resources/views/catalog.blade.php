@@ -385,11 +385,13 @@
         }
                     </script> -->
                     <ul class="catalog-list" role="list">
+                        @foreach($series as $one)
+
                         @php
                             $it = 0;
 
                         @endphp
-                        @foreach($products as $product)
+                        @foreach($one->products as $product)
                             @php
                                 $it++;
                                 if($it==4){
@@ -404,9 +406,9 @@
                                                 <img src="{{asset('storage/images/products/'.$product->image)}}" loading="lazy" decoding="async" alt="image" width="328" height="264">
                                             </picture>
                                             <ul class="catalog-card__descr catalog-card__descr--pos-abs">
-                                                <li><span>Тип передачи</span><span>{{$product->typeOfTransmission->name}}</span></li>
+                                                <li><span>Тип передачи</span><span>{{$one->category->name}}</span></li>
                                                 <li><span>Передаточные ступени</span><span>{{$product->numberOfTransferStages->name}}</span></li>
-                                                <li><span>Передаточное<br>отношение</span><span>{{$product->gearRatio->name}}</span></li>
+                                                <li><span>Передаточное<br>отношение</span><span>{{$one->getGearRatio()}}</span></li>
                                                 <li><span>Расположение осей</span><span>{{$product->locationOfAxes->name}}</span></li>
                                                 <li><span>Климатическое<br>исполнение</span><span>{{$product->climatic_version}}
                             </span></li>
@@ -418,7 +420,7 @@
                                             <h3 class="title title-h3">Мотор-редуктор 1МПз2-40 (3МП-40)</h3>
                                         </figcaption>
                                         <div class="catalog-card__link-btn-wrapper">
-                                            <a href="/single" class="secondary-btn catalog-card__link-btn">Подробнее</a>
+                                            <a href="/catalog/{{$slug}}/{{$product->slug}}" class="secondary-btn catalog-card__link-btn">Подробнее</a>
                                         </div>
                                     </div>
                                     <div class="catalog-card__aside">
@@ -436,7 +438,9 @@
                                 </figure>
                             </li>
                         @endforeach
-{{--                        <li data-aos="fade-in" data-aos-delay="200">--}}
+                        @endforeach
+
+                        {{--                        <li data-aos="fade-in" data-aos-delay="200">--}}
 {{--                            <figure class="catalog-card">--}}
 {{--                                <div class="catalog-card__main">--}}
 {{--                                    <div class="catalog-card__top">--}}
@@ -906,7 +910,7 @@
 {{--                        </li>--}}
                     </ul>
                     <ul class="pagination catalog-pagination" role="list">
-                        {{ $products->links() }}
+{{--                        {{ $products->links() }}--}}
                     </ul>
                 </div>
             </div>

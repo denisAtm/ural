@@ -116,7 +116,6 @@ class ArticlesCrudController extends CrudController
             'name'  => 'publish_at',
             'label' => 'Дата публикации',
             'type'  => 'datetime',
-
         ]);
         CRUD::addField(['name' => 'content', 'type'  => 'summernote',
             'options' => [
@@ -132,6 +131,7 @@ class ArticlesCrudController extends CrudController
             ],'label'=>'Содержание']);
 
         Widget::add()->type('script')->content('js/publishTime.js');
+        Widget::add()->type('script')->content('js/slug.js');
         Widget::add()->type('script')->content('js/summernote.js');
 
         /**

@@ -37,8 +37,9 @@ class Categories extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function products(){
-        return $this->belongsToMany(Products::class,'category_product','category_id','product_id');
+
+    public function series(){
+        return $this->hasMany(Series::class,'category_id')->with('products');
     }
     /*
     |--------------------------------------------------------------------------

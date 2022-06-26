@@ -87,6 +87,8 @@ class News extends Model
     public function setImageAttribute($value)
     {
         $path = 'news';
+
         $this->attributes['image'] = StoreImage::storeImage($value,$path);
+//        $this->attributes['image'] ='313';
     }
 }
