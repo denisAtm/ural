@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     @foreach ($tags as $tag)
         <url>
-            <loc>{{ route('tag', $tag->slug) }}</loc>
-            <lastmod>{{ $tag->updated_at->toAtomString() }}</lastmod>
+            <loc>{{url("/")}}/tag/{{ $tag->slug }}</loc>
+            <lastmod>{{ $tag->updated_at }}</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.8</priority>
         </url>

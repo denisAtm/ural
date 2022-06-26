@@ -35,7 +35,7 @@ class SitemapController extends Controller
 
     public function products()
     {
-        $products = Products::approved()->orderBy('updated_at', 'desc')->get();
+        $products = Products::get();
         return response()->view('sitemap.products', [
             'products' => $products,
         ])->header('Content-Type', 'text/xml');
@@ -43,7 +43,7 @@ class SitemapController extends Controller
 
     public function categories()
     {
-        $categories = Categories::approvedPosts()->orderBy('updated_at', 'desc')->get();
+        $categories = Categories::get();
         return response()->view('sitemap.categories', [
             'categories' => $categories,
         ])->header('Content-Type', 'text/xml');
@@ -51,21 +51,21 @@ class SitemapController extends Controller
 
     public function tags()
     {
-        $tags = Tag::approvedPosts()->orderBy('updated_at', 'desc')->get();
+        $tags = Tag::get();
         return response()->view('sitemap.tags', [
             'tags' => $tags,
         ])->header('Content-Type', 'text/xml');
     }
     public function news()
     {
-        $news = News::approvedPosts()->orderBy('updated_at', 'desc')->get();
+        $news = News::get();
         return response()->view('sitemap.news', [
             'news' => $news,
         ])->header('Content-Type', 'text/xml');
     }
     public function articles()
     {
-        $articles = Articles::approvedPosts()->orderBy('updated_at', 'desc')->get();
+        $articles = Articles::get();
         return response()->view('sitemap.articles', [
             'articles' => $articles,
         ])->header('Content-Type', 'text/xml');
