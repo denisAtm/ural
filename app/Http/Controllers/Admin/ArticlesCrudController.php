@@ -45,7 +45,13 @@ class ArticlesCrudController extends CrudController
         'label'=>'Название',
         'type'=>'text'
     ]);
-
+    CRUD::addColumn([
+        'name'=>'status_id',
+        'label'=>'Статус',
+        'type'=>'select',
+        'entity'=>'status',
+        'model'=>'App\Models\Articles'
+    ]);
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:

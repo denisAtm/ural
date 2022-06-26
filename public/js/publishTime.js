@@ -5,6 +5,5 @@ crud.field('status_id').onChange(function(field){
     }else{
         crud.field('publish_at').hide()
     }
-    console.log(crud.field('slug').value)
 
 })

@@ -30,7 +30,7 @@
                             <svg data-aos="fade-up" data-aos-easing="linear" data-aos-delay="250" width="18" height="32">
                                 <use xlink:href="resources/svgSprites/svgSprite.svg#product-title-arrow"></use>
                             </svg></a>{{$article->name}}</h1>
-                    <time datetime="2022.15.03">{{$article->publish_at}}</time>
+                    <time datetime="2022.15.03">{{$article->publishAtAttribute()}}</time>
                 </div>
                 <div class="articles-card-info">
                     <time datetime="2022.15.03">{{$article->publish_at}}</time>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Articles extends Model
@@ -42,6 +43,9 @@ class Articles extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class,'article_tag','article_id');
     }
+    public function publishAtAttribute(){
+        return Carbon::parse($this->publish_at)->format('d.m.Y');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -62,6 +66,8 @@ class Articles extends Model
     public function setPublishAtAttribute($value){
         if($value==null && $this->status_id!=5){
             $this->attributes['publish_at']=now();
+        }else{
+            $this->attributes['publish_at']=$value;
         }
     }
 }
