@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-
 class Products extends Model
 {
     use CrudTrait;
