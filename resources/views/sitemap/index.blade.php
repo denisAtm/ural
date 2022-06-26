@@ -3,22 +3,22 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <sitemap>
         <loc>{{ url('sitemap/posts') }}</loc>
-        <lastmod>{{ $products->updated_at->toAtomString() }}</lastmod>
+        <lastmod>{{ $products->updated_at }}</lastmod>
     </sitemap>
     <sitemap>
         <loc>{{ url('sitemap/categories') }}</loc>
-        <lastmod>{{ $categories->updated_at->toAtomString() }}</lastmod>
+        <lastmod>{{ $categories->updated_at }}</lastmod>
     </sitemap>
     <sitemap>
         <loc>{{ url('sitemap/tags') }}</loc>
-        <lastmod>{{ $tag->updated_at->toAtomString() }}</lastmod>
+        <lastmod>{{ $tag->updated_at }}</lastmod>
     </sitemap>
     <sitemap>
         <loc>{{ url('sitemap/news') }}</loc>
-        <lastmod>{{ $news->updated_at->toAtomString() }}</lastmod>
+        <lastmod>{{ $news->updated_at }}</lastmod>
     </sitemap>
     <sitemap>
         <loc>{{ url('sitemap/articles') }}</loc>
-        <lastmod>{{ $articles->updated_at->toAtomString() }}</lastmod>
+        <lastmod>{{ $articles->updated_at }}</lastmod>
     </sitemap>
 </sitemapindex>

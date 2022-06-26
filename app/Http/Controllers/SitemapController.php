@@ -13,12 +13,17 @@ class SitemapController extends Controller
 {
     public function index()
     {
-        $products = Products::approved()->orderBy('updated_at', 'desc')->first();
-        $categories = Categories::approvedPosts()->orderBy('updated_at', 'desc')->first();
-        $tag = Tag::approvedPosts()->orderBy('updated_at', 'desc')->first();
-        $news = News::approvedPosts()->orderBy('updated_at', 'desc')->first();
-        $articles = Articles::approvedPosts()->orderBy('updated_at', 'desc')->first();
+//        $products = Products::products()->orderBy('updated_at', 'desc')->first();
+//        $categories = Categories::approvedPosts()->orderBy('updated_at', 'desc')->first();
+//        $tag = Tag::approvedPosts()->orderBy('updated_at', 'desc')->first();
+//        $news = News::approvedPosts()->orderBy('updated_at', 'desc')->first();
+//        $articles = Articles::approvedPosts()->orderBy('updated_at', 'desc')->first();
 
+        $products = Products::get()->first();
+        $categories = Categories::get()->first();
+        $tag = Tag::get()->first();
+        $news = News::get()->first();
+        $articles = Articles::get()->first();
         return response()->view('sitemap.index', [
             'products' => $products,
             'categories' => $categories,
