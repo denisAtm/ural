@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +42,10 @@ Route::get('/articles',[PageController::class,'articles']);
 Route::get('/articles/{slug}',[PageController::class,'articlesSingle']);
 Route::get('/news/{slug}',[PageController::class,'newsSingle']);
 Route::get('/about',[PageController::class,'aboutPage']);
+/* Sitemap */
+Route::get('/sitemap', [SitemapController::class,'index']);
+Route::get('/sitemap/products', [SitemapController::class,'products']);
+Route::get('/sitemap/categories', [SitemapController::class,'categories']);
+Route::get('/sitemap/tags', [SitemapController::class,'tags']);
+Route::get('/sitemap/news', [SitemapController::class,'news']);
+Route::get('/sitemap/articles', [SitemapController::class,'articles']);
