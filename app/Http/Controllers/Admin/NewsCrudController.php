@@ -6,6 +6,7 @@ use App\Http\Requests\NewsRequest;
 use App\Models\News;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Backpack\CRUD\app\Library\Widget;
 
 /**
  * Class NewsCrudController
@@ -73,8 +74,21 @@ class NewsCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(NewsRequest::class);
-        CRUD::addField(['name' => 'title', 'type' => 'text','label'=>'Заголовок']);
-        CRUD::addField(['name' => 'slug', 'type' => 'text','label'=>'slug']);
+        CRUD::addField(['name' => 'title', 'type' => 'text','label'=>'Заголовок','wrapper'   => [
+            'class'      => 'form-group col-md-6'
+        ],]);
+        CRUD::addField([
+            'name'=>'slug',
+            'label'=>'SLUG',
+            'type'=>'text',
+            'attributes' => [
+                'readonly'    => 'readonly',
+            ], // change the HTML attributes of your input
+            'wrapper'   => [
+                'class'      => 'form-group col-md-6'
+            ],
+        ]);
+        Widget::add()->type('script')->content('js/slug.js');
         CRUD::addField(['label'     => "Статус",
             'type'      => 'select',
             'name'      => 'status_id',

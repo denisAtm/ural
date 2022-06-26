@@ -22,10 +22,10 @@
         <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-cogs  la-lg"></i> Аттрибуты моторов</a>
             <ul class="nav-dropdown-items">
-                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('type-of-transmission') }}'><i class='nav-icon la la-question'></i> Type of transmissions</a></li>
-                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('number-of-transfer-stages') }}'><i class='nav-icon la la-question'></i> Number of transfer stages</a></li>
-                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gear-ratio') }}'><i class='nav-icon la la-question'></i> Gear ratios</a></li>
-                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('location-of-axes') }}'><i class='nav-icon la la-question'></i> Location of axes</a></li>
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('type-of-transmission') }}'><i class='nav-icon la la-question'></i>Типы передачи</a></li>
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('number-of-transfer-stages') }}'><i class='nav-icon la la-question'></i>Количество передаточных ступеней</a></li>
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gear-ratio') }}'><i class='nav-icon la la-question'></i> Передаточное отношение</a></li>
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('location-of-axes') }}'><i class='nav-icon la la-question'></i>Расположение осей</a></li>
 
             </ul>
         </li>

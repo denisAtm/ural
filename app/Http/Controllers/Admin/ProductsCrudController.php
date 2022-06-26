@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\ProductsRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Backpack\CRUD\app\Library\Widget;
 
 /**
  * Class ProductsCrudController
@@ -128,17 +129,25 @@ class ProductsCrudController extends CrudController
         CRUD::addField(['name' => 'desc', 'type'  => 'summernote',
             'options' => [
                 'toolbar' => [
-                    ['font', ['bold', 'underline', 'italic']]
+                    ['font', ['bold', 'underline', 'italic']],
                 ]
             ],'label'=>'Содержание']);
-        CRUD::addField(['name' => 'size', 'type'  => 'summernote',
-            'options' => [
-                'toolbar' => [
-                    ['font', ['bold', 'underline', 'italic']]
-                ]
-            ],'label'=>'Размеры']);
-
+//        CRUD::addField(['name' => 'size', 'type'  => 'summernote',
+//            'options' => [
+//                'toolbar' => [
+//                    ['font', ['bold', 'underline', 'italic']],
+//                    ['para', ['ul']],
+//                    ['insert', ['link', 'picture', 'video']],
+//
+//                ]
+//            ],'label'=>'Размеры']);
+        CRUD::addField([
+            'name'=>'size',
+            'type'=>'view',
+            'view'=>'vendor.backpack.custom-fields.motor-sizes'
+        ]);
         CRUD::addField(['name' => 'image', 'type' => 'upload','label'=>'Изображение','upload'=>true]);
+        Widget::add()->type('script')->content('js/motor-sizes.js');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

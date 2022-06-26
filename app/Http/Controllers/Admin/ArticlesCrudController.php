@@ -124,13 +124,13 @@ class ArticlesCrudController extends CrudController
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
                     ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['para', ['ul']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
                     ['view', ['fullscreen']]
                 ]
             ],'label'=>'Содержание']);
-        Widget::add()->type('script')->content('js/slug.js');
+
         Widget::add()->type('script')->content('js/publishTime.js');
         Widget::add()->type('script')->content('js/summernote.js');
 
@@ -183,5 +183,7 @@ class ArticlesCrudController extends CrudController
             'model'     => 'App\Models\Articles', // fo
         ]);
 
+
     }
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\CategoriesRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Backpack\CRUD\app\Library\Widget;
 
 /**
  * Class CategoriesCrudController
@@ -57,8 +58,21 @@ class CategoriesCrudController extends CrudController
 
             ]
         );
-        CRUD::addColumn(['name' => 'name', 'type' => 'text','label'=>'Название']);
-        CRUD::addColumn(['name' => 'slug', 'type' => 'text','label'=>'Ссылка']);
+        CRUD::addColumn(['name' => 'name', 'type' => 'text','label'=>'Название','wrapper'   => [
+            'class'      => 'form-group col-md-6'
+        ],]);
+        CRUD::addField([
+            'name'=>'slug',
+            'label'=>'SLUG',
+            'type'=>'text',
+            'attributes' => [
+                'readonly'    => 'readonly',
+            ], // change the HTML attributes of your input
+            'wrapper'   => [
+                'class'      => 'form-group col-md-6'
+            ],
+        ]);
+        Widget::add()->type('script')->content('js/slug.js');
         CRUD::addColumn(['name' => 'descr', 'type' => 'text','label'=>'Описание']);
 
         /**

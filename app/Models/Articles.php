@@ -70,4 +70,5 @@ class Articles extends Model
             $this->attributes['publish_at']=$value;
         }
     }
+
 }
