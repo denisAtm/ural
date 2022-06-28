@@ -34,9 +34,10 @@ class GearRatio extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function products(){
-        return $this->hasMany(Products::class,'gear_ratio');
+    public function reducers(){
+        return $this->belongsToMany(Reducer::class,'gear_ratio_reducer','gear_ratio_id','reducer_id');
     }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

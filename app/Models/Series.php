@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class NumberOfTransferStages extends Model
+class Series extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class NumberOfTransferStages extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'number_of_transfer_stages';
+    protected $table = 'series';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -34,9 +34,6 @@ class NumberOfTransferStages extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function products(){
-        return $this->hasMany(Reducer::class,'number_of_transfer_stages');
-    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
