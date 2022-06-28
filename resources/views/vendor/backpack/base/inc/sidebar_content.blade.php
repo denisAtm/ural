@@ -41,8 +41,22 @@
     </ul>
 </li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('group') }}'><i class='nav-icon la la-question'></i> Groups</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('paw') }}'><i class='nav-icon la la-question'></i> Paws</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('flange') }}'><i class='nav-icon la la-question'></i> Flanges</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('build-options') }}'><i class='nav-icon la la-question'></i> Build options</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('series') }}'><i class='nav-icon la la-question'></i> Series</a></li>
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('group') }}'><i class='nav-icon la la-question'></i> Groups</a></li>--}}
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('paw') }}'><i class='nav-icon la la-question'></i> Paws</a></li>--}}
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('flange') }}'><i class='nav-icon la la-question'></i> Flanges</a></li>--}}
+{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('build-options') }}'><i class='nav-icon la la-question'></i> Build options</a></li>--}}
+
+
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Редукторы</a>
+    <ul class="nav-dropdown-items">
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('series') }}'><i class='nav-icon la la-question'></i> Серии редукторов</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('reducer') }}'><i class='nav-icon la la-question'></i> Редукторы</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('build-option') }}'><i class='nav-icon la la-question'></i> Варианты сборки</a></li>
+
+    </ul>
+</li>
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('gear-motor') }}'><i class='nav-icon la la-question'></i> Gear motors</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('paws') }}'><i class='nav-icon la la-question'></i> Paws</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('motor-series') }}'><i class='nav-icon la la-question'></i> Motor series</a></li>

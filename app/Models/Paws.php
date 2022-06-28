@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class NumberOfTransferStages extends Model
+class Paws extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class NumberOfTransferStages extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'number_of_transfer_stages';
+    protected $table = 'mounting_position_on_the_paws';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    // protected $fillable = [];
+     protected $fillable = ['name'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,8 +34,8 @@ class NumberOfTransferStages extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function products(){
-        return $this->hasMany(Reducer::class,'number_of_transfer_stages');
+    public function motors(){
+        return $this>$this->belongsToMany(Paws::class,'mounting_position_on_the_paws','paw_id','motor_id');
     }
     /*
     |--------------------------------------------------------------------------

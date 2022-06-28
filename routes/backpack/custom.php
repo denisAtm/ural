@@ -19,16 +19,19 @@ Route::group([
     Route::crud('tag', 'TagCrudController');
     Route::crud('news', 'NewsCrudController');
     Route::crud('about-page', 'AboutPageCrudController');
-    Route::crud('products', 'ProductsCrudController');
+//    Route::crud('products', 'ProductsCrudController');
     Route::crud('categories', 'CategoriesCrudController');
     Route::crud('type-of-transmission', 'TypeOfTransmissionCrudController');
     Route::crud('number-of-transfer-stages', 'NumberOfTransferStagesCrudController');
     Route::crud('gear-ratio', 'GearRatioCrudController');
     Route::crud('location-of-axes', 'LocationOfAxesCrudController');
     Route::crud('articles', 'ArticlesCrudController');
-    Route::crud('group', 'GroupCrudController');
-    Route::crud('paw', 'PawCrudController');
-    Route::crud('flange', 'FlangeCrudController');
-    Route::crud('build-options', 'BuildOptionsCrudController');
+
+    Route::crud('reducer', 'ReducerCrudController');
     Route::crud('series', 'SeriesCrudController');
+    Route::crud('build-option', 'BuildOptionCrudController');
+    Route::crud('gear-motor', 'GearMotorCrudController');
+    Route::crud('paws', 'PawsCrudController');
+    Route::crud('flange', 'FlangeCrudController');
+    Route::crud('motor-series', 'MotorSeriesCrudController');
 }); // this should be the absolute last line of this file
