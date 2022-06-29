@@ -38,9 +38,6 @@ class Categories extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function series(){
-        return $this->hasMany(Series::class,'category_id')->with('products');
-    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

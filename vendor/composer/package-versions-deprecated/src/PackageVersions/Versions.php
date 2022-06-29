@@ -33,6 +33,7 @@ final class Versions
      * @internal
      */
     const VERSIONS          = array (
+  'artesaos/seotools' => 'v0.22.0@55746e0870d3bb6507479bd846d5528c46a7312e',
   'backpack/crud' => '5.1.0@9e1de794137ceb1ade1fa35e3b9366f97285efb3',
   'backpack/permissionmanager' => '6.0.15@9245f8d17ac673fabd2c4230a43657c2a5bda250',
   'brick/math' => '0.9.3@ca57d18f028f84f777b2168cd1911b0dee2343ae',
@@ -157,7 +158,7 @@ final class Versions
   'spatie/ignition' => '1.3.1@997363fbcce809b1e55f571997d49017f9c623d9',
   'spatie/laravel-ignition' => '1.2.4@b90026ba26fe6589101dc5cd6527846290560aea',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-  'laravel/laravel' => '1.0.0+no-version-set@',
+  'laravel/laravel' => 'dev-main@f3cd77428764a627189276b407a50f8861a98dc5',
 );
 
     private function __construct()
