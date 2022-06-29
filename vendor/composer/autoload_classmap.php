@@ -15,16 +15,29 @@ return array(
     'App\\Helpers\\StoreImage' => $baseDir . '/app/Helpers/StoreImage.php',
     'App\\Http\\Controllers\\Admin\\AboutPageCrudController' => $baseDir . '/app/Http/Controllers/Admin/AboutPageCrudController.php',
     'App\\Http\\Controllers\\Admin\\ArticlesCrudController' => $baseDir . '/app/Http/Controllers/Admin/ArticlesCrudController.php',
+<<<<<<< HEAD
     'App\\Http\\Controllers\\Admin\\BuildOptionCrudController' => $baseDir . '/app/Http/Controllers/Admin/BuildOptionCrudController.php',
     'App\\Http\\Controllers\\Admin\\CategoriesCrudController' => $baseDir . '/app/Http/Controllers/Admin/CategoriesCrudController.php',
     'App\\Http\\Controllers\\Admin\\FlangeCrudController' => $baseDir . '/app/Http/Controllers/Admin/FlangeCrudController.php',
     'App\\Http\\Controllers\\Admin\\GearMotorCrudController' => $baseDir . '/app/Http/Controllers/Admin/GearMotorCrudController.php',
+=======
+    'App\\Http\\Controllers\\Admin\\BuildOptionsCrudController' => $baseDir . '/app/Http/Controllers/Admin/BuildOptionsCrudController.php',
+    'App\\Http\\Controllers\\Admin\\CategoriesCrudController' => $baseDir . '/app/Http/Controllers/Admin/CategoriesCrudController.php',
+    'App\\Http\\Controllers\\Admin\\FlangeCrudController' => $baseDir . '/app/Http/Controllers/Admin/FlangeCrudController.php',
+>>>>>>> аа
     'App\\Http\\Controllers\\Admin\\GearRatioCrudController' => $baseDir . '/app/Http/Controllers/Admin/GearRatioCrudController.php',
+    'App\\Http\\Controllers\\Admin\\GroupCrudController' => $baseDir . '/app/Http/Controllers/Admin/GroupCrudController.php',
     'App\\Http\\Controllers\\Admin\\LocationOfAxesCrudController' => $baseDir . '/app/Http/Controllers/Admin/LocationOfAxesCrudController.php',
+    'App\\Http\\Controllers\\Admin\\MetaPageCrudController' => $baseDir . '/app/Http/Controllers/Admin/MetaPageCrudController.php',
     'App\\Http\\Controllers\\Admin\\NewsCrudController' => $baseDir . '/app/Http/Controllers/Admin/NewsCrudController.php',
     'App\\Http\\Controllers\\Admin\\NumberOfTransferStagesCrudController' => $baseDir . '/app/Http/Controllers/Admin/NumberOfTransferStagesCrudController.php',
+<<<<<<< HEAD
     'App\\Http\\Controllers\\Admin\\PawsCrudController' => $baseDir . '/app/Http/Controllers/Admin/PawsCrudController.php',
     'App\\Http\\Controllers\\Admin\\ReducerCrudController' => $baseDir . '/app/Http/Controllers/Admin/ReducerCrudController.php',
+=======
+    'App\\Http\\Controllers\\Admin\\PawCrudController' => $baseDir . '/app/Http/Controllers/Admin/PawCrudController.php',
+    'App\\Http\\Controllers\\Admin\\ProductsCrudController' => $baseDir . '/app/Http/Controllers/Admin/ProductsCrudController.php',
+>>>>>>> аа
     'App\\Http\\Controllers\\Admin\\SeriesCrudController' => $baseDir . '/app/Http/Controllers/Admin/SeriesCrudController.php',
     'App\\Http\\Controllers\\Admin\\TagCrudController' => $baseDir . '/app/Http/Controllers/Admin/TagCrudController.php',
     'App\\Http\\Controllers\\Admin\\TypeOfTransmissionCrudController' => $baseDir . '/app/Http/Controllers/Admin/TypeOfTransmissionCrudController.php',
@@ -43,32 +56,59 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\AboutPageRequest' => $baseDir . '/app/Http/Requests/AboutPageRequest.php',
     'App\\Http\\Requests\\ArticlesRequest' => $baseDir . '/app/Http/Requests/ArticlesRequest.php',
+<<<<<<< HEAD
     'App\\Http\\Requests\\BuildOptionRequest' => $baseDir . '/app/Http/Requests/BuildOptionRequest.php',
     'App\\Http\\Requests\\CategoriesRequest' => $baseDir . '/app/Http/Requests/CategoriesRequest.php',
     'App\\Http\\Requests\\FlangeRequest' => $baseDir . '/app/Http/Requests/FlangeRequest.php',
     'App\\Http\\Requests\\GearMotorRequest' => $baseDir . '/app/Http/Requests/GearMotorRequest.php',
+=======
+    'App\\Http\\Requests\\BuildOptionsRequest' => $baseDir . '/app/Http/Requests/BuildOptionsRequest.php',
+    'App\\Http\\Requests\\CategoriesRequest' => $baseDir . '/app/Http/Requests/CategoriesRequest.php',
+    'App\\Http\\Requests\\FlangeRequest' => $baseDir . '/app/Http/Requests/FlangeRequest.php',
+>>>>>>> аа
     'App\\Http\\Requests\\GearRatioRequest' => $baseDir . '/app/Http/Requests/GearRatioRequest.php',
+    'App\\Http\\Requests\\GroupRequest' => $baseDir . '/app/Http/Requests/GroupRequest.php',
     'App\\Http\\Requests\\LocationOfAxesRequest' => $baseDir . '/app/Http/Requests/LocationOfAxesRequest.php',
+    'App\\Http\\Requests\\MetaPageRequest' => $baseDir . '/app/Http/Requests/MetaPageRequest.php',
     'App\\Http\\Requests\\NewsRequest' => $baseDir . '/app/Http/Requests/NewsRequest.php',
+<<<<<<< HEAD
     'App\\Http\\Requests\\PawsRequest' => $baseDir . '/app/Http/Requests/PawsRequest.php',
     'App\\Http\\Requests\\ProductsRequest' => $baseDir . '/app/Http/Requests/ProductsRequest.php',
     'App\\Http\\Requests\\ReducerRequest' => $baseDir . '/app/Http/Requests/ReducerRequest.php',
+=======
+    'App\\Http\\Requests\\PawRequest' => $baseDir . '/app/Http/Requests/PawRequest.php',
+    'App\\Http\\Requests\\ProductsRequest' => $baseDir . '/app/Http/Requests/ProductsRequest.php',
+>>>>>>> аа
     'App\\Http\\Requests\\SeriesRequest' => $baseDir . '/app/Http/Requests/SeriesRequest.php',
     'App\\Http\\Requests\\TagRequest' => $baseDir . '/app/Http/Requests/TagRequest.php',
     'App\\Http\\Requests\\TypeOfTransmissionRequest' => $baseDir . '/app/Http/Requests/TypeOfTransmissionRequest.php',
     'App\\Models\\AboutPage' => $baseDir . '/app/Models/AboutPage.php',
     'App\\Models\\Articles' => $baseDir . '/app/Models/Articles.php',
+<<<<<<< HEAD
     'App\\Models\\BuildOption' => $baseDir . '/app/Models/BuildOption.php',
     'App\\Models\\Categories' => $baseDir . '/app/Models/Categories.php',
     'App\\Models\\Flange' => $baseDir . '/app/Models/Flange.php',
     'App\\Models\\GearMotor' => $baseDir . '/app/Models/GearMotor.php',
+=======
+    'App\\Models\\BuildOptions' => $baseDir . '/app/Models/BuildOptions.php',
+    'App\\Models\\Categories' => $baseDir . '/app/Models/Categories.php',
+    'App\\Models\\Flange' => $baseDir . '/app/Models/Flange.php',
+>>>>>>> аа
     'App\\Models\\GearRatio' => $baseDir . '/app/Models/GearRatio.php',
+    'App\\Models\\Group' => $baseDir . '/app/Models/Group.php',
+    'App\\Models\\Image' => $baseDir . '/app/Models/Image.php',
     'App\\Models\\LocationOfAxes' => $baseDir . '/app/Models/LocationOfAxes.php',
+    'App\\Models\\MetaPage' => $baseDir . '/app/Models/MetaPage.php',
     'App\\Models\\News' => $baseDir . '/app/Models/News.php',
     'App\\Models\\NewsStatus' => $baseDir . '/app/Models/NewsStatus.php',
     'App\\Models\\NumberOfTransferStages' => $baseDir . '/app/Models/NumberOfTransferStages.php',
+<<<<<<< HEAD
     'App\\Models\\Paws' => $baseDir . '/app/Models/Paws.php',
     'App\\Models\\Reducer' => $baseDir . '/app/Models/Reducer.php',
+=======
+    'App\\Models\\Paw' => $baseDir . '/app/Models/Paw.php',
+    'App\\Models\\Products' => $baseDir . '/app/Models/Products.php',
+>>>>>>> аа
     'App\\Models\\Series' => $baseDir . '/app/Models/Series.php',
     'App\\Models\\Shaft' => $baseDir . '/app/Models/Shaft.php',
     'App\\Models\\Tag' => $baseDir . '/app/Models/Tag.php',

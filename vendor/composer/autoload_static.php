@@ -600,16 +600,29 @@ class ComposerStaticInit80984e4634c5ce68451ee5e407d3af1a
         'App\\Helpers\\StoreImage' => __DIR__ . '/../..' . '/app/Helpers/StoreImage.php',
         'App\\Http\\Controllers\\Admin\\AboutPageCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AboutPageCrudController.php',
         'App\\Http\\Controllers\\Admin\\ArticlesCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ArticlesCrudController.php',
+<<<<<<< HEAD
         'App\\Http\\Controllers\\Admin\\BuildOptionCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BuildOptionCrudController.php',
         'App\\Http\\Controllers\\Admin\\CategoriesCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoriesCrudController.php',
         'App\\Http\\Controllers\\Admin\\FlangeCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FlangeCrudController.php',
         'App\\Http\\Controllers\\Admin\\GearMotorCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/GearMotorCrudController.php',
+=======
+        'App\\Http\\Controllers\\Admin\\BuildOptionsCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BuildOptionsCrudController.php',
+        'App\\Http\\Controllers\\Admin\\CategoriesCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoriesCrudController.php',
+        'App\\Http\\Controllers\\Admin\\FlangeCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FlangeCrudController.php',
+>>>>>>> аа
         'App\\Http\\Controllers\\Admin\\GearRatioCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/GearRatioCrudController.php',
+        'App\\Http\\Controllers\\Admin\\GroupCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/GroupCrudController.php',
         'App\\Http\\Controllers\\Admin\\LocationOfAxesCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LocationOfAxesCrudController.php',
+        'App\\Http\\Controllers\\Admin\\MetaPageCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/MetaPageCrudController.php',
         'App\\Http\\Controllers\\Admin\\NewsCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/NewsCrudController.php',
         'App\\Http\\Controllers\\Admin\\NumberOfTransferStagesCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/NumberOfTransferStagesCrudController.php',
+<<<<<<< HEAD
         'App\\Http\\Controllers\\Admin\\PawsCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PawsCrudController.php',
         'App\\Http\\Controllers\\Admin\\ReducerCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ReducerCrudController.php',
+=======
+        'App\\Http\\Controllers\\Admin\\PawCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PawCrudController.php',
+        'App\\Http\\Controllers\\Admin\\ProductsCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductsCrudController.php',
+>>>>>>> аа
         'App\\Http\\Controllers\\Admin\\SeriesCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SeriesCrudController.php',
         'App\\Http\\Controllers\\Admin\\TagCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TagCrudController.php',
         'App\\Http\\Controllers\\Admin\\TypeOfTransmissionCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TypeOfTransmissionCrudController.php',
@@ -628,32 +641,59 @@ class ComposerStaticInit80984e4634c5ce68451ee5e407d3af1a
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\AboutPageRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AboutPageRequest.php',
         'App\\Http\\Requests\\ArticlesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ArticlesRequest.php',
+<<<<<<< HEAD
         'App\\Http\\Requests\\BuildOptionRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BuildOptionRequest.php',
         'App\\Http\\Requests\\CategoriesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CategoriesRequest.php',
         'App\\Http\\Requests\\FlangeRequest' => __DIR__ . '/../..' . '/app/Http/Requests/FlangeRequest.php',
         'App\\Http\\Requests\\GearMotorRequest' => __DIR__ . '/../..' . '/app/Http/Requests/GearMotorRequest.php',
+=======
+        'App\\Http\\Requests\\BuildOptionsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BuildOptionsRequest.php',
+        'App\\Http\\Requests\\CategoriesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CategoriesRequest.php',
+        'App\\Http\\Requests\\FlangeRequest' => __DIR__ . '/../..' . '/app/Http/Requests/FlangeRequest.php',
+>>>>>>> аа
         'App\\Http\\Requests\\GearRatioRequest' => __DIR__ . '/../..' . '/app/Http/Requests/GearRatioRequest.php',
+        'App\\Http\\Requests\\GroupRequest' => __DIR__ . '/../..' . '/app/Http/Requests/GroupRequest.php',
         'App\\Http\\Requests\\LocationOfAxesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LocationOfAxesRequest.php',
+        'App\\Http\\Requests\\MetaPageRequest' => __DIR__ . '/../..' . '/app/Http/Requests/MetaPageRequest.php',
         'App\\Http\\Requests\\NewsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/NewsRequest.php',
+<<<<<<< HEAD
         'App\\Http\\Requests\\PawsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PawsRequest.php',
         'App\\Http\\Requests\\ProductsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProductsRequest.php',
         'App\\Http\\Requests\\ReducerRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ReducerRequest.php',
+=======
+        'App\\Http\\Requests\\PawRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PawRequest.php',
+        'App\\Http\\Requests\\ProductsRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProductsRequest.php',
+>>>>>>> аа
         'App\\Http\\Requests\\SeriesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/SeriesRequest.php',
         'App\\Http\\Requests\\TagRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TagRequest.php',
         'App\\Http\\Requests\\TypeOfTransmissionRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TypeOfTransmissionRequest.php',
         'App\\Models\\AboutPage' => __DIR__ . '/../..' . '/app/Models/AboutPage.php',
         'App\\Models\\Articles' => __DIR__ . '/../..' . '/app/Models/Articles.php',
+<<<<<<< HEAD
         'App\\Models\\BuildOption' => __DIR__ . '/../..' . '/app/Models/BuildOption.php',
         'App\\Models\\Categories' => __DIR__ . '/../..' . '/app/Models/Categories.php',
         'App\\Models\\Flange' => __DIR__ . '/../..' . '/app/Models/Flange.php',
         'App\\Models\\GearMotor' => __DIR__ . '/../..' . '/app/Models/GearMotor.php',
+=======
+        'App\\Models\\BuildOptions' => __DIR__ . '/../..' . '/app/Models/BuildOptions.php',
+        'App\\Models\\Categories' => __DIR__ . '/../..' . '/app/Models/Categories.php',
+        'App\\Models\\Flange' => __DIR__ . '/../..' . '/app/Models/Flange.php',
+>>>>>>> аа
         'App\\Models\\GearRatio' => __DIR__ . '/../..' . '/app/Models/GearRatio.php',
+        'App\\Models\\Group' => __DIR__ . '/../..' . '/app/Models/Group.php',
+        'App\\Models\\Image' => __DIR__ . '/../..' . '/app/Models/Image.php',
         'App\\Models\\LocationOfAxes' => __DIR__ . '/../..' . '/app/Models/LocationOfAxes.php',
+        'App\\Models\\MetaPage' => __DIR__ . '/../..' . '/app/Models/MetaPage.php',
         'App\\Models\\News' => __DIR__ . '/../..' . '/app/Models/News.php',
         'App\\Models\\NewsStatus' => __DIR__ . '/../..' . '/app/Models/NewsStatus.php',
         'App\\Models\\NumberOfTransferStages' => __DIR__ . '/../..' . '/app/Models/NumberOfTransferStages.php',
+<<<<<<< HEAD
         'App\\Models\\Paws' => __DIR__ . '/../..' . '/app/Models/Paws.php',
         'App\\Models\\Reducer' => __DIR__ . '/../..' . '/app/Models/Reducer.php',
+=======
+        'App\\Models\\Paw' => __DIR__ . '/../..' . '/app/Models/Paw.php',
+        'App\\Models\\Products' => __DIR__ . '/../..' . '/app/Models/Products.php',
+>>>>>>> аа
         'App\\Models\\Series' => __DIR__ . '/../..' . '/app/Models/Series.php',
         'App\\Models\\Shaft' => __DIR__ . '/../..' . '/app/Models/Shaft.php',
         'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
