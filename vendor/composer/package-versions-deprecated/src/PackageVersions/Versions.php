@@ -161,11 +161,11 @@ final class Versions
   'spatie/ignition' => '1.3.1@997363fbcce809b1e55f571997d49017f9c623d9',
   'spatie/laravel-ignition' => '1.2.4@b90026ba26fe6589101dc5cd6527846290560aea',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-<<<<<<< HEAD
+
   'laravel/laravel' => 'dev-main@f3cd77428764a627189276b407a50f8861a98dc5',
-=======
+
   'laravel/laravel' => 'dev-main@5c58d9936fc4ce52fdde30bd2f364c88077af261',
->>>>>>> аа
+
 );
 
     private function __construct()

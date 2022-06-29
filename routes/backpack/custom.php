@@ -29,13 +29,12 @@ Route::group([
 
     Route::crud('reducer', 'ReducerCrudController');
     Route::crud('series', 'SeriesCrudController');
-<<<<<<< HEAD
+
     Route::crud('build-option', 'BuildOptionCrudController');
     Route::crud('gear-motor', 'GearMotorCrudController');
     Route::crud('paws', 'PawsCrudController');
     Route::crud('flange', 'FlangeCrudController');
     Route::crud('motor-series', 'MotorSeriesCrudController');
-=======
     Route::crud('meta-page', 'MetaPageCrudController');
->>>>>>> аа
+
 }); // this should be the absolute last line of this file

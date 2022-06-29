@@ -60,3 +60,4 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gear-motor') }}'><i class='nav-icon la la-question'></i> Gear motors</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('paws') }}'><i class='nav-icon la la-question'></i> Paws</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('motor-series') }}'><i class='nav-icon la la-question'></i> Motor series</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('meta-page') }}'><i class='nav-icon la la-question'></i> Meta Page</a></li>
