@@ -1,6 +1,6 @@
 @extends('main')
 @section('head')
-    @include('parts.head',['title'=>'Страница новости'])
+    @include('parts.head',['meta'=>$meta])
 @endsection
 @section('content')
     <main>
