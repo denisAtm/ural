@@ -1,20 +1,48 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+{{--{{dd($meta[0])}}--}}
 
-    @if(empty($meta))
+    @if(empty($meta[0]->meta_title))
         <title>Уралредуктор</title>
         <meta name="description" content="description">
         <meta property="og:title" content="title">
         <meta property="og:description" content="description">
         <meta name="keywords" content="ключевые слова">
     @else
-        <title>{{$meta->meta_title}}</title>
-        <meta property="og:image:alt" content="{{$meta->meta_image_description}}">
-        <meta name="description" content="{{$meta->meta_description}}">
-        <meta property="og:title" content="{{$meta->meta_title}}">
-        <meta property="og:description" content="{{$meta->meta_description}}">
-        <meta name="keywords" content="{{$meta->meta_keywords}}">
+        @if($meta[0]->meta_url=='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'')
+            <title>{{$meta[0]->meta_title}}</title>
+            <meta property="og:image:alt" content="{{$meta[0]->meta_image_description}}">
+            <meta name="description" content="{{$meta[0]->meta_description}}">
+            <meta property="og:title" content="{{$meta[0]->meta_title}}">
+            <meta property="og:description" content="{{$meta[0]->meta_description}}">
+            <meta name="keywords" content="{{$meta[0]->meta_keywords}}">
+        @elseif(Str::contains($meta[0]->meta_url,'/news/'))
+            <title>Новость Уралредуктор</title>
+            <meta name="description" content="description">
+            <meta property="og:title" content="title">
+            <meta property="og:description" content="description">
+            <meta name="keywords" content="ключевые слова">
+        @elseif(Str::contains($meta[0]->meta_url,'/catalog/'))
+            <title>Каталог Уралредуктор</title>
+            <meta name="description" content="description">
+            <meta property="og:title" content="title">
+            <meta property="og:description" content="description">
+            <meta name="keywords" content="ключевые слова">
+        @elseif(Str::contains($meta[0]->meta_url,'/articles/'))
+            <title>Статья Уралредуктор</title>
+            <meta name="description" content="description">
+            <meta property="og:title" content="title">
+            <meta property="og:description" content="description">
+            <meta name="keywords" content="ключевые слова">
+        @else
+            <title>{{$meta[0]->meta_title}}</title>
+            <meta property="og:image:alt" content="{{$meta[0]->meta_image_description}}">
+            <meta name="description" content="{{$meta[0]->meta_description}}">
+            <meta property="og:title" content="{{$meta[0]->meta_title}}">
+            <meta property="og:description" content="{{$meta[0]->meta_description}}">
+            <meta name="keywords" content="{{$meta[0]->meta_keywords}}">
+        @endif
     @endif
 <meta property="og:image" content="https://www.mywebsite.com/image.jpg">
 

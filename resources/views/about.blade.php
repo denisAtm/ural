@@ -1,6 +1,6 @@
 @extends('main')
 @section('head')
-    @include('parts.head',['meta'=>$meta[0]])
+    @include('parts.head',['meta'=>$meta])
 @endsection
 @section('content')
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
