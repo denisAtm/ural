@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gear_ratio_gear_motor', function (Blueprint $table) {
+        Schema::create('build_option_series', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('gear_ratio_id')->nullable()->constrained('gear_ratio')->onDelete('cascade');
-            $table->foreignId('motor_id')->nullable()->constrained('gear_motors')->onDelete('cascade');
+            $table->foreignId('build_option_id')->constrained('build_options')->onDelete('cascade');
+            $table->foreignId('series_id')->constrained('series')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gear_ratio_gear_motor');
+        Schema::dropIfExists('build_option_series');
     }
 };

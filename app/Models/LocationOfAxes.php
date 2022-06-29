@@ -35,7 +35,7 @@ class LocationOfAxes extends Model
     |--------------------------------------------------------------------------
     */
     public function products(){
-        return $this->hasMany(Reducer::class,'location_of_axes');
+        return $this->hasMany(Products::class,'location_of_axes');
     }
     /*
     |--------------------------------------------------------------------------

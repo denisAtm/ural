@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('output_shaft_reducer', function (Blueprint $table) {
+        Schema::create('series', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shaft_id')->constrained('shafts')->onDelete('cascade');
-            $table->foreignId('reducer_id')->constrained('reducers')->onDelete('cascade');
+            $table->string('name');
+            $table->foreignId('group_id')->constrained('groups')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rear_shaft_reducer');
+        Schema::dropIfExists('series');
     }
 };

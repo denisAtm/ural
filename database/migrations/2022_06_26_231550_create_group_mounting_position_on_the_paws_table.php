@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,11 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('series', function (Blueprint $table) {
+        Schema::create('group_mounting_position_on_the_paws', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('group_id')->default(2)->constrained('groups')->onDelete('cascade');
             $table->timestamps();
         });
+        DB::statement("ALTER TABLE group_mounting_position_on_the_paws comment 'Монтажное положение на лапах для мотор-редукторов'");
     }
 
     /**
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('series');
+        Schema::dropIfExists('group_mounting_position_on_the_paws');
     }
 };

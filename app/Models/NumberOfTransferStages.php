@@ -35,7 +35,7 @@ class NumberOfTransferStages extends Model
     |--------------------------------------------------------------------------
     */
     public function products(){
-        return $this->hasMany(Reducer::class,'number_of_transfer_stages');
+        return $this->hasMany(Products::class,'number_of_transfer_stages');
     }
     /*
     |--------------------------------------------------------------------------

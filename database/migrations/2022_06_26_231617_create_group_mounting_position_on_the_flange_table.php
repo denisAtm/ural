@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,12 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mounting_position_on_the_paws', function (Blueprint $table) {
+        Schema::create('group_mounting_position_on_the_flange', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
+            $table->foreignId('group_id')->default(2)->constrained('groups')->onDelete('cascade');
             $table->timestamps();
         });
+        DB::statement("ALTER TABLE group_mounting_position_on_the_flange comment 'Монтажное положение на фланце для мотор-редукторов'");
     }
 
     /**
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mounting_position_on_the_paws');
+        Schema::dropIfExists('group_mounting_position_on_the_flange');
     }
 };

@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mounting_position_on_the_flange_gear_motor', function (Blueprint $table) {
+        Schema::create('group_front_shaft', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('flange_id')->constrained('mounting_position_on_the_flanges')->onDelete('cascade');
-            $table->foreignId('motor_id')->constrained('gear_motors')->onDelete('cascade');
+            $table->foreignId('group_id')->constrained('groups')->onDelete('cascade');
+            $table->foreignId('shaft_id')->constrained('shafts')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mounting_position_on_the_flange_gear_motor');
+        Schema::dropIfExists('group_front_shaft');
     }
 };

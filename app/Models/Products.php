@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-class Reducer extends Model
+use App\Models\Image as ImageModel;
+class Products extends Model
 {
     use CrudTrait;
 
@@ -20,7 +21,7 @@ class Reducer extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'reducers';
+    protected $table = 'products';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -62,29 +63,20 @@ class Reducer extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function status(){
+        return $this->belongsTo(NewsStatus::class);
+    }
     public function series(){
         return $this->belongsTo(Series::class);
     }
-    public function category(){
-        return $this->belongsTo(Categories::class);
+    public function images(){
+        return $this->hasMany(ImageModel::class);
     }
     public function numberOfTransferStages(){
         return $this->belongsTo(NumberOfTransferStages::class,'number_of_transfer_stages');
     }
     public function locationOfAxes(){
         return $this->belongsTo(LocationOfAxes::class,'location_of_axes');
-    }
-    public function gearRatios(){
-        return $this->belongsToMany(GearRatio::class,'gear_ratio_reducer','reducer_id','gear_ratio_id');
-    }
-    public function buildOptions(){
-        return $this->belongsToMany(BuildOption::class,'build_option_reducer','reducer_id','build_option_id');
-    }
-    public function frontShafts(){
-        return $this->belongsToMany(Shaft::class,'front_shaft_reducer','reducer_id','shaft_id');
-    }
-    public function outputShafts(){
-        return $this->belongsToMany(Shaft::class,'output_shaft_reducer','reducer_id','shaft_id');
     }
     /*
     |--------------------------------------------------------------------------
@@ -97,7 +89,9 @@ class Reducer extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-
+    public function getStatusName(){
+        return $this->status->name;
+    }
     public function getCreatedAtAttribute($value){
         return Carbon::parse($value)->format('d.m.Y');
     }

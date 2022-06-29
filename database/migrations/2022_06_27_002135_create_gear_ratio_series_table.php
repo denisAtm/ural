@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mounting_position_on_the_paw_gear_motor', function (Blueprint $table) {
+        Schema::create('gear_ratio_series', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('paw_id')->constrained('mounting_position_on_the_paws')->onDelete('cascade');
-            $table->foreignId('motor_id')->constrained('gear_motors')->onDelete('cascade');
+            $table->foreignId('gear_ratio_id')->constrained('gear_ratio')->onDelete('cascade');
+            $table->foreignId('series_id')->constrained('series')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mounting_position_on_the_paw_gear_motor');
+        Schema::dropIfExists('gear_ratio_series');
     }
 };

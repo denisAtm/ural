@@ -35,7 +35,7 @@ class TypeOfTransmission extends Model
     |--------------------------------------------------------------------------
     */
     public function products(){
-        return $this->hasMany(Reducer::class,'	type_of_transmission');
+        return $this->hasMany(Products::class,'	type_of_transmission');
     }
     /*
     |--------------------------------------------------------------------------
