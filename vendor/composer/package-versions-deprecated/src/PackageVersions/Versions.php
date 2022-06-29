@@ -34,13 +34,10 @@ final class Versions
      */
     const VERSIONS          = array (
   'backpack/crud' => '5.1.0@9e1de794137ceb1ade1fa35e3b9366f97285efb3',
-  'backpack/pagemanager' => '3.0.11@56bdd1ee390b26800a501307f10b8fe2e8166097',
   'backpack/permissionmanager' => '6.0.15@9245f8d17ac673fabd2c4230a43657c2a5bda250',
   'brick/math' => '0.9.3@ca57d18f028f84f777b2168cd1911b0dee2343ae',
-  'cocur/slugify' => 'v4.1.0@2611e6081dbbb05837a16ed339c0451923d4046e',
   'composer/package-versions-deprecated' => '1.11.99.5@b4f54f74ef3453349c24a845d22392cd31e65f1d',
   'creativeorange/gravatar' => 'v1.0.22@0eed243a16bcd01e618036f9b8021526ea26f64a',
-  'cviebrock/eloquent-sluggable' => '9.0.0@3100e37682491424dd13eaeb3ec33cbbad186992',
   'dflydev/dot-access-data' => 'v3.0.1@0992cc19268b259a39e86f296da5f0677841f42c',
   'digitallyhappy/assets' => '2.0.4@a79e6b0e4d50f31c325f7da9b6e600d89256177d',
   'doctrine/cache' => '2.2.0@1ca8f21980e770095a31456042471a57bc4c68fb',
@@ -160,7 +157,7 @@ final class Versions
   'spatie/ignition' => '1.3.1@997363fbcce809b1e55f571997d49017f9c623d9',
   'spatie/laravel-ignition' => '1.2.4@b90026ba26fe6589101dc5cd6527846290560aea',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
-  'laravel/laravel' => 'dev-main@5c58d9936fc4ce52fdde30bd2f364c88077af261',
+  'laravel/laravel' => '1.0.0+no-version-set@',
 );
 
     private function __construct()

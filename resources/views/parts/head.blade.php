@@ -1,23 +1,12 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    @if(empty($meta))
-        <title>Уралредуктор</title>
-        <meta name="description" content="description">
-        <meta property="og:title" content="title">
-        <meta property="og:description" content="description">
-        <meta name="keywords" content="ключевые слова">
-    @else
-        <title>{{$meta->meta_title}}</title>
-        <meta property="og:image:alt" content="{{$meta->meta_image_description}}">
-        <meta name="description" content="{{$meta->meta_description}}">
-        <meta property="og:title" content="{{$meta->meta_title}}">
-        <meta property="og:description" content="{{$meta->meta_description}}">
-        <meta name="keywords" content="{{$meta->meta_keywords}}">
-    @endif
+<title>{{$title}}</title>
+<meta name="description" content="Page description">
+<meta property="og:title" content="Unique page title - My Site">
+<meta property="og:description" content="Page description">
 <meta property="og:image" content="https://www.mywebsite.com/image.jpg">
-
+<meta property="og:image:alt" content="Image description">
 <meta property="og:locale" content="ru">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">

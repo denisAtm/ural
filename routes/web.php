@@ -26,9 +26,15 @@ Route::get('/', [PageController::class,'index']);
 Route::get('/catalog/{slug}',[PageController::class,'catalog']);
 Route::get('/catalog/{catSlug}/{slug}',[PageController::class,'single']);
 
-
-Route::get('/contacts',[PageController::class,'contacts']);
-
+Route::get('/contacts',function (){
+    return view('contacts');
+});
+Route::get('/articles',function (){
+    return view('articles');
+});
+Route::get('/articles-card',function (){
+    return view('articles-card');
+});
 Route::get('/news',[PageController::class,'news']);
 Route::get('/articles',[PageController::class,'articles']);
 Route::get('/articles/{slug}',[PageController::class,'articlesSingle']);
