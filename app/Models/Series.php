@@ -43,6 +43,9 @@ class Series extends Model
     public function outputShafts(){
         return $this->belongsToMany(Shaft::class,'output_shaft_series','series_id','shaft_id');
     }
+    public function buildOptions(){
+        return $this->belongsToMany(BuildOption::class,'build_option_series','series_id','build_option_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

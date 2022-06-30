@@ -37,6 +37,9 @@ class BuildOption extends Model
     public function reducers(){
         return $this->belongsToMany(Reducer::class,'build_option_reducer','build_option','reducer_id');
     }
+    public function series(){
+        return $this->belongsToMany(Series::class,'build_option_series','build_option','series_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

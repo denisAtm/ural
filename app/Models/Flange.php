@@ -35,7 +35,7 @@ class Flange extends Model
     |--------------------------------------------------------------------------
     */
     public function motors(){
-        return $this->belongsToMany(Paws::class,'mounting_position_on_the_flange_gear_motor','flange_id','motor_id');
+        return $this->belongsToMany(GearMotor::class,'mounting_position_on_the_flange_gear_motor','flange_id','motor_id');
     }
     /*
     |--------------------------------------------------------------------------

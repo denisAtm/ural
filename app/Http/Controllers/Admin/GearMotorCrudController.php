@@ -177,26 +177,26 @@ class GearMotorCrudController extends CrudController
 //                'class'=>'form-group col-md-6'
 //            ]
 //        ]);
-//        CRUD::addField([
-//            'name'=>'paws',
-//            'type'=>'select_multiple',
-//            'label'=>'Монтажное положение на лапах',
-//            'entity'=>'paws',
-//            'attribute' => 'name',
-//            'wrapper'=>[
-//                'class'=>'form-group col-md-6'
-//            ]
-//        ]);
-//        CRUD::addField([
-//            'name'=>'flanges',
-//            'type'=>'select_multiple',
-//            'label'=>'Монтажное положение на фланце',
-//            'entity'=>'flanges',
-//            'attribute' => 'name',
-//            'wrapper'=>[
-//                'class'=>'form-group col-md-6'
-//            ]
-//        ]);
+        CRUD::addField([
+            'name'=>'paws',
+            'type'=>'select_multiple',
+            'label'=>'Монтажное положение на лапах',
+            'entity'=>'paws',
+            'attribute' => 'name',
+            'wrapper'=>[
+                'class'=>'form-group col-md-6'
+            ]
+        ]);
+        CRUD::addField([
+            'name'=>'flanges',
+            'type'=>'select_multiple',
+            'label'=>'Монтажное положение на фланце',
+            'entity'=>'flanges',
+            'attribute' => 'name',
+            'wrapper'=>[
+                'class'=>'form-group col-md-6'
+            ]
+        ]);
         CRUD::addField([
             'name'=>'gost',
             'type'=>'checkbox',

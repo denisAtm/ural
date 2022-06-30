@@ -35,7 +35,7 @@ class Paws extends Model
     |--------------------------------------------------------------------------
     */
     public function motors(){
-        return $this->belongsToMany(Paws::class,'mounting_position_on_the_paws','paw_id','motor_id');
+        return $this->belongsToMany(GearMotor::class,'mounting_position_on_the_paw_gear_motors','paw_id','motor_id');
     }
     /*
     |--------------------------------------------------------------------------

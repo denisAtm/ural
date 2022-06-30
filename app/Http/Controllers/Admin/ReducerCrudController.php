@@ -240,10 +240,13 @@ class ReducerCrudController extends CrudController
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
                     ['view', ['fullscreen']]
-                ]]
+                ]],
+            'attributes'=>[
+                'id'=>'size'
+            ]
         ]);
 
-
+        Widget::add()->type('script')->content('js/motor-sizes.js');
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
