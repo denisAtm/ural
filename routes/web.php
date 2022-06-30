@@ -30,6 +30,7 @@ Route::get('/catalog/{catSlug}/{slug}',[PageController::class,'single']);
 Route::get('/contacts',[PageController::class,'contacts']);
 
 Route::get('/news',[PageController::class,'news']);
+Route::post('/send-form',[PageController::class,'sendForm']);
 Route::get('/articles',[PageController::class,'articles']);
 Route::get('/articles/{slug}',[PageController::class,'articlesSingle']);
 Route::get('/news/{slug}',[PageController::class,'newsSingle']);

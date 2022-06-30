@@ -12,6 +12,7 @@ use App\Models\MetaPage;
 use App\Models\News;
 use App\Models\NumberOfTransferStages;
 use App\Models\Products;
+use App\Models\QuestionAnswer;
 use App\Models\Reducer;
 use App\Models\Series;
 use App\Models\TypeOfTransmission;
@@ -102,5 +103,17 @@ class PageController extends Controller
         }else{
             abort(404);
         }
+    }
+    public function sendForm(Request $request){
+        $questions = new QuestionAnswer();
+        $questions->name = $request->name;
+        $questions->email = $request->email;
+        $questions->question = $request->textarea;
+        $questions->answer = ' ';
+        $questions->status = 0;
+        $questions->product_id = $request->id;
+        $questions->save();
+
+
     }
 }

@@ -198,30 +198,32 @@
                             <p>Напишите свой вопрос и наши менеджеры свяжутся с Вами в максимально короткое время.</p>
                         </div>
                         <div>
-                            <form action="#" class="request-form">
+                            <form action="/send-form" class="request-form" method="post">
+                                @csrf
                                 <fieldset>
                                     <div class="request-form__input-group">
                                         <label for="name">Ваше имя</label>
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="text" name="name" id="name" placeholder="Иван">
-                                            <svg class="icon-error" width="28" height="28">
-                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
-                                            </svg>
-                                            <svg class="icon-correct" width="28" height="28">
-                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>
-                                            </svg>
+                                            <input type="hidden" name="id" value="{{$product->category->id}}">
+{{--                                            <svg class="icon-error" width="28" height="28">--}}
+{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>--}}
+{{--                                            </svg>--}}
+{{--                                            <svg class="icon-correct" width="28" height="28">--}}
+{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>--}}
+{{--                                            </svg>--}}
                                         </div>
                                     </div>
                                     <div class="request-form__input-group">
                                         <label for="email">Ваш e-mail</label>
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="email" name="email" id="email" placeholder="ivan@mail.ru">
-                                            <svg class="icon-error" width="28" height="28">
-                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
-                                            </svg>
-                                            <svg class="icon-correct" width="28" height="28">
-                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>
-                                            </svg>
+{{--                                            <svg class="icon-error" width="28" height="28">--}}
+{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>--}}
+{{--                                            </svg>--}}
+{{--                                            <svg class="icon-correct" width="28" height="28">--}}
+{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>--}}
+{{--                                            </svg>--}}
                                         </div>
                                     </div>
                                     <div class="request-form__input-group">

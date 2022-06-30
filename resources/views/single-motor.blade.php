@@ -200,24 +200,24 @@
                                         <label for="name">Ваше имя</label>
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="text" name="name" id="name" placeholder="Иван">
-                                            <svg class="icon-error" width="28" height="28">
-                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
-                                            </svg>
-                                            <svg class="icon-correct" width="28" height="28">
-                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>
-                                            </svg>
+{{--                                            <svg class="icon-error" width="28" height="28">--}}
+{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>--}}
+{{--                                            </svg>--}}
+{{--                                            <svg class="icon-correct" width="28" height="28">--}}
+{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>--}}
+{{--                                            </svg>--}}
                                         </div>
                                     </div>
                                     <div class="request-form__input-group">
                                         <label for="email">Ваш e-mail</label>
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="email" name="email" id="email" placeholder="ivan@mail.ru">
-                                            <svg class="icon-error" width="28" height="28">
-                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
-                                            </svg>
-                                            <svg class="icon-correct" width="28" height="28">
-                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>
-                                            </svg>
+{{--                                            <svg class="icon-error" width="28" height="28">--}}
+{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>--}}
+{{--                                            </svg>--}}
+{{--                                            <svg class="icon-correct" width="28" height="28">--}}
+{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>--}}
+{{--                                            </svg>--}}
                                         </div>
                                     </div>
                                     <div class="request-form__input-group">
