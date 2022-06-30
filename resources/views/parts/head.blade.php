@@ -44,17 +44,17 @@
             <meta name="keywords" content="{{$meta[0]->meta_keywords}}">
         @endif
     @endif
-<meta property="og:image" content="https://www.mywebsite.com/image.jpg">
+<meta property="og:image" content="{{asset('resources/svgSprites/logo.svg')}}">
 
 <meta property="og:locale" content="ru">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:url" content="https://www.mywebsite.com/page">
-<link rel="canonical" href="https://www.mywebsite.com/page">
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/my.webmanifest">
+<meta property="og:url" content="{{asset('resources/svgSprites/logo.svg')}}">
+<link rel="canonical" href="{{asset('resources/svgSprites/logo.svg')}}">
+<link rel="icon" href="{{asset('resources/svgSprites/logo.svg')}}">
+<link rel="icon" href="{{asset('resources/svgSprites/logo.svg')}}">
+<link rel="apple-touch-icon" href="{{asset('resources/svgSprites/logo.svg')}}">
+<link rel="manifest" href="{{asset('resources/svgSprites/logo.svg')}}">
 <meta name="theme-color" content="#fff" />
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link

@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Products;
-use App\Models\Categories;
+use App\Models\MotorSeries;
+use App\Models\Reducer;
 use App\Models\Tag;
 use App\Models\News;
 use App\Models\Articles;
@@ -19,8 +19,8 @@ class SitemapController extends Controller
 //        $news = News::approvedPosts()->orderBy('updated_at', 'desc')->first();
 //        $articles = Articles::approvedPosts()->orderBy('updated_at', 'desc')->first();
 
-        $products = Products::get()->first();
-        $categories = Categories::get()->first();
+        $products = Reducer::get()->first();
+        $categories = MotorSeries::get()->first();
         $tag = Tag::get()->first();
         $news = News::get()->first();
         $articles = Articles::get()->first();
@@ -35,7 +35,7 @@ class SitemapController extends Controller
 
     public function products()
     {
-        $products = Products::get();
+        $products = Reducer::get();
         return response()->view('sitemap.products', [
             'products' => $products,
         ])->header('Content-Type', 'text/xml');
@@ -43,7 +43,7 @@ class SitemapController extends Controller
 
     public function categories()
     {
-        $categories = Categories::get();
+        $categories = MotorSeries::get();
         return response()->view('sitemap.categories', [
             'categories' => $categories,
         ])->header('Content-Type', 'text/xml');

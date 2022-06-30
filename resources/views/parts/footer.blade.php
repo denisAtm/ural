@@ -49,13 +49,13 @@
                     </svg>
             </button>
         </li>
-        <li>
-            <button type="button" class="chat-btn" @click="questionModal = true">
-                <svg width="44" height="44">
-                    <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#chat-btn-icon')}}"></use>
-                    </svg>
-            </button>
-        </li>
+{{--        <li>--}}
+{{--            <button type="button" class="chat-btn" @click="questionModal = true">--}}
+{{--                <svg width="44" height="44">--}}
+{{--                    <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#chat-btn-icon')}}"></use>--}}
+{{--                    </svg>--}}
+{{--            </button>--}}
+{{--        </li>--}}
     </ul>
 </div>
 </footer>
