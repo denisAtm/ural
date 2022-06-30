@@ -67,6 +67,26 @@ class SeriesCrudController extends CrudController
             'label'=>'Серия',
             'type'=>'text'
         ]);
+        CRUD::addField([
+            'name'=>'frontShafts',
+            'type'=>'select_multiple',
+            'label'=>'Передний вал',
+            'entity'=>'frontShafts',
+            'attribute' => 'name',
+            'wrapper'=>[
+                'class'=>'form-group col-md-6'
+            ]
+        ]);
+        CRUD::addField([
+            'name'=>'outputShafts',
+            'type'=>'select_multiple',
+            'label'=>'Выходной вал',
+            'entity'=>'outputShafts',
+            'attribute' => 'name',
+            'wrapper'=>[
+                'class'=>'form-group col-md-6'
+            ]
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

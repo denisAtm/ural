@@ -80,7 +80,7 @@ class GearMotorCrudController extends CrudController
             'label'=>'Название',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ]
         ]);
         CRUD::addField([
@@ -88,7 +88,7 @@ class GearMotorCrudController extends CrudController
             'label'=>'slug',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ],
             'attributes'=>[
                 'readonly'=>'readonly'
@@ -101,7 +101,7 @@ class GearMotorCrudController extends CrudController
             'entity'=>'category',
             'model'=>'App\Models\Categories',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ]
         ]);
         CRUD::addField([
@@ -111,7 +111,7 @@ class GearMotorCrudController extends CrudController
             'entity'=>'series',
             'model'=>'App\Models\MotorSeries',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ]
         ]);
         CRUD::addField([
@@ -121,7 +121,7 @@ class GearMotorCrudController extends CrudController
             'entity'=>'NumberOfTransferStages',
             'model'=>'App\Models\NumberOfTransferStages',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ]
         ]);
         CRUD::addField([
@@ -131,7 +131,7 @@ class GearMotorCrudController extends CrudController
             'entity'=>'locationOfAxes',
             'model'=>'App\Models\locationOfAxes',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ]
         ]);
         CRUD::addField([
@@ -139,7 +139,7 @@ class GearMotorCrudController extends CrudController
             'label'=>'Климатическое исполнение',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-4'
+                'class'=>'form-group col-md-4'
             ]
         ]);
         CRUD::addField([
@@ -147,7 +147,7 @@ class GearMotorCrudController extends CrudController
             'label'=>'Консольная нагрузка',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-4'
+                'class'=>'form-group col-md-4'
             ]
         ]);
         CRUD::addField([
@@ -155,7 +155,7 @@ class GearMotorCrudController extends CrudController
             'label'=>'Масса',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-4'
+                'class'=>'form-group col-md-4'
             ]
         ]);
         CRUD::addField([
@@ -164,39 +164,39 @@ class GearMotorCrudController extends CrudController
             'label'=>'Передаточное отношение',
             'entity'=>'gearRatios',
             'wrapper'=>[
-                'class'=>'col-md-4'
+                'class'=>'form-group col-md-4'
             ]
         ]);
-        CRUD::addField([
-            'name'=>'outputShafts',
-            'type'=>'select_multiple',
-            'label'=>'Выходной вал',
-            'entity'=>'outputShafts',
-            'attribute' => 'name',
-            'wrapper'=>[
-                'class'=>'col-md-6'
-            ]
-        ]);
-        CRUD::addField([
-            'name'=>'paws',
-            'type'=>'select_multiple',
-            'label'=>'Монтажное положение на лапах',
-            'entity'=>'paws',
-            'attribute' => 'name',
-            'wrapper'=>[
-                'class'=>'col-md-6'
-            ]
-        ]);
-        CRUD::addField([
-            'name'=>'flanges',
-            'type'=>'select_multiple',
-            'label'=>'Монтажное положение на фланце',
-            'entity'=>'flanges',
-            'attribute' => 'name',
-            'wrapper'=>[
-                'class'=>'col-md-6'
-            ]
-        ]);
+//        CRUD::addField([
+//            'name'=>'outputShafts',
+//            'type'=>'select_multiple',
+//            'label'=>'Выходной вал',
+//            'entity'=>'outputShafts',
+//            'attribute' => 'name',
+//            'wrapper'=>[
+//                'class'=>'form-group col-md-6'
+//            ]
+//        ]);
+//        CRUD::addField([
+//            'name'=>'paws',
+//            'type'=>'select_multiple',
+//            'label'=>'Монтажное положение на лапах',
+//            'entity'=>'paws',
+//            'attribute' => 'name',
+//            'wrapper'=>[
+//                'class'=>'form-group col-md-6'
+//            ]
+//        ]);
+//        CRUD::addField([
+//            'name'=>'flanges',
+//            'type'=>'select_multiple',
+//            'label'=>'Монтажное положение на фланце',
+//            'entity'=>'flanges',
+//            'attribute' => 'name',
+//            'wrapper'=>[
+//                'class'=>'form-group col-md-6'
+//            ]
+//        ]);
         CRUD::addField([
             'name'=>'gost',
             'type'=>'checkbox',

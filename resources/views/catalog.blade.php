@@ -385,13 +385,11 @@
         }
                     </script> -->
                     <ul class="catalog-list" role="list">
-                        @foreach($series as $one)
-
                         @php
                             $it = 0;
 
                         @endphp
-                        @foreach($one->products as $product)
+                        @foreach($products as $product)
                             @php
                                 $it++;
                                 if($it==4){
@@ -406,14 +404,15 @@
                                                 <img src="{{asset('storage/images/products/'.$product->image)}}" loading="lazy" decoding="async" alt="image" width="328" height="264">
                                             </picture>
                                             <ul class="catalog-card__descr catalog-card__descr--pos-abs">
-                                                <li><span>Тип передачи</span><span>{{$one->category->name}}</span></li>
-                                                <li><span>Передаточные ступени</span><span>{{$product->numberOfTransferStages->name}}</span></li>
-                                                <li><span>Передаточное<br>отношение</span><span>{{$one->getGearRatio()}}</span></li>
-                                                <li><span>Расположение осей</span><span>{{$product->locationOfAxes->name}}</span></li>
-                                                <li><span>Климатическое<br>исполнение</span><span>{{$product->climatic_version}}
-                            </span></li>
-                                                <li><span>Масса</span><span>от 1 до 100
-                            </span></li>
+{{--                                                <li><span>Тип передачи</span><span>{{$product->category->name}}</span></li>--}}
+{{--                                                <li><span>Передаточные ступени</span><span>{{$product->numberOfTransferStages->name}}</span></li>--}}
+{{--                                                <li><span>Передаточное<br>отношение</span><span>{{$product->series->getGearRatio()}}</span></li>--}}
+{{--                                                <li><span>Расположение осей</span><span>{{$product->locationOfAxes->name}}</span></li>--}}
+{{--                                                <li><span>Климатическое<br>исполнение</span><span>{{$product->climatic_version}}--}}
+{{--                            </span></li>--}}
+{{--                                                <li><span>Масса</span><span>от 1 до 100--}}
+{{--                            </span></li>--}}
+                                                {{$product->details()}}
                                             </ul>
                                         </div>
                                         <figcaption>
@@ -437,7 +436,6 @@
                                     </div>
                                 </figure>
                             </li>
-                        @endforeach
                         @endforeach
 
                         {{--                        <li data-aos="fade-in" data-aos-delay="200">--}}

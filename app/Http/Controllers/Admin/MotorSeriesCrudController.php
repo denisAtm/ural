@@ -67,6 +67,36 @@ class MotorSeriesCrudController extends CrudController
             'label'=>'Серия',
             'type'=>'text'
         ]);
+        CRUD::addField([
+            'name'=>'paws',
+            'type'=>'select_multiple',
+            'label'=>'Монтажное положение на лапах',
+            'entity'=>'paws',
+            'attribute' => 'name',
+            'wrapper'=>[
+                'class'=>'form-group col-md-6'
+            ]
+        ]);
+        CRUD::addField([
+            'name'=>'flanges',
+            'type'=>'select_multiple',
+            'label'=>'Монтажное положение на фланце',
+            'entity'=>'flanges',
+            'attribute' => 'name',
+            'wrapper'=>[
+                'class'=>'form-group col-md-6'
+            ]
+        ]);
+        CRUD::addField([
+            'name'=>'outputShafts',
+            'type'=>'select_multiple',
+            'label'=>'Выходной вал',
+            'entity'=>'outputShafts',
+            'attribute' => 'name',
+            'wrapper'=>[
+                'class'=>'form-group col-md-6'
+            ]
+        ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\AboutPage;
 use App\Models\Articles;
 use App\Models\Categories;
+use App\Models\GearMotor;
 use App\Models\GearRatio;
 use App\Models\LocationOfAxes;
 use App\Models\MetaPage;
 use App\Models\News;
 use App\Models\NumberOfTransferStages;
 use App\Models\Products;
+use App\Models\Reducer;
 use App\Models\Series;
 use App\Models\TypeOfTransmission;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -63,14 +66,23 @@ class PageController extends Controller
         $attr3 = GearRatio::get();
         $attr4 = LocationOfAxes::get();
         $category = Categories::where('slug',$slug)->first();
-        $series = $category->series;
-        return view('catalog',compact(['attr1','attr2','attr3','attr4','slug','series','meta']));
+        $products = $category->reducers;
+        if($products->isEmpty()){
+            $products = $category->motors;
+        }
+        return view('catalog',compact(['attr1','attr2','attr3','attr4','slug','products','meta']));
     }
 
     public function single($catSlug,$slug){
         $meta=MetaPage::where('meta_url','http://ural')->get();
-        $product = Products::where('slug',$slug)->first();
-        return view('single',compact(['product','meta']));
+        $product = Reducer::where('slug',$slug)->first();
+        if(!empty($product)){
+            return view('single',compact(['product','meta']));
+
+        }else{
+            $product = GearMotor::where('slug',$slug)->first();
+            return view('single-motor',compact(['product','meta']));
+        }
     }
 
     public function articles(){

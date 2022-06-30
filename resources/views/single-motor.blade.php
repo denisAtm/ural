@@ -108,9 +108,7 @@
                                 <li><p>Передаточное отношение</p><span>{{$product->gearRatios->first()->name}}</span></li>
                                 <li><p>Расположение осей</p><span>{{$product->locationOfAxes->name}}</span></li>
                                 <li><p>Климатическое исполнение</p><span>{{$product->climatic_version}}</span></li>
-                                <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
-                                            {{$option->name}};
-                                        @endforeach,</span></li>
+
                                 @if($product->gost==1)
                                 <li><p>ГОСТ</p></li>
                                 @endif
@@ -122,9 +120,7 @@
                             <li><p>Передаточное отношение</p><span>{{$product->gearRatios->first()->name}}</span></li>
                             <li><p>Расположение осей</p><span>{{$product->locationOfAxes->name}}</span></li>
                             <li><p>Климатическое исполнение</p><span>{{$product->climatic_version}}</span></li>
-                            <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
-                                        {{$option->name}};
-                                    @endforeach</span></li>
+
                             @if($product->gost==1)
                                 <li><p>ГОСТ</p></li>
                             @endif
@@ -338,15 +334,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="order-form-controls-group order-form-controls-group--not-last">
-                            <h4 class="order-form-controls-group__title">Вариант сборки</h4>
-                            <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">
-                                @foreach($product->buildOptions as $option)
-                                <li :class="{'active': setup === {{$option->name}}}" @click="setup = {{$option->name}};toggleNextStep = true">
-                                    <input type="radio" name="setup" value="{{$option->name}}" id="{{$option->name}}">
-                                    <label for="{{$option->name}}">{{$option->name}}</label>
-                                </li>
-                                @endforeach
+{{--                        <div class="order-form-controls-group order-form-controls-group--not-last">--}}
+{{--                            <h4 class="order-form-controls-group__title">Вариант сборки</h4>--}}
+{{--                            <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">--}}
+
 {{--                                <li :class="{'active': setup === 23}" @click="setup = 23;toggleNextStep = true">--}}
 {{--                                    <input type="radio" name="setup" value="23" id="23">--}}
 {{--                                    <label for="23">23</label>--}}
@@ -387,14 +378,14 @@
 {{--                                    <input type="radio" name="setup" value="22" id="22">--}}
 {{--                                    <label for="22">22</label>--}}
 {{--                                </li>--}}
-                                <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
-                                    <input type="radio" name="setup" value="Не знаю" id="Не знаю">
-                                    <label for="Не знаю">Не знаю</label>
-                                </li>
-                            </ul>
-                        </div>
+{{--                                <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">--}}
+{{--                                    <input type="radio" name="setup" value="Не знаю" id="Не знаю">--}}
+{{--                                    <label for="Не знаю">Не знаю</label>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
                         <div class="order-form-controls-group order-form-controls-group--not-last">
-                            <h4 class="order-form-controls-group__title">Вал входной</h4>
+                            <h4 class="order-form-controls-group__title">Монтажное положение на лапах</h4>
                             <div class="order-form__select-dropdown" x-data="{selectDropdowntext: '', toggleDropdownList: false}">
                                 <div class="order-form__select-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
                                     <span x-text="selectDropdowntext === '' ? 'Вариант' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">Вариант</span>
@@ -403,12 +394,28 @@
                                     </svg>
                                 </div>
                                 <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
-                                    @foreach($product->series->frontShafts as $shaft)
-                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true"><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}">{{$shaft->name}}</span></li>
-
+                                    @foreach($product->paws as $paw)
+                                            <li @click="selectDropdowntext = 'Выбранный вариант {{$loop->iteration}}';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант {{$loop->iteration}}'}">{{$paw->name}}</span></li>
                                     @endforeach
-{{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 2';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 2'}">Выбранный вариант 2</span></li>--}}
 {{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 3';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 3'}">Выбранный вариант 3</span></li>--}}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="order-form-controls-group order-form-controls-group--not-last">
+                            <h4 class="order-form-controls-group__title">Монтажное положение на фланце</h4>
+                            <div class="order-form__select-dropdown" x-data="{selectDropdowntext: '', toggleDropdownList: false}">
+                                <div class="order-form__select-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
+                                    <span x-text="selectDropdowntext === '' ? 'Вариант' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">Вариант</span>
+                                    <svg :class="{'active': toggleDropdownList}" width="16" height="16">
+                                        <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
+                                    </svg>
+                                </div>
+                                <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
+                                    @foreach($product->flanges as $flange)
+                                        <li @click="selectDropdowntext = 'Выбранный вариант {{$loop->iteration}}';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант {{$loop->iteration}}'}">{{$flange->name}}</span></li>
+                                    @endforeach
+                                    {{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 2';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 2'}">Выбранный вариант 2</span></li>--}}
+                                    {{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 3';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 3'}">Выбранный вариант 3</span></li>--}}
                                 </ul>
                             </div>
                         </div>
@@ -479,12 +486,7 @@
                                     <p>Климатическое исполнение</p>
                                     <span>{{$product->climatic_version}}</span>
                                 </li>
-                                <li>
-                                    <p>Вариант сборки</p>
-                                    <span>@foreach($product->buildOptions as $option)
-                                              {{$option->name}};
-                                        @endforeach</span>
-                                </li>
+
                                 @if($product->gost==1)
                                     <li><p>ГОСТ</p></li>
                                 @endif

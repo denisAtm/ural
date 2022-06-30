@@ -56,7 +56,10 @@
 
     </ul>
 </li>
-
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('gear-motor') }}'><i class='nav-icon la la-question'></i> Gear motors</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('paws') }}'><i class='nav-icon la la-question'></i> Paws</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('motor-series') }}'><i class='nav-icon la la-question'></i> Motor series</a></li>
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Мотор-редукторы</a>
+    <ul class="nav-dropdown-items">
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gear-motor') }}'><i class='nav-icon la la-question'></i> Мотор-редукторы</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('motor-series') }}'><i class='nav-icon la la-question'></i> Серии мотор-редукторов</a></li>
+    </ul>
+</li>

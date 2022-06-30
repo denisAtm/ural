@@ -34,6 +34,15 @@ class Series extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function reducers(){
+        return $this->hasMany(Reducer::class);
+    }
+    public function frontShafts(){
+        return $this->belongsToMany(Shaft::class,'front_shaft_series','series_id','shaft_id');
+    }
+    public function outputShafts(){
+        return $this->belongsToMany(Shaft::class,'output_shaft_series','series_id','shaft_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

@@ -57,6 +57,16 @@ class Reducer extends Model
     public function DescAttribute(){
         echo $this->desc;
     }
+    public function details(){
+        echo '<li><span>Тип передачи</span><span>'.$this->category->name.'</span></li>
+                                                <li><span>Передаточные ступени</span><span>'.$this->numberOfTransferStages->name.'</span></li>
+                                          <li><span>Передаточное<br>отношение</span><span>'.$this->gearRatios->first()->name.'</span></li>
+                                                <li><span>Расположение осей</span><span>'.$this->locationOfAxes->name.'</span></li>
+                                                <li><span>Климатическое<br>исполнение</span><span>'.$this->climatic_version.'
+                            </span></li>
+                                                <li><span>Масса</span><span>'.$this->weight.'
+                            </span></li>';
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -69,10 +79,10 @@ class Reducer extends Model
         return $this->belongsTo(Categories::class);
     }
     public function numberOfTransferStages(){
-        return $this->belongsTo(NumberOfTransferStages::class,'number_of_transfer_stages');
+        return $this->belongsTo(NumberOfTransferStages::class,'number_of_transfer_stages_id');
     }
     public function locationOfAxes(){
-        return $this->belongsTo(LocationOfAxes::class,'location_of_axes');
+        return $this->belongsTo(LocationOfAxes::class,'location_of_axes_id');
     }
     public function gearRatios(){
         return $this->belongsToMany(GearRatio::class,'gear_ratio_reducer','reducer_id','gear_ratio_id');

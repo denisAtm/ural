@@ -80,7 +80,7 @@ class ReducerCrudController extends CrudController
             'label'=>'Название',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ]
         ]);
         CRUD::addField([
@@ -88,7 +88,7 @@ class ReducerCrudController extends CrudController
             'label'=>'slug',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ],
             'attributes'=>[
                 'readonly'=>'readonly'
@@ -101,7 +101,7 @@ class ReducerCrudController extends CrudController
             'entity'=>'category',
             'model'=>'App\Models\Categories',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ]
         ]);
         CRUD::addField([
@@ -111,7 +111,7 @@ class ReducerCrudController extends CrudController
             'entity'=>'series',
             'model'=>'App\Models\Series',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ]
         ]);
         CRUD::addField([
@@ -121,7 +121,7 @@ class ReducerCrudController extends CrudController
             'entity'=>'NumberOfTransferStages',
             'model'=>'App\Models\NumberOfTransferStages',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ]
         ]);
         CRUD::addField([
@@ -131,7 +131,7 @@ class ReducerCrudController extends CrudController
             'entity'=>'locationOfAxes',
             'model'=>'App\Models\locationOfAxes',
             'wrapper'=>[
-                'class'=>'col-md-6'
+                'class'=>'form-group col-md-6'
             ]
         ]);
         CRUD::addField([
@@ -139,7 +139,7 @@ class ReducerCrudController extends CrudController
             'label'=>'Климатическое исполнение',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-4'
+                'class'=>'form-group col-md-4'
             ]
         ]);
         CRUD::addField([
@@ -147,7 +147,7 @@ class ReducerCrudController extends CrudController
             'label'=>'Консольная нагрузка',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-4'
+                'class'=>'form-group col-md-4'
             ]
         ]);
         CRUD::addField([
@@ -155,7 +155,7 @@ class ReducerCrudController extends CrudController
             'label'=>'Масса',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-4'
+                'class'=>'form-group col-md-4'
             ]
         ]);
         CRUD::addField([
@@ -163,7 +163,7 @@ class ReducerCrudController extends CrudController
             'label'=>'Масса',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'col-md-4'
+                'class'=>'form-group col-md-4'
             ]
         ]);
         CRUD::addField([
@@ -172,7 +172,7 @@ class ReducerCrudController extends CrudController
             'label'=>'Варианты сборки',
             'entity'=>'buildOptions',
             'wrapper'=>[
-                'class'=>'col-md-8'
+                'class'=>'form-group col-md-8'
             ]
         ]);
         CRUD::addField([
@@ -181,29 +181,32 @@ class ReducerCrudController extends CrudController
             'label'=>'Передаточное отношение',
             'entity'=>'gearRatios',
             'wrapper'=>[
-                'class'=>'col-md-4'
+                'class'=>'form-group col-md-4'
             ]
         ]);
-        CRUD::addField([
-            'name'=>'frontShafts',
-            'type'=>'select_multiple',
-            'label'=>'Передний вал',
-            'entity'=>'frontShafts',
-            'attribute' => 'name',
-            'wrapper'=>[
-                'class'=>'col-md-6'
-            ]
-        ]);
-        CRUD::addField([
-            'name'=>'outputShafts',
-            'type'=>'select_multiple',
-            'label'=>'Выходной вал',
-            'entity'=>'outputShafts',
-            'attribute' => 'name',
-            'wrapper'=>[
-                'class'=>'col-md-6'
-            ]
-        ]);
+//        CRUD::addField([
+//            'name'=>'frontShafts',
+//            'type'=>'select_multiple',
+//            'label'=>'Передний вал',
+//            'entity'=>'frontShafts',
+//            'attribute' => 'name',
+//            'wrapper'=>[
+//                'class'=>'form-group col-md-6'
+//            ],
+//            'options'   => (function ($entry) {
+//                dd($entry);
+//            }),
+//        ]);
+//        CRUD::addField([
+//            'name'=>'outputShafts',
+//            'type'=>'select_multiple',
+//            'label'=>'Выходной вал',
+//            'entity'=>'outputShafts',
+//            'attribute' => 'name',
+//            'wrapper'=>[
+//                'class'=>'form-group form-group col-md-6'
+//            ]
+//        ]);
         CRUD::addField([
             'name'=>'gost',
             'type'=>'checkbox',

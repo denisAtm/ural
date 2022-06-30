@@ -37,7 +37,12 @@ class Categories extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function reducers(){
+        return $this->hasMany(Reducer::class,'category_id');
+    }
+    public function motors(){
+        return $this->hasMany(GearMotor::class,'category_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
