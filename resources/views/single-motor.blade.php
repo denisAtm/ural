@@ -233,45 +233,21 @@
                         <nav class="product-card-answers-list">
                             <h3>Ответы</h3>
                             <ul role="list">
+                                @foreach($quest as $one)
                                 <li>
                                     <div class="product-card-answers-list__top">
-                                        <p>Евгений</p>
-                                        <time datetime="2022-04-25">25.04.2022</time>
+                                        <p>{{$one->name}}</p>
+                                        <time datetime="2022-04-25">{{$one->created_at}}</time>
                                     </div>
                                     <p class="product-card-answers-list__text">
-                                        Здравствуйте, как можно получить конкретный прайс, чтобы сделать выбор, а не общие цены от и до.Прошу выслать если это возможно.Конкретно интерисуют в коридоре от 10 до 30 тысяч.Сколько будет стоить доставка вашим транспортом до Кургана. Надеюсь на быстрый ответ.
+                                        {{$one->question}}
                                     </p>
                                     <div class="product-card-answers-list__answer">
                                         <p>Ответ:</p>
-                                        <span>Запрос в отдел продаж.</span>
+                                        <span> {{$one->answer}}</span>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="product-card-answers-list__top">
-                                        <p>Евгений Анатольевич</p>
-                                        <time datetime="2022-04-25">25.04.2022</time>
-                                    </div>
-                                    <p class="product-card-answers-list__text">
-                                        Здраствуйте. Планирую заменить два редуктора РМ-350, установленные на ход мостового крана на редуктора Ц2У -200. Такая замена возможна, если нет то почему.
-                                    </p>
-                                    <div class="product-card-answers-list__answer">
-                                        <p>Ответ:</p>
-                                        <span>Запрос в отдел продаж.</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="product-card-answers-list__top">
-                                        <p>Степан Юрьевич</p>
-                                        <time datetime="2022-04-25">25.04.2022</time>
-                                    </div>
-                                    <p class="product-card-answers-list__text">
-                                        Прошу подобрать аналоги мотор-редукторов SEW по имеющейся технической информации. Информация будет выслана вам после отклика на мой запрос.
-                                    </p>
-                                    <div class="product-card-answers-list__answer">
-                                        <p>Ответ:</p>
-                                        <span>Запрос в отдел продаж.</span>
-                                    </div>
-                                </li>
+                                @endforeach
                             </ul>
                         </nav>
                         <ul class="pagination product-card-answers-list__pagination" role="list">

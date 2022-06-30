@@ -77,12 +77,13 @@ class PageController extends Controller
     public function single($catSlug,$slug){
         $meta=MetaPage::where('meta_url','http://ural')->get();
         $product = Reducer::where('slug',$slug)->first();
+        $quest = QuestionAnswer::all();
         if(!empty($product)){
-            return view('single',compact(['product','meta']));
+            return view('single',compact(['product','meta','quest']));
 
         }else{
             $product = GearMotor::where('slug',$slug)->first();
-            return view('single-motor',compact(['product','meta']));
+            return view('single-motor',compact(['product','meta','quest']));
         }
     }
 
