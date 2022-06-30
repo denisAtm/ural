@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\StoreImage;
 use App\Http\Requests\ReducerRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Backpack\CRUD\app\Library\Widget;
+use Illuminate\Http\Request;
 
 /**
  * Class ReducerCrudController
@@ -263,5 +265,31 @@ class ReducerCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+    public function storeSizeImages(Request $request){
+        $description = $request->data;
+        $dom = new \DomDocument();
+        $dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $images = $dom->getElementsByTagName('img');
+        $li = $dom->getElementsByTagName('li');
+        foreach ($li as $one => $style){
+            $style->removeAttribute('style');
+        }
+        foreach($images as $k => $img){
+            $data = $img->getAttribute('src');
+            list($type, $data) = explode(';', $data);
+            list($type, $data) = explode(',', $data);
+            $data = base64_decode($data);
+            $image_name=  time().$k.'.png';
+            \File::put(storage_path(). '/app/public/images/products/reducers/sizes/' . $image_name, $data);
+            $img->removeAttribute('src');
+            $img->removeAttribute('style');
+            $img->removeAttribute('data-filename');
+            $img->setAttribute('src', '{!!asset("storage/products/reducers/sizes/")!!}'.$image_name);
+            $img->setAttribute('data-filename', $image_name);
+        }
+        $description = $dom->saveHTML();
+        return response()->json($description);
+//        $this->attributes['image'] = StoreImage::storeImage($value,$path);
     }
 }
