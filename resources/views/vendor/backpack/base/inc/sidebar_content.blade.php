@@ -17,7 +17,22 @@
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-map-signs la-lg"></i> Магазин</a>
     <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('products') }}'><i class='nav-icon la la-question'></i> Товары</a></li>
+        <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Редукторы</a>
+            <ul class="nav-dropdown-items">
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('series') }}'><i class='nav-icon la la-question'></i> Серии редукторов</a></li>
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('reducer') }}'><i class='nav-icon la la-question'></i> Редукторы</a></li>
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('build-option') }}'><i class='nav-icon la la-question'></i> Варианты сборки</a></li>
+
+            </ul>
+        </li>
+        <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Мотор-редукторы</a>
+            <ul class="nav-dropdown-items">
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gear-motor') }}'><i class='nav-icon la la-question'></i> Мотор-редукторы</a></li>
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('motor-series') }}'><i class='nav-icon la la-question'></i> Серии мотор-редукторов</a></li>
+            </ul>
+        </li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('categories') }}'><i class='nav-icon la  la-cog fa-spin'></i> Типы редукторов</a></li>
         <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-cogs  la-lg"></i> Аттрибуты моторов</a>
@@ -33,11 +48,11 @@
 </li>
 <!-- Users, Roles, Permissions -->
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Authentication</a>
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Идентификация</a>
     <ul class="nav-dropdown-items">
-        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-user"></i> <span>Users</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('role') }}"><i class="nav-icon la la-id-badge"></i> <span>Roles</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('permission') }}"><i class="nav-icon la la-key"></i> <span>Permissions</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-user"></i> <span>Пользователи</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('role') }}"><i class="nav-icon la la-id-badge"></i> <span>Роли</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('permission') }}"><i class="nav-icon la la-key"></i> <span>Доступы</span></a></li>
     </ul>
 </li>
 
@@ -47,20 +62,5 @@
 {{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('build-options') }}'><i class='nav-icon la la-question'></i> Build options</a></li>--}}
 
 
-<li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Редукторы</a>
-    <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('series') }}'><i class='nav-icon la la-question'></i> Серии редукторов</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('reducer') }}'><i class='nav-icon la la-question'></i> Редукторы</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('build-option') }}'><i class='nav-icon la la-question'></i> Варианты сборки</a></li>
 
-    </ul>
-</li>
-<li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Мотор-редукторы</a>
-    <ul class="nav-dropdown-items">
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gear-motor') }}'><i class='nav-icon la la-question'></i> Мотор-редукторы</a></li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('motor-series') }}'><i class='nav-icon la la-question'></i> Серии мотор-редукторов</a></li>
-    </ul>
-</li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('meta-page') }}'><i class='nav-icon la la-question'></i> Meta pages</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('meta-page') }}'><i class='nav-icon la la-question'></i> Мета страниц</a></li>
