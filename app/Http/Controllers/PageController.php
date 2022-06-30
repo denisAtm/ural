@@ -114,7 +114,7 @@ class PageController extends Controller
         $questions->status = 0;
         $questions->product_id = $request->id;
         $questions->save();
-
+        return back()->with('Всё');
 
     }
 }
