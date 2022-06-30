@@ -98,8 +98,8 @@ class PageController extends Controller
         $meta=MetaPage::where('meta_url','LIKE',"%{$search}%")->get();
         $article = Articles::where('slug',$slug)->first();
         if($article->status->id==1){
-            $prev = News::where('id','<',$article->id)->latest('id')->first();
-            $next = News::where('id','<',$article->id)->oldest('id')->first();
+            $prev = Articles::where('id','<',$article->id)->latest('id')->first();
+            $next = Articles::where('id','<',$article->id)->oldest('id')->first();
             return view('articles-single',['article'=>$article,'prev'=>$prev,'next'=>$next,'meta'=>$meta]);
         }else{
             abort(404);
