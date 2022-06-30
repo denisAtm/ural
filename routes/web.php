@@ -30,12 +30,12 @@ Route::get('/catalog/{catSlug}/{slug}',[PageController::class,'single']);
 Route::get('/contacts',[PageController::class,'contacts']);
 
 Route::get('/news',[PageController::class,'news']);
-Route::post('/send-form',[PageController::class,'sendForm']);
 Route::get('/articles',[PageController::class,'articles']);
 Route::get('/articles/{slug}',[PageController::class,'articlesSingle']);
 Route::get('/news/{slug}',[PageController::class,'newsSingle']);
 Route::get('/about',[PageController::class,'aboutPage']);
 Route::post('/storeProductImages',[\App\Http\Controllers\Admin\ProductsCrudController::class,'storeImages'])->name('storeProductImages');
+Route::post('/storeSizeImages',[\App\Http\Controllers\Admin\ReducerCrudController::class,'storeSizeImages'])->name('storeSizeImages');
 /* Sitemap */
 Route::get('/sitemap', [SitemapController::class,'index']);
 Route::get('/sitemap/products', [SitemapController::class,'products']);
