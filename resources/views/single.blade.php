@@ -123,7 +123,7 @@
                             <li><p>Расположение осей</p><span>{{$product->locationOfAxes->name}}</span></li>
                             <li><p>Климатическое исполнение</p><span>{{$product->climatic_version}}</span></li>
                             <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
-                                        {{$option->name}};
+                                        {{$option->name}},
                                     @endforeach</span></li>
                             @if($product->gost==1)
                                 <li><p>ГОСТ</p></li>
@@ -341,8 +341,8 @@
                         <div class="order-form-controls-group order-form-controls-group--not-last">
                             <h4 class="order-form-controls-group__title">Вариант сборки</h4>
                             <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">
-                                @foreach($product->buildOptions as $option)
-                                <li :class="{'active': setup === {{$option->name}}}" @click="setup = {{$option->name}};toggleNextStep = true">
+                                @foreach($product->series->buildOptions as $option)
+                                <li {{$product->buildOptions->contains('name',$option->name)? '': 'class=disabled'}} :class="{'active': setup === {{$option->name}}}" @click="setup = {{$option->name}};toggleNextStep = true">
                                     <input type="radio" name="setup" value="{{$option->name}}" id="{{$option->name}}">
                                     <label for="{{$option->name}}">{{$option->name}}</label>
                                 </li>

@@ -386,38 +386,33 @@
 {{--                        </div>--}}
                         <div class="order-form-controls-group order-form-controls-group--not-last">
                             <h4 class="order-form-controls-group__title">Монтажное положение на лапах</h4>
-                            <div class="order-form__select-dropdown" x-data="{selectDropdowntext: '', toggleDropdownList: false}">
-                                <div class="order-form__select-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
-                                    <span x-text="selectDropdowntext === '' ? 'Вариант' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">Вариант</span>
-                                    <svg :class="{'active': toggleDropdownList}" width="16" height="16">
-                                        <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
-                                    </svg>
-                                </div>
-                                <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
-                                    @foreach($product->paws as $paw)
-                                            <li @click="selectDropdowntext = 'Выбранный вариант {{$loop->iteration}}';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант {{$loop->iteration}}'}">{{$paw->name}}</span></li>
+                                <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">
+                                    @foreach($product->series->paws as $seriesPaw)
+                                        <li {{$product->paws->contains('name',$seriesPaw->name)? ' ad': 'class=disabled'}}  :class="{'active': setup === {{$seriesPaw->name}}}" @click="setup = {{$seriesPaw->name}};toggleNextStep = true">
+                                            <input type="radio" name="setup" value="{{$seriesPaw->name}}" id="{{$seriesPaw->name}}">
+                                            <label for="{{$seriesPaw->name}}">{{$seriesPaw->name}}</label>
+                                        </li>
                                     @endforeach
-{{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 3';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 3'}">Выбранный вариант 3</span></li>--}}
+                                    <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
+                                        <input type="radio" name="setup" value="Не знаю" id="Не знаю">
+                                        <label for="Не знаю">Не знаю</label>
+                                    </li>
                                 </ul>
-                            </div>
                         </div>
                         <div class="order-form-controls-group order-form-controls-group--not-last">
                             <h4 class="order-form-controls-group__title">Монтажное положение на фланце</h4>
-                            <div class="order-form__select-dropdown" x-data="{selectDropdowntext: '', toggleDropdownList: false}">
-                                <div class="order-form__select-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
-                                    <span x-text="selectDropdowntext === '' ? 'Вариант' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">Вариант</span>
-                                    <svg :class="{'active': toggleDropdownList}" width="16" height="16">
-                                        <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
-                                    </svg>
-                                </div>
-                                <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
-                                    @foreach($product->flanges as $flange)
-                                        <li @click="selectDropdowntext = 'Выбранный вариант {{$loop->iteration}}';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант {{$loop->iteration}}'}">{{$flange->name}}</span></li>
-                                    @endforeach
-                                    {{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 2';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 2'}">Выбранный вариант 2</span></li>--}}
-                                    {{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 3';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 3'}">Выбранный вариант 3</span></li>--}}
-                                </ul>
-                            </div>
+                            <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">
+                                @foreach($product->series->flanges as $seriesFlange)
+                                    <li {{$product->flanges->contains('name',$seriesFlange->name)? '': 'class=disabled'}}  :class="{'active': setup === {{$seriesFlange->name}}}" @click="setup = {{$seriesFlange->name}};toggleNextStep = true">
+                                        <input type="radio" name="setup" value="{{$seriesFlange->name}}" id="{{$seriesFlange->name}}">
+                                        <label for="{{$seriesFlange->name}}">{{$seriesFlange->name}}</label>
+                                    </li>
+                                @endforeach
+                                <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
+                                    <input type="radio" name="setup" value="Не знаю" id="Не знаю">
+                                    <label for="Не знаю">Не знаю</label>
+                                </li>
+                            </ul>
                         </div>
                         <div class="order-form-controls-group">
                             <h4 class="order-form-controls-group__title">Вал выходной</h4>
@@ -431,11 +426,7 @@
                                 <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                     @foreach($product->series->outputShafts as $shaft)
                                         <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true"><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}">{{$shaft->name}}</span></li>
-
                                     @endforeach
-{{--                                    <li @click="selectDropdowntext = 'Выбранный вариант';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант'}">Выбранный вариант</span></li>--}}
-{{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 2';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 2'}">Выбранный вариант 2</span></li>--}}
-{{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 3';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 3'}">Выбранный вариант 3</span></li>--}}
                                 </ul>
                             </div>
                         </div>

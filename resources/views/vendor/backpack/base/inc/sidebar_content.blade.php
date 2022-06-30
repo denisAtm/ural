@@ -56,10 +56,6 @@
     </ul>
 </li>
 
-{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('group') }}'><i class='nav-icon la la-question'></i> Groups</a></li>--}}
-{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('paw') }}'><i class='nav-icon la la-question'></i> Paws</a></li>--}}
-{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('flange') }}'><i class='nav-icon la la-question'></i> Flanges</a></li>--}}
-{{--<li class='nav-item'><a class='nav-link' href='{{ backpack_url('build-options') }}'><i class='nav-icon la la-question'></i> Build options</a></li>--}}
 
 
 

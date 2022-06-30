@@ -26,7 +26,7 @@ Route::group([
     Route::crud('gear-ratio', 'GearRatioCrudController');
     Route::crud('location-of-axes', 'LocationOfAxesCrudController');
     Route::crud('articles', 'ArticlesCrudController');
-    Route::crud('meta-page', 'MetaPageCrudController');
+
     Route::crud('reducer', 'ReducerCrudController');
     Route::crud('series', 'SeriesCrudController');
     Route::crud('build-option', 'BuildOptionCrudController');
@@ -34,4 +34,5 @@ Route::group([
     Route::crud('paws', 'PawsCrudController');
     Route::crud('flange', 'FlangeCrudController');
     Route::crud('motor-series', 'MotorSeriesCrudController');
+    Route::crud('meta-page', 'MetaPageCrudController');
 }); // this should be the absolute last line of this file

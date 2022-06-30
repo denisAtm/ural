@@ -87,6 +87,13 @@ class SeriesCrudController extends CrudController
                 'class'=>'form-group col-md-6'
             ]
         ]);
+        CRUD::addField([
+            'name'=>'buildOptions',
+            'type'=>'select_multiple',
+            'label'=>'Варианты сборки',
+            'entity'=>'buildOptions',
+
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
