@@ -1,9 +1,9 @@
 /* alpine.js */
 
 import Alpine from 'alpinejs'
- 
+
 window.Alpine = Alpine
- 
+
 Alpine.start()
 
 // AOS
@@ -27,7 +27,7 @@ document.querySelector('.to-top-btn').addEventListener('click', scrollToTop);
 const reductorTypesSlider = new Swiper('.reductor-types__slider', {
   slidesPerView: 'auto',
   spaceBetween: 20,
-  
+
   // If we need pagination
   pagination: {
     el: '.reductor-types__pagination',
@@ -39,7 +39,7 @@ const reductorTypesSlider = new Swiper('.reductor-types__slider', {
     prevEl: '.reductor-types__button-prev',
   },
   breakpoints: {
-    
+
     1023: {
       slidesPerView: 3,
       slidesPerGroup: 3
@@ -62,13 +62,13 @@ function restartAnimationOnClickOnReductorSlider() {
         element.classList.remove('aos-animate');
       });
     });
-  
+
     reductorTypesSlider.on('slideChangeTransitionEnd',()=>{
       sliderCards.forEach((element) => {
         element.classList.add('aos-animate');
       });
     });
-    
+
   }
 }
 
@@ -199,7 +199,7 @@ function toggleLabelAnimation(el) {
 
       if (el.value == '') {
         label.classList.remove('active');
-      } 
+      }
 
     });
 }
@@ -218,14 +218,14 @@ function simpleClientSideFormValidation(form) {
       if (input.value !== null) {
         parentEl.classList.remove('error');
         parentEl.classList.add('correct');
-      } 
+      }
 
       if (input.value == '') {
         parentEl.classList.remove('correct');
         parentEl.classList.add('error');
-      } 
-    }) 
-  }); 
+      }
+    })
+  });
 
     inputs.forEach(input => {
       input.addEventListener('change',()=>{
@@ -234,15 +234,15 @@ function simpleClientSideFormValidation(form) {
         if (input.value !== null) {
           parentEl.classList.remove('error');
           parentEl.classList.add('correct');
-        } 
+        }
 
         if (input.value == '') {
           parentEl.classList.remove('correct');
           parentEl.classList.add('error');
-        } 
-      }) 
-    }); 
-  
+        }
+      })
+    });
+
   el.addEventListener('submit',function(event){
       event.preventDefault();
       inputs.forEach(input => {
@@ -251,8 +251,8 @@ function simpleClientSideFormValidation(form) {
         if (input.value !== '') {
           parentEl.classList.remove('error');
         parentEl.classList.add('correct');
-        } 
-  
+        }
+
         if (input.value == '') {
           parentEl.classList.remove('correct');
           parentEl.classList.add('error');
@@ -261,16 +261,17 @@ function simpleClientSideFormValidation(form) {
           });
           input.value = 'Введен неправильный текст';
           el.querySelector('.form-controls-wrapper input').focus();
-        } 
-  
+        }
+
       });
+
 
    }, false);
  }
 
  simpleClientSideFormValidation('.question-modal form');
 
- simpleClientSideFormValidation('.request-form');
+  simpleClientSideFormValidation('.request-form');
 
  simpleClientSideFormValidation('.order-form form');
 
