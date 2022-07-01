@@ -57,6 +57,9 @@ class Reducer extends Model
     public function DescAttribute(){
         echo $this->desc;
     }
+    public function echoSize(){
+        echo $this->size;
+    }
     public function details(){
         echo '<li><span>Тип передачи</span><span>'.$this->category->name.'</span></li>
                                                 <li><span>Передаточные ступени</span><span>'.$this->numberOfTransferStages->name.'</span></li>
@@ -111,6 +114,14 @@ class Reducer extends Model
     public function getCreatedAtAttribute($value){
         return Carbon::parse($value)->format('d.m.Y');
     }
+//    public function getSizeAttribute($value){
+//        if(strpos($value,'/storage/images')){
+//            return $value;
+//        }else{
+//            return str_replace('src="','src="'.asset('/storage/images/products/reducers/sizes/').'/',$value);
+//
+//        }
+//    }
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
@@ -127,4 +138,32 @@ class Reducer extends Model
 //        $value = $action->handle($request);
 //        $this->attributes['size'] = $value;
 //    }
+    public function setSizeAttribute($value){
+//        dd($value);
+        if(strpos($value,'data:image/jpeg')===true||strpos($value,'base64')===true){
+            $dom = new \DomDocument();
+            $dom->loadHtml($value, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $images = $dom->getElementsByTagName('img');
+            foreach($images as $k => $img){
+                $data = $img->getAttribute('src');
+                list($type, $data) = explode(';', $data);
+                list($type, $data) = explode(',', $data);
+                $data = base64_decode($data);
+                $image_name=  time().$k.'.png';
+                \File::put(storage_path(). '/app/public/images/products/reducers/sizes/' . $image_name, $data);
+                $img->removeAttribute('src');
+                $img->removeAttribute('style');
+                $img->removeAttribute('data-filename');
+                $img->setAttribute('src', $image_name);
+                $img->setAttribute('data-filename', $image_name);
+                $img->setAttribute('loading', 'lazy');
+                $img->setAttribute('decoding', 'acync');
+            }
+            $value = $dom->saveHTML();
+            $this->attributes['size']=$value;
+            }else{
+            $this->attributes['size']=$value;
+        }
+        }
+
 }

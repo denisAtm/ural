@@ -2,6 +2,9 @@
 @section('head')
     @include('parts.head',['meta'=>$meta[0]])
 @endsection
+@section('cdn')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+@endsection
 @section('content')
 
     <main>
@@ -176,20 +179,21 @@
                     </div>
                     <div class="product-card-info product-card__sizes" id="productCardSizes">
                         <ul role="list">
-                            <li>
-                                <h4>Габаритные и присоединительные размеры мотор-редукторов 1МПЗ
-                                    на лапах, мм:</h4>
-                                <ul class="product-card__sizes-list">
-                                    <li><img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-sizes-img.jpg')}}" alt="image" width="550" height="224"></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h4>Габаритные и присоединительные размеры мотор-редукторов 1МПЗ
-                                    на лапах, мм:</h4>
-                                <ul class="product-card__sizes-list">
-                                    <li> <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-sizes-img-2.jpg')}}" alt="image" width="550" height="224"></li>
-                                </ul>
-                            </li>
+{{--                            <li>--}}
+{{--                                <h4>Габаритные и присоединительные размеры мотор-редукторов 1МПЗ--}}
+{{--                                    на лапах, мм:</h4>--}}
+{{--                                <ul class="product-card__sizes-list">--}}
+{{--                                    <li><img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-sizes-img.jpg')}}" alt="image" width="550" height="224"></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <h4>Габаритные и присоединительные размеры мотор-редукторов 1МПЗ--}}
+{{--                                    на лапах, мм:</h4>--}}
+{{--                                <ul class="product-card__sizes-list">--}}
+{{--                                    <li> <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-sizes-img-2.jpg')}}" alt="image" width="550" height="224"></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+                            {{$product->echoSize()}}
                         </ul>
                     </div>
                     <div class="product-card-info product-card__question-answer" id="productCardQuestionAnswer">
@@ -281,7 +285,8 @@
                     element.className = element.className.replace("active", "");
                 });
 
-                currentTab.style.maxHeight = currentTab.scrollHeight + "px";
+                currentTab.style.maxHeight = currentTab.getElementsByTagName('ul')[0].offsetHeight + "px";
+                console.log(currentTab.getElementsByTagName('ul')[0].offsetHeight + "px")
                 evt.currentTarget.className += "active";
             }
 
