@@ -1589,7 +1589,7 @@ body #magicMouseCursor.faded {
   gap: 16px;
   position: fixed;
   right: 0;
-  bottom: 0;
+  bottom: 30px;
   padding: 0;
   margin: 0;
   margin-right: 16px;
