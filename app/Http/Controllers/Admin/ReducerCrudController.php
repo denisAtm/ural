@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\StoreImage;
 use App\Http\Requests\ReducerRequest;
+use App\Models\Image;
+use App\Models\Reducer;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Backpack\CRUD\app\Library\Widget;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class ReducerCrudController
@@ -17,8 +21,8 @@ use Illuminate\Http\Request;
 class ReducerCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {store as traitStore;}
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as traitUpdate; }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -32,6 +36,7 @@ class ReducerCrudController extends CrudController
         CRUD::setModel(\App\Models\Reducer::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/reducer');
         CRUD::setEntityNameStrings('reducer', 'reducers');
+//        $this->crud->setOperationSetting('saveAllInputsExcept', ['_token', '_method', 'http_referrer', 'current_tab', 'save_action']);
         Widget::add()->type('script')->content('js/slug.js');
     }
 
@@ -96,6 +101,21 @@ class ReducerCrudController extends CrudController
                 'readonly'=>'readonly'
             ]
         ]);
+        CRUD::addField([
+            'name'=>'image',
+            'label'=>'Загрузите основное изображение',
+            'type'=>'upload',
+            'upload' => true,
+        ]);
+        CRUD::addField([
+            'name'=>'gallery',
+            'label'=>'Загрузите изображени для галлереи',
+            'type'=>'upload_multiple',
+            'upload' => true,
+
+//            'model'=>'App\Models\Reducer',
+        ]);
+
         CRUD::addField([
             'name'=>'category_id',
             'type'=>'select',
@@ -247,12 +267,6 @@ class ReducerCrudController extends CrudController
                 'id'=>'size'
             ]
         ]);
-//        CRUD::addField([
-//            'name'=>'size',
-//            'label'=>'Размеры',
-//            'type'=>'view',
-//            'view'=>'vendor/backpack/custom-fields/motor-sizes'
-//        ]);
 
 
         Widget::add()->type('script')->content('js/motor-sizes.js');
@@ -304,4 +318,66 @@ class ReducerCrudController extends CrudController
 ////        $this->attributes['image'] = StoreImage::storeImage($value,$path);
 //    }
 
+//    public function storeSizeImages(Request $request){
+//        $description = $request->data;
+//        $dom = new \DomDocument();
+//        $dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+//        $images = $dom->getElementsByTagName('img');
+//        $li = $dom->getElementsByTagName('li');
+//        foreach ($li as $one => $style){
+//            $style->removeAttribute('style');
+//        }
+//        foreach($images as $k => $img){
+//            $data = $img->getAttribute('src');
+//            if ( base64_encode(base64_decode($data, true)) === $data){
+//                list($type, $data) = explode(';', $data);
+//                list($type, $data) = explode(',', $data);
+//                $data = base64_decode($data);
+//                $image_name=  time().$k.'.png';
+//                \File::put(storage_path(). '/app/public/images/products/reducers/sizes/' . $image_name, $data);
+//                $img->removeAttribute('src');
+//                $img->setAttribute('src', '{!!asset("storage/products/reducers/sizes/")!!}'.$image_name);
+//            }
+//        }
+//        $description = $dom->saveHTML();
+//        return response()->json($description);
+////        $this->attributes['image'] = StoreImage::storeImage($value,$path);
+//    }
+    public function update(){
+        $path = 'products';
+        $mainImage = $this->crud->getRequest()->file('image');
+        $gallery = $this->crud->getRequest()->file('gallery');
+        //Главное изображение
+        $response = $this->traitUpdate();
+        if(!empty($mainImage)) {
+            $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
+        }
+        if(!empty($gallery)){
+            foreach ($gallery as $file){
+                $storeFile = Reducer::findOrFail($this->crud->entry->id);
+                $storeFile->name = StoreImage::storeImage($file, $path,false,true);
+                $this->crud->entry->images()->create(['name'=>$storeFile->name]);
+            }
+        }
+        return $response;
+    }
+    public function store()
+    {
+        $path = 'products';
+        $mainImage = $this->crud->getRequest()->file('image');
+        $gallery = $this->crud->getRequest()->file('gallery');
+        //Главное изображение
+        $response = $this->traitStore();
+        if(!empty($mainImage)){
+            $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
+        }
+        if(!empty($gallery)){
+            foreach ($gallery as $file){
+                $storeFile = Reducer::findOrFail($this->crud->entry->id);
+                $storeFile->name = StoreImage::storeImage($file, $path);
+                $this->crud->entry->images()->create(['name'=>$storeFile->name]);
+            }
+        }
+        return $response;
+    }
 }
