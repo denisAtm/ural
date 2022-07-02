@@ -20,7 +20,7 @@
         <section class="product-card">
             <div class="container">
                 <h1 class="title title-h2 product-card__title">
-                    <a class="previous-page-link" href="#">
+                    <a class="previous-page-link" href="javascript:history.go(-1)">
                         <svg width="18" height="32" data-aos="fade-up" data-aos-easing="linear" data-aos-delay="250">
                             <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#product-title-arrow')}}"></use>
                         </svg>
@@ -33,63 +33,28 @@
                             <div class="product-card__gallery-main swiper">
                                 <ul class="swiper-wrapper" role="list">
                                     <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/catalog-card-img.png')}}" alt="image" width="328" height="220">
+                                        <img loading="lazy" decoding="async" src="{{asset('storage/images/products/'.$product->image)}}" alt="image" width="328" height="220">
                                     </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="328" height="220">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="328" height="220">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="328" height="220">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="328" height="220">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="328" height="220">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="328" height="220">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="328" height="220">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="328" height="220">
-                                    </li>
+                                    @foreach($product->images as $image)
+                                        <li class="swiper-slide">
+                                            <img loading="lazy" decoding="async" src="{{asset('storage/images/products/'.$image->name)}}" alt="image" width="328" height="220">
+                                        </li>
+                                    @endforeach
+
                                 </ul>
                             </div>
                             <div class="product-card__gallery-thumbs swiper">
                                 <ul class="swiper-wrapper" role="list">
                                     <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/catalog-card-img.png')}}" alt="image" width="50" height="50">
+                                        <img loading="lazy" decoding="async" src="{{asset('storage/images/products/'.$product->image)}}" alt="image" width="50" height="50">
                                     </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="50" height="50">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="50" height="50">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="50" height="50">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="50" height="50">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="50" height="50">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="50" height="50">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="50" height="50">
-                                    </li>
-                                    <li class="swiper-slide">
-                                        <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-img-2.png')}}" alt="image" width="50" height="50">
-                                    </li>
+                                    @foreach($product->images as $image)
+
+                                        <li class="swiper-slide">
+                                            <img loading="lazy" decoding="async" src="{{asset('storage/images/products/'.$image->name)}}" alt="image" width="50" height="50">
+                                        </li>
+                                    @endforeach
+
                                 </ul>
                             </div>
                         </div>
@@ -107,24 +72,25 @@
                                 </svg>
                             </summary>
                             <ul role="list">
-                                <li><p>Количество передаточных ступеней</p><span>{{$product->numberOfTransferStages->name}}</span></li>
-                                <li><p>Передаточное отношение</p><span>{{$product->gearRatios->first()->name}}</span></li>
-                                <li><p>Расположение осей</p><span>{{$product->locationOfAxes->name}}</span></li>
-                                <li><p>Климатическое исполнение</p><span>{{$product->climatic_version}}</span></li>
+                                <li><p>Тип передачи</p><span>{{$product->category->name}}</span></li>
+                                <li><p>Количество передаточных ступеней</p><span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span></li>
+                                <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatios->first()->name}}</span></li>
+                                <li><p>Расположение осей</p><span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span></li>
+                                <li><p>Климатическое исполнение</p><span>{{($product->climatic_version===null)? 'Не указано':$product->climatic_version}}</span></li>
                                 <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
-                                            {{$option->name}};
-                                        @endforeach,</span></li>
+                                            {{$option->name}},
+                                        @endforeach</span></li>
                                 @if($product->gost==1)
-                                <li><p>ГОСТ</p></li>
+                                    <li><p>ГОСТ</p></li>
                                 @endif
                             </ul>
                         </details>
                         <ul role="list" class="product-card__list">
                             <li><p>Тип передачи</p><span>{{$product->category->name}}</span></li>
-                            <li><p>Количество передаточных ступеней</p><span>{{$product->numberOfTransferStages->name}}</span></li>
-                            <li><p>Передаточное отношение</p><span>{{$product->gearRatios->first()->name}}</span></li>
-                            <li><p>Расположение осей</p><span>{{$product->locationOfAxes->name}}</span></li>
-                            <li><p>Климатическое исполнение</p><span>{{$product->climatic_version}}</span></li>
+                            <li><p>Количество передаточных ступеней</p><span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span></li>
+                            <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatios->first()->name}}</span></li>
+                            <li><p>Расположение осей</p><span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span></li>
+                            <li><p>Климатическое исполнение</p><span>{{($product->climatic_version===null)? 'Не указано':$product->climatic_version}}</span></li>
                             <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
                                         {{$option->name}},
                                     @endforeach</span></li>
@@ -286,7 +252,7 @@
                 });
 
                 currentTab.style.maxHeight = currentTab.getElementsByTagName('ul')[0].offsetHeight + "px";
-                console.log(currentTab.getElementsByTagName('ul')[0].offsetHeight + "px")
+                // console.log(currentTab.getElementsByTagName('ul')[0].offsetHeight + "px")
                 evt.currentTarget.className += "active";
             }
 
@@ -450,19 +416,19 @@
                             <ul role="list" class="order-form__product-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                 <li>
                                     <p>Количество передаточных ступеней</p>
-                                    <span>{{$product->numberOfTransferStages->name}}</span>
+                                    <span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span>
                                 </li>
                                 <li>
                                     <p>Передаточное отношение</p>
-                                    <span>{{$product->gearRatios->first()->name}}</span>
+                                    <span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatios->first()->name}}</span>
                                 </li>
                                 <li>
                                     <p>Расположение осей</p>
-                                    <span>{{$product->locationOfAxes->name}}</span>
+                                    <span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span>
                                 </li>
                                 <li>
                                     <p>Климатическое исполнение</p>
-                                    <span>{{$product->climatic_version}}</span>
+                                    <span>{{($product->climatic_version===null)? 'Не указано':$product->climatic_version}}</span>
                                 </li>
                                 <li>
                                     <p>Вариант сборки</p>

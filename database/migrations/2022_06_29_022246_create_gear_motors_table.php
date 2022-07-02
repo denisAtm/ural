@@ -26,6 +26,7 @@ return new class extends Migration
             $table->longText('desc')->nullable();
             $table->longText('size')->nullable();
             $table->string('weight')->nullable();
+            $table->string('image')->nullable();
             $table->boolean('gost');
             $table->timestamps();
         });

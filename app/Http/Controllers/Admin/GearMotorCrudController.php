@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\StoreImage;
 use App\Http\Requests\GearMotorRequest;
+use App\Models\Reducer;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Backpack\CRUD\app\Library\Widget;
@@ -15,8 +17,8 @@ use Backpack\CRUD\app\Library\Widget;
 class GearMotorCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {store as traitStore;}
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as traitUpdate; }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -94,6 +96,19 @@ class GearMotorCrudController extends CrudController
                 'readonly'=>'readonly'
             ]
         ]);
+        CRUD::addField([
+            'name'=>'image',
+            'label'=>'Загрузите основное изображение',
+            'type'=>'upload',
+            'upload' => true,
+        ]);
+        CRUD::addField([
+            'name'=>'gallery',
+            'label'=>'Загрузите изображени для галлереи',
+            'type'=>'upload_multiple',
+            'upload' => true,
+        ]);
+
         CRUD::addField([
             'name'=>'category_id',
             'type'=>'select',
@@ -249,5 +264,40 @@ class GearMotorCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+    public function update(){
+        $path = 'products';
+        $mainImage = $this->crud->getRequest()->file('image');
+        $gallery = $this->crud->getRequest()->file('gallery');
+        //Главное изображение
+        $response = $this->traitUpdate();
+        if(!empty($mainImage)) {
+            $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
+        }
+        if(!empty($gallery)){
+            foreach ($gallery as $file){
+                $storeFile = Reducer::findOrFail($this->crud->entry->id);
+                $storeFile->name = StoreImage::storeImage($file, $path,false,true);
+                $this->crud->entry->images()->create(['name'=>$storeFile->name]);
+            }
+        }
+        return redirect(route('gear-motor.index'));
+    }
+    public function store()
+    {
+        $path = 'products';
+        $mainImage = $this->crud->getRequest()->file('image');
+        $gallery = $this->crud->getRequest()->file('gallery');
+        //Главное изображение
+        $response = $this->traitStore();
+        $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
+        if(!empty($gallery)){
+            foreach ($gallery as $file){
+                $storeFile = Reducer::findOrFail($this->crud->entry->id);
+                $storeFile->name = StoreImage::storeImage($file, $path,false,true);
+                $this->crud->entry->images()->create(['name'=>$storeFile->name]);
+            }
+        }
+        return $response;
     }
 }

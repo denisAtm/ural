@@ -333,7 +333,7 @@ return [
         // "rof_TZ" => "Rombo (Tanzania)",
         // "rof" => "Rombo",
         // "ru_MD" => "Russian (Moldova)",
-        // "ru_RU" => "Russian (Russia)",
+         "ru_RU" => "Russian (Russia)",
         // "ru_UA" => "Russian (Ukraine)",
         // "ru" => "Russian",
         // "rwk_TZ" => "Rwa (Tanzania)",

@@ -30,33 +30,33 @@
                 <div class="product-card__gallery" data-aos="fade-in" data-aos-delay="200">
                     <div class="product-card__gallery-main swiper">
                     <ul class="swiper-wrapper" role="list">
-                    <li class="swiper-slide">
-                        <img loading="lazy" decoding="async" src="resources/images/catalog-card-img.png" alt="image" width="328" height="220">
-                    </li>
-                    <li class="swiper-slide">
-                        <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
-                    </li>
-                    <li class="swiper-slide">
-                         <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
-                    </li>
-                    <li class="swiper-slide">
-                         <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
-                    </li>
-                    <li class="swiper-slide">
-                         <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
-                    </li>
-                    <li class="swiper-slide">
-                        <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
-                   </li>
-                   <li class="swiper-slide">
-                    <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
-               </li>
-               <li class="swiper-slide">
-                <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
-           </li>
-           <li class="swiper-slide">
-            <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
-       </li>
+                        <li class="swiper-slide">
+                            <img loading="lazy" decoding="async" src="resources/images/catalog-card-img.png" alt="image" width="328" height="220">
+                        </li>
+                        <li class="swiper-slide">
+                            <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
+                        </li>
+                        <li class="swiper-slide">
+                             <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
+                        </li>
+                        <li class="swiper-slide">
+                             <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
+                        </li>
+                        <li class="swiper-slide">
+                             <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
+                        </li>
+                        <li class="swiper-slide">
+                            <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
+                       </li>
+                       <li class="swiper-slide">
+                            <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
+                        </li>
+                        <li class="swiper-slide">
+                            <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
+                        </li>
+                        <li class="swiper-slide">
+                            <img loading="lazy" decoding="async" src="resources/images/product-card-img-2.png" alt="image" width="328" height="220">
+                        </li>
                     </ul>
                 </div>
                 <div class="product-card__gallery-thumbs swiper">
@@ -151,7 +151,7 @@
 <p>
 Для комплектации мотор-редукторов применяются асинхронные двигатели серии 4АМ, серии АИР или серии АИ. По согласованию с изготовителем допускается комплектация мотор-редукторов двигателями сельскохозяйственного исполнения 4А...СУ1 и другими специальными двигателями (морского, взрывобезопасного исполнения, постоянного тока, пониженного напряжения).
 </p>
-                    
+
                   </li>
                   <li>
                       <h4>Обозначения</h4>
@@ -292,7 +292,7 @@
   productCardTabs.forEach(element => {
     element.className = element.className.replace("active", "");
   });
-  
+
     currentTab.style.maxHeight = currentTab.scrollHeight + "px";
   evt.currentTarget.className += "active";
 }
@@ -414,7 +414,7 @@
                    </div>
                    <div class="order-form__accept-label">
                        <input type="checkbox" name="accept" id="accept">
-                    <label for="accept" @click="toggleNextStep = true">Выберите этот вариант, чтобы сразу перейти <br>к оформлению заявки.</label>    
+                    <label for="accept" @click="toggleNextStep = true">Выберите этот вариант, чтобы сразу перейти <br>к оформлению заявки.</label>
                    </div>
                    <button type="button" class="primary-btn order-form__submit-btn order-form__next-step-btn" :class="{'disable': toggleNextStep === false}" @click="nextStep = true">Следующий шаг</button>
                 </fieldset>
@@ -521,7 +521,7 @@
                     </div>
                     <div class="order-form__accept-label order-form__accept-label--policy">
                         <input type="checkbox" name="acceptPolicy" id="acceptPolicy">
-                     <label for="acceptPolicy"><a href="#">Подтверждаю согласие с политикой конфиденциальности</a></label>    
+                     <label for="acceptPolicy"><a href="#">Подтверждаю согласие с политикой конфиденциальности</a></label>
                     </div>
                   <button type="submit" class="primary-btn order-form__submit-btn">Отправить заявку</button>
                </fieldset>

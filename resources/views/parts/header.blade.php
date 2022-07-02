@@ -25,25 +25,16 @@
               <ul class="header__dropdown-menu" role="list">
                   <li>
                       <a href="/about">
-                          <svg width="68" height="48">
-                              <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#submenu-icon-1')}}"></use>
-                          </svg>
                           <span>О нас</span>
                       </a>
                   </li>
                   <li>
                       <a href="/news">
-                          <svg width="68" height="48">
-                              <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#submenu-icon-1')}}"></use>
-                          </svg>
                           <span>Новости</span>
                       </a>
                   </li>
                   <li>
                       <a href="/articles">
-                          <svg width="68" height="48">
-                              <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#submenu-icon-1')}}"></use>
-                          </svg>
                           <span>Статьи</span>
                       </a>
                   </li>

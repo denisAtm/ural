@@ -416,7 +416,7 @@
                                             </ul>
                                         </div>
                                         <figcaption>
-                                            <h3 class="title title-h3">Мотор-редуктор 1МПз2-40 (3МП-40)</h3>
+                                            <h3 class="title title-h3">{{$product->name}}</h3>
                                         </figcaption>
                                         <div class="catalog-card__link-btn-wrapper">
                                             <a href="/catalog/{{$slug}}/{{$product->slug}}" class="secondary-btn catalog-card__link-btn">Подробнее</a>

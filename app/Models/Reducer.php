@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use App\Actions\MotorSizesDataToArray;
-use App\Helpers\StoreImage;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use App\Models\Image;
 class Reducer extends Model
 {
     use CrudTrait;
@@ -39,18 +38,22 @@ class Reducer extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function getMainImageThumbnail(){
-        $image = $this->images()->where('position','1')->first();
-        $path = 'storage/thumbnails/products/'.$image->name;
-        return '<img src = "{{asset('.$path.')}}" alt="image">';
-    }
+//    public function getMainImageThumbnail(){
+//        $image = $this->images()->where('position','1')->first();
+//        $path = 'storage/thumbnails/products/'.$image->name;
+//        return '<img src = "{{asset('.$path.')}}" alt="image">';
+//    }
 
     public static function boot()
     {
         parent::boot();
         static::deleting(function($obj) {
-            Storage::delete('storage/images/products/', $obj->image);
-            Storage::delete('storage/thumbnails/products/', $obj->image);
+            Storage::delete('/public/images/products/reducers/'.$obj->image);
+            foreach ($obj->images as $image){
+                Storage::delete('/public/images/products/reducers/'.$image->name);
+            }
+            Storage::delete('/public/thumbnails/products/reducers/'.$obj->image);
+            $obj->images()->delete();
         });
     }
 
@@ -61,15 +64,17 @@ class Reducer extends Model
         echo $this->size;
     }
     public function details(){
-        echo '<li><span>Тип передачи</span><span>'.$this->category->name.'</span></li>
-                                                <li><span>Передаточные ступени</span><span>'.$this->numberOfTransferStages->name.'</span></li>
-                                          <li><span>Передаточное<br>отношение</span><span>'.$this->gearRatios->first()->name.'</span></li>
-                                                <li><span>Расположение осей</span><span>'.$this->locationOfAxes->name.'</span></li>
+        echo '<li><span>Тип передачи</span><span>'.$this->category->name.'</span></li>';
+        if($this->numberOfTransferStages!=null) echo '<li><span>Передаточные ступени</span><span>'.$this->numberOfTransferStages->name.'</span></li>';
+        if($this->gearRatios->isNotEmpty()) echo '<li><span>Передаточное<br>отношение</span><span>'.$this->gearRatios->first()->name.'</span></li>';
+        if($this->locationOfAxes!=null) echo '<li><span>Передаточное<br>отношение</span><span>'.$this->locationOfAxes->name.'</span></li>';
+        echo '
                                                 <li><span>Климатическое<br>исполнение</span><span>'.$this->climatic_version.'
                             </span></li>
                                                 <li><span>Масса</span><span>'.$this->weight.'
                             </span></li>';
     }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -80,6 +85,9 @@ class Reducer extends Model
     }
     public function category(){
         return $this->belongsTo(Categories::class);
+    }
+    public function images(){
+        return $this->morphMany(Image::class,'imageable');
     }
     public function numberOfTransferStages(){
         return $this->belongsTo(NumberOfTransferStages::class,'number_of_transfer_stages_id');
@@ -114,14 +122,6 @@ class Reducer extends Model
     public function getCreatedAtAttribute($value){
         return Carbon::parse($value)->format('d.m.Y');
     }
-//    public function getSizeAttribute($value){
-//        if(strpos($value,'/storage/images')){
-//            return $value;
-//        }else{
-//            return str_replace('src="','src="'.asset('/storage/images/products/reducers/sizes/').'/',$value);
-//
-//        }
-//    }
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
@@ -129,41 +129,6 @@ class Reducer extends Model
     */
 
 
-    public function setImageAttribute($value)
-    {
-        $path = 'products';
-        $this->attributes['image'] = StoreImage::storeImage($value,$path);
-    }
-//    public function setSizeAttribute($value, MotorSizesDataToArray $action, Request $request){
-//        $value = $action->handle($request);
-//        $this->attributes['size'] = $value;
-//    }
-    public function setSizeAttribute($value){
-//        dd($value);
-        if(strpos($value,'data:image/jpeg')===true||strpos($value,'base64')===true){
-            $dom = new \DomDocument();
-            $dom->loadHtml($value, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-            $images = $dom->getElementsByTagName('img');
-            foreach($images as $k => $img){
-                $data = $img->getAttribute('src');
-                list($type, $data) = explode(';', $data);
-                list($type, $data) = explode(',', $data);
-                $data = base64_decode($data);
-                $image_name=  time().$k.'.png';
-                \File::put(storage_path(). '/app/public/images/products/reducers/sizes/' . $image_name, $data);
-                $img->removeAttribute('src');
-                $img->removeAttribute('style');
-                $img->removeAttribute('data-filename');
-                $img->setAttribute('src', $image_name);
-                $img->setAttribute('data-filename', $image_name);
-                $img->setAttribute('loading', 'lazy');
-                $img->setAttribute('decoding', 'acync');
-            }
-            $value = $dom->saveHTML();
-            $this->attributes['size']=$value;
-            }else{
-            $this->attributes['size']=$value;
-        }
-        }
+
 
 }
