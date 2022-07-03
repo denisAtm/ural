@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class Articles extends Model
+class CategoriesOfArticles extends Model
 {
     use CrudTrait;
 
@@ -16,7 +15,7 @@ class Articles extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'articles';
+    protected $table = 'categories_of_articles';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -29,26 +28,39 @@ class Articles extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function echoContent(){
-        echo $this->content;
+
+
+
+
+    public static function tree(){
+        $allCategories = CategoriesOfArticles::get();
+        $rootCategories = $allCategories->whereNull('parent_id');
+        self::formatTree($rootCategories,$allCategories);
+        return $rootCategories;
+    }
+    private static function formatTree($categories, $allCategories){
+        foreach($categories as $category){
+            $category->children = $allCategories->where('parent_id',$category->id)->values();
+            if($category->children->isNotEmpty()){
+                self::formatTree($category->children,$allCategories);
+            }
+        }
     }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function status(){
-        return $this->belongsTo(NewsStatus::class);
+    public function parent(){
+        return $this->belongsTo(self::class,'parent_id','id');
     }
-    public function tags(){
-        return $this->belongsToMany(Tag::class,'article_tag','article_id');
+    public function categories(){
+        return $this->hasMany(self::class,'parent_id','id');
     }
-    public function category(){
-        return $this->belongsTo(CategoriesOfArticles::class,'category_id','id');
+    public function childrenCategories(){
+        return $this->hasMany(self::class,'parent_id','id')->with('categories');
     }
-    public function publishAtAttribute(){
-        return Carbon::parse($this->publish_at)->format('d.m.Y');
-    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -66,12 +78,4 @@ class Articles extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-    public function setPublishAtAttribute($value){
-        if($value==null && $this->status_id!=5){
-            $this->attributes['publish_at']=now();
-        }else{
-            $this->attributes['publish_at']=$value;
-        }
-    }
-
 }

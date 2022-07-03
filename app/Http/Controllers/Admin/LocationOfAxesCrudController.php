@@ -28,7 +28,7 @@ class LocationOfAxesCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\LocationOfAxes::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/location-of-axes');
-        CRUD::setEntityNameStrings('location of axes', 'location of axes');
+        CRUD::setEntityNameStrings('расположение осей', 'Расположения осей');
     }
 
     /**

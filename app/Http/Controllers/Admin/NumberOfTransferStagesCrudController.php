@@ -28,7 +28,7 @@ class NumberOfTransferStagesCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\NumberOfTransferStages::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/number-of-transfer-stages');
-        CRUD::setEntityNameStrings('number of transfer stages', 'number of transfer stages');
+        CRUD::setEntityNameStrings('', 'Количество передаточных ступеней');
     }
 
     /**

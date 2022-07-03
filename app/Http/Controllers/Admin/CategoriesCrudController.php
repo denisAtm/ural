@@ -29,7 +29,7 @@ class CategoriesCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Categories::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/categories');
-        CRUD::setEntityNameStrings('categories', 'categories');
+        CRUD::setEntityNameStrings('тип редуктора', 'Типы редукторов');
     }
 
     /**
@@ -49,15 +49,15 @@ class CategoriesCrudController extends CrudController
 
             ]
         );
-        CRUD::addColumn(
-            [
-                'name'      => 'icon',
-                'label'     => 'Иконка',
-                'type'      => 'image',
-                'prefix' => 'storage/thumbnails/categories/icons/',
-
-            ]
-        );
+//        CRUD::addColumn(
+//            [
+//                'name'      => 'icon',
+//                'label'     => 'Иконка',
+//                'type'      => 'image',
+//                'prefix' => 'storage/thumbnails/categories/icons/',
+//
+//            ]
+//        );
         CRUD::addColumn(['name' => 'name', 'type' => 'text','label'=>'Название','wrapper'   => [
             'class'      => 'form-group col-md-6'
         ],]);

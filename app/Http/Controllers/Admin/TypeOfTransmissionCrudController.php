@@ -28,7 +28,7 @@ class TypeOfTransmissionCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\TypeOfTransmission::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/type-of-transmission');
-        CRUD::setEntityNameStrings('type of transmission', 'type of transmissions');
+        CRUD::setEntityNameStrings('тип трансимссии', 'Типы трансмиссии');
     }
 
     /**

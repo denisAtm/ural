@@ -30,7 +30,7 @@ class NewsCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\News::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/news');
-        CRUD::setEntityNameStrings('news', 'news');
+        CRUD::setEntityNameStrings('новость', 'Новости');
     }
 
     /**

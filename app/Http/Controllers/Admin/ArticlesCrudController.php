@@ -29,7 +29,7 @@ class ArticlesCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Articles::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/articles');
-        CRUD::setEntityNameStrings('articles', 'articles');
+        CRUD::setEntityNameStrings('статью', 'Статьи');
     }
 
     /**
@@ -46,12 +46,27 @@ class ArticlesCrudController extends CrudController
         'type'=>'text'
     ]);
     CRUD::addColumn([
+        'name'=>'category_id',
+        'label'=>'Категория',
+        'type'=>'select',
+        'entity'=>'category',
+        'model'=>'App\Models\Articles'
+    ]);
+    CRUD::addColumn([
+        'name'=>'tags',
+        'label'=>'Тэги',
+        'type'=>'select_multiple',
+        'entity'=>'tags',
+        'model'=>'App\Models\Articles'
+    ]);
+    CRUD::addColumn([
         'name'=>'status_id',
         'label'=>'Статус',
         'type'=>'select',
         'entity'=>'status',
         'model'=>'App\Models\Articles'
     ]);
+
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -87,6 +102,15 @@ class ArticlesCrudController extends CrudController
             'wrapper'   => [
                 'class'      => 'form-group col-md-6'
             ],
+        ]);
+        CRUD::addField(['label'     => "Категория",
+            'type'      => 'select',
+            'name'      => 'category_id',
+            'entity'    => 'category',
+
+            // optional - manually specify the related model and attribute
+            'model'     => "App\Models\CategoriesOfArticles", // related model
+            'attribute' => 'name', // foreign key attribute that is shown to user
         ]);
         CRUD::addField(['label'     => "Статус",
             'type'      => 'select',

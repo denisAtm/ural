@@ -28,7 +28,7 @@ class GearRatioCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\GearRatio::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/gear-ratio');
-        CRUD::setEntityNameStrings('gear ratio', 'gear ratios');
+        CRUD::setEntityNameStrings('передаточное отношение', 'Передаточные отнощения');
     }
 
     /**

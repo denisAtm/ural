@@ -35,7 +35,7 @@ class ReducerCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Reducer::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/reducer');
-        CRUD::setEntityNameStrings('reducer', 'reducers');
+        CRUD::setEntityNameStrings('редуктор', 'Редукторы');
 //        $this->crud->setOperationSetting('saveAllInputsExcept', ['_token', '_method', 'http_referrer', 'current_tab', 'save_action']);
         Widget::add()->type('script')->content('js/slug.js');
     }

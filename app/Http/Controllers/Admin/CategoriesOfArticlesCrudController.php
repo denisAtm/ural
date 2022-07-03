@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\SeriesRequest;
+use App\Http\Requests\CategoriesOfArticlesRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class SeriesCrudController
+ * Class CategoriesOfArticlesCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class SeriesCrudController extends CrudController
+class CategoriesOfArticlesCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class SeriesCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Series::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/series');
-        CRUD::setEntityNameStrings('серию редукторов', 'Серии редукторов');
+        CRUD::setModel(\App\Models\CategoriesOfArticles::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/categories-of-articles');
+        CRUD::setEntityNameStrings('категорию', 'Категории статей');
     }
 
     /**
@@ -37,12 +37,19 @@ class SeriesCrudController extends CrudController
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
+
     protected function setupListOperation()
     {
         CRUD::addColumn([
             'name'=>'name',
-            'label'=>'Серия',
-            'type'=>'text'
+            'label'=>'Название',
+        ]);
+        CRUD::addColumn([
+            'name'=>'parent_id',
+            'label'=>'Родительская категория',
+            'entity'=>'parent',
+            'model'=>'App\Models\CategoriesOfArticles',
+            'attribute'=>'name'
         ]);
 
         /**
@@ -60,40 +67,21 @@ class SeriesCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(SeriesRequest::class);
-
+        CRUD::setValidation(CategoriesOfArticlesRequest::class);
         CRUD::addField([
             'name'=>'name',
-            'label'=>'Серия',
+            'label'=>'Название',
             'type'=>'text'
         ]);
         CRUD::addField([
-            'name'=>'frontShafts',
-            'type'=>'select_multiple',
-            'label'=>'Передний вал',
-            'entity'=>'frontShafts',
-            'attribute' => 'name',
-            'wrapper'=>[
-                'class'=>'form-group col-md-6'
-            ]
+            'name'=>'parent_id',
+            'label'=>'Родительская категория',
+            'type'=>'select',
+            'entity'=>'parent',
+            'model'=>'App\Models\CategoriesOfArticles',
+            'attribute'=>'name'
         ]);
-        CRUD::addField([
-            'name'=>'outputShafts',
-            'type'=>'select_multiple',
-            'label'=>'Выходной вал',
-            'entity'=>'outputShafts',
-            'attribute' => 'name',
-            'wrapper'=>[
-                'class'=>'form-group col-md-6'
-            ]
-        ]);
-        CRUD::addField([
-            'name'=>'buildOptions',
-            'type'=>'select_multiple',
-            'label'=>'Варианты сборки',
-            'entity'=>'buildOptions',
 
-        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

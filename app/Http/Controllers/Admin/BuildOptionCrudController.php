@@ -28,7 +28,7 @@ class BuildOptionCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\BuildOption::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/build-option');
-        CRUD::setEntityNameStrings('build option', 'build options');
+        CRUD::setEntityNameStrings('вариант сборки', 'Варианты сборки');
     }
 
     /**

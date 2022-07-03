@@ -31,7 +31,7 @@ class GearMotorCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\GearMotor::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/gear-motor');
-        CRUD::setEntityNameStrings('gear motor', 'gear motors');
+        CRUD::setEntityNameStrings('мотор-редуктор', 'Мотор-редукторы');
         Widget::add()->type('script')->content('js/slug.js');
     }
 

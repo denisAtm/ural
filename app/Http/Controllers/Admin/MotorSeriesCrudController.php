@@ -28,7 +28,7 @@ class MotorSeriesCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\MotorSeries::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/motor-series');
-        CRUD::setEntityNameStrings('motor series', 'motor series');
+        CRUD::setEntityNameStrings('серию мотор-редуктора', 'Серии мотор-редукторов');
     }
 
     /**

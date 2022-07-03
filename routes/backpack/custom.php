@@ -36,4 +36,5 @@ Route::group([
     Route::crud('motor-series', 'MotorSeriesCrudController');
     Route::crud('meta-page', 'MetaPageCrudController');
     Route::crud('question-answer', 'QuestionAnswerCrudController');
+    Route::crud('categories-of-articles', 'CategoriesOfArticlesCrudController');
 }); // this should be the absolute last line of this file

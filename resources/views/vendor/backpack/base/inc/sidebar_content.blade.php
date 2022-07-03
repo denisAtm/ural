@@ -57,3 +57,4 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('meta-page') }}'><i class='nav-icon la la-question'></i> Мета страниц</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('question-answer') }}'><i class='nav-icon la la-question'></i> Question answers</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('categories-of-articles') }}'><i class='nav-icon la la-question'></i> Categories of articles</a></li>
