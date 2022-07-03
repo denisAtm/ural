@@ -18,7 +18,8 @@ use App\Models\Series;
 use App\Models\TypeOfTransmission;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-
+use Validator;
+use Illuminate\Support\Facades\Input;
 class PageController extends Controller
 {
     public function index(){
@@ -113,7 +114,13 @@ class PageController extends Controller
         $questions->answer = ' ';
         $questions->status = 0;
         $questions->product_id = $request->id;
-        $questions->save();
+        $validate = Validator::make(Input::all(), [
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+        if ($validate){
+            $questions->save();
+        }
+
         return back()->with('Всё');
 
     }
