@@ -69,9 +69,9 @@ class PageController extends Controller
         $attr3 = GearRatio::get();
         $attr4 = LocationOfAxes::get();
         $category = Categories::where('slug',$slug)->first();
-        $products = $category->reducers;
+        $products = $category->reducers()->paginate(6);
         if($products->isEmpty()){
-            $products = $category->motors;
+            $products = $category->motors()->paginate(6);
         }
         return view('catalog',compact(['attr1','attr2','attr3','attr4','slug','products','meta']));
     }
@@ -79,7 +79,7 @@ class PageController extends Controller
     public function single($catSlug,$slug){
         $meta=MetaPage::where('meta_url','http://ural')->get();
         $product = Reducer::where('slug',$slug)->first();
-        $quest = QuestionAnswer::all();
+        $quest = QuestionAnswer::paginate(4);
         if(!empty($product)){
             return view('single',compact(['product','meta','quest']));
 

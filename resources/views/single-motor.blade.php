@@ -220,8 +220,7 @@
                             </ul>
                         </nav>
                         <ul class="pagination product-card-answers-list__pagination" role="list">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#" class="active">2</a></li>
+                            {{$quest->withQueryString()->links('vendor.pagination.semantic-ui')}}
                         </ul>
                     </div>
                 </div>
@@ -242,7 +241,7 @@
                     element.className = element.className.replace("active", "");
                 });
 
-                currentTab.style.maxHeight = currentTab.scrollHeight + "px";
+                currentTab.style.maxHeight = "fit-content";
                 evt.currentTarget.className += "active";
             }
 

@@ -171,6 +171,7 @@
                         <nav class="product-card-answers-list">
                             <h3>Ответы</h3>
                             <ul role="list">
+
                                 @foreach($quest as $one)
 
                                     @if($one->product_id == $product->category->id)
@@ -190,16 +191,22 @@
                                     </li>
                                         @endif
                                     @endif
+                                        @if ($loop->last)
+                                            @if (empty($one))
+
+                                            @endif
+                                            <ul class="pagination product-card-answers-list__pagination" role="list">
+                                                {{$quest->withQueryString()->links('vendor.pagination.semantic-ui')}}
+                                            </ul>
+                                        @endif
+
                                 @endforeach
 
 
                             </ul>
                         </nav>
 
-                        <ul class="pagination product-card-answers-list__pagination" role="list">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#" class="active">2</a></li>
-                        </ul>
+
                     </div>
                 </div>
             </div>
@@ -219,7 +226,7 @@
                     element.className = element.className.replace("active", "");
                 });
 
-                currentTab.style.maxHeight = currentTab.getElementsByTagName('ul')[0].offsetHeight + "px";
+                currentTab.style.maxHeight = "fit-content";
                 // console.log(currentTab.getElementsByTagName('ul')[0].offsetHeight + "px")
                 evt.currentTarget.className += "active";
             }
