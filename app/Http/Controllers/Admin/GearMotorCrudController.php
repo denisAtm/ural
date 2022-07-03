@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\StoreImage;
 use App\Http\Requests\GearMotorRequest;
+use App\Models\GearMotor;
 use App\Models\Reducer;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Backpack\CRUD\app\Library\Widget;
+use Illuminate\Http\Request;
 
 /**
  * Class GearMotorCrudController
@@ -299,5 +301,25 @@ class GearMotorCrudController extends CrudController
             }
         }
         return $response;
+    }
+    public function sendForm(Request $request){
+        $product = GearMotor::find($request->id);
+
+//        $validate = Validator::make(Input::all(), [
+//            'g-recaptcha-response' => 'required|captcha'
+//        ]);
+//        if ($validate){
+        $product->questions()->create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'question'=>$request->textarea,
+            'answer'=>'',
+            'status'=>0,
+        ]);
+        $product->save();
+//        }
+
+        return back()->with('Всё');
+
     }
 }

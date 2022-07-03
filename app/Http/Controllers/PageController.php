@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Input;
+
 class PageController extends Controller
 {
     public function index(){
@@ -80,12 +81,12 @@ class PageController extends Controller
     public function single($catSlug,$slug){
         $meta=MetaPage::where('meta_url','http://ural')->get();
         $product = Reducer::where('slug',$slug)->first();
-        $quest = QuestionAnswer::paginate(4);
         if(!empty($product)){
+            $quest = $product->questions->paginate(4);
             return view('single',compact(['product','meta','quest']));
-
         }else{
             $product = GearMotor::where('slug',$slug)->first();
+            $quest = $product->questions->paginate(4);
             return view('single-motor',compact(['product','meta','quest']));
         }
     }

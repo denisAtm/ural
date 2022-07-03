@@ -28,7 +28,8 @@ Route::get('/catalog/{catSlug}/{slug}',[PageController::class,'single']);
 
 
 Route::get('/contacts',[PageController::class,'contacts']);
-Route::post('/send-form',[PageController::class,'sendForm']);
+Route::post('/send-form/reducer',[\App\Http\Controllers\Admin\ReducerCrudController::class,'sendForm']);
+Route::post('/send-form/gear',[\App\Http\Controllers\Admin\GearMotorCrudController::class,'sendForm']);
 Route::get('/news',[PageController::class,'news']);
 Route::get('/articles',[PageController::class,'articles']);
 Route::get('/articles/{slug}',[PageController::class,'articlesSingle']);

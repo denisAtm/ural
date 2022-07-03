@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\StoreImage;
 use App\Http\Requests\ReducerRequest;
 use App\Models\Image;
+use App\Models\QuestionAnswer;
 use App\Models\Reducer;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -379,5 +380,25 @@ class ReducerCrudController extends CrudController
             }
         }
         return $response;
+    }
+    public function sendForm(Request $request){
+        $product = Reducer::find($request->id);
+
+//        $validate = Validator::make(Input::all(), [
+//            'g-recaptcha-response' => 'required|captcha'
+//        ]);
+//        if ($validate){
+            $product->questions()->create([
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'question'=>$request->textarea,
+                'answer'=>'',
+                'status'=>0,
+            ]);
+            $product->save();
+//        }
+
+        return back()->with('Всё');
+
     }
 }
