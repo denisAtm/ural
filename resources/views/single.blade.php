@@ -127,6 +127,9 @@
                         <div>
                             <form action="/send-form" class="request-form" method="post">
                                 @csrf
+                                @php
+                                $attributes = []
+                                @endphp
                                 <fieldset>
                                     <div class="request-form__input-group">
                                         <label for="name">Ваше имя</label>
@@ -159,8 +162,10 @@
                                             <textarea name="textarea" id="textarea" placeholder="Введите текст"></textarea>
                                         </div>
                                     </div>
+                                    {!! Captcha::display($attributes) !!}
                                     <button type="submit" class="secondary-btn request-form__submit-btn">Задать вопрос</button>
                                 </fieldset>
+
                             </form>
                         </div>
                         <nav class="product-card-answers-list">

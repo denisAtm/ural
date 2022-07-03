@@ -10,6 +10,7 @@
         "backpack/crud": "^5.1",
         "backpack/pagemanager": "^3.0",
         "backpack/permissionmanager": "^6.0",
+        "buzz/laravel-google-captcha": "^2.3",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "laravel/framework": "^9.11",

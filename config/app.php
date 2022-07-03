@@ -160,6 +160,7 @@ return [
          * Laravel Framework Service Providers...
          */
         Illuminate\Auth\AuthServiceProvider::class,
+        'Illuminate\LaravelGoogleCaptcha\CaptchaServiceProvider',
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
@@ -212,6 +213,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Captcha' => Illuminate\LaravelGoogleCaptcha\CaptchaFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'ImageStore' => App\Helpers\StoreImage::class,
     ])->toArray(),
