@@ -9,9 +9,8 @@
         <nav class="breadcrumbs">
             <div class="container">
                 <ul role="list">
+                    <li><a href="/">Главная</a></li>
                     <li><a href="/catalog">Каталог</a></li>
-                    <li><a href="#">Крошка</a></li>
-                    <li><a href="#">Крошка</a></li>
                 </ul>
             </div>
         </nav>

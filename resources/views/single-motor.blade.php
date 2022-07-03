@@ -8,9 +8,9 @@
         <nav class="breadcrumbs">
             <div class="container">
                 <ul role="list">
-                    <li><a href="#">Каталог</a></li>
-                    <li><a href="#">Крошка</a></li>
-                    <li><a href="#">Крошка</a></li>
+                    <li><a href="/" >Главная</a></li>
+                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="#">{{$product->name}}</a></li>
                 </ul>
             </div>
         </nav>
@@ -198,6 +198,8 @@
                             <h3>Ответы</h3>
                             <ul role="list">
                                 @foreach($quest as $one)
+                                    @if($one->product_id == $product->category->id)
+                                        @if($one->status == 1 && !empty($one->answer))
                                 <li>
                                     <div class="product-card-answers-list__top">
                                         <p>{{$one->name}}</p>
@@ -211,6 +213,8 @@
                                         <span> {{$one->answer}}</span>
                                     </div>
                                 </li>
+                                    @endif
+                                    @endif
                                 @endforeach
                             </ul>
                         </nav>

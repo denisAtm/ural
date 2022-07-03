@@ -9,7 +9,7 @@
                 <ul role="list">
                     <li><a href="#">Каталог</a></li>
                     <li><a href="#">Крошка</a></li>
-                    <li><a href="#">Крошка</a></li>
+                    <li><a href="#"></a></li>
                 </ul>
             </div>
         </nav>

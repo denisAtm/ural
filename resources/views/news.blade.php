@@ -7,9 +7,8 @@
         <nav class="breadcrumbs">
             <div class="container">
                 <ul role="list">
-                    <li><a href="#">Каталог</a></li>
-                    <li><a href="#">Крошка</a></li>
-                    <li><a href="#">Крошка</a></li>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="#">Новости</a></li>
                 </ul>
             </div>
         </nav>
