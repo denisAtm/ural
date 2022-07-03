@@ -2880,6 +2880,9 @@ body #magicMouseCursor.faded {
 .product-card__question-answer-top {
   padding-bottom: 32px;
 }
+/*#productCardQuestionAnswer{*/
+/*    max-height:fit-content;!important;*/
+/*}*/
 .product-card__question-answer-top h3 {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;

@@ -69,7 +69,14 @@ class QuestionAnswerCrudController extends CrudController
         CRUD::field('email');
         CRUD::field('question');
         CRUD::field('answer');
-        CRUD::field('status');
+        CRUD::addField([
+            'name'=>'status',
+            'label'=>'Статус',
+            'attributes' => [
+                'min'    => '0',
+                'max'    => '1',
+            ]
+        ]);
         CRUD::field('product_id');
 
         /**
