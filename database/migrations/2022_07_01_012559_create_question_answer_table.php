@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->longText('question');
-            $table->string('product_id');
+            $table->string('productable_id');
             $table->string('answer');
             $table->integer('status');
             $table->timestamps();

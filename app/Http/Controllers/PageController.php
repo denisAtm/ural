@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ArticleFilter;
 use App\Models\AboutPage;
 use App\Models\Articles;
 use App\Models\Categories;
@@ -89,11 +90,11 @@ class PageController extends Controller
         }
     }
 
-    public function articles(){
+    public function articles(ArticleFilter $filter){
         $meta=MetaPage::where('meta_url','http://ural/articles')->get();
-        $categories = CategoriesOfArticles::tree();
-        $articles = Articles::orderBy('publish_at','desc')->paginate(12);
-        return view('articles',['articles'=>$articles,'meta'=>$meta,'categories'=>$categories]);
+        $categoriesOfArticles = CategoriesOfArticles::tree();
+        $articles = Articles::filter($filter)->orderBy('publish_at','desc')->paginate(12);
+        return view('articles',['articles'=>$articles,'meta'=>$meta,'categoriesOfArticles'=>$categoriesOfArticles]);
     }
 
     public function articlesSingle($slug){

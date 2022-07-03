@@ -13,4 +13,8 @@ class QuestionAnswer extends Model
     use HasFactory;
     protected $table = 'question_answer';
     protected $guarded = ['id'];
+
+    public function productable(){
+        return $this->morphTo();
+    }
 }

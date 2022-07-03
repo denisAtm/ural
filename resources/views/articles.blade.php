@@ -6,16 +6,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
     @section('content')
+        {{--                {{dd($_GET)}}--}}
+
         <script>
             $(document).ready(function(){
                 $('.filter-dropdown__list li button').on('click',function(){
+                    var allButtons = $('.filter-dropdown__list button')
+
                     var radio = $(this).closest('label').find('input[type="radio"]');
-                    console.log(radio.val())
                     if(radio.is(':checked')){
+
                         radio.prop('checked',false)
                     }else{
+                        allButtons.removeClass('active')
+                        $(this).addClass('active')
                         radio.prop('checked',true)
                     }
+                })
+                $('.filter-dropdown__clear-list-icon').on('click',function(){
+                    $(this).closest('.filter-dropdown').find('input[type="checkbox"]:checked').prop('checked',false)
                 })
             })
         </script>
@@ -50,15 +59,15 @@
                             </svg>
                         </button>
                         <div class="container">
-                            @include('templates.filter',['categories'=>$categories,'route'=>'/articles'])
+                            @include('templates.filter',['categories'=>$categoriesOfArticles,'route'=>'/articles'])
                         </div>
-                        <button type="submit" class="filter__submit-btn">Применить</button>
+
                     </nav>
                 </div>
                 <div class="articles-page__grid">
                     <aside class="articles-page__aside">
                         <nav class="filter filter--desktop" x-data="{filterDropdown: ''}">
-                            @include('templates.filter',['categories'=>$categories,'route'=>'/articles'])
+                            @include('templates.filter',['categories'=>$categoriesOfArticles,'route'=>'/articles'])
                         </nav>
                     </aside>
                     <div class="articles-page__main">

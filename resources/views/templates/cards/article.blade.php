@@ -5,7 +5,7 @@
         <p>{{$article->name}}</p>
         <ul class="articles-page__tags" role="list">
             @foreach($article->tags as $tag)
-                <li>{{$tag->name}}</li>
+                <li><a href="?tag={{$tag->slug}}">{{$tag->name}}</a></li>
             @endforeach
         </ul>
     </article>

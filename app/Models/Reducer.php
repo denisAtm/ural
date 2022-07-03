@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Actions\MotorSizesDataToArray;
+use App\Models\Image;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Image;
 class Reducer extends Model
 {
     use CrudTrait;
@@ -88,6 +88,9 @@ class Reducer extends Model
     }
     public function images(){
         return $this->morphMany(Image::class,'imageable');
+    }
+    public function questions(){
+        return $this->morphMany(QuestionAnswer::class,'productable');
     }
     public function numberOfTransferStages(){
         return $this->belongsTo(NumberOfTransferStages::class,'number_of_transfer_stages_id');

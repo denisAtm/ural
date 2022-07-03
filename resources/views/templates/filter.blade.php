@@ -1,8 +1,8 @@
 
 
 <ul role="list">
-    <form action="{{$route}}" method="post">
-        @csrf
+    <form action="{{$route}}" method="get">
+{{--        @csrf--}}
     @foreach($categories as $category)
         <li>
             <div class="filter-dropdown" x-data="{filter: ''}">
@@ -26,7 +26,7 @@
                         @foreach($category->children as $child)
                             <li>
                             <label>
-                                <input type="radio" name="category_id{{$category->id}}" value="{{$child->id}}" style="">
+                                <input type="radio" name="category_id" value="{{$child->id}}" style="display:none">
                                 <button type="button" {{$loop->first? 'aria-label="button"' : ''}} @click="filter !=={{$loop->iteration}} ?filter = {{$loop->iteration}}: filter = null" :class="{'active': filter === {{$loop->iteration}}}">{{$child->name}}</button>
                             </label>
                             </li>
@@ -36,5 +36,6 @@
             </div>
         </li>
     @endforeach
+        <button type="submit" class="filter__submit-btn">Применить</button>
     </form>
 </ul>

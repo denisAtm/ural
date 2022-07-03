@@ -5,6 +5,8 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use App\Filters\QueryFilter;
+use Illuminate\Database\Eloquent\Builder;
 
 class Articles extends Model
 {
@@ -54,7 +56,9 @@ class Articles extends Model
     | SCOPES
     |--------------------------------------------------------------------------
     */
-
+    public function scopeFilter(Builder $builder, QueryFilter $filter){
+        return $filter->apply($builder);
+    }
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS

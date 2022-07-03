@@ -65,6 +65,9 @@ class GearMotor extends Model
     public function images(){
         return $this->morphMany(Image::class,'imageable');
     }
+    public function questions(){
+        return $this->morphMany(QuestionAnswer::class,'productable');
+    }
     public function series(){
         return $this->belongsTo(MotorSeries::class);
     }
