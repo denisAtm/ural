@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Filters\QueryFilter;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
@@ -97,7 +99,9 @@ class GearMotor extends Model
     | SCOPES
     |--------------------------------------------------------------------------
     */
-
+    public function scopeFilter(Builder $builder, QueryFilter $filter){
+        return $filter->apply($builder);
+    }
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS

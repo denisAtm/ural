@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use App\Actions\MotorSizesDataToArray;
+use App\Filters\QueryFilter;
 use App\Models\Image;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
@@ -118,7 +120,9 @@ class Reducer extends Model
     | SCOPES
     |--------------------------------------------------------------------------
     */
-
+    public function scopeFilter(Builder $builder, QueryFilter $filter){
+        return $filter->apply($builder);
+    }
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS

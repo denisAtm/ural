@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\ArticleFilter;
+use App\Filters\CatalogFilter;
 use App\Models\AboutPage;
 use App\Models\Articles;
 use App\Models\Categories;
@@ -62,7 +63,7 @@ class PageController extends Controller
         return view('news',['news'=>$news],['meta'=>$meta]);
     }
 
-    public function catalog($slug){
+    public function catalog($slug, CatalogFilter $filter){
         $search= 'http://ural/catalog/';
         $meta=MetaPage::where('meta_url','LIKE',"%{$search}%")->get();
         $attr1 = TypeOfTransmission::get();
@@ -70,11 +71,11 @@ class PageController extends Controller
         $attr3 = GearRatio::get();
         $attr4 = LocationOfAxes::get();
         $category = Categories::where('slug',$slug)->first();
-        $products = $category->reducers()->paginate(6);
+        $products = Reducer::filter($filter)->where('category_id',$category->id)->paginate(6);
         if($products->isEmpty()){
-            $products = $category->motors()->paginate(6);
+            $products = GearMotor::filter($filter)->where('category_id',$category->id)->paginate(6);
         }
-        return view('catalog',compact(['attr1','attr2','attr3','attr4','slug','products','meta']));
+        return view('catalog',compact(['attr1','attr2','attr3','attr4','slug','products','meta','category']));
     }
 
     public function single($catSlug,$slug){
@@ -125,6 +126,34 @@ class PageController extends Controller
         }
 
         return back()->with('Всё');
+
+    }
+    public function search(Request $request){
+//        $products = Reducer::filter($filter)->limit(5)->get();
+        if($request->ajax()){
+            $reducers = Reducer::where('name','LIKE','%'.$request->str.'%')->limit(5)->get();
+            $motors = GearMotor::where('name','LIKE','%'.$request->str.'%')->limit(5)->get();
+            if($reducers->isNotEmpty()){
+                $products[]=[
+                    'name'=>'Редукторы',
+                    'items'=> $reducers
+                ];
+            }
+            if($motors->isNotEmpty()){
+                $products[] =[
+                    'name'=>'Мотор-редукторы',
+                    'items'=> $motors
+                ];
+            }
+            foreach($products as $product){
+                foreach ($product['items'] as $item){
+                    $item->href = '/catalog/'.$item->category->slug.'/'.$item->slug;
+                }
+            }
+
+
+            return response()->json($products);
+        }
 
     }
 }

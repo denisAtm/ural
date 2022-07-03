@@ -25,7 +25,7 @@ Route::get('/clear', function() {
 Route::get('/', [PageController::class,'index']);
 Route::get('/catalog/{slug}',[PageController::class,'catalog']);
 Route::get('/catalog/{catSlug}/{slug}',[PageController::class,'single']);
-
+Route::post('/search/catalog',[PageController::class,'search']);
 
 Route::get('/contacts',[PageController::class,'contacts']);
 Route::post('/send-form',[PageController::class,'sendForm']);

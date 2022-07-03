@@ -2,7 +2,57 @@
 <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sticksy/dist/sticksy.min.js"></script>
 <script src="{{asset('js/main.min.js')}}" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @yield('cdn')
+<script>
+    $(document).ready(function(){
+
+        $('#search').on('input',function (){
+            var str = $(this).find('input').val();
+            $.ajax({
+                beforeSend:function(){
+                    console.log(str)
+                },
+                url:$(this).attr('action'),
+                type:'post',
+                data: {
+                    str:str,
+                    "_token": "{{ csrf_token() }}",
+                },
+                success:function(data){
+                    $('.header-search-menu__list').html('')
+                    console.log(data);
+                    var output = ''
+                    for(var i = 0; i<data.length; i++){
+                        output+='<li class="header-search-menu__item header-search-menu__item--title"><h3><a href="#">'+data[i]["name"]+'</a></h3></li>'
+                        var items = data[i]["items"]
+                        // console.log(items)
+                        for(var k  = 0; k<items.length;k++){
+                            // console.log(items[k]["name"])
+                            output+= ' <li class="header-search-menu__item">'+
+                                '<a href="'+items[k]["href"]+'">'+
+                                '<picture>'+
+                                '<img src="{{asset('storage/images/products/')}}/'+items[k]["image"]+'" loading="lazy" decoding="async" alt="image" width="48" height="48" style="object-fit: cover; object-position: right;">'+
+                                '</picture>'+
+                                '<h3>'+items[k]["name"]+'</h3>'+
+                                '</a>'+
+                                '</li>'
+                        }
+
+
+                    }
+                    $('.header-search-menu__list').append(output)
+                },
+                error:function(data){
+                    console.log(data+2)
+                }
+            })
+        })
+    })
+
+</script>
 <header class="header">
     <div class="container header__container">
     <button type="button" class="header__hamb-btn" @click="mobileMenu = !mobileMenu;searchMenu = false" :class="{'active': mobileMenu === true}"><span>
@@ -74,7 +124,9 @@
         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2285 20.1238C16.589 20.1238 20.1238 16.589 20.1238 12.2285C20.1238 7.86814 16.589 4.33333 12.2285 4.33333C7.86814 4.33333 4.33333 7.86814 4.33333 12.2285C4.33333 16.589 7.86814 20.1238 12.2285 20.1238ZM12.2285 22.4571C17.8776 22.4571 22.4571 17.8776 22.4571 12.2285C22.4571 6.57948 17.8776 2 12.2285 2C6.57948 2 2 6.57948 2 12.2285C2 17.8776 6.57948 22.4571 12.2285 22.4571Z" fill="#07012E"/>
         <path d="M19.151 17.3438L30 28.1928L28.1918 30.0009L17.3428 19.1519L19.151 17.3438Z" fill="#07012E"/>
         </svg>
-  <input type="text" x-model.debounce.500ms="searchInputText" :class="{'active': searchMenuDesktop === true}" placeholder="Поиск по марке">
+        <form action="/search/catalog" method="get" id="search">
+  <input name="search_field" type="text" x-model.debounce.500ms="searchInputText" :class="{'active': searchMenuDesktop === true}" placeholder="Поиск по марке">
+        </form>
   </div>
   <button type="button" @click="searchInputText = '';searchMenuDesktop = false" :class="{'active': searchMenuDesktop === true}"><svg width="32" height="32">
     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#search-icon-close')}}"></use>
@@ -82,46 +134,46 @@
   </div>
   <ul class="header-search-menu__list header-search-menu__list--desktop" role="list" x-show="searchInputText" style="display: none;" x-transition.origin.top.left.duration.300ms>
     <li class="header-search-menu__item header-search-menu__item--title"><h3><a href="#">Название раздела, который выдает поиск</a></h3></li>
-    <li class="header-search-menu__item">
-      <a href="#">
-        <picture>
-          <img src="{{asset('resources/images/search-menu-list-img.png')}}" loading="lazy" decoding="async" alt="image" width="48" height="48">
-        </picture>
-      <h3>Мотор-редуктор 1МПз2-40 (3МП-40)</h3>
-    </a>
-  </li>
-  <li class="header-search-menu__item">
-    <a href="#">
-      <picture>
-        <img src="{{asset('resources/images/search-menu-list-img.png')}}" loading="lazy" decoding="async" alt="image" width="48" height="48">
-      </picture>
-    <h3>Мотор-редуктор 1МПз2-40 (3МП-40)</h3>
-  </a>
-</li>
-<li class="header-search-menu__item">
-  <a href="#">
-    <picture>
-      <img src="{{asset('resources/images/search-menu-list-img.png')}}" loading="lazy" decoding="async" alt="image" width="48" height="48">
-    </picture>
-  <h3>Мотор-редуктор 1МПз2-40 (3МП-40)</h3>
-</a>
-</li>
-<li class="header-search-menu__item">
-  <a href="#">
-    <picture>
-      <img src="{{asset('resources/images/search-menu-list-img.png')}}" loading="lazy" decoding="async" alt="image" width="48" height="48">
-    </picture>
-  <h3>Мотор-редуктор 1МПз2-40 (3МП-40)</h3>
-</a>
-</li>
-<li class="header-search-menu__item">
-  <a href="#">
-    <picture>
-      <img src="{{asset('resources/images/search-menu-list-img.png')}}" loading="lazy" decoding="async" alt="image" width="48" height="48">
-    </picture>
-  <h3>Мотор-редуктор 1МПз2-40 (3МП-40)</h3>
-</a>
-</li>
+      {{--    <li class="header-search-menu__item">--}}
+{{--      <a href="#">--}}
+{{--        <picture>--}}
+{{--          <img src="{{asset('resources/images/search-menu-list-img.png')}}" loading="lazy" decoding="async" alt="image" width="48" height="48">--}}
+{{--        </picture>--}}
+{{--      <h3>Мотор-редуктор 1МПз2-40 (3МП-40)</h3>--}}
+{{--    </a>--}}
+{{--  </li>--}}
+{{--  <li class="header-search-menu__item">--}}
+{{--    <a href="#">--}}
+{{--      <picture>--}}
+{{--        <img src="{{asset('resources/images/search-menu-list-img.png')}}" loading="lazy" decoding="async" alt="image" width="48" height="48">--}}
+{{--      </picture>--}}
+{{--    <h3>Мотор-редуктор 1МПз2-40 (3МП-40)</h3>--}}
+{{--  </a>--}}
+{{--</li>--}}
+{{--<li class="header-search-menu__item">--}}
+{{--  <a href="#">--}}
+{{--    <picture>--}}
+{{--      <img src="{{asset('resources/images/search-menu-list-img.png')}}" loading="lazy" decoding="async" alt="image" width="48" height="48">--}}
+{{--    </picture>--}}
+{{--  <h3>Мотор-редуктор 1МПз2-40 (3МП-40)</h3>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li class="header-search-menu__item">--}}
+{{--  <a href="#">--}}
+{{--    <picture>--}}
+{{--      <img src="{{asset('resources/images/search-menu-list-img.png')}}" loading="lazy" decoding="async" alt="image" width="48" height="48">--}}
+{{--    </picture>--}}
+{{--  <h3>Мотор-редуктор 1МПз2-40 (3МП-40)</h3>--}}
+{{--</a>--}}
+{{--</li>--}}
+{{--<li class="header-search-menu__item">--}}
+{{--  <a href="#">--}}
+{{--    <picture>--}}
+{{--      <img src="{{asset('resources/images/search-menu-list-img.png')}}" loading="lazy" decoding="async" alt="image" width="48" height="48">--}}
+{{--    </picture>--}}
+{{--  <h3>Мотор-редуктор 1МПз2-40 (3МП-40)</h3>--}}
+{{--</a>--}}
+{{--</li>--}}
   </ul>
 </nav>
         </li>
@@ -196,10 +248,13 @@
 </nav>
 <nav class="header-search-menu header-search-menu--adaptive" :class="{'active': searchMenu === true}" x-data="{searchInputText:''}">
   <div class="header-search-menu__wrapper header-search-menu__wrapper--adaptive">
-  <input type="text" x-model.debounce.500ms="searchInputText" placeholder="Поиск по марке">
-  <button type="button" @click="searchInputText = ''"><svg width="32" height="32">
-    <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#search-icon-close')}}"></use>
-    </svg></button>
+      <form action="/catalog/search" method="get">
+          <input name="search_field" type="text" x-model.debounce.500ms="searchInputText" placeholder="Поиск по марке">
+          <button type="button" @click="searchInputText = ''"><svg width="32" height="32">
+                  <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#search-icon-close')}}"></use>
+              </svg></button>
+      </form>
+
   </div>
   <ul class="header-search-menu__list" role="list" x-show="searchInputText">
     <li class="header-search-menu__item header-search-menu__item--title"><h3><a href="#">Название раздела, который выдает поиск</a></h3></li>

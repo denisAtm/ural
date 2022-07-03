@@ -190,7 +190,7 @@
                                             <textarea name="textarea" id="textarea" placeholder="Введите текст"></textarea>
                                         </div>
                                     </div>
-                                    {!! Captcha::display($attributes) !!}
+{{--                                    {!! Captcha::display($attributes) !!}--}}
                                     <button type="submit" class="secondary-btn request-form__submit-btn">Задать вопрос</button>
                                 </fieldset>
                             </form>
@@ -481,7 +481,7 @@
                             <input type="checkbox" name="acceptPolicy" id="acceptPolicy">
                             <label for="acceptPolicy"><a href="#">Подтверждаю согласие с политикой конфиденциальности</a></label>
                         </div>
-                        {!! Captcha::display($attributes) !!}
+{{--                        {!! Captcha::display($attributes) !!}--}}
                         <button type="submit" class="primary-btn order-form__submit-btn">Отправить заявку</button>
                     </fieldset>
                 </div>

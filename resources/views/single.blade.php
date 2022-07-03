@@ -54,7 +54,6 @@
                                             <img loading="lazy" decoding="async" src="{{asset('storage/images/products/'.$image->name)}}" alt="image" width="50" height="50">
                                         </li>
                                     @endforeach
-
                                 </ul>
                             </div>
                         </div>
