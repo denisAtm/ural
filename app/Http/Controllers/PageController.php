@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AboutPage;
 use App\Models\Articles;
 use App\Models\Categories;
+use App\Models\CategoriesOfArticles;
 use App\Models\GearMotor;
 use App\Models\GearRatio;
 use App\Models\LocationOfAxes;
@@ -89,8 +90,9 @@ class PageController extends Controller
 
     public function articles(){
         $meta=MetaPage::where('meta_url','http://ural/articles')->get();
-        $articles = Articles::orderBy('publish_at','desc')->get();
-        return view('articles',['articles'=>$articles],['meta'=>$meta]);
+        $categories = CategoriesOfArticles::tree();
+        $articles = Articles::orderBy('publish_at','desc')->paginate(12);
+        return view('articles',['articles'=>$articles,'meta'=>$meta,'categories'=>$categories]);
     }
 
     public function articlesSingle($slug){

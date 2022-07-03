@@ -7,7 +7,7 @@
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('tag') }}'><i class="nav-icon la la-tags la-lg "></i> Тэги</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('news') }}'><i class="nav-icon la la-newspaper-o la-lg "></i> Новости</a></li>
         <li class='nav-item'><a class='nav-link' href='{{ backpack_url('articles') }}'><i class='nav-icon la la-sticky-note-o'></i> Articles</a></li>
-    </ul>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('categories-of-articles') }}'><i class='nav-icon la la-question'></i>Категории статей</a></li>    </ul>
 </li>
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-map-signs la-lg"></i> Магазин</a>
@@ -57,4 +57,3 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('meta-page') }}'><i class='nav-icon la la-question'></i> Мета страниц</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('question-answer') }}'><i class='nav-icon la la-question'></i> Question answers</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('categories-of-articles') }}'><i class='nav-icon la la-question'></i> Categories of articles</a></li>
