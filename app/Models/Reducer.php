@@ -110,6 +110,9 @@ class Reducer extends Model
     public function outputShafts(){
         return $this->belongsToMany(Shaft::class,'output_shaft_reducer','reducer_id','shaft_id');
     }
+    public function QuestionAnswer(){
+        return $this->hasMany(QuestionAnswer::class,'product_id','id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
