@@ -13,12 +13,12 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class QuestionAnswerCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpacktions\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
-
+\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Opera
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *
@@ -28,7 +28,7 @@ class QuestionAnswerCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\QuestionAnswer::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/question-answer');
-        CRUD::setEntityNameStrings('question answer', 'question answers');
+        CRUD::setEntityNameStrings('Вопрос ответ', 'Вопрос ответ');
     }
 
     /**
@@ -44,7 +44,12 @@ class QuestionAnswerCrudController extends CrudController
         CRUD::addColumn(['name' => 'question', 'type' => 'text','label'=>'Вопрос']);
         CRUD::addColumn(['name' => 'answer', 'type' => 'text','label'=>'Ответ']);
         CRUD::addColumn(['name' => 'status', 'type' => 'number','label'=>'Статус']);
-        CRUD::addColumn(['name' => 'product_id', 'type' => 'text','label'=>'id товара']);
+        CRUD::addColumn([
+            'name'=>'name',
+            'type'=>'select',
+            'label'=>'Тип редуктора',
+            'entity'=>'questions'
+        ]);
         CRUD::column('created_at');
         CRUD::column('updated_at');
 

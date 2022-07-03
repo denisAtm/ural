@@ -124,7 +124,7 @@
                             <p>Напишите свой вопрос и наши менеджеры свяжутся с Вами в максимально короткое время.</p>
                         </div>
                         <div>
-                            <form action="/send-form" class="request-form" method="post">
+                            <form action="/send-form/reducer" class="request-form" method="post">
                                 @csrf
                                 @php
                                 $attributes = []
@@ -172,8 +172,6 @@
                             <ul role="list">
 
                                 @foreach($quest as $one)
-
-                                    @if($one->product_id == $product->category->id)
                                     @if($one->status == 1 && !empty($one->answer))
                                     <li>
                                         <div class="product-card-answers-list__top">
@@ -188,23 +186,13 @@
                                             <span> {{$one->answer}}</span>
                                         </div>
                                     </li>
-                                        @endif
                                     @endif
-                                        @if ($loop->last)
-                                            @if (empty($one))
-
-                                            @endif
-                                            <ul class="pagination product-card-answers-list__pagination" role="list">
-                                                {{$quest->withQueryString()->links('vendor.pagination.semantic-ui')}}
-                                            </ul>
-                                        @endif
-
                                 @endforeach
-
-
                             </ul>
                         </nav>
-
+                        <ul class="pagination product-card-answers-list__pagination" role="list">
+                            {{$quest->links('vendor.pagination.semantic-ui')}}
+                        </ul>
 
                     </div>
                 </div>
