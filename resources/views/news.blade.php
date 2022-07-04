@@ -34,7 +34,7 @@
                                     </picture>
                                     <figcaption>
                                         <time datetime="2022-03-15">{{$one->created_at}}</time>
-                                        <h3 class="title title-h3">{{$one->title}}</h3>
+                                        <h3 class="title title-h3">{{$one->name}}</h3>
                                     </figcaption>
                                 </figure>
                             </a></li>
@@ -45,7 +45,7 @@
     justify-content: center;">
                 {!! $news->links('vendor.pagination.semantic-ui') !!}
             </div>
-                <img class="news-spinner" loading="lazy" decoding="async" src="resources/images/news-spinner.png" alt="image" width="62" height="62">
+{{--                <img class="news-spinner" loading="lazy" decoding="async" src="resources/images/news-spinner.png" alt="image" width="62" height="62">--}}
         </section>
     </main>
 @endsection

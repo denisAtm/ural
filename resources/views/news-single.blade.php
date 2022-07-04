@@ -9,7 +9,7 @@
                 <ul role="list">
                     <li><a href="/">Главная</a></li>
                     <li><a href="/news">Новости</a></li>
-                    <li><a href="#">{{$news->title}}</a></li>
+                    <li><a href="#">{{$news->name}}</a></li>
                 </ul>
             </div>
         </nav>
@@ -19,12 +19,12 @@
                     <a class="previous-page-link" href="#">
                         <svg data-aos="fade-up" data-aos-easing="linear" data-aos-delay="250" width="18" height="32">
                             <use xlink:href="resources/svgSprites/svgSprite.svg#product-title-arrow"></use>
-                        </svg></a>{{$news->title}}</h1>
+                        </svg></a>{{$news->name}}</h1>
                 <h1 class="title title-h3 news-card__title">
                     <a class="previous-page-link" href="#">
                         <svg width="18" height="32">
                             <use xlink:href="resources/svgSprites/svgSprite.svg#product-title-arrow"></use>
-                        </svg></a>{{$news->title}}</h1>
+                        </svg></a>{{$news->name}}}</h1>
                 <div class="news-card__grid">
                     <time datetime="2022.15.03">{{$news->created_at}}</time>
                     <div class="news-card__main">

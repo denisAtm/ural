@@ -12,7 +12,7 @@
             <div class="container">
                 <ul role="list">
                     <li><a href="/" >Главная</a></li>
-                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="javascript:history.go(-1)">Каталог</a></li>
                     <li><a href="#">{{$product->name}}</a></li>
                 </ul>
             </div>
