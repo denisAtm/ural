@@ -1,5 +1,5 @@
 <?php
-
-function customRequestCaptcha(){
-    return new \ReCaptcha\RequestMethod\Post();
-}
+//
+//function customRequestCaptcha(){
+//    return new \ReCaptcha\RequestMethod\Post();
+//}

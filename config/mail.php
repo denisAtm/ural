@@ -32,7 +32,9 @@ return [
     |            "postmark", "log", "array", "failover"
     |
     */
-
+    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'username' => env('MAIL_USERNAME', 'user@yandex.ru'),
+    'password' => env('MAIL_PASSWORD', 'secretpass'),
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',

@@ -69,7 +69,9 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
-
+.magic-hover__square {
+    text-decoration: none;
+}
 /* A elements that don't have a class get default styles */
 a:not([class]) {
   text-decoration-skip-ink: auto;
@@ -2842,7 +2844,7 @@ body #magicMouseCursor.faded {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 52px;
+  gap: 12px;
 }
 .product-card__descr h4 {
   font-family: "Roboto", sans-serif;
