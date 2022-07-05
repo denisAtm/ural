@@ -220,7 +220,7 @@
                                     </picture>
                                     <figcaption>
                                         <time datetime="2022-03-15">{{$one->created_at}}</time>
-                                        <h3 class="title title-h3">{{$one->title}}</h3>
+                                        <h3 class="title title-h3">{{$one->name}}</h3>
                                     </figcaption>
                                 </figure>
                             </a></li>
