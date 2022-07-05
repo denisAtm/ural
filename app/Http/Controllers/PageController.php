@@ -21,6 +21,7 @@ use App\Models\Series;
 use App\Models\TypeOfTransmission;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use Illuminate\Support\Facades\Input;
 
@@ -123,9 +124,14 @@ class PageController extends Controller
             'g-recaptcha-response' => 'required|captcha'
         ]);
         if ($validate){
-            $questions->save();
-        }
 
+        }
+        $data=['name'=>$request->name,'email'=>$request->email,'text'=>$request->textarea];
+        Mail::send('test', $data, function ($m) {
+            $m->from('uralredutor@yandex.ru', 'Sender');
+            $m->to(getenv('MAIL_TO'), 'Receiver')->subject('Тестовое письмо с HTML');
+        });
+        $questions->save();
         return back()->with('Всё');
 
     }
