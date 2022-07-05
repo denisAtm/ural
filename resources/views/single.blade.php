@@ -73,11 +73,10 @@
                             <ul role="list">
                                 <li><p>Тип передачи</p><span>{{$product->category->name}}</span></li>
                                 <li><p>Количество передаточных ступеней</p><span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span></li>
-                                <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatios->first()->name}}</span></li>
+                                <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span></li>
                                 <li><p>Расположение осей</p><span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span></li>
-                                <li><p>Климатическое исполнение</p><span>{{($product->climatic_version===null)? 'Не указано':$product->climatic_version}}</span></li>
                                 <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
-                                            {{$option->name}},
+                                            {{$option->name}}{{$loop->last?'':','}}
                                         @endforeach</span></li>
                                 @if($product->gost==1)
                                     <li><p>ГОСТ</p></li>
@@ -87,11 +86,10 @@
                         <ul role="list" class="product-card__list">
                             <li><p>Тип передачи</p><span>{{$product->category->name}}</span></li>
                             <li><p>Количество передаточных ступеней</p><span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span></li>
-                            <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatios->first()->name}}</span></li>
+                            <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span></li>
                             <li><p>Расположение осей</p><span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span></li>
-                            <li><p>Климатическое исполнение</p><span>{{($product->climatic_version===null)? 'Не указано':$product->climatic_version}}</span></li>
                             <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
-                                        {{$option->name}},
+                                        {{$option->name}}{{$loop->last?'':','}}
                                     @endforeach</span></li>
                             @if($product->gost==1)
                                 <li><p>ГОСТ</p></li>
@@ -382,20 +380,17 @@
                                 </li>
                                 <li>
                                     <p>Передаточное отношение</p>
-                                    <span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatios->first()->name}}</span>
+                                    <span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span>
                                 </li>
                                 <li>
                                     <p>Расположение осей</p>
                                     <span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span>
                                 </li>
-                                <li>
-                                    <p>Климатическое исполнение</p>
-                                    <span>{{($product->climatic_version===null)? 'Не указано':$product->climatic_version}}</span>
-                                </li>
+
                                 <li>
                                     <p>Вариант сборки</p>
                                     <span>@foreach($product->buildOptions as $option)
-                                              {{$option->name}};
+                                              {{$option->name}}{{$loop->last?'':','}}
                                         @endforeach</span>
                                 </li>
                                 @if($product->gost==1)

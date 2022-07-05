@@ -16,7 +16,7 @@
             <div class="container errors-page__container">
                 <h1>404</h1>
                 <p>Эта страница не найдена</p>
-                <a href="http://" class="secondary-btn error404-btn">Вернуться на главную</a>
+                <a href="/" class="secondary-btn error404-btn">Вернуться на главную</a>
             </div>
         </section>
     </main>

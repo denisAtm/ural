@@ -13,14 +13,11 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
  */
 class QuestionAnswerCrudController extends CrudController
 {
-//    use \Backpacktions\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
-//\CRUD\app\Http\Controllers\Operations\ListOperation;
-//    use \Backpack\CRUD\app\Http\Controllers\Opera
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *

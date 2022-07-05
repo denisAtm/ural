@@ -95,7 +95,7 @@ class PageController extends Controller
     public function articles(ArticleFilter $filter){
         $meta=MetaPage::where('meta_url','http://ural/articles')->get();
         $categoriesOfArticles = CategoriesOfArticles::tree();
-        $articles = Articles::filter($filter)->orderBy('publish_at','desc')->paginate(12);
+        $articles = Articles::filter($filter)->where('status_id',1)->orderBy('publish_at','desc')->paginate(12);
         return view('articles',['articles'=>$articles,'meta'=>$meta,'categoriesOfArticles'=>$categoriesOfArticles]);
     }
 
@@ -104,8 +104,8 @@ class PageController extends Controller
         $meta=MetaPage::where('meta_url','LIKE',"%{$search}%")->get();
         $article = Articles::where('slug',$slug)->first();
         if($article->status->id==1){
-            $prev = Articles::where('id','<',$article->id)->latest('id')->first();
-            $next = Articles::where('id','<',$article->id)->oldest('id')->first();
+            $prev = Articles::where('created_at','<',$article->created_at)->where('status_id',1)->latest('created_at')->first();
+            $next = Articles::where('created_at','>',$article->created_at)->where('status_id',1)->oldest('created_at')->first();
             return view('articles-single',['article'=>$article,'prev'=>$prev,'next'=>$next,'meta'=>$meta]);
         }else{
             abort(404);

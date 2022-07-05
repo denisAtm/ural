@@ -598,6 +598,7 @@ class ComposerStaticInit80984e4634c5ce68451ee5e407d3af1a
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Filters\\ArticleFilter' => __DIR__ . '/../..' . '/app/Filters/ArticleFilter.php',
+        'App\\Filters\\CatalogFilter' => __DIR__ . '/../..' . '/app/Filters/CatalogFilter.php',
         'App\\Filters\\QueryFilter' => __DIR__ . '/../..' . '/app/Filters/QueryFilter.php',
         'App\\Helpers\\StoreImage' => __DIR__ . '/../..' . '/app/Helpers/StoreImage.php',
         'App\\Http\\Controllers\\Admin\\AboutPageCrudController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AboutPageCrudController.php',

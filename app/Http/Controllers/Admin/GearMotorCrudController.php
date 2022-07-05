@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\StoreImage;
 use App\Http\Requests\GearMotorRequest;
 use App\Models\GearMotor;
+use App\Models\GearRatio;
 use App\Models\Reducer;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Backpack\CRUD\app\Library\Widget;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class GearMotorCrudController
@@ -85,7 +87,8 @@ class GearMotorCrudController extends CrudController
             'type'=>'text',
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
-            ]
+            ],
+            'tab'=>'Основные'
         ]);
         CRUD::addField([
             'name'=>'slug',
@@ -96,7 +99,8 @@ class GearMotorCrudController extends CrudController
             ],
             'attributes'=>[
                 'readonly'=>'readonly'
-            ]
+            ],
+            'tab'=>'Основные'
         ]);
         CRUD::addField([
             'name'=>'image',
@@ -119,7 +123,8 @@ class GearMotorCrudController extends CrudController
             'model'=>'App\Models\Categories',
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
-            ]
+            ],
+            'tab'=>'Основные'
         ]);
         CRUD::addField([
             'name'=>'series_id',
@@ -129,7 +134,8 @@ class GearMotorCrudController extends CrudController
             'model'=>'App\Models\MotorSeries',
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
-            ]
+            ],
+            'tab'=>'Основные'
         ]);
         CRUD::addField([
             'name'=>'number_of_transfer_stages_id',
@@ -139,7 +145,8 @@ class GearMotorCrudController extends CrudController
             'model'=>'App\Models\NumberOfTransferStages',
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
-            ]
+            ],
+            'tab'=>'Характеристики'
         ]);
         CRUD::addField([
             'name'=>'location_of_axes_id',
@@ -148,41 +155,16 @@ class GearMotorCrudController extends CrudController
             'entity'=>'locationOfAxes',
             'model'=>'App\Models\locationOfAxes',
             'wrapper'=>[
-                'class'=>'form-group col-md-6'
-            ]
+                'class'=>'form-group col-md-3'
+            ],
+            'tab'=>'Характеристики'
         ]);
+
         CRUD::addField([
-            'name'=>'climatic_version',
-            'label'=>'Климатическое исполнение',
+            'name'=>'torque',
             'type'=>'text',
-            'wrapper'=>[
-                'class'=>'form-group col-md-4'
-            ]
-        ]);
-        CRUD::addField([
-            'name'=>'console_load',
-            'label'=>'Консольная нагрузка',
-            'type'=>'text',
-            'wrapper'=>[
-                'class'=>'form-group col-md-4'
-            ]
-        ]);
-        CRUD::addField([
-            'name'=>'weight',
-            'label'=>'Масса',
-            'type'=>'text',
-            'wrapper'=>[
-                'class'=>'form-group col-md-4'
-            ]
-        ]);
-        CRUD::addField([
-            'name'=>'gearRatios',
-            'type'=>'select_multiple',
-            'label'=>'Передаточное отношение',
-            'entity'=>'gearRatios',
-            'wrapper'=>[
-                'class'=>'form-group col-md-4'
-            ]
+            'label'=>'Крутящий момент Н*м',
+            'tab'=>'Характеристики'
         ]);
 //        CRUD::addField([
 //            'name'=>'outputShafts',
@@ -202,7 +184,8 @@ class GearMotorCrudController extends CrudController
             'attribute' => 'name',
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
-            ]
+            ],
+            'tab'=>'Характеристики'
         ]);
         CRUD::addField([
             'name'=>'flanges',
@@ -212,12 +195,32 @@ class GearMotorCrudController extends CrudController
             'attribute' => 'name',
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
-            ]
+            ],
+            'tab'=>'Характеристики'
         ]);
         CRUD::addField([
-            'name'=>'gost',
-            'type'=>'checkbox',
-            'label'=>'ГОСТ'
+            'name'=>'gearRatioStart',
+            'label'=>'Передаточное отношение от',
+            'type'=>'number',
+            'wrapper'=>[
+                'class'=>'form-group col-md-3'
+            ],
+            'attributes'=>[
+                'placeholder'=>'ОТ'
+            ],
+            'tab'=>'Характеристики'
+        ]);
+        CRUD::addField([
+            'name'=>'gearRatioEnd',
+            'type'=>'number',
+            'label'=>'<br>до',
+            'wrapper'=>[
+                'class'=>'form-group col-md-3'
+            ],
+            'attributes'=>[
+                'placeholder'=>'ДО'
+            ],
+            'tab'=>'Характеристики'
         ]);
         CRUD::addField([
             'name'=>'desc',
@@ -232,7 +235,8 @@ class GearMotorCrudController extends CrudController
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
                     ['view', ['fullscreen']]
-                ]]
+                ]],
+            'tab'=>'Характеристики'
         ]);
         CRUD::addField([
             'name'=>'size',
@@ -247,7 +251,8 @@ class GearMotorCrudController extends CrudController
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
                     ['view', ['fullscreen']]
-                ]]
+                ]],
+            'tab'=>'Характеристики'
         ]);
 
         /**
@@ -269,6 +274,15 @@ class GearMotorCrudController extends CrudController
     }
     public function update(){
         $path = 'products';
+        $this->crud->getCurrentEntry()->gearRatios()->detach();
+        $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
+        $gearEnd =$this->crud->getRequest()->request->get('gearRatioEnd');
+        $gearRatio = GearRatio::whereBetween('name',[$gearStart,$gearEnd])->get();
+        foreach($gearRatio as $value){
+
+            $this->crud->getCurrentEntry()->gearRatios()->attach($value);
+        }
+        Log::info($this->crud->getCurrentEntry()->gearRatios);
         $mainImage = $this->crud->getRequest()->file('image');
         $gallery = $this->crud->getRequest()->file('gallery');
         //Главное изображение
@@ -288,10 +302,16 @@ class GearMotorCrudController extends CrudController
     public function store()
     {
         $path = 'products';
+        $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
+        $gearEnd =$this->crud->getRequest()->request->get('gearRatioEnd');
+        $gearRatio = GearRatio::whereBetween('name',[$gearStart,$gearEnd])->get();
         $mainImage = $this->crud->getRequest()->file('image');
         $gallery = $this->crud->getRequest()->file('gallery');
         //Главное изображение
         $response = $this->traitStore();
+        foreach($gearRatio as $value){
+            $this->crud->getCurrentEntry()->gearRatios()->attach($value);
+        }
         $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
         if(!empty($gallery)){
             foreach ($gallery as $file){

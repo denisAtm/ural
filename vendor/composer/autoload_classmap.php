@@ -13,6 +13,7 @@ return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Filters\\ArticleFilter' => $baseDir . '/app/Filters/ArticleFilter.php',
+    'App\\Filters\\CatalogFilter' => $baseDir . '/app/Filters/CatalogFilter.php',
     'App\\Filters\\QueryFilter' => $baseDir . '/app/Filters/QueryFilter.php',
     'App\\Helpers\\StoreImage' => $baseDir . '/app/Helpers/StoreImage.php',
     'App\\Http\\Controllers\\Admin\\AboutPageCrudController' => $baseDir . '/app/Http/Controllers/Admin/AboutPageCrudController.php',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\StoreImage;
 use App\Http\Requests\ReducerRequest;
+use App\Models\GearRatio;
 use App\Models\Image;
 use App\Models\QuestionAnswer;
 use App\Models\Reducer;
@@ -89,7 +90,8 @@ class ReducerCrudController extends CrudController
             'type'=>'text',
             'wrapper'=>[
                 'class'=>'form-group col-md-12'
-            ]
+            ],
+            'tab'=>'Основное',
         ]);
         CRUD::addField([
             'name'=>'slug',
@@ -100,21 +102,23 @@ class ReducerCrudController extends CrudController
             ],
             'attributes'=>[
                 'readonly'=>'readonly'
-            ]
+            ],
+            'tab'=>'Основное',
         ]);
         CRUD::addField([
             'name'=>'image',
             'label'=>'Загрузите основное изображение',
             'type'=>'upload',
             'upload' => true,
+
         ]);
         CRUD::addField([
             'name'=>'gallery',
             'label'=>'Загрузите изображени для галлереи',
             'type'=>'upload_multiple',
             'upload' => true,
-
-//            'model'=>'App\Models\Reducer',
+//            'entity'=>'images',
+//            'attribute'=>'title',
         ]);
 
         CRUD::addField([
@@ -125,7 +129,8 @@ class ReducerCrudController extends CrudController
             'model'=>'App\Models\Categories',
             'wrapper'=>[
                 'class'=>'form-group col-md-12'
-            ]
+            ],
+            'tab'=>'Основное',
         ]);
         CRUD::addField([
             'name'=>'series_id',
@@ -135,7 +140,8 @@ class ReducerCrudController extends CrudController
             'model'=>'App\Models\Series',
             'wrapper'=>[
                 'class'=>'form-group col-md-12'
-            ]
+            ],
+            'tab'=>'Основное',
         ]);
         CRUD::addField([
             'name'=>'number_of_transfer_stages_id',
@@ -144,8 +150,9 @@ class ReducerCrudController extends CrudController
             'entity'=>'NumberOfTransferStages',
             'model'=>'App\Models\NumberOfTransferStages',
             'wrapper'=>[
-                'class'=>'form-group col-md-12'
-            ]
+                'class'=>'form-group col-md-6'
+            ],
+            'tab'=>'Характеристики',
         ]);
         CRUD::addField([
             'name'=>'location_of_axes_id',
@@ -154,58 +161,70 @@ class ReducerCrudController extends CrudController
             'entity'=>'locationOfAxes',
             'model'=>'App\Models\locationOfAxes',
             'wrapper'=>[
-                'class'=>'form-group col-md-12'
-            ]
+                'class'=>'form-group col-md-3'
+            ],
+            'tab'=>'Характеристики',
         ]);
-        CRUD::addField([
-            'name'=>'climatic_version',
-            'label'=>'Климатическое исполнение',
-            'type'=>'text',
-            'wrapper'=>[
-                'class'=>'form-group col-md-12'
-            ]
-        ]);
-        CRUD::addField([
-            'name'=>'console_load',
-            'label'=>'Консольная нагрузка',
-            'type'=>'text',
-            'wrapper'=>[
-                'class'=>'form-group col-md-12'
-            ]
-        ]);
+
         CRUD::addField([
             'name'=>'weight',
             'label'=>'Масса',
             'type'=>'text',
             'wrapper'=>[
-                'class'=>'form-group col-md-12'
-            ]
+                'class'=>'form-group col-md-3'
+            ],
+            'tab'=>'Характеристики',
         ]);
-        CRUD::addField([
-            'name'=>'weight',
-            'label'=>'Масса',
-            'type'=>'text',
-            'wrapper'=>[
-                'class'=>'form-group col-md-12'
-            ]
-        ]);
+
         CRUD::addField([
             'name'=>'buildOptions',
             'type'=>'select_multiple',
             'label'=>'Варианты сборки',
             'entity'=>'buildOptions',
             'wrapper'=>[
-                'class'=>'form-group col-md-12'
-            ]
+                'class'=>'form-group col-md-6'
+            ],
+            'tab'=>'Характеристики',
+        ]);
+//        CRUD::addField([
+//            'name'=>'gearRatios',
+//            'type'=>'select_multiple',
+//            'label'=>'Передаточное отношение',
+//            'entity'=>'gearRatios',
+//            'wrapper'=>[
+//                'class'=>'form-group col-md-6'
+//            ],
+//            'tab'=>'Характеристики',
+//        ]);
+        CRUD::addField([
+           'name'=>'gearRatioStart',
+           'label'=>'Передаточное отношение от',
+           'type'=>'number',
+           'wrapper'=>[
+               'class'=>'form-group col-md-3'
+           ],
+           'attributes'=>[
+               'placeholder'=>'ОТ'
+           ],
+           'tab'=>'Характеристики'
         ]);
         CRUD::addField([
-            'name'=>'gearRatios',
-            'type'=>'select_multiple',
-            'label'=>'Передаточное отношение',
-            'entity'=>'gearRatios',
+            'name'=>'gearRatioEnd',
+            'type'=>'number',
+            'label'=>'<br>до',
             'wrapper'=>[
-                'class'=>'form-group col-md-12'
-            ]
+                'class'=>'form-group col-md-3'
+            ],
+            'attributes'=>[
+                'placeholder'=>'ДО'
+            ],
+            'tab'=>'Характеристики'
+        ]);
+        CRUD::addField([
+            'name'=>'torque',
+            'type'=>'text',
+            'label'=>'Крутящий момент Н*м',
+            'tab'=>'Характеристики'
         ]);
 //        CRUD::addField([
 //            'name'=>'frontShafts',
@@ -230,11 +249,7 @@ class ReducerCrudController extends CrudController
 //                'class'=>'form-group form-group '
 //            ]
 //        ]);
-        CRUD::addField([
-            'name'=>'gost',
-            'type'=>'checkbox',
-            'label'=>'ГОСТ'
-        ]);
+
         CRUD::addField([
             'name'=>'desc',
             'type'=>'summernote',
@@ -248,7 +263,8 @@ class ReducerCrudController extends CrudController
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
                     ['view', ['fullscreen']]
-                ]]
+                ]],
+            'tab'=>'Характеристики',
         ]);
         CRUD::addField([
             'name'=>'size',
@@ -266,7 +282,8 @@ class ReducerCrudController extends CrudController
                 ]],
             'attributes'=>[
                 'id'=>'size'
-            ]
+            ],
+            'tab'=>'Характеристики',
         ]);
 
 
@@ -288,64 +305,17 @@ class ReducerCrudController extends CrudController
     {
         $this->setupCreateOperation();
     }
-//    public function storeSizeImages(Request $request){
-//        $description = $request->data;
-//        $dom = new \DomDocument();
-//        $dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-//        $images = $dom->getElementsByTagName('img');
-//        $li = $dom->getElementsByTagName('li');
-//        $data = '';
-//        foreach ($li as $one => $style){
-//            $style->removeAttribute('style');
-//
-//        }
-//        foreach($images as $k => $img){
-//            $data = $img->getAttribute('src');
-//            list($type, $data) = explode(';', $data);
-//            list($type, $data) = explode(',', $data);
-//            $data = base64_decode($data);
-//            $image_name=  time().$k.'.png';
-//            \File::put(storage_path(). '/app/public/images/products/reducers/sizes/' . $image_name, $data);
-//            $img->removeAttribute('src');
-//            $img->removeAttribute('style');
-//            $img->removeAttribute('data-filename');
-//            $img->setAttribute('src', $image_name);
-//            $img->setAttribute('data-filename', $image_name);
-//            $img->setAttribute('loading', 'lazy');
-//            $img->setAttribute('decoding', 'acync');
-//        }
-//        $description = $dom->saveHTML();
-//        return response()->json($description);
-////        $this->attributes['image'] = StoreImage::storeImage($value,$path);
-//    }
 
-//    public function storeSizeImages(Request $request){
-//        $description = $request->data;
-//        $dom = new \DomDocument();
-//        $dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-//        $images = $dom->getElementsByTagName('img');
-//        $li = $dom->getElementsByTagName('li');
-//        foreach ($li as $one => $style){
-//            $style->removeAttribute('style');
-//        }
-//        foreach($images as $k => $img){
-//            $data = $img->getAttribute('src');
-//            if ( base64_encode(base64_decode($data, true)) === $data){
-//                list($type, $data) = explode(';', $data);
-//                list($type, $data) = explode(',', $data);
-//                $data = base64_decode($data);
-//                $image_name=  time().$k.'.png';
-//                \File::put(storage_path(). '/app/public/images/products/reducers/sizes/' . $image_name, $data);
-//                $img->removeAttribute('src');
-//                $img->setAttribute('src', '{!!asset("storage/products/reducers/sizes/")!!}'.$image_name);
-//            }
-//        }
-//        $description = $dom->saveHTML();
-//        return response()->json($description);
-////        $this->attributes['image'] = StoreImage::storeImage($value,$path);
-//    }
     public function update(){
         $path = 'products';
+
+        $this->crud->getCurrentEntry()->gearRatios()->detach();
+        $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
+        $gearEnd =$this->crud->getRequest()->request->get('gearRatioEnd');
+        $gearRatio = GearRatio::whereBetween('name',[$gearStart,$gearEnd])->get();
+        foreach($gearRatio as $value){
+            $this->crud->getCurrentEntry()->gearRatios()->attach($value);
+        }
         $mainImage = $this->crud->getRequest()->file('image');
         $gallery = $this->crud->getRequest()->file('gallery');
         //Главное изображение
@@ -365,10 +335,17 @@ class ReducerCrudController extends CrudController
     public function store()
     {
         $path = 'products';
+        $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
+        $gearEnd =$this->crud->getRequest()->request->get('gearRatioEnd');
+        $gearRatio = GearRatio::whereBetween('name',[$gearStart,$gearEnd])->get();
+
         $mainImage = $this->crud->getRequest()->file('image');
         $gallery = $this->crud->getRequest()->file('gallery');
         //Главное изображение
         $response = $this->traitStore();
+        foreach($gearRatio as $value){
+            $this->crud->getCurrentEntry()->gearRatios()->attach($value);
+        }
         if(!empty($mainImage)){
             $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
         }

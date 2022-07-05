@@ -21,13 +21,9 @@ return new class extends Migration
             $table->foreignId('series_id')->constrained('motor_series')->onDelete('cascade');
             $table->foreignId('number_of_transfer_stages_id')->nullable()->constrained('number_of_transfer_stages')->onDelete('cascade');
             $table->foreignId('location_of_axes_id')->nullable()->constrained('location_of_axes')->onDelete('cascade');
-            $table->string('climatic_version')->nullable();
-            $table->string('console_load')->nullable();
             $table->longText('desc')->nullable();
             $table->longText('size')->nullable();
-            $table->string('weight')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('gost');
             $table->timestamps();
         });
     }

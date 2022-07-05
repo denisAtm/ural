@@ -131,7 +131,9 @@ body {
   flex-direction: column;
   overflow-x: hidden;
 }
-
+body .magic-hover{
+    text-decoration:none;
+}
 body.mobileMenuOpened {
   overflow: hidden;
 }

@@ -61,7 +61,10 @@ class GearRatioCrudController extends CrudController
         CRUD::addField([
             'name'=>'name',
             'label'=>'Название',
-            'type'=>'text'
+            'type'=>'number',
+            'attributes'=>[
+                'step'=>'0.1'
+            ]
         ]);
 
         /**

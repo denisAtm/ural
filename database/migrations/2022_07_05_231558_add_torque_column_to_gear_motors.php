@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gear_ratio', function (Blueprint $table) {
-            $table->id();
-            $table->double('name')->unique();
-            $table->timestamps();
+        Schema::table('gear_motors', function (Blueprint $table) {
+            $table->string('torque')->after('location_of_axes_id')->nullable();
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gear_ratio_stages');
+        Schema::table('gear_motors', function (Blueprint $table) {
+            $table->dropColumn('torque');
+        });
     }
 };
