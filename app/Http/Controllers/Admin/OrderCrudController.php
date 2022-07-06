@@ -146,6 +146,15 @@ class OrderCrudController extends CrudController
             ]
         ]);
         CRUD::addField([
+            'type'=>'view',
+            'view'=>'vendor.backpack.custom-views.order-details',
+            'name'=>'user_comment',
+            'label'=>'Комментарий пользователя',
+            'attributes'=>[
+                'readonly'=>'readonly'
+            ]
+        ]);
+        CRUD::addField([
             'name'=>'content',
             'type'=>'view',
             'view'=>'vendor.backpack.custom-views.order-details',
