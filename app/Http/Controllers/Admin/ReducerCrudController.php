@@ -362,6 +362,7 @@ class ReducerCrudController extends CrudController
     }
 
     public function update(){
+        CRUD::setValidation(ReducerRequest::class);
         $path = 'products';
 
         $this->crud->getCurrentEntry()->gearRatios()->detach();
@@ -379,6 +380,7 @@ class ReducerCrudController extends CrudController
             $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
         }
         if(!empty($gallery)){
+
             foreach ($gallery as $file){
                 $storeFile = Reducer::findOrFail($this->crud->entry->id);
                 $storeFile->name = StoreImage::storeImage($file, $path,false,true);
@@ -389,6 +391,7 @@ class ReducerCrudController extends CrudController
     }
     public function store()
     {
+        CRUD::setValidation(ReducerRequest::class);
         $path = 'products';
         $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
         $gearEnd =$this->crud->getRequest()->request->get('gearRatioEnd');

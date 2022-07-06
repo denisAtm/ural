@@ -80,25 +80,17 @@
                             <ul role="list">
                                 <li><p>Тип передачи</p><span>{{$product->category->name}}</span></li>
                                 <li><p>Количество передаточных ступеней</p><span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span></li>
-                                <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatios->first()->name}}</span></li>
+                                <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span></li>
                                 <li><p>Расположение осей</p><span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span></li>
-                                <li><p>Климатическое исполнение</p><span>{{($product->climatic_version===null)? 'Не указано':$product->climatic_version}}</span></li>
-
-                                @if($product->gost==1)
-                                    <li><p>ГОСТ</p></li>
-                                @endif
+                                <li><p>ГОСТ</p></li>
                             </ul>
                         </details>
                         <ul role="list" class="product-card__list">
                             <li><p>Тип передачи</p><span>{{$product->category->name}}</span></li>
                             <li><p>Количество передаточных ступеней</p><span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span></li>
-                            <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatios->first()->name}}</span></li>
+                            <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span></li>
                             <li><p>Расположение осей</p><span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span></li>
-                            <li><p>Климатическое исполнение</p><span>{{($product->climatic_version===null)? 'Не указано':$product->climatic_version}}</span></li>
-
-                            @if($product->gost==1)
-                                <li><p>ГОСТ</p></li>
-                            @endif
+                            <li><p>ГОСТ</p></li>
                         </ul>
                         <button class="primary-btn order-btn order-btn--desktop" type="button" @click="orderForm = true">Заказать</button>
                     </aside>
@@ -413,7 +405,7 @@
                                 </li>
                                 <li>
                                     <p>Передаточное отношение</p>
-                                    <span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatios->first()->name}}</span>
+                                    <span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span>
                                 </li>
                                 <li>
                                     <p>Расположение осей</p>

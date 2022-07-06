@@ -88,7 +88,10 @@ class GearMotorCrudController extends CrudController
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
             ],
-            'tab'=>'Основные'
+            'tab'=>'Основные',
+            'attributes'=>[
+                'required'=>'required'
+            ]
         ]);
         CRUD::addField([
             'name'=>'slug',
@@ -98,7 +101,9 @@ class GearMotorCrudController extends CrudController
                 'class'=>'form-group col-md-6'
             ],
             'attributes'=>[
-                'readonly'=>'readonly'
+                'readonly'=>'readonly',
+                'required'=>'required'
+
             ],
             'tab'=>'Основные'
         ]);
@@ -112,7 +117,7 @@ class GearMotorCrudController extends CrudController
             'name'=>'gallery',
             'label'=>'Загрузите изображени для галлереи',
             'type'=>'upload_multiple',
-            'upload' => true,
+            'upload' => true
         ]);
 
         CRUD::addField([
@@ -122,9 +127,15 @@ class GearMotorCrudController extends CrudController
             'entity'=>'category',
             'model'=>'App\Models\Categories',
             'wrapper'=>[
-                'class'=>'form-group col-md-6'
+                'class'=>'form-group col-md-6',
             ],
-            'tab'=>'Основные'
+            'attributes'=>[
+                'readonly'    => 'readonly',
+            ],
+            'tab'=>'Основные',
+            'options'=>(function($query){
+                return $query->where('name','LIKE','%мотор%')->get();
+            })
         ]);
         CRUD::addField([
             'name'=>'series_id',
@@ -135,7 +146,10 @@ class GearMotorCrudController extends CrudController
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
             ],
-            'tab'=>'Основные'
+            'tab'=>'Основные',
+            'attributes'=>[
+                'required'=>'required'
+            ]
         ]);
         CRUD::addField([
             'name'=>'number_of_transfer_stages_id',
@@ -164,7 +178,10 @@ class GearMotorCrudController extends CrudController
             'name'=>'torque',
             'type'=>'text',
             'label'=>'Крутящий момент Н*м',
-            'tab'=>'Характеристики'
+            'tab'=>'Характеристики',
+            'attributes'=>[
+                'required'=>'required'
+            ]
         ]);
 //        CRUD::addField([
 //            'name'=>'outputShafts',
@@ -318,6 +335,7 @@ class GearMotorCrudController extends CrudController
         $this->setupCreateOperation();
     }
     public function update(){
+        CRUD::setValidation(GearMotorRequest::class);
         $path = 'products';
         $this->crud->getCurrentEntry()->gearRatios()->detach();
         $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
@@ -330,34 +348,43 @@ class GearMotorCrudController extends CrudController
         Log::info($this->crud->getCurrentEntry()->gearRatios);
         $mainImage = $this->crud->getRequest()->file('image');
         $gallery = $this->crud->getRequest()->file('gallery');
+
         //Главное изображение
         $response = $this->traitUpdate();
         if(!empty($mainImage)) {
             $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
         }
         if(!empty($gallery)){
+
             foreach ($gallery as $file){
-                $storeFile = Reducer::findOrFail($this->crud->entry->id);
+                $storeFile = GearMotor::findOrFail($this->crud->entry->id);
                 $storeFile->name = StoreImage::storeImage($file, $path,false,true);
                 $this->crud->entry->images()->create(['name'=>$storeFile->name]);
+
             }
+
         }
-        return redirect(route('gear-motor.index'));
+
+        return $response;
     }
     public function store()
     {
+        CRUD::setValidation(GearMotorRequest::class);
         $path = 'products';
         $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
         $gearEnd =$this->crud->getRequest()->request->get('gearRatioEnd');
         $gearRatio = GearRatio::whereBetween('name',[$gearStart,$gearEnd])->get();
         $mainImage = $this->crud->getRequest()->file('image');
         $gallery = $this->crud->getRequest()->file('gallery');
+        $this->crud->getRequest()->request->add(['category_id',5]);
         //Главное изображение
         $response = $this->traitStore();
         foreach($gearRatio as $value){
             $this->crud->getCurrentEntry()->gearRatios()->attach($value);
         }
-        $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
+        if(!empty($mainImage)) {
+            $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
+        }
         if(!empty($gallery)){
             foreach ($gallery as $file){
                 $storeFile = Reducer::findOrFail($this->crud->entry->id);
