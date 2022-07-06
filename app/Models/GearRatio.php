@@ -32,13 +32,13 @@ class GearRatio extends Model
     protected static function booted()
     {
         static::created(function ($value) {
-            $reducers = Reducer::where('gearRatioStart','<',$value->name)->where('gearRatioEnd','>',$value->name)->get();
+            $reducers = Reducer::where('gearRatioStart','<=',$value->name)->where('gearRatioEnd','>=',$value->name)->get();
             if($reducers->isNotEmpty()){
                 foreach ($reducers as $reducer){
                     $value->reducers()->attach($reducer->id);
                 }
             }
-            $motors = GearMotor::where('gearRatioStart','<',$value->name)->where('gearRatioEnd','>',$value->name)->get();
+            $motors = GearMotor::where('gearRatioStart','<=',$value->name)->where('gearRatioEnd','>=',$value->name)->get();
             if($motors->isNotEmpty()){
                 foreach ($motors as $motor){
                     $value->motors()->attach($motor->id);

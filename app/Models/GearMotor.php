@@ -51,10 +51,11 @@ class GearMotor extends Model
         echo '<li><span>Тип передачи</span><span>'.$this->category->name.'</span></li>';
         if($this->numberOfTransferStages!=null) echo '<li><span>Передаточные ступени</span><span>'.$this->numberOfTransferStages->name.'</span></li>';
         if($this->gearRatios->isNotEmpty()) echo '<li><span>Передаточное<br>отношение</span><span>'.$this->gearRatioStart.'-'.$this->gearRatioEnd.'</span></li>';
-        if($this->locationOfAxes!=null) echo '<li><span>Расположение осей</span><span>'.$this->locationOfAxes->name.'</span></li>';
-        echo '
-                                                <li><span>Масса</span><span>'.$this->weight.'
-                            </span></li>';
+        if($this->locationOfAxes!=null)
+            echo '<li><span>Расположение осей</span><span>'.$this->locationOfAxes->name.'</span></li>';
+//        echo '
+//                                                <li><span>Масса</span><span>'.$this->weight.'
+//                            </span></li>';
     }
 
     /*

@@ -44,8 +44,8 @@ class PageController extends Controller
         $search= 'http://ural/news/';
         $meta=MetaPage::where('meta_url','LIKE',"%{$search}%")->get();
         if($news->status->id==1){
-            $prev = News::where('id','<',$news->id)->latest('id')->first();
-            $next = News::where('id','<',$news->id)->oldest('id')->first();
+            $prev = News::where('created_at','<',$news->created_at)->where('status_id',1)->latest('created_at')->first();
+            $next = News::where('created_at','>',$news->created_at)->where('status_id',1)->oldest('created_at')->first();
             return view('news-single',['news'=>$news,'prev'=>$prev,'next'=>$next],['meta'=>$meta]);
         }else{
             abort(404);
