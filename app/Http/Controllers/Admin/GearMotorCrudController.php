@@ -12,6 +12,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Backpack\CRUD\app\Library\Widget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class GearMotorCrudController
@@ -408,6 +409,11 @@ class GearMotorCrudController extends CrudController
             'answer'=>'',
             'status'=>0,
         ]);
+        $data=['name'=>$request->name,'email'=>$request->email,'text'=>$request->textarea];
+        Mail::send('test', $data, function ($m) {
+            $m->from('uralredutor@yandex.ru', 'Sender');
+            $m->to(getenv('MAIL_TO'), 'Receiver')->subject('Тестовое письмо с HTML');
+        });
         $product->save();
 //        }
 

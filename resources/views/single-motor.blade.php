@@ -207,7 +207,7 @@
                                     {!! Captcha::display($attributes) !!}
                                     <button type="submit" class="secondary-btn request-form__submit-btn">Задать вопрос</button>
                                 </fieldset>
-
+                            </form>
                         </div>
                         <nav class="product-card-answers-list">
                             <h3>Ответы</h3>

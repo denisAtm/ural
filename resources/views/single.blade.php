@@ -241,7 +241,7 @@
         </script>
     </main>
     <div class="order-form" :class="{'active': orderForm === true}" x-data="{toggleNextStep: false, nextStep: false}">
-        <div class="order-form__content" data-simplebar>
+        <div class="order-form__content" d>
             <form action="/makeOrder" id="makeOrder" method="post">
                 <input type="hidden" name="product_name" value="{{$product->name}}">
                 <input type="hidden" name="uri" value="{{url()->current()}}">
