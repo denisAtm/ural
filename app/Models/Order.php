@@ -2,15 +2,10 @@
 
 namespace App\Models;
 
-use App\Helpers\StoreImage;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
 
-class News extends Model
+class Order extends Model
 {
     use CrudTrait;
 
@@ -20,47 +15,30 @@ class News extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'news';
+    protected $table = 'orders';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
     // protected $hidden = [];
-     protected $dates = [
-         'created_at'
-     ];
-//    protected $dateFormat = 'U';
-    protected $casts = [
-        'created_at' => 'date:d.m.Y',
-    ];
+    // protected $dates = [];
 
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public static function boot()
+    public function openUri($crud = false)
     {
-        parent::boot();
-        static::deleting(function($obj) {
-            Storage::delete('storage/images/news'.$obj->image);
-            Storage::delete('storage/thumbnails/news'.$obj->image);
-        });
+        return '<a class="btn btn-sm btn-link" target="_blank" href="'.$this->uri.'" data-toggle="tooltip" title="Ссылка на товар."><i class="fa fa-search"></i> Перейти на страницу <br>товара</a>';
     }
-    public function DescAttribute(){
-        echo $this->desc;
-    }
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
     public function status(){
-        return $this->belongsTo(NewsStatus::class);
-    }
-    public function tags(){
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsTo(AppealStatus::class,'status_id');
     }
     /*
     |--------------------------------------------------------------------------
@@ -73,22 +51,10 @@ class News extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-    public function getCreatedAtAttribute($value){
-        return Carbon::parse($value)->format('d.m.Y');
-    }
-    public function getStatusName(){
-        return $this->status->name;
-    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-    public function setImageAttribute($value)
-    {
-        $path = 'news';
-
-        $this->attributes['image'] = StoreImage::storeImage($value,$path);
-//        $this->attributes['image'] ='313';
-    }
 }

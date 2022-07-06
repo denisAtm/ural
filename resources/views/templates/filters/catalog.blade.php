@@ -31,7 +31,7 @@
 </li>
 <li>
     <div class="filter-dropdown" x-data="{filter: ''}">
-        <div class="filter-dropdown__top" @click="filterDropdown !==4 ? filterDropdown = 4: filterDropdown = null" :class="{'active': filterDropdown === 4}">
+        <div class="filter-dropdown__top" @click="filterDropdown !==2 ? filterDropdown = 2: filterDropdown = null" :class="{'active': filterDropdown === 2}">
             <p>Расположение осей</p>
             <ul class="filter-dropdown__icon-list" role="list">
                 <svg class="filter-dropdown__clear-list-icon" width="16" height="16" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" @click="filter = ''" :class="{'active': filter !== ''}">
@@ -44,7 +44,7 @@
                 </svg>
             </ul>
         </div>
-        <ul role="list" class="filter-dropdown__list" id="filter4" x-ref="selectDropdownList" x-bind:style="filterDropdown === 4 ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''">
+        <ul role="list" class="filter-dropdown__list" id="filter2" x-ref="selectDropdownList" x-bind:style="filterDropdown === 2 ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''">
             @foreach($attr4 as $attr)
                 <li>
                     <label>
@@ -59,7 +59,7 @@
 
 <li>
     <div class="filter-dropdown" x-data="{filter: ''}">
-        <div class="filter-dropdown__top" @click="filterDropdown !==6 ? filterDropdown = 6: filterDropdown = null" :class="{'active': filterDropdown === 6}">
+        <div class="filter-dropdown__top" @click="filterDropdown !==3 ? filterDropdown = 3: filterDropdown = null" :class="{'active': filterDropdown === 3}">
             <p>Передаточное отношение</p>
             <ul class="filter-dropdown__icon-list" role="list">
                 <svg class="filter-dropdown__clear-list-icon filter-dropdown__clear-list-icon--range-slider" width="16" height="16" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +72,7 @@
                 </svg>
             </ul>
         </div>
-        <ul role="list" class="filter-dropdown__list" id="filter6" x-ref="selectDropdownList" x-bind:style="filterDropdown === 6 ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''">
+        <ul role="list" class="filter-dropdown__list" id="filter3" x-ref="selectDropdownList" x-bind:style="filterDropdown === 3 ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''">
             <li>
                 <input type="text" class="js-range-slider" name="my_range" value=""
                        data-type="double"
@@ -92,7 +92,7 @@
 </li>
         <li>
             <div class="filter-dropdown" x-data="{filter: ''}">
-                <div class="filter-dropdown__top" @click="filterDropdown !==6 ? filterDropdown = 6: filterDropdown = null" :class="{'active': filterDropdown === 6}">
+                <div class="filter-dropdown__top" @click="filterDropdown !==4 ? filterDropdown = 4: filterDropdown = null" :class="{'active': filterDropdown === 4}">
                     <p>Крутящий момент Н*м</p>
                     <ul class="filter-dropdown__icon-list" role="list">
                         <svg class="filter-dropdown__clear-list-icon filter-dropdown__clear-list-icon--range-slider" width="16" height="16" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,7 +105,7 @@
                         </svg>
                     </ul>
                 </div>
-                <ul role="list" class="filter-dropdown__list" id="filter6" x-ref="selectDropdownList" x-bind:style="filterDropdown === 6 ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''">
+                <ul role="list" class="filter-dropdown__list" id="filter4" x-ref="selectDropdownList" x-bind:style="filterDropdown === 4 ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''">
                     <li>
                         <input type="text" class="js-range-slider" name="my_range" value=""
                                data-type="double"

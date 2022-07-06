@@ -82,10 +82,7 @@
                                 </svg>
                             </summary>
                             <ul role="list">
-                                <li><p>Тип передачи</p><span>{{$product->category->name}}</span></li>
-                                <li><p>Количество передаточных ступеней</p><span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span></li>
-                                <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span></li>
-                                <li><p>Расположение осей</p><span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span></li>
+                                {{$product->details()}}
                                 <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
                                             {{$option->name}}{{$loop->last?'':','}}
                                         @endforeach</span></li>
@@ -95,10 +92,7 @@
                             </ul>
                         </details>
                         <ul role="list" class="product-card__list">
-                            <li><p>Тип передачи</p><span>{{$product->category->name}}</span></li>
-                            <li><p>Количество передаточных ступеней</p><span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span></li>
-                            <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span></li>
-                            <li><p>Расположение осей</p><span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span></li>
+                            {{$product->details()}}
                             <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
                                         {{$option->name}}{{$loop->last?'':','}}
                                     @endforeach</span></li>
@@ -386,6 +380,10 @@
                             </div>
                             <ul role="list" class="order-form__product-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                 <li>
+                                    <p>Расположение осей</p>
+                                    <span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span>
+                                </li>
+                                <li>
                                     <p>Количество передаточных ступеней</p>
                                     <span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span>
                                 </li>
@@ -393,10 +391,7 @@
                                     <p>Передаточное отношение</p>
                                     <span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span>
                                 </li>
-                                <li>
-                                    <p>Расположение осей</p>
-                                    <span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span>
-                                </li>
+
 
                                 <li>
                                     <p>Вариант сборки</p>

@@ -53,9 +53,8 @@ class GearMotor extends Model
         if($this->gearRatios->isNotEmpty()) echo '<li><span>Передаточное<br>отношение</span><span>'.$this->gearRatioStart.'-'.$this->gearRatioEnd.'</span></li>';
         if($this->locationOfAxes!=null)
             echo '<li><span>Расположение осей</span><span>'.$this->locationOfAxes->name.'</span></li>';
-//        echo '
-//                                                <li><span>Масса</span><span>'.$this->weight.'
-//                            </span></li>';
+        echo '<li><span>Крутящий момент Н*м</span><span>'.$this->torque.'</span></li>
+<li><span>Масса</span><span>'.$this->weight.'</span></li>';
     }
 
     /*

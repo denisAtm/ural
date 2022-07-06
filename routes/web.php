@@ -37,6 +37,7 @@ Route::get('/news/{slug}',[PageController::class,'newsSingle']);
 Route::get('/about',[PageController::class,'aboutPage']);
 Route::post('/storeProductImages',[\App\Http\Controllers\Admin\ProductsCrudController::class,'storeImages'])->name('storeProductImages');
 Route::post('/storeSizeImages',[\App\Http\Controllers\Admin\ReducerCrudController::class,'storeSizeImages'])->name('storeSizeImages');
+Route::post('/makeOrder',[\App\Http\Controllers\Admin\OrderCrudController::class,'makeOrder']);
 /* Sitemap */
 Route::get('/sitemap', [SitemapController::class,'index']);
 Route::get('/sitemap/products', [SitemapController::class,'products']);
