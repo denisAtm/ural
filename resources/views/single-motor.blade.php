@@ -16,6 +16,11 @@
 @section('content')
     <script>
         $(document).ready(function (){
+            $('.order-form__select-dropdown-list li').on('click',function(){
+                var select = $(this).data('select')
+                var option = $(this).data('option')
+                $(document).find('select[name="'+select+'"] option[value="'+option+'"]').prop('selected',true)
+            })
             $('#makeOrder').on('submit',function(){
                 $(this).unbind('submit')
                 $(this).submit()
@@ -287,7 +292,7 @@
                                 </select>
                                 <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                     @foreach($product->gearRatios as $ratio)
-                                        <li @click="selectDropdowntext = '{{$ratio->name}}';toggleNextStep = true" data-select="передаточное отношение" data-option-id = "{{$ratio->name}}"><span :class="{'active': selectDropdowntext === '{{$ratio->name}}'}" >{{$ratio->name}}</span></li>
+                                        <li @click="selectDropdowntext = '{{$ratio->name}}';toggleNextStep = true" data-select="передаточное отношение" data-option = "{{$ratio->name}}"><span :class="{'active': selectDropdowntext === '{{$ratio->name}}'}" >{{$ratio->name}}</span></li>
 
                                     @endforeach
 {{--                                    <li @click="selectDropdowntext = 'От 1 до 9';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'От 1 до 9'}">От 1 до 9</span></li>--}}
@@ -311,7 +316,7 @@
                                 </select>
                                 <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                     @foreach($product->series->outputShafts as $shaft)
-                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал выходной" data-option-id = "{{$shaft->name}}"> <span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}" >{{$shaft->name}}</span></li>
+                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал выходной" data-option = "{{$shaft->name}}"> <span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}" >{{$shaft->name}}</span></li>
                                     @endforeach
                                 </ul>
                             </div>

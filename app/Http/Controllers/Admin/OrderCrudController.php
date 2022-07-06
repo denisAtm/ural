@@ -66,7 +66,7 @@ class OrderCrudController extends CrudController
             'label'=>'Статус',
             'type'=>'select',
             'entity'=>'status',
-            'model'=>'App\Models\Order',
+            'model'=>'App\Models\AppealStatus',
             'attribute'=>'name'
         ]);
         CRUD::addButtonFromModelFunction('line', 'open_uri', 'openUri', 'beginning');
@@ -108,12 +108,54 @@ class OrderCrudController extends CrudController
     {
         $this->setupCreateOperation();
         CRUD::addField([
-            
+            'type'=>'view',
+            'view'=>'vendor.backpack.custom-views.order-details',
+            'name'=>'user_name',
+            'label'=>'ФИО',
+            'attributes'=>[
+                'readonly'=>'readonly'
+            ]
         ]);
         CRUD::addField([
             'type'=>'view',
+            'view'=>'vendor.backpack.custom-views.order-details',
+            'name'=>'user_email',
+            'label'=>'Email',
+            'attributes'=>[
+                'readonly'=>'readonly'
+            ]
+        ]);
+        CRUD::addField([
+            'type'=>'view',
+            'view'=>'vendor.backpack.custom-views.order-details',
+            'name'=>'user_phone_number',
+            'label'=>'Номер телефона',
+            'attributes'=>[
+                'readonly'=>'readonly'
+            ]
+        ]);
+        CRUD::addField([
+            'type'=>'view',
+            'view'=>'vendor.backpack.custom-views.order-details',
+            'name'=>'product_name',
+            'label'=>'Товар',
+            'attributes'=>[
+                'readonly'=>'readonly'
+            ]
+        ]);
+        CRUD::addField([
+            'name'=>'content',
+            'type'=>'view',
+            'view'=>'vendor.backpack.custom-views.order-details',
             'label'=>'Данные заказа',
-            'view'=>'vendor.backpack.custom-views.order-details'
+        ]);
+        CRUD::addField([
+            'name'=>'status_id',
+            'label'=>'Статус',
+            'type'=>'select',
+            'entity'=>'status',
+            'model'=>'App\Models\AppealStatus',
+            'attribute'=>'name'
         ]);
     }
     public function makeOrder(Request $request){
