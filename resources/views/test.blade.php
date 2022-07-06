@@ -10,7 +10,7 @@
         <th>Имя</th><th>{{$name}}</th>
     </tr>
     <tr>
-        <td>Телефон</td><td>{{$email}}</td>
+        <td>Почта</td><td>{{$email}}</td>
     </tr>
     <tr>
         <td>Сообщение</td><td>{{$text}}</td>
