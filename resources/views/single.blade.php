@@ -17,7 +17,24 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 @endsection
 @section('content')
+    <script>
+        $(document).ready(function (){
+            $('.order-form__select-dropdown-list li').on('click',function(){
+                var select = $(this).data('select')
+                var option = $(this).data('option')
+                $(document).find('select[name="'+select+'"] option[value="'+option+'"]').prop('selected',true)
+            })
+            $('#makeOrder').on('submit',function(){
+                $(this).unbind('submit')
+                $(this).submit()
+            })
+        })
 
+        @if(Session::get('message'))
+        alert('{{Session::get('message')}}')
+        @endif
+
+    </script>
     <main>
         <nav class="breadcrumbs">
             <div class="container">
@@ -225,7 +242,10 @@
     </main>
     <div class="order-form" :class="{'active': orderForm === true}" x-data="{toggleNextStep: false, nextStep: false}">
         <div class="order-form__content" data-simplebar>
-            <form action="#">
+            <form action="/makeOrder" id="makeOrder" method="post">
+                <input type="hidden" name="product_name" value="{{$product->name}}">
+                <input type="hidden" name="uri" value="{{url()->current()}}">
+                @csrf
                 <div class="order-form__step-page order-form__step-page-1">
                     <div class="order-form__step-top">
                         <p class="order-form__step">Шаг 1 из 2</p>
@@ -244,9 +264,14 @@
                                         <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
                                     </svg>
                                 </div>
+                                <select name="передаточное отношение" style="display:none">
+                                    @foreach($product->gearRatios as $ratio)
+                                        <option value="{{$ratio->name}}">{{$ratio->name}}</option>
+                                    @endforeach
+                                </select>
                                 <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                     @foreach($product->gearRatios as $ratio)
-                                        <li @click="selectDropdowntext = '{{$ratio->name}}';toggleNextStep = true"><span :class="{'active': selectDropdowntext === '{{$ratio->name}}'}">{{$ratio->name}}</span></li>
+                                        <li @click="selectDropdowntext = '{{$ratio->name}}';toggleNextStep = true" data-select="передаточное отношение" data-option = "{{$ratio->name}}"><span :class="{'active': selectDropdowntext === '{{$ratio->name}}'}">{{$ratio->name}}</span></li>
 
                                     @endforeach
 {{--                                    <li @click="selectDropdowntext = 'От 1 до 9';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'От 1 до 9'}">От 1 до 9</span></li>--}}
@@ -263,46 +288,6 @@
                                     <label for="{{$option->name}}">{{$option->name}}</label>
                                 </li>
                                 @endforeach
-{{--                                <li :class="{'active': setup === 23}" @click="setup = 23;toggleNextStep = true">--}}
-{{--                                    <input type="radio" name="setup" value="23" id="23">--}}
-{{--                                    <label for="23">23</label>--}}
-{{--                                </li>--}}
-{{--                                <li class="disabled" :class="{'active': setup === 65}" @click="setup = 65;toggleNextStep = true">--}}
-{{--                                    <input type="radio" name="setup" value="65" id="65">--}}
-{{--                                    <label for="65">65</label>--}}
-{{--                                </li>--}}
-{{--                                <li class="disabled" :class="{'active': setup === 53}" @click="setup = 65;toggleNextStep = true">--}}
-{{--                                    <input type="radio" name="setup" value="53" id="53">--}}
-{{--                                    <label for="53" @click="setup = 53">53</label>--}}
-{{--                                </li>--}}
-{{--                                <li class="disabled" :class="{'active': setup === 8}" @click="setup = 8;toggleNextStep = true">--}}
-{{--                                    <input type="radio" name="setup" value="8" id="8">--}}
-{{--                                    <label for="8">8</label>--}}
-{{--                                </li>--}}
-{{--                                <li style="width:49px;" class="disabled" :class="{'active': setup === 43}" @click="setup = 43;toggleNextStep = true">--}}
-{{--                                    <input type="radio" name="setup" value="43" id="43">--}}
-{{--                                    <label for="43">43</label>--}}
-{{--                                </li>--}}
-{{--                                <li :class="{'active': setup === 63}" @click="setup = 63;toggleNextStep = true">--}}
-{{--                                    <input type="radio" name="setup" value="63" id="63">--}}
-{{--                                    <label for="63">63</label>--}}
-{{--                                </li>--}}
-{{--                                <li :class="{'active': setup === 67}" @click="setup = 67;toggleNextStep = true">--}}
-{{--                                    <input type="radio" name="setup" value="67" id="67">--}}
-{{--                                    <label for="67">67</label>--}}
-{{--                                </li>--}}
-{{--                                <li :class="{'active': setup === 57}" @click="setup = 57;toggleNextStep = true">--}}
-{{--                                    <input type="radio" name="setup" value="57" id="57">--}}
-{{--                                    <label for="57">57</label>--}}
-{{--                                </li>--}}
-{{--                                <li class="disabled" :class="{'active': setup === 21}" @click="setup = 21;toggleNextStep = true">--}}
-{{--                                    <input type="radio" name="setup" value="21" id="21">--}}
-{{--                                    <label for="21">21</label>--}}
-{{--                                </li>--}}
-{{--                                <li class="disabled" :class="{'active': setup === 22}"  @click="setup = 22;toggleNextStep = true">--}}
-{{--                                    <input type="radio" name="setup" value="22" id="22">--}}
-{{--                                    <label for="22">22</label>--}}
-{{--                                </li>--}}
                                 <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
                                     <input type="radio" name="setup" value="Не знаю" id="Не знаю">
                                     <label for="Не знаю">Не знаю</label>
@@ -318,13 +303,16 @@
                                         <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
                                     </svg>
                                 </div>
+                                <select name="Вал входной" style="display:none">
+                                    @foreach($product->series->frontShafts as $shaft)
+                                        <option value="{{$shaft->name}}">{{$shaft->name}}</option>
+                                    @endforeach
+                                </select>
                                 <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                     @foreach($product->series->frontShafts as $shaft)
-                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true"><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}">{{$shaft->name}}</span></li>
+                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал входной" data-option="{{$shaft->name}}"><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}">{{$shaft->name}}</span></li>
 
                                     @endforeach
-{{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 2';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 2'}">Выбранный вариант 2</span></li>--}}
-{{--                                    <li @click="selectDropdowntext = 'Выбранный вариант 3';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант 3'}">Выбранный вариант 3</span></li>--}}
                                 </ul>
                             </div>
                         </div>
@@ -337,9 +325,14 @@
                                         <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
                                     </svg>
                                 </div>
+                                <select name="Вал выходной" style="display:none">
+                                    @foreach($product->series->outputShafts as $shaft)
+                                        <option value="{{$shaft->name}}">{{$shaft->name}}</option>
+                                    @endforeach
+                                </select>
                                 <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                     @foreach($product->series->outputShafts as $shaft)
-                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true"><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}">{{$shaft->name}}</span></li>
+                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал выходной" data-option="{{$shaft->name}}"><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}">{{$shaft->name}}</span></li>
 
                                     @endforeach
 {{--                                    <li @click="selectDropdowntext = 'Выбранный вариант';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант'}">Выбранный вариант</span></li>--}}
@@ -411,7 +404,7 @@
                                 </svg>
                             </label>
                             <div class="form-controls-wrapper order-form__form-controls-wrapper">
-                                <input type="text" name="orderFormName" id="orderFormName" placeholder="Ваше имя">
+                                <input type="text" name="user_name" id="orderFormName" placeholder="Ваше имя">
                                 <svg class="icon-error" width="28" height="28">
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
                                 </svg>
@@ -427,7 +420,7 @@
                                 </svg>
                             </label>
                             <div class="form-controls-wrapper order-form__form-controls-wrapper">
-                                <input type="text" name="orderFormMail" id="orderFormMail" placeholder="ivan@mail.ru">
+                                <input type="text" name="user_email" id="orderFormMail" placeholder="ivan@mail.ru">
                                 <svg class="icon-error" width="28" height="28">
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
                                 </svg>
@@ -439,7 +432,7 @@
                         <div class="order-form__input-group">
                             <label for="orderFormTel">Телефон</label>
                             <div class="form-controls-wrapper order-form__form-controls-wrapper">
-                                <input type="text" name="orderFormTel" id="orderFormTel" placeholder="8-999-99-99-99">
+                                <input type="text" name="user_phone" id="orderFormTel" placeholder="8-999-99-99-99">
                                 <svg class="icon-error" width="28" height="28">
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
                                 </svg>
@@ -451,7 +444,7 @@
                         <div class="order-form__input-group" style="padding-bottom:0;">
                             <label for="textarea">Комментарий</label>
                             <div class="form-controls-wrapper order-form__form-controls-wrapper">
-                                <textarea name="textarea" id="textarea" placeholder="Введите текст"></textarea>
+                                <textarea name="user_comment" id="textarea" placeholder="Введите текст"></textarea>
                             </div>
                         </div>
                         <div class="order-form__accept-label order-form__accept-label--policy">
