@@ -7,6 +7,8 @@ use App\Models\Order;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 /**
  * Class OrderCrudController
  * @package App\Http\Controllers\Admin
@@ -176,6 +178,11 @@ class OrderCrudController extends CrudController
         $order->uri = $request->uri;
         $order->content = $content;
         $order->save();
+        $data=['name'=>$request->user_name,'email'=>$request->user_email, 'phone'=>$request->user_phone, 'text'=>$request->user_comment,'product'=>$request->product_name];
+        Mail::send('order', $data, function ($m) {
+            $m->from('uralredutor@yandex.ru', 'Sender');
+            $m->to(getenv('MAIL_TO'), 'Receiver')->subject('Тестовое письмо с HTML');
+        });
         return back()->with(['message'=>'Заказ успешно оформлен']);
     }
 }
