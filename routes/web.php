@@ -23,8 +23,8 @@ Route::get('/clear', function() {
      return "Кэш очищен.";
  });
 Route::get('/', [PageController::class,'index']);
-Route::get('/catalog/{slug}',[PageController::class,'catalog']);
-Route::get('/catalog/{catSlug}/{slug}',[PageController::class,'single']);
+Route::get('/catalog/{slug}',[PageController::class,'catalog'])->middleware('redirect');
+Route::get('/catalog/{catSlug}/{slug}',[PageController::class,'single'])->middleware('redirect');
 Route::post('/search/catalog',[PageController::class,'search']);
 
 Route::get('/contacts',[PageController::class,'contacts']);
@@ -32,8 +32,8 @@ Route::post('/send-form/reducer',[\App\Http\Controllers\Admin\ReducerCrudControl
 Route::post('/send-form/gear',[\App\Http\Controllers\Admin\GearMotorCrudController::class,'sendForm']);
 Route::get('/news',[PageController::class,'news']);
 Route::get('/articles',[PageController::class,'articles']);
-Route::get('/articles/{slug}',[PageController::class,'articlesSingle']);
-Route::get('/news/{slug}',[PageController::class,'newsSingle']);
+Route::get('/articles/{slug}',[PageController::class,'articlesSingle'])->middleware('redirect');
+Route::get('/news/{slug}',[PageController::class,'newsSingle'])->middleware('redirect');
 Route::get('/about',[PageController::class,'aboutPage']);
 Route::post('/storeProductImages',[\App\Http\Controllers\Admin\ProductsCrudController::class,'storeImages'])->name('storeProductImages');
 Route::post('/storeSizeImages',[\App\Http\Controllers\Admin\ReducerCrudController::class,'storeSizeImages'])->name('storeSizeImages');

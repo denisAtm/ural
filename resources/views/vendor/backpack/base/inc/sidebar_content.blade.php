@@ -51,11 +51,20 @@
     </ul>
 </li>
 
+<!-- SEO -->
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i>СЕО</a>
+    <ul class="nav-dropdown-items">
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('meta-page') }}'><i class='nav-icon la la-question'></i> Мета страниц</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('redirect') }}'><i class='nav-icon la la-question'></i> 301 Редирект</a></li>
+    </ul>
+</li>
 
 
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('meta-page') }}'><i class='nav-icon la la-question'></i> Мета страниц</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('question-answer') }}'><i class='nav-icon la la-question'></i> Вопрос Ответ</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('order') }}'><i class='nav-icon la la-question'></i> Orders</a></li>
+
+
