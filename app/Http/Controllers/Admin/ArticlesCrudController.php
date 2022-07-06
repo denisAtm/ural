@@ -94,7 +94,7 @@ class ArticlesCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'slug',
-            'label'=>'SLUG',
+            'label'=>'Уникальная ссылка',
             'type'=>'text',
             'attributes' => [
                 'readonly'    => 'readonly',
@@ -182,7 +182,7 @@ class ArticlesCrudController extends CrudController
         CRUD::addColumn([
             'name'=>'slug',
             'type'=>'text',
-            'label'=>'SLUG'
+            'label'=>'Уникальная ссылка'
         ]);
         CRUD::addColumn([
             'name'=>'status_id',

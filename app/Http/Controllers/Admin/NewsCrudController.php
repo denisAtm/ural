@@ -79,7 +79,7 @@ class NewsCrudController extends CrudController
         ],]);
         CRUD::addField([
             'name'=>'slug',
-            'label'=>'SLUG',
+            'label'=>'Уникальная ссылка',
             'type'=>'text',
             'attributes' => [
                 'readonly'    => 'readonly',

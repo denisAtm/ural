@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\TagRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Backpack\CRUD\app\Library\Widget;
 
 /**
  * Class TagCrudController
@@ -39,8 +40,16 @@ class TagCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        Crud::setFromDb();
-
+        CRUD::addColumn([
+            'name'=>'name',
+            'type'=>'text',
+            'label'=>'Название',
+        ]);
+        CRUD::addColumn([
+            'name'=>'slug',
+            'type'=>'text',
+            'label'=>'Уникальная ссылка',
+        ]);
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -58,8 +67,20 @@ class TagCrudController extends CrudController
     {
         CRUD::setValidation(TagRequest::class);
         Crud::setFromDb();
-
-
+        CRUD::addField([
+            'name'=>'name',
+            'type'=>'text',
+            'label'=>'Название',
+        ]);
+        CRUD::addField([
+            'name'=>'slug',
+            'type'=>'text',
+            'attributes' => [
+                'readonly'    => 'readonly',
+            ],
+            'label'=>'Уникальная ссылка',
+        ]);
+        Widget::add()->type('script')->content('js/slug.js');
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

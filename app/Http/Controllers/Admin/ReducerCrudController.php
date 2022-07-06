@@ -95,7 +95,7 @@ class ReducerCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'slug',
-            'label'=>'slug',
+            'label'=>'Уникальная ссылка',
             'type'=>'text',
             'wrapper'=>[
                 'class'=>'form-group col-md-12'
