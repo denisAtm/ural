@@ -4,7 +4,7 @@
     <meta charset="utf8">
 </head>
 <body>
-<p>Запись на приём</p>
+<p>Заказ {{$product}}</p>
 <table>
     <tr>
         <th>Имя</th><th>{{$name}}</th>
@@ -13,10 +13,10 @@
         <td>Почта</td><td>{{$email}}</td>
     </tr>
     <tr>
-        <td>Сообщение</td><td>{{$phone}}</td>
+        <td>Телефон</td><td>{{$phone}}</td>
     </tr>
     <tr>
-        <td>Сообщение</td><td>{{$text}}</td>
+        <td>Комментарий</td><td>{{$text}}</td>
     </tr>
 
 </table>

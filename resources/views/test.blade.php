@@ -1,10 +1,10 @@
 <html>
 <head>
-    <title>Тестовое письмо с HTML</title>
+    <title>Отзыв</title>
     <meta charset="utf8">
 </head>
 <body>
-<p>Запись на приём</p>
+<p>Отзыв</p>
 <table>
     <tr>
         <th>Имя</th><th>{{$name}}</th>
