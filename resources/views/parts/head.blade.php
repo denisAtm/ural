@@ -3,6 +3,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 {{--{{dd($meta[0])}}--}}
 
+    {{--    {{dd($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])}}--}}
+    @if(isset($motor_meta))
+    @if(Str::contains($_SERVER['REQUEST_URI'],$motor_meta['slug']))
+        @if(empty($motor_meta['title']))
+
+        @else
+            <title>{{$motor_meta['name']}} || {{$motor_meta['title']}}</title>
+            <meta property="og:image:alt" content="{{$motor_meta['alt']}}">
+            <meta name="description" content="{{$motor_meta['name']}} || {{$motor_meta['description']}}">
+            <meta property="og:title" content="{{$motor_meta['name']}} ||  {{$motor_meta['title']}}">
+            <meta property="og:description" content="{{$motor_meta['name']}} ||  {{$motor_meta['description']}}">
+            <meta name="keywords" content="{{$motor_meta['keywords']}}">
+            <link rel="canonical" href="{{$motor_meta['canonical']}}">
+        @endif
+    @endif
+    @endif
     @if(empty($meta[0]->meta_title))
         <title>Уралредуктор</title>
         <meta name="description" content="description">
@@ -44,13 +60,25 @@
             <meta name="keywords" content="{{$meta[0]->meta_keywords}}">
         @endif
     @endif
+
+
+
+
+
+
+
+
+
+
+
+
 <meta property="og:image" content="{{asset('resources/svgSprites/logo.svg')}}">
 
 <meta property="og:locale" content="ru">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:url" content="{{asset('resources/svgSprites/logo.svg')}}">
-<link rel="canonical" href="{{asset('resources/svgSprites/logo.svg')}}">
+
 <link rel="icon" href="{{asset('resources/svgSprites/logo.svg')}}">
 <link rel="icon" href="{{asset('resources/svgSprites/logo.svg')}}">
 <link rel="apple-touch-icon" href="{{asset('resources/svgSprites/logo.svg')}}">
