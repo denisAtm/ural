@@ -14,6 +14,7 @@ use Backpack\CRUD\app\Library\Widget;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class ReducerCrudController
@@ -432,7 +433,11 @@ class ReducerCrudController extends CrudController
             ]);
             $product->save();
 //        }
-
+        $data=['name'=>$request->name,'email'=>$request->email,'text'=>$request->textarea];
+        Mail::send('test', $data, function ($m) {
+            $m->from('uralredutor@yandex.ru', 'Sender');
+            $m->to(getenv('MAIL_TO'), 'Receiver')->subject('Тестовое письмо с HTML');
+        });
         return back()->with('Всё');
 
     }

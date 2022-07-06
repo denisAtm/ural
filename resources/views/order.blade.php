@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Тестовое письмо с HTML</title>
+    <title>Заказ {{$product}}</title>
     <meta charset="utf8">
 </head>
 <body>
@@ -13,8 +13,12 @@
         <td>Почта</td><td>{{$email}}</td>
     </tr>
     <tr>
+        <td>Сообщение</td><td>{{$phone}}</td>
+    </tr>
+    <tr>
         <td>Сообщение</td><td>{{$text}}</td>
     </tr>
+
 </table>
 </body>
 </html>

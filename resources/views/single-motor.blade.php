@@ -180,22 +180,23 @@
                             <p>Напишите свой вопрос и наши менеджеры свяжутся с Вами в максимально короткое время.</p>
                         </div>
                         <div>
-                            <form action="/send-form/gear" class="request-form">
+                            <form action="/send-form/gear" class="request-form" method="post">
+                                @csrf
+                                @php
+                                    $attributes = []
+                                @endphp
                                 <fieldset>
                                     <div class="request-form__input-group">
                                         <label for="name">Ваше имя</label>
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="text" name="name" id="name" placeholder="Иван">
-                                            <input type="hidden" name="id" value="{{$product->category->id}}">
-
-                                        </div>
+                                            <input type="hidden" name="id" value="{{$product->category->id}}"></div>
                                     </div>
                                     <div class="request-form__input-group">
                                         <label for="email">Ваш e-mail</label>
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="email" name="email" id="email" placeholder="ivan@mail.ru">
-
-                                        </div>
+                                      </div>
                                     </div>
                                     <div class="request-form__input-group">
                                         <label for="textarea">Задайте вопрос</label>
@@ -203,10 +204,10 @@
                                             <textarea name="textarea" id="textarea" placeholder="Введите текст"></textarea>
                                         </div>
                                     </div>
-{{--                                    {!! Captcha::display($attributes) !!}--}}
+                                    {!! Captcha::display($attributes) !!}
                                     <button type="submit" class="secondary-btn request-form__submit-btn">Задать вопрос</button>
                                 </fieldset>
-                            </form>
+
                         </div>
                         <nav class="product-card-answers-list">
                             <h3>Ответы</h3>
