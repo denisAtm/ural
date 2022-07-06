@@ -239,6 +239,51 @@ class GearMotorCrudController extends CrudController
             'tab'=>'Характеристики'
         ]);
         CRUD::addField([
+            'name'=>'title',
+            'label'=>'Заголовок',
+            'type'=>'text',
+            'attributes'=>[
+                'placeholder'=>'Заголовок'
+            ],
+            'tab'=>'Сео'
+        ]);
+        CRUD::addField([
+            'name'=>'description',
+            'label'=>'Описание',
+            'type'=>'text',
+            'attributes'=>[
+                'placeholder'=>'Описание'
+            ],
+            'tab'=>'Сео'
+        ]);
+        CRUD::addField([
+            'name'=>'alt',
+            'label'=>'Альтернативный текст',
+            'type'=>'text',
+            'attributes'=>[
+                'placeholder'=>'Альтернативный текст'
+            ],
+            'tab'=>'Сео'
+        ]);
+        CRUD::addField([
+            'name'=>'keywords',
+            'label'=>'Ключевые слова(через запятую или пробел)',
+            'type'=>'text',
+            'attributes'=>[
+                'placeholder'=>'Ключевые слова'
+            ],
+            'tab'=>'Сео'
+        ]);
+        CRUD::addField([
+            'name'=>'canonical',
+            'label'=>'Каноническая ссылка',
+            'type'=>'text',
+            'attributes'=>[
+                'placeholder'=>'Каноническая ссылка'
+            ],
+            'tab'=>'Сео'
+        ]);
+        CRUD::addField([
             'name'=>'size',
             'type'=>'summernote',
             'label'=>'Размеры',

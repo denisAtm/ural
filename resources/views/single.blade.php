@@ -1,6 +1,17 @@
 @extends('main')
 @section('head')
-    @include('parts.head',['meta'=>$meta[0]])
+    @php
+        $motor_meta=[];
+        $motor_meta['title']=$product->title;
+        $motor_meta['name']=$product->name;
+         $motor_meta['description']=$product->description;
+          $motor_meta['alt']=$product->alt;
+           $motor_meta['keywords']=$product->keywords;
+            $motor_meta['canonical']=$product->canonical;
+             $motor_meta['slug']=$product->slug;
+    @endphp
+
+    @include('parts.head',['meta'=>$meta[0]],['motor_meta'=>$motor_meta])
 @endsection
 @section('cdn')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
