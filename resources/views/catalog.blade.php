@@ -166,28 +166,50 @@
             </div>
         </section>
         <script>
+$(document).ready(function(){
+    $(".js-range-slider").ionRangeSlider();
 
-            $(".js-range-slider").ionRangeSlider();
 
+    $(".js-range-slider").on("change", function () {
+        const inputValue = $(this);
+        const minValue = inputValue.data("from");
+        const maxValue = inputValue.data("to");
+        console.log(minValue,maxValue)
+        inputValue.closest('.filter-dropdown').find('.filter-dropdown__clear-list-icon--range-slider').addClass('active');
 
-            $(".js-range-slider").on("change", function () {
-                const inputValue = $(this);
-                const minValue = inputValue.data("from");
-                const maxValue = inputValue.data("to");
-                $('.filter-dropdown__clear-list-icon--range-slider').addClass('active');
+        inputValue.closest('li').find('.range-slider-min-value').val(minValue);
 
-                $('.range-slider-min-value').text(minValue);
-                $('.range-slider-max-value').text(maxValue);
-            });
+        inputValue.closest('li').find('.range-slider-max-value').val(maxValue);
+    });
+    // $('#range-slider-min-value-torque').on('change',function(){
+    //     var val = $(this).prop("value");
+    //     console.log(val)
+    // })
+    //
+    // let updateRangeSliderValues = $(".js-range-slider-torque").data("ionRangeSlider");
 
-            let updateRangeSliderValues = $(".js-range-slider").data("ionRangeSlider");
+    $('.filter-dropdown__clear-list-icon--range-slider').on('click',()=>{
+        updateRangeSliderValues.update({
+            from: 5000,
+            to:1000000
+        });
+    })
+    $('input.range-slider-min-value').on('change',function(){
+        console.log($(this).val())
 
-            $('.filter-dropdown__clear-list-icon--range-slider').on('click',()=>{
-                updateRangeSliderValues.update({
-                    from: 5000,
-                    to:1000000
-                });
-            })
+        let rangeSliderMinValue = $(this).val();
+
+        $(this).closest('li').find('.js-range-slider').data("ionRangeSlider").update({
+            from: rangeSliderMinValue,
+        });
+    })
+    $('.range-slider-max-value').on('change',function(){
+        let rangeSliderMaxValue = $(this).val();
+        $(this).closest('li').find('.js-range-slider').data("ionRangeSlider").update({
+            to: rangeSliderMaxValue,
+        });
+    })
+})
 
 
         </script>

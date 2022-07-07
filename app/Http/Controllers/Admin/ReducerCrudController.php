@@ -365,14 +365,6 @@ class ReducerCrudController extends CrudController
     public function update(){
         CRUD::setValidation(ReducerRequest::class);
         $path = 'products';
-
-        $this->crud->getCurrentEntry()->gearRatios()->detach();
-        $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
-        $gearEnd =$this->crud->getRequest()->request->get('gearRatioEnd');
-        $gearRatio = GearRatio::whereBetween('name',[$gearStart,$gearEnd])->get();
-        foreach($gearRatio as $value){
-            $this->crud->getCurrentEntry()->gearRatios()->attach($value);
-        }
         $mainImage = $this->crud->getRequest()->file('image');
         $gallery = $this->crud->getRequest()->file('gallery');
         //Главное изображение
@@ -394,17 +386,10 @@ class ReducerCrudController extends CrudController
     {
         CRUD::setValidation(ReducerRequest::class);
         $path = 'products';
-        $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
-        $gearEnd =$this->crud->getRequest()->request->get('gearRatioEnd');
-        $gearRatio = GearRatio::whereBetween('name',[$gearStart,$gearEnd])->get();
-
         $mainImage = $this->crud->getRequest()->file('image');
         $gallery = $this->crud->getRequest()->file('gallery');
         //Главное изображение
         $response = $this->traitStore();
-        foreach($gearRatio as $value){
-            $this->crud->getCurrentEntry()->gearRatios()->attach($value);
-        }
         if(!empty($mainImage)){
             $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
         }

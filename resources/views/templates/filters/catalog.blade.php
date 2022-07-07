@@ -74,7 +74,7 @@
         </div>
         <ul role="list" class="filter-dropdown__list" id="filter3" x-ref="selectDropdownList" x-bind:style="filterDropdown === 3 ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''">
             <li>
-                <input type="text" class="js-range-slider" name="my_range" value=""
+                <input type="text" class="js-range-slider" name="gearRatio" value=""
                        data-type="double"
                        data-min="5000"
                        data-max="100000"
@@ -82,8 +82,8 @@
                        data-to="100000"
                 />
                 <div class="range-slider-values">
-                    <p>От<span class="range-slider-min-value">5000</span></p>
-                    <p>До<span class="range-slider-max-value">100 000 и более</span></p>
+                    <p>От<input type="number" class="range-slider-min-value" value="5000"></p>
+                    <p>До<input type="number" class="range-slider-max-value" value="1000000"></p>
                 </div>
 
             </li>
@@ -107,7 +107,7 @@
                 </div>
                 <ul role="list" class="filter-dropdown__list" id="filter4" x-ref="selectDropdownList" x-bind:style="filterDropdown === 4 ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''">
                     <li>
-                        <input type="text" class="js-range-slider" name="my_range" value=""
+                        <input type="text" class="js-range-slider" name="torque" value=""
                                data-type="double"
                                data-min="5000"
                                data-max="10000"
@@ -115,8 +115,8 @@
                                data-to="10000"
                         />
                         <div class="range-slider-values">
-                            <p>От<input type="number" class="range-slider-min-value" value="5000"></p>
-                            <p>До<input type="number" class="range-slider-max-value" value="1000000"></p>
+                            <p>От<input type="number" class="range-slider-min-value" id="range-slider-min-value-torque" value="5000"></p>
+                            <p>До<input type="number" class="range-slider-max-value" id="range-slider-max-value-torque" value="1000000"></p>
                         </div>
 
                     </li>
@@ -124,12 +124,14 @@
             </div>
         </li>
 <li>
-    <button class="filter__clear-btn" type="button"><svg width="16" height="16">
+    <a href="{{request()->url()}}" class="filter__clear-btn" type="button"><svg width="16" height="16">
             <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#clear-filter-icon')}}"></use>
-        </svg>Удалить фильтры</button>
+        </svg>Удалить фильтры</a>
 </li>
     <li>
         <button type="submit" class="filter__submit-btn">Применить</button>
     </li>
     </form>
 </ul>
+
+

@@ -9,24 +9,23 @@ class CatalogFilter extends QueryFilter
             $query->where('category_id', $id);
         });
     }
-    public function numberOfTransferStages($id = null){
-        return $this->builder->when($id, function($query) use($id){
-            $query->where('number_of_transfer_stages_id', $id);
-        });
-    }
     public function locationOfAxes($id = null){
         return $this->builder->when($id, function($query) use($id){
             $query->where('location_of_axes_id', $id);
         });
     }
-    public function gearRatio($id = null){
-        return $this->builder->when($id, function($query) use($id){
-            $query->whereHas('gearRatios', function($q) use($id){
-                $q->where('gear_ratio_id',$id);
-            });
+//    public function gearRatio($id = null){
+//        return $this->builder->when($id, function($query) use($id){
+//            $query->whereHas('gearRatios', function($q) use($id){
+//                $q->where('gear_ratio_id',$id);
+//            });
+//        });
+//    }
+    public function torque($value = null){
+        return $this->builder->when($value, function($query) use($value){
+            $value = explode(';',$value);
+            $query->whereBetween('torque', [$value[0],$value[1]]);
         });
-    }
-    public function myRange($value = null){
 
     }
     public function search_field($search_string = ''){
