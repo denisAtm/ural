@@ -146,15 +146,6 @@ class OrderCrudController extends CrudController
             ]
         ]);
         CRUD::addField([
-            'type'=>'view',
-            'view'=>'vendor.backpack.custom-views.order-details',
-            'name'=>'user_comment',
-            'label'=>'Комментарий пользователя',
-            'attributes'=>[
-                'readonly'=>'readonly'
-            ]
-        ]);
-        CRUD::addField([
             'name'=>'content',
             'type'=>'view',
             'view'=>'vendor.backpack.custom-views.order-details',
@@ -188,9 +179,10 @@ class OrderCrudController extends CrudController
         $order->content = $content;
         $order->save();
         $data=['name'=>$request->user_name,'email'=>$request->user_email, 'phone'=>$request->user_phone, 'text'=>$request->user_comment,'product'=>$request->product_name];
-        Mail::send('order', $data, function ($m) {
-            $m->from('uralredutor@yandex.ru', 'Sender');
-            $m->to(getenv('MAIL_TO'), 'Receiver')->subject('Тестовое письмо с HTML');
+        Mail::send('test', $data, function ($m) {
+            $email ="uralredutor@yandex.ru";
+            $m->from($email);
+            $m->to($email);
         });
         return back()->with(['message'=>'Заказ успешно оформлен']);
     }

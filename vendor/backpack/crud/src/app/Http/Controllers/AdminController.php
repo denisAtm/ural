@@ -2,6 +2,12 @@
 
 namespace Backpack\CRUD\app\Http\Controllers;
 
+use App\Models\Articles;
+use App\Models\GearMotor;
+use App\Models\News;
+use App\Models\Order;
+use App\Models\QuestionAnswer;
+use App\Models\Reducer;
 use Illuminate\Routing\Controller;
 
 class AdminController extends Controller
@@ -23,13 +29,19 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
+        $news = News::latest()->take(5)->get();
+        $articles = Articles::latest()->take(5)->get();
+        $reducer = Reducer::latest()->take(5)->get();
+        $gearMotor = GearMotor::latest()->take(5)->get();
+        $questionAnswer = QuestionAnswer::latest()->take(5)->get();
+        $order = Order::latest()->take(5)->get();
         $this->data['title'] = trans('backpack::base.dashboard'); // set the page title
         $this->data['breadcrumbs'] = [
             trans('backpack::crud.admin')     => backpack_url('dashboard'),
             trans('backpack::base.dashboard') => false,
         ];
 
-        return view(backpack_view('dashboard'), $this->data);
+        return view(backpack_view('dashboard'),compact(['news','articles','reducer','gearMotor','questionAnswer','order']));
     }
 
     /**
