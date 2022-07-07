@@ -47,6 +47,7 @@ class QuestionAnswerCrudController extends CrudController
         CRUD::addColumn(['name' => 'question', 'type' => 'text','label'=>'Вопрос']);
         CRUD::addColumn(['name' => 'answer', 'type' => 'text','label'=>'Ответ']);
         CRUD::addColumn(['name' => 'status', 'type' => 'number','label'=>'Статус']);
+        CRUD::addColumn(['name' => 'link', 'type' => 'text','label'=>'Страница']);
 //        CRUD::addColumn([
 //            'name'=>'name',
 //            'type'=>'select',

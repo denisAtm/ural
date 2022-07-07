@@ -384,6 +384,7 @@ class ReducerCrudController extends CrudController
                 'name'=>$request->name,
                 'email'=>$request->email,
                 'question'=>$request->textarea,
+                'link'=>$request->link,
                 'answer'=>'',
                 'status'=>0,
             ]);

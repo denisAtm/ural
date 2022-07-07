@@ -120,6 +120,9 @@
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="text" name="name" id="name" placeholder="Иван">
                                             <input type="hidden" name="id" value="{{$product->id}}"></div>
+                                        <?php
+                                        echo'<input type="hidden" name="link" value="http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'"'
+                                        ?>
                                     </div>
                                     <div class="request-form__input-group">
                                         <label for="email">Ваш e-mail</label>
