@@ -66,7 +66,7 @@ class Reducer extends Model
         echo $this->size;
     }
     public function gearRatioRange(){
-        return $this->series->gearRatios()->orderBy('name','asc')->first()->name.'-'.$this->series->gearRatios()->orderBy('name','desc')->first()->name;
+        return 'от '.$this->series->gearRatios()->orderBy('name','asc')->first()->name.' до '.$this->series->gearRatios()->orderBy('name','desc')->first()->name;
     }
     public function details(){
         echo '<li><span>Тип передачи</span><span>'.$this->category->name.'</span></li>';

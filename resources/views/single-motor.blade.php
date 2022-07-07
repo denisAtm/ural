@@ -326,7 +326,7 @@
                                 </svg>
                             </label>
                             <div class="form-controls-wrapper order-form__form-controls-wrapper">
-                                <input type="text" name="user_name" id="orderFormName" placeholder="Ваше имя">
+                                <input type="text" name="user_name" id="orderFormName" placeholder="Ваше имя" required>
 
                                 <svg class="icon-error" width="28" height="28">
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
@@ -343,7 +343,7 @@
                                 </svg>
                             </label>
                             <div class="form-controls-wrapper order-form__form-controls-wrapper">
-                                <input type="text" name="user_email" id="orderFormMail" placeholder="ivan@mail.ru">
+                                <input type="text" name="user_email" id="orderFormMail" placeholder="ivan@mail.ru" required>
                                 <svg class="icon-error" width="28" height="28">
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
                                 </svg>
@@ -355,7 +355,7 @@
                         <div class="order-form__input-group">
                             <label for="orderFormTel">Телефон</label>
                             <div class="form-controls-wrapper order-form__form-controls-wrapper">
-                                <input type="text" name="user_phone" id="orderFormTel" placeholder="8-999-99-99-99">
+                                <input type="text" name="user_phone" id="orderFormTel" placeholder="8-999-99-99-99" required>
                                 <svg class="icon-error" width="28" height="28">
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
                                 </svg>
@@ -371,7 +371,7 @@
                             </div>
                         </div>
                         <div class="order-form__accept-label order-form__accept-label--policy">
-                            <input type="checkbox" name="acceptPolicy" id="acceptPolicy">
+                            <input type="checkbox" name="acceptPolicy" id="acceptPolicy" required>
                             <label for="acceptPolicy"><a href="#">Подтверждаю согласие с политикой конфиденциальности</a></label>
                         </div>
 {{--                        {!! Captcha::display($attributes) !!}--}}

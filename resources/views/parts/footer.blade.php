@@ -115,12 +115,12 @@
 <div class="order-complete-modal" :class="{'active': orderCompleteModal === true}">
     <div class="order-complete-modal__content">
         <div class="order-complete-modal__top">
-            <h2 class="title title-h2">Вопрос отправлен</h2>
+            <h2 class="title title-h2">Заявка отправлена!</h2>
             <svg @click="orderCompleteModal = false" width="36" height="36">
                 <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-exit')}}"></use>
             </svg>
         </div>
         <p>Вам ответит наш специалист в ближайшее время.</p>
-        <button type="button" class="primary-btn order-complete-modal__btn">Ок</button>
+        <button @click="orderCompleteModal = false" type="button" class="primary-btn order-complete-modal__btn">Ок</button>
     </div>
 </div>

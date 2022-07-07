@@ -18,8 +18,6 @@
             $(this).submit()
         })
         $('#makeOrder input[type="radio"]').on('change',function(){
-            console.log(1)
-            console.log($(this).attr('name'),$(this).val())
             var select = $(this).attr('name')
             var option = $(this).val()
             details[select]=option
@@ -43,10 +41,28 @@
             $('.users-conf-name').text(newname)
             $('#makeOrder input[name="product_name"]').val(newname)
         })
+
+        $('input#accept').on('change',function(){
+            console.log('тык')
+            if($(this).is(':checked')){
+                console.log(1)
+                $('.order-form__step-page-1').find('input[type="radio"], select').prop('disabled',true)
+                $('.order-form__step-page-1').find('.order-form-controls-group').hide()
+
+            }else{
+                $('.order-form__step-page-1').find('input[type="radio"], select').prop('disabled',false)
+                $('.order-form__step-page-1').find('.order-form-controls-group').show()
+            }
+        })
+        $(document).find('div.order-complete-modal button').on('click',function(){
+            $(document).find('div.order-complete-modal').removeClass('active')
+        })
+        @if(Session::get('message'))
+        console.log("{{Session::get('message')}}")
+        $(document).find('div.order-complete-modal').addClass('active')
+        @endif
     })
 
-    @if(Session::get('message'))
-    alert('{{Session::get('message')}}')
-    @endif
+
 
 </script>

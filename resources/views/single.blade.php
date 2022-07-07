@@ -272,7 +272,7 @@
                         <div class="order-form-controls-group order-form-controls-group--not-last">
                             <h4 class="order-form-controls-group__title">Вал входной</h4>
                             <div class="order-form__select-dropdown" x-data="{selectDropdowntext: '', toggleDropdownList: false}">
-                                <div class="order-form__select-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
+                                <div class="order-form__select-dropdown-top disable" @click="toggleDropdownList = !toggleDropdownList">
                                     <span x-text="selectDropdowntext === '' ? 'Вариант' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">Вариант</span>
                                     <svg :class="{'active': toggleDropdownList}" width="16" height="16">
                                         <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
@@ -283,7 +283,7 @@
                                         <option value="{{$shaft->name}}">{{$shaft->name}}</option>
                                     @endforeach
                                 </select>
-                                <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
+                                <ul role="list" class="order-form__select-dropdown-list " x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                     @foreach($product->series->frontShafts as $shaft)
                                         <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал входной" data-option="{{$shaft->name}}"><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}">{{$shaft->name}}</span></li>
 

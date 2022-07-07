@@ -133,10 +133,8 @@ class GearMotorCrudController extends CrudController
             'attributes'=>[
                 'readonly'    => 'readonly',
             ],
-            'tab'=>'Основные',
-            'options'=>(function($query){
-                return $query->where('name','LIKE','%мотор%')->get();
-            })
+            'tab'=>'Основные'
+
         ]);
         CRUD::addField([
             'name'=>'series_id',

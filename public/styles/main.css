@@ -830,6 +830,7 @@ body #magicMouseCursor.faded {
 }
 
 .order-complete-modal {
+    background-color: #00000075;
   position: fixed;
   left: 0;
   top: 0;
