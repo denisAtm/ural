@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('user_name');
             $table->string('user_email');
             $table->string('user_phone_number');
-            $table->longText('user_comment');
+            $table->longText('user_comment')->nullable();
             $table->foreignId('status_id')->default(1)->constrained('appeals_statuses')->onDelete('cascade');
             $table->longText('content');
             $table->string('uri');

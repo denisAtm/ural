@@ -115,8 +115,8 @@
                                data-to="10000"
                         />
                         <div class="range-slider-values">
-                            <p>От<span class="range-slider-min-value">5000</span></p>
-                            <p>До<span class="range-slider-max-value">10 000 и более</span></p>
+                            <p>От<input type="number" class="range-slider-min-value" value="5000"></p>
+                            <p>До<input type="number" class="range-slider-max-value" value="1000000"></p>
                         </div>
 
                     </li>

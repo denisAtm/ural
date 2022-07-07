@@ -65,11 +65,14 @@ class Reducer extends Model
     public function echoSize(){
         echo $this->size;
     }
+    public function gearRatioRange(){
+        return $this->series->gearRatios()->orderBy('name','asc')->first()->name.'-'.$this->series->gearRatios()->orderBy('name','desc')->first()->name;
+    }
     public function details(){
         echo '<li><span>Тип передачи</span><span>'.$this->category->name.'</span></li>';
         if($this->locationOfAxes!=null) echo '<li><span>Расположение осей</span><span>'.$this->locationOfAxes->name.'</span></li>';
         if($this->numberOfTransferStages!=null) echo '<li><span>Количество ступеней</span><span>'.$this->numberOfTransferStages->name.'</span></li>';
-        if($this->gearRatios->isNotEmpty()) echo '<li><span>Передаточное<br>отношение</span><span>'.$this->gearRatioStart.'-'.$this->gearRatioEnd.'</span></li>';
+        if($this->series->gearRatios->isNotEmpty()) echo '<li><span>Передаточное<br>отношение</span><span>'.$this->gearRatioRange().'</span></li>';
         echo '<li><span>Крутящий момент Н*м</span><span>'.$this->torque.'</span></li>
 <li><span>Масса</span><span>'.$this->weight.'</span></li>';
     }
@@ -96,9 +99,6 @@ class Reducer extends Model
     }
     public function locationOfAxes(){
         return $this->belongsTo(LocationOfAxes::class,'location_of_axes_id');
-    }
-    public function gearRatios(){
-        return $this->belongsToMany(GearRatio::class,'gear_ratio_reducer','reducer_id','gear_ratio_id');
     }
     public function buildOptions(){
         return $this->belongsToMany(BuildOption::class,'build_option_reducer','reducer_id','build_option_id');

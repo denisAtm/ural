@@ -97,6 +97,13 @@ class MotorSeriesCrudController extends CrudController
                 'class'=>'form-group col-md-6'
             ]
         ]);
+        CRUD::addField([
+            'name'=>'gearRatios',
+            'type'=>'select_multiple',
+            'label'=>'Варианты сборки',
+            'entity'=>'gearRatios',
+
+        ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

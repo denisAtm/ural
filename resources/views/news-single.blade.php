@@ -26,23 +26,27 @@
                             <use xlink:href="resources/svgSprites/svgSprite.svg#product-title-arrow"></use>
                         </svg></a>{{$news->name}}}</h1>
                 <div class="news-card__grid">
-                    <time datetime="2022.15.03">{{$news->created_at}}</time>
+                    <time datetime="2022.15.03">{{$news->echoCreatedAt()}}</time>
                     <div class="news-card__main">
                         <img data-aos="fade-right" data-aos-delay="300" data-aos-easing="ease-in-sine" loading="lazy" decoding="async" src="{{asset('storage/images/news/'.$news->image)}}" alt="image" width="328" height="200">
                         {{$news->DescAttribute()}}
                     </div>
                 </div>
                 <div class="news-card__prev-next">
-                    <ul class="news-card__prev" role="list">
-                        <li><a href="/news/{{$prev->slug}}"><strong>Предыдущая<span>новость</span></strong></a></li>
-                        <li><a href="/news/{{$prev->slug}}"><time datetime="{{$prev->created_at}}">{{$prev->created_at}}</time></a></li>
-                        <li><a href="/news/{{$prev->slug}}"><p>{{$prev->title}}</p></a></li>
-                    </ul>
-                    <ul class="news-card__next" role="list">
-                        <li><a href="/news/{{$next->slug}}"><strong>Следующая<span>новость</span></strong></a></li>
-                        <li><a href="/news/{{$next->slug}}"><time datetime="{{$next->created_at}}">{{$next->created_at}}</time></a></li>
-                        <li><a href="/news/{{$next->slug}}"><p>{{$next->title}}</p></a></li>
-                    </ul>
+                    @if($prev)
+                        <ul class="news-card__prev" role="list">
+                            <li><a href="/news/{{$prev->slug}}"><strong>Предыдущая<span>новость</span></strong></a></li>
+                            <li><a href="/news/{{$prev->slug}}"><time datetime="{{$prev->echoCreatedAt()}}">{{$prev->echoCreatedAt()}}</time></a></li>
+                            <li><a href="/news/{{$prev->slug}}"><p>{{$prev->title}}</p></a></li>
+                        </ul>
+                    @endif
+                    @if($next)
+                        <ul class="news-card__next" role="list">
+                            <li><a href="/news/{{$next->slug}}"><strong>Следующая<span>новость</span></strong></a></li>
+                            <li><a href="/news/{{$next->slug}}"><time datetime="{{$next->echoCreatedAt()}}">{{$next->echoCreatedAt()}}</time></a></li>
+                            <li><a href="/news/{{$next->slug}}"><p>{{$next->title}}</p></a></li>
+                        </ul>
+                    @endif
                 </div>
         </section>
     </main>

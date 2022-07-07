@@ -14,30 +14,13 @@
     @include('parts.head',['meta'=>$meta[0]],['motor_meta'=>$motor_meta])
 @endsection
 @section('content')
-    <script>
-        $(document).ready(function (){
-            $('.order-form__select-dropdown-list li').on('click',function(){
-                var select = $(this).data('select')
-                var option = $(this).data('option')
-                $(document).find('select[name="'+select+'"] option[value="'+option+'"]').prop('selected',true)
-            })
-            $('#makeOrder').on('submit',function(){
-                $(this).unbind('submit')
-                $(this).submit()
-            })
-        })
-
-        @if(Session::get('message'))
-            alert('{{Session::get('message')}}')
-        @endif
-
-    </script>
+@include('js.order-conf')
     <main>
         <nav class="breadcrumbs">
             <div class="container">
                 <ul role="list">
                     <li><a href="/" >Главная</a></li>
-                    <li><a href="/catalog">Каталог</a></li>
+                    <li><a href="javascript:history.go(-1)">Каталог</a></li>
                     <li><a href="#">{{$product->name}}</a></li>
                 </ul>
             </div>
@@ -95,21 +78,11 @@
                                 </svg>
                             </summary>
                             <ul role="list">
-                                <li><p>Тип передачи</p><span>{{$product->category->name}}</span></li>
-                                <li><p>Количество передаточных ступеней</p><span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span></li>
-                                <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span></li>
-                                <li><p>Расположение осей</p><span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span></li>
-                                <li><p>Крутящий момент Н*м</p><span>{{($product->torque===null)? 'Не указано':$product->torque}}</span></li>
-                                <li><p>ГОСТ</p></li>
+                                {{$product->details()}}
                             </ul>
                         </details>
                         <ul role="list" class="product-card__list">
-                            <li><p>Тип передачи</p><span>{{$product->category->name}}</span></li>
-                            <li><p>Количество передаточных ступеней</p><span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span></li>
-                            <li><p>Передаточное отношение</p><span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span></li>
-                            <li><p>Расположение осей</p><span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span></li>
-                            <li><p>Крутящий момент Н*м</p><span>{{($product->torque===null)? 'Не указано':$product->torque}}</span></li>
-                            <li><p>ГОСТ</p></li>
+                            {{$product->details()}}
                         </ul>
                         <button class="primary-btn order-btn order-btn--desktop" type="button" @click="orderForm = true">Заказать</button>
                     </aside>
@@ -123,55 +96,11 @@
                     <div class="product-card-info product-card__descr" id="productCardDescr" style="max-height: 100%;">
                         <ul role="list">
                             {{$product->DescAttribute()}}
-{{--                            <li>--}}
-{{--                                <h4>Назначение</h4>--}}
-{{--                                <p>Мотор-редукторы планетарные одно-, двух-, трехступенчатые типа 1МПЗ предназначены для снижения частоты вращения и передачи крутящего момента механизмам общемашиностроительного назначения, (исключая механизмы для подъема груза).</p>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <h4>Условия применения редукторов:--}}
-{{--                                </h4>--}}
-{{--                                <p>--}}
-{{--                                    • режим работы – продолжительный, с продолжительностью работы 8-24 ч/сут;--}}
-{{--                                    • нагрузка постоянная и переменная (в пределах номинального крутящего момента) одного направления и реверсивная;--}}
-{{--                                    • высота над уровнем моря – до 1000 м;--}}
-{{--                                    • внешняя среда – неагрессивная, невзрывоопасная с содержанием непроводящей пыли до 10 мг/мЗ--}}
-{{--                                    • климатическое исполнение У – умеренный климат, категория размещения 3 – эксплуатация в помещениях, где колебания температуры и влажности воздуха существенно меньше, чем на открытом воздухе, рабочая температура окружающей среды от -45°С до +40°С, или Т – тропический климат, категория размещения 2 – эксплуатация под навесом или в помещении, где колебания температуры и влажности воздуха несущественно отличаются от колебаний на открытом воздухе, рабочая температура окружающей среды от -10°С--}}
-{{--                                    до +45°С.--}}
-{{--                                </p>--}}
-{{--                                <p>--}}
-{{--                                    Для комплектации мотор-редукторов применяются асинхронные двигатели серии 4АМ, серии АИР или серии АИ. По согласованию с изготовителем допускается комплектация мотор-редукторов двигателями сельскохозяйственного исполнения 4А...СУ1 и другими специальными двигателями (морского, взрывобезопасного исполнения, постоянного тока, пониженного напряжения).--}}
-{{--                                </p>--}}
-
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <h4>Обозначения</h4>--}}
-{{--                                <p>1МПЗ2 – 40 – 45 – 115 – 111 – УЗ</p>--}}
-{{--                                <p>УЗ – климатическое исполнение и категория размещения--}}
-{{--                                </p>--}}
-{{--                                <p>111 – конструктивное исполнение по способу монтажа</p>--}}
-{{--                                <p>115 – допускаемый крутящий момент на выходном валу Н•м</p>--}}
-{{--                                <p>45 – частота вращения выходного вала, об/мин</p>--}}
-{{--                                <p>40 - радиус расположения сателлитов, мм </p>--}}
-{{--                                <p>МПО2М - тип мотор-редуктора</p>--}}
-{{--                            </li>--}}
                         </ul>
                     </div>
                     <div class="product-card-info product-card__sizes" id="productCardSizes">
                         <ul role="list">
-                            <li>
-                                <h4>Габаритные и присоединительные размеры мотор-редукторов 1МПЗ
-                                    на лапах, мм:</h4>
-                                <ul class="product-card__sizes-list">
-                                    <li><img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-sizes-img.jpg')}}" alt="image" width="550" height="224"></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h4>Габаритные и присоединительные размеры мотор-редукторов 1МПЗ
-                                    на лапах, мм:</h4>
-                                <ul class="product-card__sizes-list">
-                                    <li> <img loading="lazy" decoding="async" src="{{asset('resources/images/product-card-sizes-img-2.jpg')}}" alt="image" width="550" height="224"></li>
-                                </ul>
-                            </li>
+                            {{$product->echoSize()}}
                         </ul>
                     </div>
                     <div class="product-card-info product-card__question-answer" id="productCardQuestionAnswer">
@@ -207,7 +136,7 @@
                                     {!! Captcha::display($attributes) !!}
                                     <button type="submit" class="secondary-btn request-form__submit-btn">Задать вопрос</button>
                                 </fieldset>
-
+                            </form>
                         </div>
                         <nav class="product-card-answers-list">
                             <h3>Ответы</h3>
@@ -274,31 +203,22 @@
                             <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-exit')}}"></use>
                         </svg>
                     </div>
-                    <h3 class="title title-h3">{{$product->name}};</h3>
+                    <h3 class="title title-h3 users-conf-name" >{{$product->name}};</h3>
                     <fieldset>
                         <div class="order-form-controls-group order-form-controls-group--not-last">
                             <h4 class="order-form-controls-group__title"><span>i</span> - передаточное отношение</h4>
-                            <div class="order-form__select-dropdown" x-data="{selectDropdowntext: '', toggleDropdownList: false}">
-                                <div class="order-form__select-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
-                                    <span x-text="selectDropdowntext === '' ? 'Вариант' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">Вариант</span>
-                                    <svg :class="{'active': toggleDropdownList}" width="16" height="16">
-                                        <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
-                                    </svg>
-                                </div>
-                                <select name="передаточное отношение" style="display:none">
-                                    @foreach($product->gearRatios as $ratio)
-                                        <option value="{{$ratio->name}}">{{$ratio->name}}</option>
-                                    @endforeach
-                                </select>
-                                <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
-                                    @foreach($product->gearRatios as $ratio)
-                                        <li @click="selectDropdowntext = '{{$ratio->name}}';toggleNextStep = true" data-select="передаточное отношение" data-option = "{{$ratio->name}}"><span :class="{'active': selectDropdowntext === '{{$ratio->name}}'}" >{{$ratio->name}}</span></li>
-
-                                    @endforeach
-{{--                                    <li @click="selectDropdowntext = 'От 1 до 9';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'От 1 до 9'}">От 1 до 9</span></li>--}}
-{{--                                    <li @click="selectDropdowntext = 'От 1 до 10';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'От 1 до 10'}">От 1 до 10</span></li>--}}
-                                </ul>
-                            </div>
+                            <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">
+                                @foreach($product->series->gearRatios()->orderBy('name','asc')->get() as $option)
+                                    <li :class="{'active': setup === {{$option->name}}}" @click="setup = {{$option->name}};toggleNextStep = true">
+                                        <input type="radio" name="Передаточное отношение" value="{{$option->name}}" id="{{$option->name}}" data-name="{{$option->name}}">
+                                        <label for="{{$option->name}}">{{$option->name}}</label>
+                                    </li>
+                                @endforeach
+                                <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
+                                    <input type="radio" name="Передаточное отношение" value="Не знаю" id="Не знаю" data-name="ХЗ">
+                                    <label for="Не знаю">Не знаю</label>
+                                </li>
+                            </ul>
                         </div>
                         <div class="order-form-controls-group order-form-controls-group--not-last">
                             <h4 class="order-form-controls-group__title">Вал выходной</h4>
@@ -356,7 +276,7 @@
                             <input type="checkbox" name="accept" id="accept">
                             <label for="accept" @click="toggleNextStep = true">Выберите этот вариант, чтобы сразу перейти <br>к оформлению заявки.</label>
                         </div>
-                        <button type="button" class="primary-btn order-form__submit-btn order-form__next-step-btn" :class="{'disable': toggleNextStep === false}" @click="nextStep = true">Следующий шаг</button>
+                        <button type="button" id="nextStep" class="primary-btn order-form__submit-btn order-form__next-step-btn" :class="{'disable': toggleNextStep === false}" @click="nextStep = true">Следующий шаг</button>
                     </fieldset>
                 </div>
                 <div class="order-form__step-page order-form__step-page-2" :class="{'active': nextStep === true}">
@@ -370,7 +290,7 @@
                         </svg>
                     </div>
                     <h2 class="title title-h2">Отправить заявку</h2>
-                    <h3 class="title title-h3">{{$product->name}};</h3>
+                    <h3 class="title title-h3 users-conf-name" >{{$product->name}};</h3>
                     <fieldset>
                         <div class="order-form__product-dropdown" x-data="{selectDropdownList: '',toggleDropdownList: false}">
                             <div class="order-form__product-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
@@ -382,14 +302,10 @@
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
                                 </svg>
                             </div>
-                            <ul role="list" class="order-form__product-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
+                            <ul role="list" id="users-list" class="order-form__product-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                 <li>
                                     <p>Количество передаточных ступеней</p>
                                     <span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span>
-                                </li>
-                                <li>
-                                    <p>Передаточное отношение</p>
-                                    <span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span>
                                 </li>
                                 <li>
                                     <p>Расположение осей</p>
@@ -400,7 +316,7 @@
                                     <p>Крутящий момент Н*м</p>
                                     <span>{{($product->torque===null)? 'Не указано':$product->torque}}</span>
                                 </li>
-                                <li><p>ГОСТ</p></li>
+
                             </ul>
                         </div>
                         <div class="order-form__input-group">

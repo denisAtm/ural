@@ -46,6 +46,9 @@ class Series extends Model
     public function buildOptions(){
         return $this->belongsToMany(BuildOption::class,'build_option_series','series_id','build_option_id');
     }
+    public function gearRatios(){
+        return $this->belongsToMany(GearRatio::class,'gear_ratio_series','series_id','gear_ratio_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

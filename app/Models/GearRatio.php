@@ -52,11 +52,11 @@ class GearRatio extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function reducers(){
-        return $this->belongsToMany(Reducer::class,'gear_ratio_reducer','gear_ratio_id','reducer_id');
+    public function series(){
+        return $this->belongsToMany(Series::class,'gear_ratio_series','gear_ratio_id','series_id');
     }
-    public function motors(){
-        return $this->belongsToMany(GearMotor::class,'gear_ratio_gear_motor','gear_ratio_id','motor_id');
+    public function motorSeries(){
+        return $this->belongsToMany(MotorSeries::class,'gear_ratio_motor_series','gear_ratio_id','series_id');
     }
     /*
     |--------------------------------------------------------------------------

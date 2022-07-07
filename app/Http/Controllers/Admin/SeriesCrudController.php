@@ -94,6 +94,13 @@ class SeriesCrudController extends CrudController
             'entity'=>'buildOptions',
 
         ]);
+        CRUD::addField([
+            'name'=>'gearRatios',
+            'type'=>'select_multiple',
+            'label'=>'Варианты сборки',
+            'entity'=>'gearRatios',
+
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

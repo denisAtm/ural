@@ -17,24 +17,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 @endsection
 @section('content')
-    <script>
-        $(document).ready(function (){
-            $('.order-form__select-dropdown-list li').on('click',function(){
-                var select = $(this).data('select')
-                var option = $(this).data('option')
-                $(document).find('select[name="'+select+'"] option[value="'+option+'"]').prop('selected',true)
-            })
-            $('#makeOrder').on('submit',function(){
-                $(this).unbind('submit')
-                $(this).submit()
-            })
-        })
-
-        @if(Session::get('message'))
-        alert('{{Session::get('message')}}')
-        @endif
-
-    </script>
+@include('js.order-conf')
     <main>
         <nav class="breadcrumbs">
             <div class="container">
@@ -240,7 +223,7 @@
 
         </script>
     </main>
-    <div class="order-form" :class="{'active': orderForm === true}" x-data="{toggleNextStep: false, nextStep: false}">
+    <div class="order-form"  :class="{'active': orderForm === true}" x-data="{toggleNextStep: false, nextStep: false}">
         <div class="order-form__content" data-simplebar>
             <form action="/makeOrder" id="makeOrder" method="post">
                 <input type="hidden" name="product_name" value="{{$product->name}}">
@@ -253,43 +236,35 @@
                             <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-exit')}}"></use>
                         </svg>
                     </div>
-                    <h3 class="title title-h3">{{$product->name}};</h3>
+                    <h3 class="title title-h3 users-conf-name">{{$product->name}};</h3>
                     <fieldset>
+
                         <div class="order-form-controls-group order-form-controls-group--not-last">
                             <h4 class="order-form-controls-group__title"><span>i</span> - передаточное отношение</h4>
-                            <div class="order-form__select-dropdown" x-data="{selectDropdowntext: '', toggleDropdownList: false}">
-                                <div class="order-form__select-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
-                                    <span x-text="selectDropdowntext === '' ? 'Вариант' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">Вариант</span>
-                                    <svg :class="{'active': toggleDropdownList}" width="16" height="16">
-                                        <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
-                                    </svg>
-                                </div>
-                                <select name="передаточное отношение" style="display:none">
-                                    @foreach($product->gearRatios as $ratio)
-                                        <option value="{{$ratio->name}}">{{$ratio->name}}</option>
-                                    @endforeach
-                                </select>
-                                <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
-                                    @foreach($product->gearRatios as $ratio)
-                                        <li @click="selectDropdowntext = '{{$ratio->name}}';toggleNextStep = true" data-select="передаточное отношение" data-option = "{{$ratio->name}}"><span :class="{'active': selectDropdowntext === '{{$ratio->name}}'}">{{$ratio->name}}</span></li>
-
-                                    @endforeach
-{{--                                    <li @click="selectDropdowntext = 'От 1 до 9';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'От 1 до 9'}">От 1 до 9</span></li>--}}
-{{--                                    <li @click="selectDropdowntext = 'От 1 до 10';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'От 1 до 10'}">От 1 до 10</span></li>--}}
-                                </ul>
-                            </div>
+                            <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">
+                                @foreach($product->series->gearRatios()->orderBy('name','asc')->get() as $option)
+                                    <li :class="{'active': setup === {{$option->name}}}" @click="setup = {{$option->name}};toggleNextStep = true">
+                                        <input type="radio" name="Передаточное отношение" value="{{$option->name}}" id="{{$option->name}}" data-name="{{$option->name}}">
+                                        <label for="{{$option->name}}">{{$option->name}}</label>
+                                    </li>
+                                @endforeach
+                                <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
+                                    <input type="radio" name="Передаточное отношение" value="Не знаю" id="Не знаю" data-name="ХЗ">
+                                    <label for="Не знаю">Не знаю</label>
+                                </li>
+                            </ul>
                         </div>
                         <div class="order-form-controls-group order-form-controls-group--not-last">
                             <h4 class="order-form-controls-group__title">Вариант сборки</h4>
                             <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">
                                 @foreach($product->series->buildOptions as $option)
                                 <li {{$product->buildOptions->contains('name',$option->name)? '': 'class=disabled'}} :class="{'active': setup === {{$option->name}}}" @click="setup = {{$option->name}};toggleNextStep = true">
-                                    <input type="radio" name="setup" value="{{$option->name}}" id="{{$option->name}}">
+                                    <input type="radio" name="Вариант сборки" value="{{$option->name}}" id="{{$option->name}}" data-name="{{$option->name}}">
                                     <label for="{{$option->name}}">{{$option->name}}</label>
                                 </li>
                                 @endforeach
                                 <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
-                                    <input type="radio" name="setup" value="Не знаю" id="Не знаю">
+                                    <input type="radio" name="Вариант сборки" value="Не знаю" id="Не знаю" data-name="ХЗ">
                                     <label for="Не знаю">Не знаю</label>
                                 </li>
                             </ul>
@@ -345,7 +320,7 @@
                             <input type="checkbox" name="accept" id="accept">
                             <label for="accept" @click="toggleNextStep = true">Выберите этот вариант, чтобы сразу перейти <br>к оформлению заявки.</label>
                         </div>
-                        <button type="button" class="primary-btn order-form__submit-btn order-form__next-step-btn" :class="{'disable': toggleNextStep === false}" @click="nextStep = true">Следующий шаг</button>
+                        <button type="button" id="nextStep" class="primary-btn order-form__submit-btn order-form__next-step-btn" :class="{'disable': toggleNextStep === false}" @click="nextStep = true">Следующий шаг</button>
                     </fieldset>
                 </div>
                 <div class="order-form__step-page order-form__step-page-2" :class="{'active': nextStep === true}">
@@ -359,7 +334,7 @@
                         </svg>
                     </div>
                     <h2 class="title title-h2">Отправить заявку</h2>
-                    <h3 class="title title-h3">{{$product->name}};</h3>
+                    <h3 class="title title-h3 users-conf-name" >{{$product->name}};</h3>
                     <fieldset>
                         <div class="order-form__product-dropdown" x-data="{selectDropdownList: '',toggleDropdownList: false}">
                             <div class="order-form__product-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
@@ -371,7 +346,7 @@
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
                                 </svg>
                             </div>
-                            <ul role="list" class="order-form__product-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
+                            <ul role="list" class="order-form__product-dropdown-list" id="users-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
                                 <li>
                                     <p>Расположение осей</p>
                                     <span>{{($product->locationOfAxes===null)? 'Не указано':$product->locationOfAxes->name}}</span>
@@ -380,21 +355,7 @@
                                     <p>Количество передаточных ступеней</p>
                                     <span>{{ $product->numberOfTransferStages===null? 'Не указано':$product->numberOfTransferStages->name}}</span>
                                 </li>
-                                <li>
-                                    <p>Передаточное отношение</p>
-                                    <span>{{$product->gearRatios->isEmpty()? 'Не указано':$product->gearRatioStart.'-'.$product->gearRatioEnd}}</span>
-                                </li>
 
-
-                                <li>
-                                    <p>Вариант сборки</p>
-                                    <span>@foreach($product->buildOptions as $option)
-                                              {{$option->name}}{{$loop->last?'':','}}
-                                        @endforeach</span>
-                                </li>
-                                @if($product->gost==1)
-                                    <li><p>ГОСТ</p></li>
-                                @endif
                             </ul>
                         </div>
                         <div class="order-form__input-group">

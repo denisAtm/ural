@@ -73,8 +73,8 @@ class News extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-    public function getCreatedAtAttribute($value){
-        return Carbon::parse($value)->format('d.m.Y');
+    public function echoCreatedAt(){
+        echo Carbon::parse($this->created_at)->format('d.m.Y');
     }
     public function getStatusName(){
         return $this->status->name;

@@ -36,6 +36,9 @@ class MotorSeries extends Model
     public function outputShafts(){
         return $this->belongsToMany(Shaft::class,'output_shaft_motor_series','series_id','shaft_id');
     }
+    public function gearRatios(){
+        return $this->belongsToMany(GearRatio::class,'gear_ratio_motor_series','series_id','gear_ratio_id');
+    }
 
     /*
     |--------------------------------------------------------------------------

@@ -46,7 +46,7 @@ class PageController extends Controller
         if($news->status->id==1){
             $prev = News::where('created_at','<',$news->created_at)->where('status_id',1)->latest('created_at')->first();
             $next = News::where('created_at','>',$news->created_at)->where('status_id',1)->oldest('created_at')->first();
-            return view('news-single',['news'=>$news,'prev'=>$prev,'next'=>$next],['meta'=>$meta]);
+            return view('news-single',['news'=>$news,'prev'=>$prev,'next'=>$next,'meta'=>$meta]);
         }else{
             abort(404);
         }

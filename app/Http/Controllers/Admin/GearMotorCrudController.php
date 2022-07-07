@@ -173,6 +173,19 @@ class GearMotorCrudController extends CrudController
             ],
             'tab'=>'Характеристики'
         ]);
+        CRUD::addField([
+            'name'=>'weight',
+            'type'=>'number',
+            'label'=>'Масса',
+
+            'wrapper'=>[
+                'class'=>'form-group col-md-3'
+            ],
+            'attributes'=>[
+                'required'=>'required'
+            ],
+            'tab'=>'Характеристики'
+        ]);
 
         CRUD::addField([
             'name'=>'torque',
@@ -215,30 +228,8 @@ class GearMotorCrudController extends CrudController
             ],
             'tab'=>'Характеристики'
         ]);
-        CRUD::addField([
-            'name'=>'gearRatioStart',
-            'label'=>'Передаточное отношение от',
-            'type'=>'number',
-            'wrapper'=>[
-                'class'=>'form-group col-md-3'
-            ],
-            'attributes'=>[
-                'placeholder'=>'ОТ'
-            ],
-            'tab'=>'Характеристики'
-        ]);
-        CRUD::addField([
-            'name'=>'gearRatioEnd',
-            'type'=>'number',
-            'label'=>'<br>до',
-            'wrapper'=>[
-                'class'=>'form-group col-md-3'
-            ],
-            'attributes'=>[
-                'placeholder'=>'ДО'
-            ],
-            'tab'=>'Характеристики'
-        ]);
+
+
         CRUD::addField([
             'name'=>'desc',
             'type'=>'summernote',
@@ -332,20 +323,12 @@ class GearMotorCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
+        CRUD::setValidation(GearMotorRequest::class);
         $this->setupCreateOperation();
     }
     public function update(){
         CRUD::setValidation(GearMotorRequest::class);
         $path = 'products';
-        $this->crud->getCurrentEntry()->gearRatios()->detach();
-        $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
-        $gearEnd =$this->crud->getRequest()->request->get('gearRatioEnd');
-        $gearRatio = GearRatio::whereBetween('name',[$gearStart,$gearEnd])->get();
-        foreach($gearRatio as $value){
-
-            $this->crud->getCurrentEntry()->gearRatios()->attach($value);
-        }
-        Log::info($this->crud->getCurrentEntry()->gearRatios);
         $mainImage = $this->crud->getRequest()->file('image');
         $gallery = $this->crud->getRequest()->file('gallery');
 
@@ -371,17 +354,12 @@ class GearMotorCrudController extends CrudController
     {
         CRUD::setValidation(GearMotorRequest::class);
         $path = 'products';
-        $gearStart =$this->crud->getRequest()->request->get('gearRatioStart');
-        $gearEnd =$this->crud->getRequest()->request->get('gearRatioEnd');
-        $gearRatio = GearRatio::whereBetween('name',[$gearStart,$gearEnd])->get();
+
         $mainImage = $this->crud->getRequest()->file('image');
         $gallery = $this->crud->getRequest()->file('gallery');
         $this->crud->getRequest()->request->add(['category_id',5]);
         //Главное изображение
         $response = $this->traitStore();
-        foreach($gearRatio as $value){
-            $this->crud->getCurrentEntry()->gearRatios()->attach($value);
-        }
         if(!empty($mainImage)) {
             $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
         }
