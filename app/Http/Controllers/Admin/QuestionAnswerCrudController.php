@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\QuestionAnswerRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Backpack\CRUD\app\Library\Widget;
 
 /**
  * Class QuestionAnswerCrudController
@@ -82,7 +83,7 @@ class QuestionAnswerCrudController extends CrudController
             ]
         ]);
         CRUD::field('product_id');
-
+        Widget::add()->type('script')->content('js/answer.js');
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

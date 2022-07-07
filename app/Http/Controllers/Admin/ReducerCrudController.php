@@ -420,8 +420,9 @@ class ReducerCrudController extends CrudController
 //        }
         $data=['name'=>$request->name,'email'=>$request->email,'text'=>$request->textarea];
         Mail::send('test', $data, function ($m) {
-            $m->from('uralredutor@yandex.ru', 'Sender');
-            $m->to(getenv('MAIL_TO'), 'Receiver')->subject('Тестовое письмо с HTML');
+            $email ="uralredutor@yandex.ru";
+            $m->from($email);
+            $m->to($email);
         });
         return back()->with('Всё');
 
