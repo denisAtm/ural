@@ -257,13 +257,6 @@ class ReducerCrudController extends CrudController
             'tab'=>'Сео'
         ]);
 
-
-
-
-
-
-
-
         CRUD::addField([
             'name'=>'gearRatioEnd',
             'type'=>'number',
@@ -282,29 +275,6 @@ class ReducerCrudController extends CrudController
             'label'=>'Крутящий момент Н*м',
             'tab'=>'Характеристики'
         ]);
-//        CRUD::addField([
-//            'name'=>'frontShafts',
-//            'type'=>'select_multiple',
-//            'label'=>'Передний вал',
-//            'entity'=>'frontShafts',
-//            'attribute' => 'name',
-//            'wrapper'=>[
-//                'class'=>'form-group '
-//            ],
-//            'options'   => (function ($entry) {
-//                dd($entry);
-//            }),
-//        ]);
-//        CRUD::addField([
-//            'name'=>'outputShafts',
-//            'type'=>'select_multiple',
-//            'label'=>'Выходной вал',
-//            'entity'=>'outputShafts',
-//            'attribute' => 'name',
-//            'wrapper'=>[
-//                'class'=>'form-group form-group '
-//            ]
-//        ]);
 
         CRUD::addField([
             'name'=>'desc',
@@ -360,6 +330,7 @@ class ReducerCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+
     }
 
     public function update(){
