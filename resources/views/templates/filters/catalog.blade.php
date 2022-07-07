@@ -21,7 +21,7 @@
             @foreach($attr1 as $attr)
                 <li>
                     <label>
-                        <input type="radio" value="{{$attr->id}}" name="typeOfTransmission" {{isset($_GET['typeOfTransmission'])?$_GET['typeOfTransmission']==$attr->id?'checked':'':''}}>
+                        <input  type="radio" style="display: none" value="{{$attr->id}}" name="typeOfTransmission" {{isset($_GET['typeOfTransmission'])?$_GET['typeOfTransmission']==$attr->id?'checked':'':''}}>
                         <button type="button" aria-label="button" @click="filter !=={{$loop->iteration}} ?filter = {{$loop->iteration}}: filter = null" :class="{'active': filter === {{$loop->iteration}}}" >{{$attr->name}}</button>
                     </label>
                 </li>
@@ -34,6 +34,7 @@
         <div class="filter-dropdown__top" @click="filterDropdown !==2 ? filterDropdown = 2: filterDropdown = null" :class="{'active': filterDropdown === 2}">
             <p>Расположение осей</p>
             <ul class="filter-dropdown__icon-list" role="list">
+
                 <svg class="filter-dropdown__clear-list-icon" width="16" height="16" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" @click="filter = ''" :class="{'active': filter !== ''}">
                     <path d="M30.0003 4.66666C30.3685 4.29847 30.9655 4.29847 31.3337 4.66666C31.7018 5.03485 31.7018 5.6318 31.3337 5.99998L6.00055 31.3331C5.63236 31.7013 5.03541 31.7013 4.66723 31.3331C4.29904 30.9649 4.29904 30.368 4.66722 29.9998L30.0003 4.66666Z" fill="#07012E"/>
                     <path d="M31.3333 29.9998C31.7015 30.368 31.7015 30.965 31.3333 31.3332C30.9652 31.7014 30.3682 31.7014 30 31.3332L4.66692 6.00006C4.29873 5.63187 4.29873 5.03493 4.66692 4.66674C5.03511 4.29855 5.63205 4.29855 6.00024 4.66674L31.3333 29.9998Z" fill="#07012E"/>
@@ -48,7 +49,7 @@
             @foreach($attr4 as $attr)
                 <li>
                     <label>
-                        <input type="radio" value="{{$attr->id}}" name="locationOfAxes" {{isset($_GET['locationOfAxes'])?$_GET['locationOfAxes']==$attr->id?'checked':'':''}}>
+                        <input type="radio" style="display: none" value="{{$attr->id}}" name="locationOfAxes" {{isset($_GET['locationOfAxes'])?$_GET['locationOfAxes']==$attr->id?'checked':'':''}}>
                         <button type="button" aria-label="button" @click="filter !=={{$loop->iteration}} ?filter = {{$loop->iteration}}: filter = null" :class="{'active': filter === {{$loop->iteration}}}">{{$attr->name}}</button>
                     </label>
                 </li>

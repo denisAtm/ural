@@ -188,11 +188,15 @@ $(document).ready(function(){
     //
     // let updateRangeSliderValues = $(".js-range-slider-torque").data("ionRangeSlider");
 
-    $('.filter-dropdown__clear-list-icon--range-slider').on('click',()=>{
-        updateRangeSliderValues.update({
-            from: 5000,
-            to:1000000
+    $('.filter-dropdown__clear-list-icon--range-slider').on('click' ,function(){
+        var range = $(this).closest('.filter-dropdown').find('.js-range-slider')
+        var from = $(this).closest('li').find('.js-range-slider').data('min')
+        var to = $(this).closest('li').find('.js-range-slider').data('max')
+        range.data("ionRangeSlider").update({
+            from: from,
+            to:to
         });
+        $(this).removeClass('active')
     })
     $('input.range-slider-min-value').on('change',function(){
         console.log($(this).val())
