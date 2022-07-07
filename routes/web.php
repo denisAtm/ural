@@ -30,6 +30,7 @@ Route::get('/catalog/{catSlug}/{slug}',[PageController::class,'single'])->middle
 
 Route::post('/search/catalog',[PageController::class,'search']);
 
+
 Route::get('/contacts',[PageController::class,'contacts']);
 
 Route::post('/send-form/reducer',[\App\Http\Controllers\Admin\ReducerCrudController::class,'sendForm']);
