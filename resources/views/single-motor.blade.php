@@ -140,6 +140,7 @@
                         </div>
                         <nav class="product-card-answers-list">
                             <h3>Ответы</h3>
+                            {{dd($product->questions)}}
                             <ul role="list">
                                 @foreach($quest as $one)
                                     @if($one->product_id == $product->category->id)
