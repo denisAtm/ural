@@ -137,7 +137,7 @@
                                         <label for="name">Ваше имя</label>
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="text" name="name" id="name" placeholder="Иван">
-                                            <input type="hidden" name="id" value="{{$product->category->id}}">
+                                            <input type="hidden" name="id" value="{{$product->id}}">
 {{--                                            <svg class="icon-error" width="28" height="28">--}}
 {{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>--}}
 {{--                                            </svg>--}}

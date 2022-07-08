@@ -403,6 +403,7 @@ class ReducerCrudController extends CrudController
         return $response;
     }
     public function sendForm(Request $request){
+//        dd($request->id);
         $product = Reducer::find($request->id);
 
 //        $validate = Validator::make(Input::all(), [

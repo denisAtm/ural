@@ -119,7 +119,7 @@
                                         <label for="name">Ваше имя</label>
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="text" name="name" id="name" placeholder="Иван">
-                                            <input type="hidden" name="id" value="{{$product->category->id}}"></div>
+                                            <input type="hidden" name="id" value="{{$product->id}}"></div>
                                     </div>
                                     <div class="request-form__input-group">
                                         <label for="email">Ваш e-mail</label>
