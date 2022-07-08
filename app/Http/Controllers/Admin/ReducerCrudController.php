@@ -15,6 +15,7 @@ use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class ReducerCrudController
@@ -73,6 +74,32 @@ class ReducerCrudController extends CrudController
          * - CRUD::column('price')->type('number');
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
          */
+    }
+
+    protected function setupShowOperation(){
+        CRUD::addColumn([
+            'name'=>'name',
+            'label'=>'Название',
+        ]);
+        CRUD::addColumn([
+            'name'=>'category_id',
+            'type'=>'select',
+            'label'=>'Тип редуктора',
+            'entity'=>'category'
+        ]);
+        CRUD::addColumn([
+            'name'=>'series_id',
+            'type'=>'select',
+            'label'=>'Серия',
+            'entity'=>'series'
+        ]);
+        CRUD::addColumn([
+            'name'=>'desc',
+            'label'=>'Описание',
+            'type'=>'model_function',
+            'function_name'=>'DescAttribute'
+        ]);
+
     }
 
     /**
@@ -197,18 +224,6 @@ class ReducerCrudController extends CrudController
 //            ],
 //            'tab'=>'Характеристики',
 //        ]);
-        CRUD::addField([
-           'name'=>'gearRatioStart',
-           'label'=>'Передаточное отношение от',
-           'type'=>'number',
-           'wrapper'=>[
-               'class'=>'form-group col-md-3'
-           ],
-           'attributes'=>[
-               'placeholder'=>'ОТ'
-           ],
-           'tab'=>'Характеристики'
-        ]);
 
 
         CRUD::addField([
@@ -257,18 +272,6 @@ class ReducerCrudController extends CrudController
             'tab'=>'Сео'
         ]);
 
-        CRUD::addField([
-            'name'=>'gearRatioEnd',
-            'type'=>'number',
-            'label'=>'<br>до',
-            'wrapper'=>[
-                'class'=>'form-group col-md-3'
-            ],
-            'attributes'=>[
-                'placeholder'=>'ДО'
-            ],
-            'tab'=>'Характеристики'
-        ]);
         CRUD::addField([
             'name'=>'torque',
             'type'=>'text',
@@ -344,7 +347,10 @@ class ReducerCrudController extends CrudController
             $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
         }
         if(!empty($gallery)){
-
+            foreach ($this->crud->entry->images as $image){
+                Storage::delete('/public/images/products/'.$image->name);
+            }
+            $this->crud->entry->images()->delete();
             foreach ($gallery as $file){
                 $storeFile = Reducer::findOrFail($this->crud->entry->id);
                 $storeFile->name = StoreImage::storeImage($file, $path,false,true);

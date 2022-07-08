@@ -80,7 +80,9 @@ class OrderCrudController extends CrudController
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
          */
     }
-
+    protected function setupShowOperation(){
+        $this->setupListOperation();
+    }
     /**
      * Define what happens when the Create operation is loaded.
      *

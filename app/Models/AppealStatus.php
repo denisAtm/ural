@@ -13,4 +13,7 @@ class AppealStatus extends Model
     public function orders(){
         return $this->hasMany(Order::class,'status','id');
     }
+    public function questions(){
+        return $this->hasMany(QuestionAnswer::class,'status_id','id');
+    }
 }

@@ -17,4 +17,10 @@ class QuestionAnswer extends Model
     public function productable(){
         return $this->morphTo();
     }
+    public function status(){
+        return $this->belongsTo(AppealStatus::class);
+    }
+    public function echoProductName(){
+        return $this->productable()->name;
+    }
 }

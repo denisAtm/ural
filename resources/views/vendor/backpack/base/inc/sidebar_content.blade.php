@@ -28,10 +28,10 @@
                 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('motor-series') }}'><i class='nav-icon la la-question'></i> Серии мотор-редукторов</a></li>
             </ul>
         </li>
-        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('categories') }}'><i class='nav-icon la  la-cog fa-spin'></i> Типы редукторов</a></li>
         <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-cogs  la-lg"></i> Аттрибуты моторов</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-cogs  la-lg"></i> Аттрибуты </a>
             <ul class="nav-dropdown-items">
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('categories') }}'><i class='nav-icon la  la-cog fa-spin'></i> Типы редукторов</a></li>
                 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('type-of-transmission') }}'><i class='nav-icon la la-question'></i>Типы передачи</a></li>
                 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('number-of-transfer-stages') }}'><i class='nav-icon la la-question'></i>Количество передаточных ступеней</a></li>
                 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gear-ratio') }}'><i class='nav-icon la la-question'></i> Передаточное отношение</a></li>

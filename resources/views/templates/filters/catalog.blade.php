@@ -75,16 +75,21 @@
         </div>
         <ul role="list" class="filter-dropdown__list" id="filter3" x-ref="selectDropdownList" x-bind:style="filterDropdown === 3 ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''">
             <li>
+                @if(request()->has('gearRatio'))
+                    @php
+                        $gearRatio = explode(';',request()->get('gearRatio'));
+                    @endphp
+                @endif
                 <input type="text" class="js-range-slider" name="gearRatio" value=""
                        data-type="double"
                        data-min="5000"
                        data-max="100000"
-                       data-from="5000"
-                       data-to="100000"
+                       data-from="{{isset($gearRatio)?$gearRatio[0]:'5000'}}"
+                       data-to="{{isset($gearRatio)?$gearRatio[1]:'1000000'}}"
                 />
                 <div class="range-slider-values">
-                    <p>От<input type="number" class="range-slider-min-value" value="5000"></p>
-                    <p>До<input type="number" class="range-slider-max-value" value="1000000"></p>
+                    <p>От<input type="number" class="range-slider-min-value" value="{{isset($gearRatio)?$gearRatio[0]:'5000'}}"></p>
+                    <p>До<input type="number" class="range-slider-max-value" value="{{isset($gearRatio)?$gearRatio[1]:'1000000'}}"></p>
                 </div>
 
             </li>
@@ -108,16 +113,22 @@
                 </div>
                 <ul role="list" class="filter-dropdown__list" id="filter4" x-ref="selectDropdownList" x-bind:style="filterDropdown === 4 ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''">
                     <li>
+                        @if(request()->has('torque'))
+                            @php
+                                $torque = explode(';',request()->get('torque'));
+                            @endphp
+                        @endif
                         <input type="text" class="js-range-slider" name="torque" value=""
                                data-type="double"
                                data-min="5000"
                                data-max="10000"
-                               data-from="5000"
-                               data-to="10000"
+                               data-from="{{isset($torque)?$torque[0]:'5000'}}"
+                               data-to="{{isset($torque)?$torque[1]:'1000000'}}"
+
                         />
                         <div class="range-slider-values">
-                            <p>От<input type="number" class="range-slider-min-value" id="range-slider-min-value-torque" value="5000"></p>
-                            <p>До<input type="number" class="range-slider-max-value" id="range-slider-max-value-torque" value="1000000"></p>
+                            <p>От<input type="number" class="range-slider-min-value" id="range-slider-min-value-torque" value="{{isset($torque)?$torque[0]:'5000'}}"></p>
+                            <p>До<input type="number" class="range-slider-max-value" id="range-slider-max-value-torque" value="{{isset($torque)?$torque[1]:'1000000'}}"></p>
                         </div>
 
                     </li>
@@ -130,7 +141,7 @@
         </svg>Удалить фильтры</a>
 </li>
     <li>
-        <button type="submit" class="filter__submit-btn">Применить</button>
+        <button type="button" class="filter__submit-btn">Применить</button>
     </li>
     </form>
 </ul>

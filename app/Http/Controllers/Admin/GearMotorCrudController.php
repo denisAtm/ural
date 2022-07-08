@@ -13,6 +13,7 @@ use Backpack\CRUD\app\Library\Widget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class GearMotorCrudController
@@ -314,12 +315,39 @@ class GearMotorCrudController extends CrudController
          */
     }
 
+    protected function setupShowOperation(){
+        CRUD::addColumn([
+            'name'=>'name',
+            'label'=>'Название',
+        ]);
+        CRUD::addColumn([
+            'name'=>'category_id',
+            'type'=>'select',
+            'label'=>'Тип редуктора',
+            'entity'=>'category'
+        ]);
+        CRUD::addColumn([
+            'name'=>'series_id',
+            'type'=>'select',
+            'label'=>'Серия',
+            'entity'=>'series'
+        ]);
+        CRUD::addColumn([
+            'name'=>'desc',
+            'label'=>'Описание',
+            'type'=>'model_function',
+            'function_name'=>'DescAttribute'
+        ]);
+
+    }
+
     /**
      * Define what happens when the Update operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */
+
     protected function setupUpdateOperation()
     {
         CRUD::setValidation(GearMotorRequest::class);
@@ -363,8 +391,12 @@ class GearMotorCrudController extends CrudController
             $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
         }
         if(!empty($gallery)){
+            foreach ($this->crud->entry->images as $image){
+                Storage::delete('/public/images/products/'.$image->name);
+            }
+            $this->crud->entry->images()->delete();
             foreach ($gallery as $file){
-                $storeFile = Reducer::findOrFail($this->crud->entry->id);
+                $storeFile = GearMotor::findOrFail($this->crud->entry->id);
                 $storeFile->name = StoreImage::storeImage($file, $path,false,true);
                 $this->crud->entry->images()->create(['name'=>$storeFile->name]);
             }

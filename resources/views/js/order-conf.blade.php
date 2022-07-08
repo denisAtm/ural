@@ -1,5 +1,7 @@
 <script>
     $(document).ready(function (){
+
+
         var details = {};
         var name = {
             name:$('form#makeOrder input[name="product_name"]').val()

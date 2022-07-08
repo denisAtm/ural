@@ -73,10 +73,14 @@ class PageController extends Controller
         $attr3 = GearRatio::get();
         $attr4 = LocationOfAxes::get();
         $category = Categories::where('slug',$slug)->first();
-        $products = Reducer::filter($filter)->where('category_id',$category->id)->paginate(6);
-        if($products->isEmpty()){
-            $products = GearMotor::filter($filter)->where('category_id',$category->id)->paginate(6);
-        }
+        $reducers = Reducer::filter($filter)->where('category_id',$category->id)->get();
+        $motors = GearMotor::filter($filter)->where('category_id',$category->id)->get();
+        $products = $reducers->merge($motors);
+//        dd($products);
+        $products = $products->paginate(6);
+//        if($products->isEmpty()){
+//            $products = GearMotor::filter($filter)->where('category_id',$category->id)->paginate(6);
+//        }
         return view('catalog',compact(['attr1','attr2','attr3','attr4','slug','products','meta','category']));
     }
 

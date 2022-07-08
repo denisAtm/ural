@@ -124,14 +124,6 @@
                                                 <img src="{{asset('storage/images/products/'.$product->image)}}" loading="lazy" decoding="async" alt="image" width="328" height="264">
                                             </picture>
                                             <ul class="catalog-card__descr catalog-card__descr--pos-abs">
-{{--                                                <li><span>Тип передачи</span><span>{{$product->category->name}}</span></li>--}}
-{{--                                                <li><span>Передаточные ступени</span><span>{{$product->numberOfTransferStages->name}}</span></li>--}}
-{{--                                                <li><span>Передаточное<br>отношение</span><span>{{$product->series->getGearRatio()}}</span></li>--}}
-{{--                                                <li><span>Расположение осей</span><span>{{$product->locationOfAxes->name}}</span></li>--}}
-{{--                                                <li><span>Климатическое<br>исполнение</span><span>{{$product->climatic_version}}--}}
-{{--                            </span></li>--}}
-{{--                                                <li><span>Масса</span><span>от 1 до 100--}}
-{{--                            </span></li>--}}
                                                 {{$product->details()}}
                                             </ul>
                                         </div>
@@ -144,14 +136,7 @@
                                     </div>
                                     <div class="catalog-card__aside">
                                         <ul class="catalog-card__descr">
-                                            <li><span>Тип передачи</span><span>Планетарный</span></li>
-                                            <li><span>Передаточные ступени</span><span>4</span></li>
-                                            <li><span>Передаточное<br> отношение</span><span>от 1 до 80</span></li>
-                                            <li><span>Расположение осей</span><span>Соосные</span></li>
-                                            <li><span>Климатическое<br> исполнение</span><span>У, Т
-                      </span></li>
-                                            <li><span>Масса</span><span>от 1 до 100
-                      </span></li>
+                                            {{$product->details()}}
                                         </ul>
                                     </div>
                                 </figure>
@@ -167,6 +152,9 @@
         </section>
         <script>
 $(document).ready(function(){
+    $('.filter__submit-btn').on('click',function(){
+        $(this).closest('form').submit()
+    })
     $(".js-range-slider").ionRangeSlider();
 
 

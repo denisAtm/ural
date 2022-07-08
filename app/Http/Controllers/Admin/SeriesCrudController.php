@@ -97,7 +97,7 @@ class SeriesCrudController extends CrudController
         CRUD::addField([
             'name'=>'gearRatios',
             'type'=>'select_multiple',
-            'label'=>'Варианты сборки',
+            'label'=>'Передаточные отношения',
             'entity'=>'gearRatios',
 
         ]);
