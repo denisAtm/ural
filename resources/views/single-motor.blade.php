@@ -120,6 +120,9 @@
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="text" name="name" id="name" placeholder="Иван">
                                             <input type="hidden" name="id" value="{{$product->id}}"></div>
+                                        <?php
+                                        echo'<input type="hidden" name="link" value="http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'"'
+                                        ?>
                                     </div>
                                     <div class="request-form__input-group">
                                         <label for="email">Ваш e-mail</label>
@@ -140,11 +143,9 @@
                         </div>
                         <nav class="product-card-answers-list">
                             <h3>Ответы</h3>
-                            {{dd($product->questions)}}
                             <ul role="list">
-                                @foreach($quest as $one)
-                                    @if($one->product_id == $product->category->id)
-                                        @if($one->status == 1 && !empty($one->answer))
+                                @foreach($product->questions as $one)
+                                    @if($one->status == 1 && !empty($one->answer))
                                 <li>
                                     <div class="product-card-answers-list__top">
                                         <p>{{$one->name}}</p>
@@ -158,7 +159,6 @@
                                         <span> {{$one->answer}}</span>
                                     </div>
                                 </li>
-                                    @endif
                                     @endif
                                 @endforeach
                             </ul>

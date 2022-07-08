@@ -138,6 +138,9 @@
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="text" name="name" id="name" placeholder="Иван">
                                             <input type="hidden" name="id" value="{{$product->id}}">
+                                        <?php
+                                           echo'<input type="hidden" name="link" value="http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'"'
+                                            ?>
 {{--                                            <svg class="icon-error" width="28" height="28">--}}
 {{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>--}}
 {{--                                            </svg>--}}
@@ -174,7 +177,7 @@
                             <h3>Ответы</h3>
                             <ul role="list">
 
-                                @foreach($quest as $one)
+                                @foreach($product->questions as $one)
                                     @if($one->status == 1 && !empty($one->answer))
                                     <li>
                                         <div class="product-card-answers-list__top">
