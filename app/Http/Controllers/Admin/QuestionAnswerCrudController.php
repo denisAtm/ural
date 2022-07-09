@@ -31,6 +31,7 @@ class QuestionAnswerCrudController extends CrudController
         CRUD::setModel(\App\Models\QuestionAnswer::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/question-answer');
         CRUD::setEntityNameStrings('Вопрос ответ', 'Вопрос ответ');
+        CRUD::removeButton('create');
 
     }
 
@@ -46,7 +47,7 @@ class QuestionAnswerCrudController extends CrudController
         CRUD::addColumn(['name' => 'email', 'type' => 'text','label'=>'Почта']);
         CRUD::addColumn(['name' => 'question', 'type' => 'text','label'=>'Вопрос']);
         CRUD::addColumn(['name' => 'answer', 'type' => 'text','label'=>'Ответ']);
-        CRUD::addColumn(['name' => 'status', 'type' => 'number','label'=>'Статус']);
+        CRUD::addColumn(['name' => 'status_id', 'type' => 'select','label'=>'Статус','entity'=>'status','attribute'=>'name']);
         CRUD::addColumn(['name' => 'link', 'type' => 'text','label'=>'Страница']);
 //        CRUD::addColumn([
 //            'name'=>'name',
@@ -54,9 +55,7 @@ class QuestionAnswerCrudController extends CrudController
 //            'label'=>'Тип редуктора',
 //            'entity'=>'questions'
 //        ]);
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
-
+        CRUD::addButtonFromModelFunction('line', 'open_uri', 'openUri', 'beginning');
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -74,19 +73,36 @@ class QuestionAnswerCrudController extends CrudController
     {
         CRUD::setValidation(QuestionAnswerRequest::class);
 
-        CRUD::field('name');
-        CRUD::field('email');
-        CRUD::field('question');
         CRUD::addField([
-            'name'=>'status',
-            'label'=>'Статус',
-            'attributes' => [
-                'min'    => '0',
-                'max'    => '1',
+            'type'=>'view',
+            'view'=>'vendor.backpack.custom-views.order-details',
+            'name'=>'name',
+            'label'=>'ФИО',
+            'attributes'=>[
+                'readonly'=>'readonly'
             ]
         ]);
-        CRUD::field('product_id');
-        CRUD::field('answer')->events([
+        CRUD::addField([
+            'type'=>'view',
+            'view'=>'vendor.backpack.custom-views.order-details',
+            'name'=>'email',
+            'label'=>'Email',
+            'attributes'=>[
+                'readonly'=>'readonly'
+            ]
+        ]);
+
+        CRUD::addField([
+            'type'=>'view',
+            'view'=>'vendor.backpack.custom-views.order-details',
+            'name'=>'question',
+            'label'=>'Вопрос',
+            'attributes'=>[
+                'readonly'=>'readonly'
+            ]
+        ]);
+
+        CRUD::field('answer')->label('Добавит ответь')->type('textarea')->events([
             'updating' => function ($entry) {
                 if (!empty($entry->answer)){
                     $answer_email = $entry->email;
@@ -98,6 +114,14 @@ class QuestionAnswerCrudController extends CrudController
                 }
             },
 
+        ]);
+        CRUD::addField([
+            'name'=>'status',
+            'label'=>'Статус',
+            'entity'=>'status',
+            'type'=>'select',
+            'model'=>'App\Models\AppealStatus',
+            'attribute'=>'name'
         ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -117,6 +141,33 @@ class QuestionAnswerCrudController extends CrudController
 
 
         $this->setupCreateOperation();
+
+    }
+    protected function setupShowOperation()
+    {
+        CRUD::addColumn([
+            'name'=>'name',
+            'label'=>'ФИО',
+        ]);
+        CRUD::addColumn([
+            'name'=>'email',
+            'label'=>'Email',
+        ]);
+        CRUD::addColumn([
+            'name'=>'question',
+            'label'=>'Вопрос',
+        ]);
+        CRUD::addColumn([
+            'name'=>'answer',
+            'label'=>'Ответ',
+        ]);
+        CRUD::addColumn([
+            'name'=>'status',
+            'label'=>'Статус',
+            'type'=>'select',
+            'entity'=>'status',
+            'attribute'=>'name'
+        ]);
 
     }
 }

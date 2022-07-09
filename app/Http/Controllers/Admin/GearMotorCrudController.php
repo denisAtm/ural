@@ -13,6 +13,7 @@ use Backpack\CRUD\app\Library\Widget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class GearMotorCrudController
@@ -81,7 +82,7 @@ class GearMotorCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(GearMotorRequest::class);
-
+        if(backpack_user()->hasRole(['Админ','Контент-Менеджер'])){
         CRUD::addField([
             'name'=>'name',
             'label'=>'Название',
@@ -209,8 +210,11 @@ class GearMotorCrudController extends CrudController
             'name'=>'paws',
             'type'=>'select_multiple',
             'label'=>'Монтажное положение на лапах',
-            'entity'=>'paws',
+            'entity'=>'series.paws',
             'attribute' => 'name',
+            'subfields'=>[
+                'name'=>'name'
+            ],
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
             ],
@@ -220,12 +224,12 @@ class GearMotorCrudController extends CrudController
             'name'=>'flanges',
             'type'=>'select_multiple',
             'label'=>'Монтажное положение на фланце',
-            'entity'=>'flanges',
+            'entity'=>'series.flanges',
             'attribute' => 'name',
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
             ],
-            'tab'=>'Характеристики'
+            'tab'=>'Характеристики',
         ]);
 
 
@@ -245,6 +249,49 @@ class GearMotorCrudController extends CrudController
                 ]],
             'tab'=>'Характеристики'
         ]);
+            CRUD::addField([
+                'name'=>'size',
+                'type'=>'summernote',
+                'label'=>'Размеры',
+                'options' => [
+                    'toolbar' => [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen']]
+                    ]],
+                'tab'=>'Характеристики'
+            ]);
+        }
+        if(backpack_user()->hasRole(['СЕО'])){
+            CRUD::addField([
+                'name'=>'name',
+                'label'=>'Название',
+                'type'=>'text',
+                'wrapper'=>[
+                    'class'=>'form-group col-md-6'
+                ],
+                'attributes'=>[
+                    'readonly'=>'readonly'
+                ],
+                'tab'=>'Сео',
+            ]);
+            CRUD::addField([
+                'name'=>'slug',
+                'label'=>'Уникальная ссылка',
+                'type'=>'text',
+                'wrapper'=>[
+                    'class'=>'form-group col-md-6'
+                ],
+                'attributes'=>[
+                    'readonly'=>'readonly'
+                ],
+                'tab'=>'Сео',
+            ]);
+        }
         CRUD::addField([
             'name'=>'title',
             'label'=>'Заголовок',
@@ -290,22 +337,7 @@ class GearMotorCrudController extends CrudController
             ],
             'tab'=>'Сео'
         ]);
-        CRUD::addField([
-            'name'=>'size',
-            'type'=>'summernote',
-            'label'=>'Размеры',
-            'options' => [
-                'toolbar' => [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen']]
-                ]],
-            'tab'=>'Характеристики'
-        ]);
+
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -314,15 +346,41 @@ class GearMotorCrudController extends CrudController
          */
     }
 
+    protected function setupShowOperation(){
+        CRUD::addColumn([
+            'name'=>'name',
+            'label'=>'Название',
+        ]);
+        CRUD::addColumn([
+            'name'=>'category_id',
+            'type'=>'select',
+            'label'=>'Тип редуктора',
+            'entity'=>'category'
+        ]);
+        CRUD::addColumn([
+            'name'=>'series_id',
+            'type'=>'select',
+            'label'=>'Серия',
+            'entity'=>'series'
+        ]);
+        CRUD::addColumn([
+            'name'=>'desc',
+            'label'=>'Описание',
+            'type'=>'model_function',
+            'function_name'=>'DescAttribute'
+        ]);
+
+    }
+
     /**
      * Define what happens when the Update operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */
+
     protected function setupUpdateOperation()
     {
-        CRUD::setValidation(GearMotorRequest::class);
         $this->setupCreateOperation();
     }
     public function update(){
@@ -363,8 +421,12 @@ class GearMotorCrudController extends CrudController
             $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
         }
         if(!empty($gallery)){
+            foreach ($this->crud->entry->images as $image){
+                Storage::delete('/public/images/products/'.$image->name);
+            }
+            $this->crud->entry->images()->delete();
             foreach ($gallery as $file){
-                $storeFile = Reducer::findOrFail($this->crud->entry->id);
+                $storeFile = GearMotor::findOrFail($this->crud->entry->id);
                 $storeFile->name = StoreImage::storeImage($file, $path,false,true);
                 $this->crud->entry->images()->create(['name'=>$storeFile->name]);
             }

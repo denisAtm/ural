@@ -51,9 +51,9 @@ class Order extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-    public function getContentAttribute($value){
-        return unserialize($value);
-    }
+//    public function getContentAttribute($value){
+//        return unserialize($value);
+//    }
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

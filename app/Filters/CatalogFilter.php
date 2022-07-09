@@ -24,7 +24,7 @@ class CatalogFilter extends QueryFilter
     public function torque($value = null){
         return $this->builder->when($value, function($query) use($value){
             $value = explode(';',$value);
-            $query->whereBetween('torque', [$value[0],$value[1]]);
+            $query->whereBetween('torque', [(int)$value[0],(int)$value[1]]);
         });
 
     }

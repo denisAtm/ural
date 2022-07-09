@@ -25,7 +25,15 @@ class GearMotorRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+             'name' => 'required|min:5|max:255',
+             'slug' => 'required|min:5|max:255',
+             'torque' => 'required',
+             'weight' => 'required',
+             'image' => 'required',
+             'locationOfAxes' => 'required',
+             'numberOfTransferStages' => 'required',
+             'desc' => 'required',
+             'size' => 'required',
         ];
     }
 
@@ -37,7 +45,7 @@ class GearMotorRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+
         ];
     }
 
@@ -49,7 +57,15 @@ class GearMotorRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'name.required' => 'Это обязательное поле',
+            'slug.required' => 'Проверьте название',
+            'torque.required' => 'Это обязательное поле',
+            'weight.required' => 'Это обязательное поле',
+            'image.required' => 'Загрузите хотя бы одно изображение',
+            'locationOfAxes.required' => 'Заполните расположение осей',
+            'numberOfTransferStages.required' => 'Заполните количество передаточных ступней',
+            'desc.required' => 'Напишите описание',
+            'size.required' => 'Хагрузите чертежи ',
         ];
     }
 }

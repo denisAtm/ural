@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('output_shaft_motor_series', function (Blueprint $table) {
             $table->id();
             $table->foreignId('shaft_id')->constrained('shafts')->onDelete('cascade');
-            $table->foreignId('series_id')->constrained('series')->onDelete('cascade');
+            $table->foreignId('series_id')->constrained('motor_series')->onDelete('cascade');
             $table->timestamps();
         });
     }

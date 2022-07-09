@@ -15,6 +15,7 @@ use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class ReducerCrudController
@@ -75,6 +76,32 @@ class ReducerCrudController extends CrudController
          */
     }
 
+    protected function setupShowOperation(){
+        CRUD::addColumn([
+            'name'=>'name',
+            'label'=>'Название',
+        ]);
+        CRUD::addColumn([
+            'name'=>'category_id',
+            'type'=>'select',
+            'label'=>'Тип редуктора',
+            'entity'=>'category'
+        ]);
+        CRUD::addColumn([
+            'name'=>'series_id',
+            'type'=>'select',
+            'label'=>'Серия',
+            'entity'=>'series'
+        ]);
+        CRUD::addColumn([
+            'name'=>'desc',
+            'label'=>'Описание',
+            'type'=>'model_function',
+            'function_name'=>'DescAttribute'
+        ]);
+
+    }
+
     /**
      * Define what happens when the Create operation is loaded.
      *
@@ -84,6 +111,7 @@ class ReducerCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(ReducerRequest::class);
+        if(backpack_user()->hasRole(['Админ','Контент-Менеджер'])){
 
         CRUD::addField([
             'name'=>'name',
@@ -197,19 +225,74 @@ class ReducerCrudController extends CrudController
 //            ],
 //            'tab'=>'Характеристики',
 //        ]);
-        CRUD::addField([
-           'name'=>'gearRatioStart',
-           'label'=>'Передаточное отношение от',
-           'type'=>'number',
-           'wrapper'=>[
-               'class'=>'form-group col-md-3'
-           ],
-           'attributes'=>[
-               'placeholder'=>'ОТ'
-           ],
-           'tab'=>'Характеристики'
-        ]);
-
+            CRUD::addField([
+                'name'=>'torque',
+                'type'=>'text',
+                'label'=>'Крутящий момент Н*м',
+                'tab'=>'Характеристики'
+            ]);
+            CRUD::addField([
+                'name'=>'desc',
+                'type'=>'summernote',
+                'label'=>'Описание',
+                'options' => [
+                    'toolbar' => [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen']]
+                    ]],
+                'tab'=>'Характеристики',
+            ]);
+            CRUD::addField([
+                'name'=>'size',
+                'type'=>'summernote',
+                'label'=>'Размеры',
+                'options' => [
+                    'toolbar' => [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen']]
+                    ]],
+                'attributes'=>[
+                    'id'=>'size'
+                ],
+                'tab'=>'Характеристики',
+            ]);
+        }
+        if(backpack_user()->hasRole(['СЕО'])){
+            CRUD::addField([
+                'name'=>'name',
+                'label'=>'Название',
+                'type'=>'text',
+                'wrapper'=>[
+                    'class'=>'form-group col-md-6'
+                ],
+                'attributes'=>[
+                    'readonly'=>'readonly'
+                ],
+                'tab'=>'Сео',
+            ]);
+            CRUD::addField([
+                'name'=>'slug',
+                'label'=>'Уникальная ссылка',
+                'type'=>'text',
+                'wrapper'=>[
+                    'class'=>'form-group col-md-6'
+                ],
+                'attributes'=>[
+                    'readonly'=>'readonly'
+                ],
+                'tab'=>'Сео',
+            ]);
+        }
 
         CRUD::addField([
             'name'=>'title',
@@ -257,60 +340,9 @@ class ReducerCrudController extends CrudController
             'tab'=>'Сео'
         ]);
 
-        CRUD::addField([
-            'name'=>'gearRatioEnd',
-            'type'=>'number',
-            'label'=>'<br>до',
-            'wrapper'=>[
-                'class'=>'form-group col-md-3'
-            ],
-            'attributes'=>[
-                'placeholder'=>'ДО'
-            ],
-            'tab'=>'Характеристики'
-        ]);
-        CRUD::addField([
-            'name'=>'torque',
-            'type'=>'text',
-            'label'=>'Крутящий момент Н*м',
-            'tab'=>'Характеристики'
-        ]);
 
-        CRUD::addField([
-            'name'=>'desc',
-            'type'=>'summernote',
-            'label'=>'Описание',
-            'options' => [
-                'toolbar' => [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen']]
-                ]],
-            'tab'=>'Характеристики',
-        ]);
-        CRUD::addField([
-            'name'=>'size',
-            'type'=>'summernote',
-            'label'=>'Размеры',
-            'options' => [
-                'toolbar' => [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen']]
-                ]],
-            'attributes'=>[
-                'id'=>'size'
-            ],
-            'tab'=>'Характеристики',
-        ]);
+
+
 
 
         Widget::add()->type('script')->content('js/motor-sizes.js');
@@ -344,7 +376,10 @@ class ReducerCrudController extends CrudController
             $this->crud->entry->update(['image' => StoreImage::storeImage($mainImage, $path)]);
         }
         if(!empty($gallery)){
-
+            foreach ($this->crud->entry->images as $image){
+                Storage::delete('/public/images/products/'.$image->name);
+            }
+            $this->crud->entry->images()->delete();
             foreach ($gallery as $file){
                 $storeFile = Reducer::findOrFail($this->crud->entry->id);
                 $storeFile->name = StoreImage::storeImage($file, $path,false,true);
@@ -374,6 +409,7 @@ class ReducerCrudController extends CrudController
         return $response;
     }
     public function sendForm(Request $request){
+//        dd($request->id);
         $product = Reducer::find($request->id);
 
 //        $validate = Validator::make(Input::all(), [

@@ -1,20 +1,19 @@
 @extends('main')
 @section('head')
     @php
-    $motor_meta=[];
-    $motor_meta['title']=$product->title;
-    $motor_meta['name']=$product->name;
-     $motor_meta['description']=$product->description;
-      $motor_meta['alt']=$product->alt;
-       $motor_meta['keywords']=$product->keywords;
-        $motor_meta['canonical']=$product->canonical;
-        $motor_meta['slug']=$product->slug;
+        $motor_meta=[];
+        $motor_meta['title']=$product->title;
+        $motor_meta['name']=$product->name;
+         $motor_meta['description']=$product->description;
+          $motor_meta['alt']=$product->alt;
+           $motor_meta['keywords']=$product->keywords;
+            $motor_meta['canonical']=$product->canonical;
+            $motor_meta['slug']=$product->slug;
     @endphp
-
-    @include('parts.head',['meta'=>$meta[0]],['motor_meta'=>$motor_meta])
+    @include('parts.head',['motor_meta'=>$motor_meta])
 @endsection
 @section('content')
-@include('js.order-conf')
+    @include('js.order-conf')
     <main>
         <nav class="breadcrumbs">
             <div class="container">
@@ -56,7 +55,7 @@
                                         <img loading="lazy" decoding="async" src="{{asset('storage/images/products/'.$product->image)}}" alt="image" width="50" height="50">
                                     </li>
 
-                                @foreach($product->images as $image)
+                                    @foreach($product->images as $image)
                                         <li class="swiper-slide">
                                             <img loading="lazy" decoding="async" src="{{asset('storage/images/products/'.$image->name)}}" alt="image" width="50" height="50">
                                         </li>
@@ -128,7 +127,7 @@
                                         <label for="email">Ваш e-mail</label>
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="email" name="email" id="email" placeholder="ivan@mail.ru">
-                                      </div>
+                                        </div>
                                     </div>
                                     <div class="request-form__input-group">
                                         <label for="textarea">Задайте вопрос</label>
@@ -145,20 +144,20 @@
                             <h3>Ответы</h3>
                             <ul role="list">
                                 @foreach($product->questions as $one)
-                                    @if($one->status == 1 && !empty($one->answer))
-                                <li>
-                                    <div class="product-card-answers-list__top">
-                                        <p>{{$one->name}}</p>
-                                        <time datetime="2022-04-25">{{$one->created_at}}</time>
-                                    </div>
-                                    <p class="product-card-answers-list__text">
-                                        {{$one->question}}
-                                    </p>
-                                    <div class="product-card-answers-list__answer">
-                                        <p>Ответ:</p>
-                                        <span> {{$one->answer}}</span>
-                                    </div>
-                                </li>
+                                    @if($one->status->id == 1 && !empty($one->answer))
+                                        <li>
+                                            <div class="product-card-answers-list__top">
+                                                <p>{{$one->name}}</p>
+                                                <time datetime="2022-04-25">{{$one->created_at}}</time>
+                                            </div>
+                                            <p class="product-card-answers-list__text">
+                                                {{$one->question}}
+                                            </p>
+                                            <div class="product-card-answers-list__answer">
+                                                <p>Ответ:</p>
+                                                <span> {{$one->answer}}</span>
+                                            </div>
+                                        </li>
                                     @endif
                                 @endforeach
                             </ul>
@@ -216,7 +215,7 @@
                                     </li>
                                 @endforeach
                                 <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
-                                    <input type="radio" name="Передаточное отношение" value="Не знаю" id="Не знаю" data-name="ХЗ">
+                                    <input type="radio" name="Передаточное отношение" value="Не знаю" id="Не знаю" data-name="">
                                     <label for="Не знаю">Не знаю</label>
                                 </li>
                             </ul>
@@ -244,30 +243,30 @@
                         </div>
                         <div class="order-form-controls-group order-form-controls-group--not-last">
                             <h4 class="order-form-controls-group__title">Монтажное положение на лапах</h4>
-                                <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">
-                                    @foreach($product->series->paws as $seriesPaw)
-                                        <li {{$product->paws->contains('name',$seriesPaw->name)? ' ad': 'class=disabled'}}  :class="{'active': setup === {{$seriesPaw->name}}}" @click="setup = {{$seriesPaw->name}};toggleNextStep = true">
-                                            <input type="radio" name="Монтажное положение на лапах" value="{{$seriesPaw->name}}" id="{{$seriesPaw->name}}">
-                                            <label for="{{$seriesPaw->name}}">{{$seriesPaw->name}}</label>
-                                        </li>
-                                    @endforeach
-                                    <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
-                                        <input type="radio" name="Монтажное положение на лапах" value="Не знаю" id="Не знаю">
-                                        <label for="Не знаю">Не знаю</label>
+                            <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">
+                                @foreach($product->series->paws as $seriesPaw)
+                                    <li {{$product->paws->contains('name',$seriesPaw->name)? ' ad': 'class=disabled'}}  :class="{'active': setup === {{$seriesPaw->name}}}" @click="setup = {{$seriesPaw->name}};toggleNextStep = true">
+                                        <input type="radio" name="Монтажное положение на лапах" value="{{$seriesPaw->name}}" id="{{$seriesPaw->name}}" data-name="{{$seriesPaw->name}}">
+                                        <label for="{{$seriesPaw->name}}">{{$seriesPaw->name}}</label>
                                     </li>
-                                </ul>
+                                @endforeach
+                                <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
+                                    <input type="radio" name="Монтажное положение на лапах" value="Не знаю" id="Не знаю" data-name="">
+                                    <label for="Не знаю">Не знаю</label>
+                                </li>
+                            </ul>
                         </div>
                         <div class="order-form-controls-group">
                             <h4 class="order-form-controls-group__title">Монтажное положение на фланце</h4>
                             <ul class="order-form-controls-group__radio-list" role="list" x-data="{setup: ''}">
                                 @foreach($product->series->flanges as $seriesFlange)
                                     <li {{$product->flanges->contains('name',$seriesFlange->name)? '': 'class=disabled'}}  :class="{'active': setup === {{$seriesFlange->name}}}" @click="setup = {{$seriesFlange->name}};toggleNextStep = true">
-                                        <input type="radio" name="Монтажное положение на фланце" value="{{$seriesFlange->name}}" id="{{$seriesFlange->name}}">
+                                        <input type="radio" name="Монтажное положение на фланце" value="{{$seriesFlange->name}}" id="{{$seriesFlange->name}}" data-name="{{$seriesFlange->name}}">
                                         <label for="{{$seriesFlange->name}}">{{$seriesFlange->name}}</label>
                                     </li>
                                 @endforeach
                                 <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
-                                    <input type="radio" name="Монтажное положение на фланце" value="Не знаю" id="Не знаю">
+                                    <input type="radio" name="Монтажное положение на фланце" value="Не знаю" id="Не знаю" data-name="">
                                     <label for="Не знаю">Не знаю</label>
                                 </li>
                             </ul>
@@ -375,7 +374,7 @@
                             <input type="checkbox" name="acceptPolicy" id="acceptPolicy" required>
                             <label for="acceptPolicy"><a href="#">Подтверждаю согласие с политикой конфиденциальности</a></label>
                         </div>
-{{--                        {!! Captcha::display($attributes) !!}--}}
+                        {{--                        {!! Captcha::display($attributes) !!}--}}
                         <button type="submit" class="primary-btn order-form__submit-btn">Отправить заявку</button>
                     </fieldset>
                 </div>

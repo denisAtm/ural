@@ -80,7 +80,9 @@ class OrderCrudController extends CrudController
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
          */
     }
-
+    protected function setupShowOperation(){
+        $this->setupListOperation();
+    }
     /**
      * Define what happens when the Create operation is loaded.
      *
@@ -148,7 +150,7 @@ class OrderCrudController extends CrudController
         CRUD::addField([
             'name'=>'content',
             'type'=>'view',
-            'view'=>'vendor.backpack.custom-views.order-details',
+            'view'=>'vendor.backpack.custom-views.order-details-li',
             'label'=>'Данные заказа',
         ]);
         CRUD::addField([
@@ -162,13 +164,20 @@ class OrderCrudController extends CrudController
     }
     public function makeOrder(Request $request){
         $data = $request->all();
-        $content = [];
-        foreach ($data as $key=>$value){
-            if(preg_match("/[А-Яа-я]/",$key)){
-                $content[$key] = $value;
+//        dd($data);
+        if($data['accept'] === 'on'){
+            $content = $request->details;
+        }else{
+            $content = [];
+            foreach ($data as $key=>$value){
+                if(preg_match("/[А-Яа-я]/",$key)){
+                    $content[$key] = $value;
+                }
             }
+            $content = serialize($content);
         }
-        $content = serialize($content);
+
+//        dd($content);
         $order = new Order();
         $order->user_name = $request->user_name;
         $order->user_email = $request->user_email;

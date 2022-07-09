@@ -97,7 +97,7 @@ class SeriesCrudController extends CrudController
         CRUD::addField([
             'name'=>'gearRatios',
             'type'=>'select_multiple',
-            'label'=>'Варианты сборки',
+            'label'=>'Передаточные отношения',
             'entity'=>'gearRatios',
 
         ]);
@@ -108,7 +108,30 @@ class SeriesCrudController extends CrudController
          * - CRUD::addField(['name' => 'price', 'type' => 'number']));
          */
     }
-
+    protected function setupShowOperation(){
+        CRUD::addColumn([
+            'name'=>'name',
+            'label'=>'Название'
+        ]);
+        CRUD::addColumn([
+            'name'=>'frontShafts',
+            'label'=>'Входной вал',
+            'attribute'=>'name'
+        ]);
+        CRUD::addColumn([
+            'name'=>'outputShafts',
+            'label'=>'Выходной вал',
+            'attribute'=>'name'
+        ]);
+        CRUD::addColumn([
+            'name'=>'buildOptions',
+            'label'=>'Варианты сборки'
+        ]);
+        CRUD::addColumn([
+            'name'=>'gearRatios',
+            'label'=>'Передаточные отношения'
+        ]);
+    }
     /**
      * Define what happens when the Update operation is loaded.
      *

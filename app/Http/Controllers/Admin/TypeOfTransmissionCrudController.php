@@ -39,13 +39,13 @@ class TypeOfTransmissionCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDB();
+        CRUD::column('name')->label('Название');
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
+    }
+    protected function setupShowOperation()
+    {
+        $this->setupListOperation();
+
     }
 
     /**
