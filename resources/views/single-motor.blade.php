@@ -144,6 +144,7 @@
                             <h3>Ответы</h3>
                             <ul role="list">
                                 @foreach($product->questions as $one)
+
                                     @if($one->status->id == 1 && !empty($one->answer))
                                         <li>
                                             <div class="product-card-answers-list__top">
@@ -159,6 +160,7 @@
                                             </div>
                                         </li>
                                     @endif
+
                                 @endforeach
                             </ul>
                         </nav>
