@@ -111,6 +111,7 @@ class ReducerCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(ReducerRequest::class);
+        if(backpack_user()->hasRole(['Админ','Контент-Менеджер'])){
 
         CRUD::addField([
             'name'=>'name',
@@ -224,7 +225,74 @@ class ReducerCrudController extends CrudController
 //            ],
 //            'tab'=>'Характеристики',
 //        ]);
-
+            CRUD::addField([
+                'name'=>'torque',
+                'type'=>'text',
+                'label'=>'Крутящий момент Н*м',
+                'tab'=>'Характеристики'
+            ]);
+            CRUD::addField([
+                'name'=>'desc',
+                'type'=>'summernote',
+                'label'=>'Описание',
+                'options' => [
+                    'toolbar' => [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen']]
+                    ]],
+                'tab'=>'Характеристики',
+            ]);
+            CRUD::addField([
+                'name'=>'size',
+                'type'=>'summernote',
+                'label'=>'Размеры',
+                'options' => [
+                    'toolbar' => [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen']]
+                    ]],
+                'attributes'=>[
+                    'id'=>'size'
+                ],
+                'tab'=>'Характеристики',
+            ]);
+        }
+        if(backpack_user()->hasRole(['СЕО'])){
+            CRUD::addField([
+                'name'=>'name',
+                'label'=>'Название',
+                'type'=>'text',
+                'wrapper'=>[
+                    'class'=>'form-group col-md-6'
+                ],
+                'attributes'=>[
+                    'readonly'=>'readonly'
+                ],
+                'tab'=>'Сео',
+            ]);
+            CRUD::addField([
+                'name'=>'slug',
+                'label'=>'Уникальная ссылка',
+                'type'=>'text',
+                'wrapper'=>[
+                    'class'=>'form-group col-md-6'
+                ],
+                'attributes'=>[
+                    'readonly'=>'readonly'
+                ],
+                'tab'=>'Сео',
+            ]);
+        }
 
         CRUD::addField([
             'name'=>'title',
@@ -272,48 +340,9 @@ class ReducerCrudController extends CrudController
             'tab'=>'Сео'
         ]);
 
-        CRUD::addField([
-            'name'=>'torque',
-            'type'=>'text',
-            'label'=>'Крутящий момент Н*м',
-            'tab'=>'Характеристики'
-        ]);
 
-        CRUD::addField([
-            'name'=>'desc',
-            'type'=>'summernote',
-            'label'=>'Описание',
-            'options' => [
-                'toolbar' => [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen']]
-                ]],
-            'tab'=>'Характеристики',
-        ]);
-        CRUD::addField([
-            'name'=>'size',
-            'type'=>'summernote',
-            'label'=>'Размеры',
-            'options' => [
-                'toolbar' => [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen']]
-                ]],
-            'attributes'=>[
-                'id'=>'size'
-            ],
-            'tab'=>'Характеристики',
-        ]);
+
+
 
 
         Widget::add()->type('script')->content('js/motor-sizes.js');

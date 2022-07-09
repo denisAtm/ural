@@ -82,7 +82,7 @@ class GearMotorCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(GearMotorRequest::class);
-
+        if(backpack_user()->hasRole(['Админ','Контент-Менеджер'])){
         CRUD::addField([
             'name'=>'name',
             'label'=>'Название',
@@ -249,6 +249,49 @@ class GearMotorCrudController extends CrudController
                 ]],
             'tab'=>'Характеристики'
         ]);
+            CRUD::addField([
+                'name'=>'size',
+                'type'=>'summernote',
+                'label'=>'Размеры',
+                'options' => [
+                    'toolbar' => [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen']]
+                    ]],
+                'tab'=>'Характеристики'
+            ]);
+        }
+        if(backpack_user()->hasRole(['СЕО'])){
+            CRUD::addField([
+                'name'=>'name',
+                'label'=>'Название',
+                'type'=>'text',
+                'wrapper'=>[
+                    'class'=>'form-group col-md-6'
+                ],
+                'attributes'=>[
+                    'readonly'=>'readonly'
+                ],
+                'tab'=>'Сео',
+            ]);
+            CRUD::addField([
+                'name'=>'slug',
+                'label'=>'Уникальная ссылка',
+                'type'=>'text',
+                'wrapper'=>[
+                    'class'=>'form-group col-md-6'
+                ],
+                'attributes'=>[
+                    'readonly'=>'readonly'
+                ],
+                'tab'=>'Сео',
+            ]);
+        }
         CRUD::addField([
             'name'=>'title',
             'label'=>'Заголовок',
@@ -294,22 +337,7 @@ class GearMotorCrudController extends CrudController
             ],
             'tab'=>'Сео'
         ]);
-        CRUD::addField([
-            'name'=>'size',
-            'type'=>'summernote',
-            'label'=>'Размеры',
-            'options' => [
-                'toolbar' => [
-                    ['style', ['style']],
-                    ['font', ['bold', 'underline', 'clear']],
-                    ['color', ['color']],
-                    ['para', ['ul']],
-                    ['table', ['table']],
-                    ['insert', ['link', 'picture', 'video']],
-                    ['view', ['fullscreen']]
-                ]],
-            'tab'=>'Характеристики'
-        ]);
+
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
