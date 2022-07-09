@@ -110,7 +110,29 @@ class MotorSeriesCrudController extends CrudController
          * - CRUD::addField(['name' => 'price', 'type' => 'number']));
          */
     }
-
+    protected function setupShowOperation(){
+        CRUD::addColumn([
+           'name'=>'name',
+           'label'=>'Название'
+        ]);
+        CRUD::addColumn([
+            'name'=>'paws',
+            'label'=>'Монтажное положение на лапах'
+        ]);
+        CRUD::addColumn([
+            'name'=>'flanges',
+            'label'=>'Монтажное положение на фланце'
+        ]);
+        CRUD::addColumn([
+            'name'=>'outputShafts',
+            'label'=>'Выходной вал',
+            'attribute'=>'name'
+        ]);
+        CRUD::addColumn([
+            'name'=>'gearRatios',
+            'label'=>'Передаточные отношения'
+        ]);
+}
     /**
      * Define what happens when the Update operation is loaded.
      *

@@ -178,7 +178,7 @@
                             <ul role="list">
 
                                 @foreach($product->questions as $one)
-                                    @if($one->status == 1 && !empty($one->answer))
+                                    @if($one->status->id == 1 && !empty($one->answer))
                                     <li>
                                         <div class="product-card-answers-list__top">
                                             <p>{{$one->name}}</p>
@@ -229,6 +229,7 @@
     <div class="order-form"  :class="{'active': orderForm === true}" x-data="{toggleNextStep: false, nextStep: false}">
         <div class="order-form__content" data-simplebar>
             <form action="/makeOrder" id="makeOrder" method="post">
+                <textarea style="display: none" name="details" id="" cols="30" rows="10">{{$product->details(true)}}</textarea>
                 <input type="hidden" name="product_name" value="{{$product->name}}">
                 <input type="hidden" name="uri" value="{{url()->current()}}">
                 @csrf
@@ -252,7 +253,7 @@
                                     </li>
                                 @endforeach
                                 <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
-                                    <input type="radio" name="Передаточное отношение" value="Не знаю" id="Не знаю" data-name="ХЗ">
+                                    <input type="radio" name="Передаточное отношение" value="Не знаю" id="Не знаю" data-name="">
                                     <label for="Не знаю">Не знаю</label>
                                 </li>
                             </ul>
@@ -267,7 +268,7 @@
                                 </li>
                                 @endforeach
                                 <li style="min-width: 79px;" :class="{'active': setup === 'Не знаю'}" @click="setup = 'Не знаю';toggleNextStep = true">
-                                    <input type="radio" name="Вариант сборки" value="Не знаю" id="Не знаю" data-name="ХЗ">
+                                    <input type="radio" name="Вариант сборки" value="Не знаю" id="Не знаю" data-name="">
                                     <label for="Не знаю">Не знаю</label>
                                 </li>
                             </ul>

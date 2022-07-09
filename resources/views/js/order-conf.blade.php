@@ -12,7 +12,7 @@
             var select = $(this).data('select')
             var option = $(this).data('option')
             details[select]=option
-            name[select]=option
+            name[select]=option.charAt(0)
             $(document).find('select[name="'+select+'"] option[value="'+option+'"]').prop('selected',true)
         })
         $('#makeOrder').on('submit',function(){
@@ -22,8 +22,9 @@
         $('#makeOrder input[type="radio"]').on('change',function(){
             var select = $(this).attr('name')
             var option = $(this).val()
+            var str = $(this).data('name')
             details[select]=option
-            name[select]=option
+            name[select]=str
 
         })
         $('button#nextStep').one('click',function(){
@@ -35,7 +36,7 @@
                     '</li>')
             })
         })
-        $('form#makeOrder').on('change',function(){
+        $('form#makeOrder').on('click change',function(){
             var newname = '';
             $.each(name,function(key,value){
                 newname+=value+'-';

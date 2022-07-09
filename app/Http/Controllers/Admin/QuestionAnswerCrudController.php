@@ -55,7 +55,7 @@ class QuestionAnswerCrudController extends CrudController
 //            'label'=>'Тип редуктора',
 //            'entity'=>'questions'
 //        ]);
-
+        CRUD::addButtonFromModelFunction('line', 'open_uri', 'openUri', 'beginning');
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');

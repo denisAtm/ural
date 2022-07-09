@@ -49,26 +49,25 @@ class CategoriesCrudController extends CrudController
 
             ]
         );
-//        CRUD::addColumn(
-//            [
-//                'name'      => 'icon',
-//                'label'     => 'Иконка',
-//                'type'      => 'image',
-//                'prefix' => 'storage/thumbnails/categories/icons/',
-//
-//            ]
-//        );
+
         CRUD::addColumn(['name' => 'name', 'type' => 'text','label'=>'Название','wrapper'   => [
             'class'      => 'form-group col-md-6'
         ],]);
+        CRUD::addColumn(['name' => 'slug', 'type' => 'text','label'=>'Уникальная ссылка','wrapper'   => [
+            'class'      => 'form-group col-md-6'
+        ],]);
 
-        CRUD::addColumn(['name' => 'descr', 'type' => 'text','label'=>'Описание']);
+        CRUD::addColumn(['name' => 'descr', 'type' => 'textarea','label'=>'Описание']);
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
          */
+    }
+    protected function setupShowOperation()
+    {
+        $this->setupListOperation();
     }
 
     /**

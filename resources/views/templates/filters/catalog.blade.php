@@ -82,13 +82,13 @@
                 @endif
                 <input type="text" class="js-range-slider" name="gearRatio" value=""
                        data-type="double"
-                       data-min="5000"
+                       data-min="1"
                        data-max="100000"
-                       data-from="{{isset($gearRatio)?$gearRatio[0]:'5000'}}"
+                       data-from="{{isset($gearRatio)?$gearRatio[0]:'1'}}"
                        data-to="{{isset($gearRatio)?$gearRatio[1]:'1000000'}}"
                 />
                 <div class="range-slider-values">
-                    <p>От<input type="number" class="range-slider-min-value" value="{{isset($gearRatio)?$gearRatio[0]:'5000'}}"></p>
+                    <p>От<input type="number" class="range-slider-min-value" value="{{isset($gearRatio)?$gearRatio[0]:'1'}}"></p>
                     <p>До<input type="number" class="range-slider-max-value" value="{{isset($gearRatio)?$gearRatio[1]:'1000000'}}"></p>
                 </div>
 
@@ -120,15 +120,15 @@
                         @endif
                         <input type="text" class="js-range-slider" name="torque" value=""
                                data-type="double"
-                               data-min="5000"
-                               data-max="10000"
-                               data-from="{{isset($torque)?$torque[0]:'5000'}}"
-                               data-to="{{isset($torque)?$torque[1]:'1000000'}}"
+                               data-min="1"
+                               data-max="100000"
+                               data-from="{{isset($torque)?$torque[0]:'1'}}"
+                               data-to="{{isset($torque)?$torque[1]:'100000'}}"
 
                         />
                         <div class="range-slider-values">
-                            <p>От<input type="number" class="range-slider-min-value" id="range-slider-min-value-torque" value="{{isset($torque)?$torque[0]:'5000'}}"></p>
-                            <p>До<input type="number" class="range-slider-max-value" id="range-slider-max-value-torque" value="{{isset($torque)?$torque[1]:'1000000'}}"></p>
+                            <p>От<input type="number" class="range-slider-min-value" id="range-slider-min-value-torque" value="{{isset($torque)?$torque[0]:'1'}}"></p>
+                            <p>До<input type="number" class="range-slider-max-value" id="range-slider-max-value-torque" value="{{isset($torque)?$torque[1]:'100000'}}"></p>
                         </div>
 
                     </li>

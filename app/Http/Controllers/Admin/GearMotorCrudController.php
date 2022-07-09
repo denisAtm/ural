@@ -210,8 +210,11 @@ class GearMotorCrudController extends CrudController
             'name'=>'paws',
             'type'=>'select_multiple',
             'label'=>'Монтажное положение на лапах',
-            'entity'=>'paws',
+            'entity'=>'series.paws',
             'attribute' => 'name',
+            'subfields'=>[
+                'name'=>'name'
+            ],
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
             ],
@@ -221,12 +224,12 @@ class GearMotorCrudController extends CrudController
             'name'=>'flanges',
             'type'=>'select_multiple',
             'label'=>'Монтажное положение на фланце',
-            'entity'=>'flanges',
+            'entity'=>'series.flanges',
             'attribute' => 'name',
             'wrapper'=>[
                 'class'=>'form-group col-md-6'
             ],
-            'tab'=>'Характеристики'
+            'tab'=>'Характеристики',
         ]);
 
 
@@ -350,7 +353,6 @@ class GearMotorCrudController extends CrudController
 
     protected function setupUpdateOperation()
     {
-        CRUD::setValidation(GearMotorRequest::class);
         $this->setupCreateOperation();
     }
     public function update(){
