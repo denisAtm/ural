@@ -11,7 +11,7 @@
              $motor_meta['slug']=$product->slug;
     @endphp
 
-    @include('parts.head',['meta'=>$meta[0]],['motor_meta'=>$motor_meta])
+    @include('parts.head',['motor_meta'=>$motor_meta])
 @endsection
 @section('cdn')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

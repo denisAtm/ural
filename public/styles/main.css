@@ -3337,7 +3337,7 @@ ul.product-card__sizes-list li {
 }
 .order-form__product-dropdown-list li {
   display: grid;
-  gap: 12px;
+  /*gap: 12px;*/
 }
 .order-form__input-group {
   display: grid;

@@ -32,6 +32,10 @@ class Order extends Model
     {
         return '<a class="btn btn-sm btn-link" target="_blank" href="'.$this->uri.'" data-toggle="tooltip" title="Ссылка на товар."><i class="fa fa-search"></i> Перейти на страницу <br>товара</a>';
     }
+    public static function is_serial($string) {
+        return (@unserialize($string) !== false);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -51,9 +55,19 @@ class Order extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-//    public function getContentAttribute($value){
-//        return unserialize($value);
-//    }
+    public function getContentAttribute($value){
+        if(self::is_serial($value)){
+            $str = '';
+            foreach(unserialize($value) as $key=>$value){
+                $key = str_replace('_',' ',$key);
+                $str.='<li><span>'.$key.'</span> <b>'.$value.'</b></li>';
+            }
+            return $str;
+        }else{
+            return $value;
+        }
+    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

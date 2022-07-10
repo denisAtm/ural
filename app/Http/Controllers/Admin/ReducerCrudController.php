@@ -82,6 +82,18 @@ class ReducerCrudController extends CrudController
             'label'=>'Название',
         ]);
         CRUD::addColumn([
+            'name'=>'slug',
+            'label'=>'Уникальная ссылка',
+        ]);
+        CRUD::addColumn([
+            'name'=>'image',
+            'type'=>'image',
+            'label'=>'Изображение',
+            'prefix'=>'storage/images/products/',
+            'width'=>'100px',
+            'height'=>'100px',
+        ]);
+        CRUD::addColumn([
             'name'=>'category_id',
             'type'=>'select',
             'label'=>'Тип редуктора',
@@ -92,6 +104,39 @@ class ReducerCrudController extends CrudController
             'type'=>'select',
             'label'=>'Серия',
             'entity'=>'series'
+        ]);
+        CRUD::addColumn([
+            'name'=>'location_of_axes_id',
+            'type'=>'select',
+            'label'=>'Расположение осей',
+            'entity'=>'locationOfAxes'
+        ]);
+        CRUD::addColumn([
+            'name'=>'number_of_transfer_stages_id',
+            'type'=>'select',
+            'label'=>'Количество передаточных ступней',
+            'entity'=>'numberOfTransferStages'
+        ]);
+        CRUD::addColumn([
+            'name'=>'buildOptions',
+            'type'=>'select_multiple',
+            'label'=>'Варианты сборки',
+            'entity'=>'buildOptions',
+            'attribute'=>'name',
+        ]);
+        CRUD::addColumn([
+            'name'=>'series.frontShafts',
+            'type'=>'select_multiple',
+            'label'=>'Входной вал',
+            'entity'=>'frontShafts',
+            'attribute'=>'name',
+        ]);
+        CRUD::addColumn([
+            'name'=>'series.outputShafts',
+            'type'=>'select_multiple',
+            'label'=>'Выходной вал',
+            'entity'=>'outputShafts',
+            'attribute'=>'name',
         ]);
         CRUD::addColumn([
             'name'=>'desc',

@@ -72,7 +72,6 @@ class OrderCrudController extends CrudController
             'attribute'=>'name'
         ]);
         CRUD::addButtonFromModelFunction('line', 'open_uri', 'openUri', 'beginning');
-        CRUD::removeButton('show');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -80,7 +79,12 @@ class OrderCrudController extends CrudController
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
          */
     }
+
     protected function setupShowOperation(){
+        CRUD::addColumn([
+            'name'=>'content',
+            'label'=>'Детали заказа',
+        ]);
         $this->setupListOperation();
     }
     /**
