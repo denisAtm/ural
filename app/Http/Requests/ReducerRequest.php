@@ -25,7 +25,12 @@ class ReducerRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required|min:5|max:255',
+            'slug' => 'required|min:5|max:255',
+            'torque' => 'required',
+            'weight' => 'required',
+            'location_of_axes_id' => 'required',
+            'number_of_transfer_stages_id' => 'required',
         ];
     }
 
@@ -49,7 +54,12 @@ class ReducerRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'name.required' => 'Это обязательное поле',
+            'slug.required' => 'Проверьте название',
+            'torque.required' => 'Это обязательное поле',
+            'weight.required' => 'Это обязательное поле',
+            'location_of_axes_id.required' => 'Заполните расположение осей',
+            'number_of_transfer_stages_id.required' => 'Заполните количество передаточных ступней',
         ];
     }
 }

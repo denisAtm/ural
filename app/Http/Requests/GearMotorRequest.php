@@ -31,8 +31,6 @@ class GearMotorRequest extends FormRequest
              'weight' => 'required',
              'location_of_axes_id' => 'required',
              'number_of_transfer_stages_id' => 'required',
-             'desc' => 'required',
-             'size' => 'required',
         ];
     }
 
@@ -62,8 +60,6 @@ class GearMotorRequest extends FormRequest
             'weight.required' => 'Это обязательное поле',
             'location_of_axes_id.required' => 'Заполните расположение осей',
             'number_of_transfer_stages_id.required' => 'Заполните количество передаточных ступней',
-            'desc.required' => 'Напишите описание',
-            'size.required' => 'Хагрузите чертежи ',
         ];
     }
 }
