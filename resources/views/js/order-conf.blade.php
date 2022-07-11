@@ -1,6 +1,30 @@
 <script>
     $(document).ready(function (){
+        $('input#orderFormTel').mask("8(999) 999-9999");
+        $('input#orderFormName').on('input',function(){
+            var value = $(this).val();
+            var regEx = /^[а-яА-Я]+$/;
+            var valid = regEx.test(value);
+            if (!valid) {
+                console.log(value)
+                $(this).parent().removeClass('correct').addClass('error')
 
+            }else{
+                $(this).parent().removeClass('error').addClass('correct')
+            }
+        })
+        $('input#orderFormMail').on('change',function(){
+            var value = $(this).val();
+            var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}.){1,125}[A-Z]{2,63}$/;
+            var validEmail = regEx.test(value);
+            if (!validEmail) {
+                console.log(value)
+                $(this).parent().removeClass('correct').addClass('error')
+            }
+            else{
+            $(this).parent().removeClass('error').addClass('correct')
+            }
+        })
 
         var details = {};
         var name = {

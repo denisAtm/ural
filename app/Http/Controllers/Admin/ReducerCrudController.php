@@ -205,6 +205,7 @@ class ReducerCrudController extends CrudController
                 'class'=>'form-group col-md-12'
             ],
             'tab'=>'Основное',
+            'subfields'=>['name'=>'slug']
         ]);
         CRUD::addField([
             'name'=>'series_id',

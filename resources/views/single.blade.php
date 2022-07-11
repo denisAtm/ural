@@ -15,6 +15,7 @@
 @endsection
 @section('cdn')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
 @endsection
 @section('content')
 @include('js.order-conf')
@@ -369,7 +370,7 @@
                                 </svg>
                             </label>
                             <div class="form-controls-wrapper order-form__form-controls-wrapper">
-                                <input type="text" name="user_name" id="orderFormName" placeholder="Ваше имя">
+                                <input type="text" name="user_name" id="orderFormName" placeholder="Ваше имя" pattern="^[а-яА-Я]+$">
                                 <svg class="icon-error" width="28" height="28">
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
                                 </svg>
@@ -385,7 +386,7 @@
                                 </svg>
                             </label>
                             <div class="form-controls-wrapper order-form__form-controls-wrapper">
-                                <input type="text" name="user_email" id="orderFormMail" placeholder="ivan@mail.ru">
+                                <input type="text" name="user_email" id="orderFormMail" placeholder="ivan@mail.ru" pattern="/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,10})$">
                                 <svg class="icon-error" width="28" height="28">
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
                                 </svg>

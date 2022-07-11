@@ -31,7 +31,7 @@ class QuestionAnswerCrudController extends CrudController
         CRUD::setModel(\App\Models\QuestionAnswer::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/question-answer');
         CRUD::setEntityNameStrings('Вопрос ответ', 'Вопрос ответ');
-        CRUD::removeButton('create');
+        CRUD::denyAccess('create');
 
     }
 
