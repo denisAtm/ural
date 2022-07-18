@@ -29,6 +29,7 @@ class ReducerCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as traitUpdate; }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CloneOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -197,7 +198,7 @@ class ReducerCrudController extends CrudController
 
         CRUD::addField([
             'name'=>'category_id',
-            'type'=>'select',
+            'type'=>'select2',
             'label'=>'Тип редуктора',
             'entity'=>'category',
             'model'=>'App\Models\Categories',
@@ -209,7 +210,7 @@ class ReducerCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'series_id',
-            'type'=>'select',
+            'type'=>'select2',
             'label'=>'Серия',
             'entity'=>'series',
             'model'=>'App\Models\Series',
@@ -220,7 +221,7 @@ class ReducerCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'number_of_transfer_stages_id',
-            'type'=>'select',
+            'type'=>'select2',
             'label'=>'Количество передаточных ступней',
             'entity'=>'NumberOfTransferStages',
             'model'=>'App\Models\NumberOfTransferStages',
@@ -231,7 +232,7 @@ class ReducerCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'location_of_axes_id',
-            'type'=>'select',
+            'type'=>'select2',
             'label'=>'Расположение осей',
             'entity'=>'locationOfAxes',
             'model'=>'App\Models\locationOfAxes',
@@ -253,7 +254,7 @@ class ReducerCrudController extends CrudController
 
         CRUD::addField([
             'name'=>'buildOptions',
-            'type'=>'select_multiple',
+            'type'=>'select2_multiple',
             'label'=>'Варианты сборки',
             'entity'=>'buildOptions',
             'wrapper'=>[
@@ -261,57 +262,119 @@ class ReducerCrudController extends CrudController
             ],
             'tab'=>'Характеристики',
         ]);
-//        CRUD::addField([
-//            'name'=>'gearRatios',
-//            'type'=>'select_multiple',
-//            'label'=>'Передаточное отношение',
-//            'entity'=>'gearRatios',
-//            'wrapper'=>[
-//                'class'=>'form-group col-md-6'
-//            ],
-//            'tab'=>'Характеристики',
-//        ]);
+        CRUD::addField([
+            'name'=>'torque',
+            'type'=>'text',
+            'label'=>'Крутящий момент Н*м',
+            'tab'=>'Характеристики'
+        ]);
+        CRUD::addField([
+            'name'=>'frontShafts',
+            'type'=>'select2_from_ajax_multiple',
+            'label'=>'Входной вал',
+            'tab'=>'Характеристики',
+            'entity'=>'frontShafts',
+            'attribute'   => "name", // foreign key attribute that is shown to user
+            'wrapper'=>[
+                'class'=>'col-md-6'
+            ],
+            'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+            'minimum_input_length' => 0, // minimum characters to type before querying results
+            'dependencies'         => ['series_id'],
+            'data_source'          => url('api/currentFrontShafts'),
+            'model'=>'App\Models\Shaft',
+            'method'=>'POST',
+            'ajax'=>true
+        ]);
+        CRUD::addField([
+            'name'=>'outputShafts',
+            'type'=>'select2_from_ajax_multiple',
+            'label'=>'Выходной вал',
+            'tab'=>'Характеристики',
+            'entity'=>'outputShafts',
+            'attribute'   => "name", // foreign key attribute that is shown to user
+            'wrapper'=>[
+                'class'=>'col-md-6'
+            ],
+            'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+            'minimum_input_length' => 0, // minimum characters to type before querying results
+            'dependencies'         => ['series_id'],
+            'data_source'          => url('api/currentOutputShafts'),
+            'model'=>'App\Models\Shaft',
+            'method'=>'POST',
+            'ajax'=>true
+        ]);
             CRUD::addField([
-                'name'=>'torque',
-                'type'=>'text',
-                'label'=>'Крутящий момент Н*м',
-                'tab'=>'Характеристики'
-            ]);
-            CRUD::addField([
-                'name'=>'desc',
-                'type'=>'summernote',
-                'label'=>'Описание',
-                'options' => [
-                    'toolbar' => [
-                        ['style', ['style']],
-                        ['font', ['bold', 'underline', 'clear']],
-                        ['color', ['color']],
-                        ['para', ['ul']],
-                        ['table', ['table']],
-                        ['insert', ['link', 'picture', 'video']],
-                        ['view', ['fullscreen']]
-                    ]],
+                'name'=>'front_shaft_id',
+                'type'=>'select2_from_ajax',
+                'label'=>'Входной вал по умолчанию',
                 'tab'=>'Характеристики',
-            ]);
-            CRUD::addField([
-                'name'=>'size',
-                'type'=>'summernote',
-                'label'=>'Размеры',
-                'options' => [
-                    'toolbar' => [
-                        ['style', ['style']],
-                        ['font', ['bold', 'underline', 'clear']],
-                        ['color', ['color']],
-                        ['para', ['ul']],
-                        ['table', ['table']],
-                        ['insert', ['link', 'picture', 'video']],
-                        ['view', ['fullscreen']]
-                    ]],
-                'attributes'=>[
-                    'id'=>'size'
+                'entity'=>'frontShaft',
+                'attribute'   => "name", // foreign key attribute that is shown to user
+                'wrapper'=>[
+                    'class'=>'col-md-6'
                 ],
-                'tab'=>'Характеристики',
+                'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'dependencies'         => ['series_id'],
+                'data_source'          => url('api/currentFrontShafts'),
+                'model'=>'App\Models\Shaft',
+                'method'=>'POST',
+                'ajax'=>true
             ]);
+            CRUD::addField([
+                'name'=>'output_shaft_id',
+                'type'=>'select2_from_ajax',
+                'label'=>'Выходной вал по умолчанию',
+                'tab'=>'Характеристики',
+                'entity'=>'outputShaft',
+                'attribute'   => "name", // foreign key attribute that is shown to user
+                'wrapper'=>[
+                    'class'=>'col-md-6'
+                ],
+                'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'dependencies'         => ['series_id'],
+                'data_source'          => url('api/currentOutputShafts'),
+                'model'=>'App\Models\Shaft',
+                'method'=>'POST',
+                'ajax'=>true
+            ]);
+        CRUD::addField([
+            'name'=>'desc',
+            'type'=>'summernote',
+            'label'=>'Описание',
+            'options' => [
+                'toolbar' => [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen']]
+                ]],
+            'tab'=>'Характеристики',
+        ]);
+        CRUD::addField([
+            'name'=>'size',
+            'type'=>'summernote',
+            'label'=>'Размеры',
+            'options' => [
+                'toolbar' => [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen']]
+                ]],
+            'attributes'=>[
+                'id'=>'size'
+            ],
+            'tab'=>'Характеристики',
+        ]);
         }
         if(backpack_user()->hasRole(['СЕО'])){
             CRUD::addField([

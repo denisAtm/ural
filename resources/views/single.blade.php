@@ -16,9 +16,12 @@
 @section('cdn')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 @endsection
 @section('content')
 @include('js.order-conf')
+{{--{{dd($product->frontShafts->first()->name)}}--}}
+{{--{{dd($product->frontShaft!=null?$product->frontShaft->name:'Вариант')}}--}}
     <main>
         <nav class="breadcrumbs">
             <div class="container">
@@ -83,10 +86,8 @@
                                 </svg>
                             </summary>
                             <ul role="list">
-                                {{$product->details()}}
-                                <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
-                                            {{$option->name}}{{$loop->last?'':','}}
-                                        @endforeach</span></li>
+                                {{$product->details(true)}}
+
                                 @if($product->gost==1)
                                     <li><p>ГОСТ</p></li>
                                 @endif
@@ -94,9 +95,7 @@
                         </details>
                         <ul role="list" class="product-card__list">
                             {{$product->details()}}
-                            <li><p>Вариант сборки</p><span>@foreach($product->buildOptions as $option)
-                                        {{$option->name}}{{$loop->last?'':','}}
-                                    @endforeach</span></li>
+
                             @if($product->gost==1)
                                 <li><p>ГОСТ</p></li>
                             @endif
@@ -142,24 +141,24 @@
                                         <?php
                                            echo'<input type="hidden" name="link" value="http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'"'
                                             ?>
-{{--                                            <svg class="icon-error" width="28" height="28">--}}
-{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>--}}
-{{--                                            </svg>--}}
-{{--                                            <svg class="icon-correct" width="28" height="28">--}}
-{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>--}}
-{{--                                            </svg>--}}
+                                            <svg class="icon-error" width="28" height="28">
+                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
+                                            </svg>
+                                            <svg class="icon-correct" width="28" height="28">
+                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>
+                                            </svg>
                                         </div>
                                     </div>
                                     <div class="request-form__input-group">
                                         <label for="email">Ваш e-mail</label>
                                         <div class="form-controls-wrapper request-form__form-controls-wrapper">
                                             <input type="email" name="email" id="email" placeholder="ivan@mail.ru">
-{{--                                            <svg class="icon-error" width="28" height="28">--}}
-{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>--}}
-{{--                                            </svg>--}}
-{{--                                            <svg class="icon-correct" width="28" height="28">--}}
-{{--                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>--}}
-{{--                                            </svg>--}}
+                                            <svg class="icon-error" width="28" height="28">
+                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
+                                            </svg>
+                                            <svg class="icon-correct" width="28" height="28">
+                                                <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-correct')}}"></use>
+                                            </svg>
                                         </div>
                                     </div>
                                     <div class="request-form__input-group">
@@ -200,7 +199,6 @@
                         <ul class="pagination product-card-answers-list__pagination" role="list">
                             {{$quest->links('vendor.pagination.semantic-ui')}}
                         </ul>
-
                     </div>
                 </div>
             </div>
@@ -278,19 +276,19 @@
                             <h4 class="order-form-controls-group__title">Вал входной</h4>
                             <div class="order-form__select-dropdown" x-data="{selectDropdowntext: '', toggleDropdownList: false}">
                                 <div class="order-form__select-dropdown-top disable" @click="toggleDropdownList = !toggleDropdownList">
-                                    <span x-text="selectDropdowntext === '' ? 'Вариант' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">Вариант</span>
+                                    <span x-text="selectDropdowntext === '' ? '{{$product->frontShaft!=null?$product->frontShaft->name:'Вариант'}}' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">{{$product->frontShaft!=null?$product->frontShaft->name:'Вариант'}}</span>
                                     <svg :class="{'active': toggleDropdownList}" width="16" height="16">
                                         <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
                                     </svg>
                                 </div>
                                 <select name="Вал входной" style="display:none">
-                                    @foreach($product->series->frontShafts as $shaft)
-                                        <option value="{{$shaft->name}}">{{$shaft->name}}</option>
+                                    @foreach($product->frontShafts as $shaft)
+                                        <option value="{{$shaft->name}}" {{$product->frontShaft!=null?($product->frontShaft->name==$shaft->name?'selected':''):''}}>{{$shaft->name}}</option>
                                     @endforeach
                                 </select>
                                 <ul role="list" class="order-form__select-dropdown-list " x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
-                                    @foreach($product->series->frontShafts as $shaft)
-                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал входной" data-option="{{$shaft->name}}"><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}">{{$shaft->name}}</span></li>
+                                    @foreach($product->frontShafts as $shaft)
+                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал входной" data-option="{{$shaft->name}}" ><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}" class="{{$product->frontShaft!=null?($product->frontShaft->name==$shaft->name?'aactive':'1'):'2'}}">{{$shaft->name}}</span></li>
 
                                     @endforeach
                                 </ul>
@@ -300,19 +298,19 @@
                             <h4 class="order-form-controls-group__title">Вал выходной</h4>
                             <div class="order-form__select-dropdown" x-data="{selectDropdowntext: '', toggleDropdownList: false}">
                                 <div class="order-form__select-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
-                                    <span x-text="selectDropdowntext === '' ? 'Вариант' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">Вариант</span>
+                                    <span x-text="selectDropdowntext === '' ? '{{$product->outputShaft!=null?$product->outputShaft->name:'Вариант'}}' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">{{$product->outputShaft!=null?$product->outputShaft->name:'Вариант'}}</span>
                                     <svg :class="{'active': toggleDropdownList}" width="16" height="16">
                                         <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
                                     </svg>
                                 </div>
                                 <select name="Вал выходной" style="display:none">
-                                    @foreach($product->series->outputShafts as $shaft)
-                                        <option value="{{$shaft->name}}">{{$shaft->name}}</option>
+                                    @foreach($product->outputShafts as $shaft)
+                                        <option value="{{$shaft->name}}" {{$product->outputShaft!=null?($product->outputShaft->name==$shaft->name?'selected':''):''}}>{{$shaft->name}}</option>
                                     @endforeach
                                 </select>
                                 <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
-                                    @foreach($product->series->outputShafts as $shaft)
-                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал выходной" data-option="{{$shaft->name}}"><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}">{{$shaft->name}}</span></li>
+                                    @foreach($product->outputShafts as $shaft)
+                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал выходной" data-option="{{$shaft->name}}" {{$product->outputShaft!=null?($product->outputShaft->name==$shaft->name?'active':''):''}}><span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}">{{$shaft->name}}</span></li>
 
                                     @endforeach
 {{--                                    <li @click="selectDropdowntext = 'Выбранный вариант';toggleNextStep = true"><span :class="{'active': selectDropdowntext === 'Выбранный вариант'}">Выбранный вариант</span></li>--}}
@@ -386,7 +384,7 @@
                                 </svg>
                             </label>
                             <div class="form-controls-wrapper order-form__form-controls-wrapper">
-                                <input type="text" name="user_email" id="orderFormMail" placeholder="ivan@mail.ru" pattern="/^([a-z0-9_\.-]+)@([a-z0-9_\.-]+)\.([a-z\.]{2,10})$">
+                                <input type="text" name="user_email" id="orderFormMail" placeholder="ivan@mail.ru">
                                 <svg class="icon-error" width="28" height="28">
                                     <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-error')}}"></use>
                                 </svg>

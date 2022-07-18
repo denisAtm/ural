@@ -38,7 +38,7 @@
                 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('number-of-transfer-stages') }}'><i class='nav-icon la la-question'></i>Количество передаточных ступеней</a></li>
                 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gear-ratio') }}'><i class='nav-icon la la-question'></i> Передаточное отношение</a></li>
                 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('location-of-axes') }}'><i class='nav-icon la la-question'></i>Расположение осей</a></li>
-
+                <li class='nav-item'><a class='nav-link' href='{{ backpack_url('shaft') }}'><i class='nav-icon la la-question'></i> Вал</a></li>
             </ul>
         </li>
     </ul>
@@ -73,4 +73,5 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('order') }}'><i class='nav-icon la la-question'></i> Orders</a></li>
 
 @endif
+
 

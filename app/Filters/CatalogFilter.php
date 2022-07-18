@@ -2,6 +2,8 @@
 
 namespace App\Filters;
 
+use App\Models\GearRatio;
+
 class CatalogFilter extends QueryFilter
 {
     public function typeOfTransmission($id = null){
@@ -14,13 +16,14 @@ class CatalogFilter extends QueryFilter
             $query->where('location_of_axes_id', $id);
         });
     }
-//    public function gearRatio($id = null){
-//        return $this->builder->when($id, function($query) use($id){
-//            $query->whereHas('gearRatios', function($q) use($id){
-//                $q->where('gear_ratio_id',$id);
-//            });
-//        });
-//    }
+    public function gearRatio($value = null){
+        return $this->builder->when($value, function($query) use($value){
+            $value = explode(';',$value);
+            $query->whereHas('series.gearRatios', function($q) use($value){
+                $q->whereBetween('name',[(int)$value[0],(int)$value[1]]);
+            });
+        });
+    }
     public function torque($value = null){
         return $this->builder->when($value, function($query) use($value){
             $value = explode(';',$value);

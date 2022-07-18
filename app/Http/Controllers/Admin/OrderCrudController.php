@@ -197,6 +197,6 @@ class OrderCrudController extends CrudController
             $m->from($email);
             $m->to($email);
         });
-        return back()->with(['message'=>'Заказ успешно оформлен']);
+        return back()->with(['message'=>'orderComplete']);
     }
 }

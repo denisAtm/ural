@@ -825,7 +825,7 @@ body #magicMouseCursor.faded {
   color: var(--white-color);
 }
 
-.order-complete-modal {
+.order-complete-modal,.quest-complete-modal {
   position: fixed;
   left: 0;
   top: 0;
@@ -836,10 +836,10 @@ body #magicMouseCursor.faded {
   width: 100%;
   height: 100%;
 }
-.order-complete-modal.active {
+.order-complete-modal.active,.quest-complete-modal.active {
   display: flex;
 }
-.order-complete-modal__content {
+.order-complete-modal__content,.quest-complete-modal__content {
   background-color: var(--white-color);
   border-radius: 4px;
   max-width: 444px;
@@ -850,13 +850,13 @@ body #magicMouseCursor.faded {
   padding-left: 16px;
   padding-right: 20px;
 }
-.order-complete-modal__top {
+.order-complete-modal__top,.quest-complete-modal__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-bottom: 28px;
 }
-.order-complete-modal p {
+.order-complete-modal p,.quest-complete-modal p {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -864,7 +864,7 @@ body #magicMouseCursor.faded {
   color: var(--dark-color);
   padding-bottom: 32px;
 }
-.order-complete-modal__btn {
+.order-complete-modal__btn,.quest-complete-modal__btn {
   color: var(--white-color);
   font-family: "Montserrat", sans-serif;
   font-weight: 700;

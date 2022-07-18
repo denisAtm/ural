@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\SeriesRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Http\Request;
 
 /**
  * Class SeriesCrudController
@@ -37,6 +38,9 @@ class SeriesCrudController extends CrudController
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
+
+
+
     protected function setupListOperation()
     {
         CRUD::addColumn([
@@ -69,7 +73,7 @@ class SeriesCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'frontShafts',
-            'type'=>'select_multiple',
+            'type'=>'select2_multiple',
             'label'=>'Передний вал',
             'entity'=>'frontShafts',
             'attribute' => 'name',
@@ -79,7 +83,7 @@ class SeriesCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'outputShafts',
-            'type'=>'select_multiple',
+            'type'=>'select2_multiple',
             'label'=>'Выходной вал',
             'entity'=>'outputShafts',
             'attribute' => 'name',
@@ -89,14 +93,14 @@ class SeriesCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'buildOptions',
-            'type'=>'select_multiple',
+            'type'=>'select2_multiple',
             'label'=>'Варианты сборки',
             'entity'=>'buildOptions',
 
         ]);
         CRUD::addField([
             'name'=>'gearRatios',
-            'type'=>'select_multiple',
+            'type'=>'select2_multiple',
             'label'=>'Передаточные отношения',
             'entity'=>'gearRatios',
 

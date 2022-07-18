@@ -68,13 +68,13 @@ class Reducer extends Model
     public function gearRatioRange(){
         return 'от '.$this->series->gearRatios()->orderBy('name','asc')->first()->name.' до '.$this->series->gearRatios()->orderBy('name','desc')->first()->name;
     }
-    public function details(){
-        echo '<li><span>Тип передачи</span><span>'.$this->category->name.'</span></li>';
-        if($this->locationOfAxes!=null) echo '<li><span>Расположение осей</span><span>'.$this->locationOfAxes->name.'</span></li>';
-        if($this->numberOfTransferStages!=null) echo '<li><span>Количество ступеней</span><span>'.$this->numberOfTransferStages->name.'</span></li>';
-        if($this->series->gearRatios->isNotEmpty()) echo '<li><span>Передаточное<br>отношение</span><span>'.$this->gearRatioRange().'</span></li>';
-        echo '<li><span>Крутящий момент Н*м</span><span>'.$this->torque.'</span></li>
-<li><span>Масса</span><span>'.$this->weight.'</span></li>';
+    public function details($param = false){
+        if(!$param) echo '<li><p>Тип передачи</p><span>'.$this->category->name.'</span></li>';
+        if($this->locationOfAxes!=null) echo '<li><p>Расположение осей</p><span>'.$this->locationOfAxes->name.'</span></li>';
+        if($this->numberOfTransferStages!=null) echo '<li><p>Количество ступеней</p><span>'.$this->numberOfTransferStages->name.'</span></li>';
+        if($this->series->gearRatios->isNotEmpty()) echo '<li><p>Передаточное<br>отношение</p><span>'.$this->gearRatioRange().'</span></li>';
+        echo '<li><p>Крутящий момент Н*м</p><span>'.$this->torque.'</span></li>
+<li><p>Масса</p><span>'.$this->weight.'</span></li>';
     }
 
     /*
@@ -82,6 +82,7 @@ class Reducer extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
     public function series(){
         return $this->belongsTo(Series::class);
     }
@@ -99,6 +100,12 @@ class Reducer extends Model
     }
     public function locationOfAxes(){
         return $this->belongsTo(LocationOfAxes::class,'location_of_axes_id');
+    }
+    public function frontShaft(){
+        return $this->belongsTo(Shaft::class,'front_shaft_id','id');
+    }
+    public function outputShaft(){
+        return $this->belongsTo(Shaft::class,'output_shaft_id','id');
     }
     public function buildOptions(){
         return $this->belongsToMany(BuildOption::class,'build_option_reducer','reducer_id','build_option_id');
@@ -135,8 +142,29 @@ class Reducer extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
+    public function setSizeAttribute($value)
+    {
+        if($value){
+            $description = $value;
+            $dom = new \DomDocument();
+            $dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $images = $dom->getElementsByTagName('img');
+            $li = $dom->getElementsByTagName('li');
+            foreach ($li as $one => $style) {
+                $style->removeAttribute('style');
+            }
+            foreach ($images as $k => $img) {
+                $img->removeAttribute('style');
+                $img->removeAttribute('data-filename');
+                $img->setAttribute('loading', 'lazy');
+                $img->setAttribute('decoding', 'async');
+            }
 
+            $description = $dom->saveHTML();
+            return response()->json($description);
 
+        }
 
+    }
 
 }

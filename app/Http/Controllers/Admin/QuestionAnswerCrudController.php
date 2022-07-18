@@ -7,6 +7,7 @@ use App\Models\QuestionAnswer;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use Backpack\CRUD\app\Library\Widget;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -119,7 +120,7 @@ class QuestionAnswerCrudController extends CrudController
             'name'=>'status',
             'label'=>'Статус',
             'entity'=>'status',
-            'type'=>'select',
+            'type'=>'select2',
             'model'=>'App\Models\AppealStatus',
             'attribute'=>'name'
         ]);
@@ -169,5 +170,9 @@ class QuestionAnswerCrudController extends CrudController
             'attribute'=>'name'
         ]);
 
+    }
+
+    public function checkCaptcha(Request $request){
+        return response()->json($request);
     }
 }

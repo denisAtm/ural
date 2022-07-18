@@ -69,7 +69,7 @@ class MotorSeriesCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'paws',
-            'type'=>'select_multiple',
+            'type'=>'select2_multiple',
             'label'=>'Монтажное положение на лапах',
             'entity'=>'paws',
             'attribute' => 'name',
@@ -79,7 +79,7 @@ class MotorSeriesCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'flanges',
-            'type'=>'select_multiple',
+            'type'=>'select2_multiple',
             'label'=>'Монтажное положение на фланце',
             'entity'=>'flanges',
             'attribute' => 'name',
@@ -89,7 +89,7 @@ class MotorSeriesCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'outputShafts',
-            'type'=>'select_multiple',
+            'type'=>'select2_multiple',
             'label'=>'Выходной вал',
             'entity'=>'outputShafts',
             'attribute' => 'name',
@@ -99,7 +99,7 @@ class MotorSeriesCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'gearRatios',
-            'type'=>'select_multiple',
+            'type'=>'select2_multiple',
             'label'=>'Передаточные отношения',
             'entity'=>'gearRatios',
 

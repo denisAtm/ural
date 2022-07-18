@@ -32,21 +32,20 @@
                     }
                 })
             })
-
         </script>
         <section class="catalog">
             <div class="container catalog__container">
                 <aside class="catalog__aside">
                     <nav class="filter filter--desktop" x-data="{filterDropdown: ''}">
 
-                            @include('templates.filters.catalog',[$attr1,$attr2,$attr3,$attr4,'route'=>'/catalog/'.$category->slug])
+                            @include('templates.filters.catalog',[$attr1,$attr2,$attr3,$attr4,'route'=>'/catalog'])
 
                     </nav>
                 </aside>
                 <div class="catalog__main">
                     <h1 class="title title-h2 catalog-title"><svg width="68" height="48">
                             <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-motor')}}"></use>
-                        </svg>{{$categories->where('slug',$slug)->first()->name}}</h1>
+                        </svg>{{$categories->where('id',request()->get('typeOfTransmission'))->first()->name}}</h1>
                     <button class="filter-btn catalog-filter-btn" type="button" @click="filter = true"><svg width="68" height="48">
                             <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#filter-btn-icon')}}"></use>
                         </svg>Фильтры</button>
@@ -65,7 +64,7 @@
                             </svg>
                         </button>
                         <div class="container">
-                                @include('templates.filters.catalog',[$attr1,$attr2,$attr3,$attr4,'route'=>'/catalog/'.$category->slug])
+                                @include('templates.filters.catalog',[$attr1,$attr2,$attr3,$attr4,'route'=>'/catalog'])
                         </div>
                     </nav>
                     <!-- <script>
@@ -131,7 +130,7 @@
                                             <h3 class="title title-h3">{{$product->name}}</h3>
                                         </figcaption>
                                         <div class="catalog-card__link-btn-wrapper">
-                                            <a href="/catalog/{{$slug}}/{{$product->slug}}" class="secondary-btn catalog-card__link-btn">Подробнее</a>
+                                            <a href="/catalog/{{$categories->where('id',request()->get('typeOfTransmission'))->first()->slug}}/{{$product->slug}}" class="secondary-btn catalog-card__link-btn">Подробнее</a>
                                         </div>
                                     </div>
                                     <div class="catalog-card__aside">

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ReducerRequest extends FormRequest
+class ShaftRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,7 @@ class ReducerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1|max:255',
-            'slug' => 'required|min:1|max:255',
-            'torque' => 'required',
-            'weight' => 'required',
-            'location_of_axes_id' => 'required',
-            'number_of_transfer_stages_id' => 'required',
+             'name' => 'required|unique:shafts'
         ];
     }
 
@@ -54,12 +49,8 @@ class ReducerRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Это обязательное поле',
-            'slug.required' => 'Проверьте название',
-            'torque.required' => 'Это обязательное поле',
-            'weight.required' => 'Это обязательное поле',
-            'location_of_axes_id.required' => 'Заполните расположение осей',
-            'number_of_transfer_stages_id.required' => 'Заполните количество передаточных ступней',
+            'name.required'=>'Это поле обязательно для заполнение',
+            'name.unique'=>'Такое название вала уже существует'
         ];
     }
 }

@@ -104,7 +104,7 @@ class ArticlesCrudController extends CrudController
             ],
         ]);
         CRUD::addField(['label'     => "Категория",
-            'type'      => 'select',
+            'type'      => 'select2',
             'name'      => 'category_id',
             'entity'    => 'category',
 
@@ -113,7 +113,7 @@ class ArticlesCrudController extends CrudController
             'attribute' => 'name', // foreign key attribute that is shown to user
         ]);
         CRUD::addField(['label'     => "Статус",
-            'type'      => 'select',
+            'type'      => 'select2',
             'name'      => 'status_id',
             'entity'    => 'status',
 
@@ -126,7 +126,7 @@ class ArticlesCrudController extends CrudController
         ]);
 
         CRUD::addField(['label'     => "Тэги",
-            'type'      => 'select_multiple',
+            'type'      => 'select2_multiple',
             'name'      => 'tags', // the method that defines the relationship in your Model
 
             // optional

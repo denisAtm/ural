@@ -5,6 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 @yield('cdn')
 <script>
     $(document).ready(function(){
@@ -93,7 +94,7 @@
         <nav class="header__dropdown-menu-wrapper" x-show="headerSubMenu" @click.outside="headerSubMenu = false" x-transition.origin.top.left.duration.300ms style="display:none;">
         <ul class="header__dropdown-menu" role="list">
             @foreach($categories as $category)
-                <li><a href="/catalog/{{$category->slug}}">
+                <li><a href="/catalog?typeOfTransmission={{$category->id}}">
                         <svg width="68" height="48">
                             <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#submenu-icon-'.$loop->iteration)}}"></use>
                         </svg>
@@ -203,7 +204,7 @@
       </a>
       <ul class="header__sub-menu" :class="{'active': mobileSubMenu === true}" role="list">
           @foreach($categories as $category)
-              <li><a href="/catalog/{{$category->slug}}">
+              <li><a href="/catalog?typeOfTransmission{{$category->id}}">
                       <svg width="68" height="48">
                           <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#submenu-icon-'.$loop->iteration)}}"></use>
                       </svg>
@@ -231,19 +232,21 @@
     </li>
     <li><a href="#">Услуги</a></li>
     <li><a href="/about">О компании</a></li>
-    <li><a href="#">Справочник</a></li>
+    <li><a href="/news">Новости</a></li>
+    <li><a href="/articles">Статьи</a></li>
+{{--    <li><a href="#">Справочник</a></li>--}}
     <li><a href="/contacts">Контакты</a></li>
-    <li><a href="#">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" width="32" height="32">
-        <circle cx="16" cy="16" r="15" stroke="#07012E" stroke-width="2"/>
-        <path stroke="#07012E" stroke-width="2" d="M21.857 13.715a5.857 5.857 0 1 1-11.714 0 5.857 5.857 0 0 1 11.714 0Z"/>
-        <mask id="a" fill="#fff">
-          <path fill-rule="evenodd" d="M3.744 26.286A15.966 15.966 0 0 1 16 20.57c4.92 0 9.322 2.22 12.257 5.715A15.966 15.966 0 0 1 16 32c-4.92 0-9.32-2.22-12.256-5.714Z" clip-rule="evenodd"/>
-        </mask>
-        <path fill="#07012E" d="m3.744 26.286-1.531-1.287-1.081 1.287 1.08 1.286 1.532-1.286Zm24.513 0 1.531 1.286 1.08-1.286-1.08-1.287-1.531 1.287ZM5.275 27.572a13.97 13.97 0 0 1 10.725-5v-4a17.966 17.966 0 0 0-13.787 6.427l3.062 2.573Zm10.725-5c4.305 0 8.154 1.94 10.725 5l3.063-2.573A17.966 17.966 0 0 0 16 18.571v4Zm10.725 2.427c-2.57 3.06-6.42 5-10.725 5v4a17.966 17.966 0 0 0 13.788-6.427l-3.063-2.573ZM16 30a13.97 13.97 0 0 1-10.725-5l-3.062 2.573A17.966 17.966 0 0 0 16 34v-4Z" mask="url(#a)"/>
-      </svg>
-      <span>Личный кабинет</span>
-          </a></li>
+{{--    <li><a href="#">--}}
+{{--      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" width="32" height="32">--}}
+{{--        <circle cx="16" cy="16" r="15" stroke="#07012E" stroke-width="2"/>--}}
+{{--        <path stroke="#07012E" stroke-width="2" d="M21.857 13.715a5.857 5.857 0 1 1-11.714 0 5.857 5.857 0 0 1 11.714 0Z"/>--}}
+{{--        <mask id="a" fill="#fff">--}}
+{{--          <path fill-rule="evenodd" d="M3.744 26.286A15.966 15.966 0 0 1 16 20.57c4.92 0 9.322 2.22 12.257 5.715A15.966 15.966 0 0 1 16 32c-4.92 0-9.32-2.22-12.256-5.714Z" clip-rule="evenodd"/>--}}
+{{--        </mask>--}}
+{{--        <path fill="#07012E" d="m3.744 26.286-1.531-1.287-1.081 1.287 1.08 1.286 1.532-1.286Zm24.513 0 1.531 1.286 1.08-1.286-1.08-1.287-1.531 1.287ZM5.275 27.572a13.97 13.97 0 0 1 10.725-5v-4a17.966 17.966 0 0 0-13.787 6.427l3.062 2.573Zm10.725-5c4.305 0 8.154 1.94 10.725 5l3.063-2.573A17.966 17.966 0 0 0 16 18.571v4Zm10.725 2.427c-2.57 3.06-6.42 5-10.725 5v4a17.966 17.966 0 0 0 13.788-6.427l-3.063-2.573ZM16 30a13.97 13.97 0 0 1-10.725-5l-3.062 2.573A17.966 17.966 0 0 0 16 34v-4Z" mask="url(#a)"/>--}}
+{{--      </svg>--}}
+{{--      <span>Личный кабинет</span>--}}
+{{--          </a></li>--}}
   </ul>
 </nav>
 <nav class="header-search-menu header-search-menu--adaptive" :class="{'active': searchMenu === true}" x-data="{searchInputText:''}">

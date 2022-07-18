@@ -15,6 +15,7 @@
 @section('cdn')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 @endsection
 @section('content')
     @include('js.order-conf')
@@ -81,7 +82,7 @@
                                 </svg>
                             </summary>
                             <ul role="list">
-                                {{$product->details()}}
+                                {{$product->details(true)}}
                             </ul>
                         </details>
                         <ul role="list" class="product-card__list">
@@ -230,19 +231,19 @@
                             <h4 class="order-form-controls-group__title">Вал выходной</h4>
                             <div class="order-form__select-dropdown" x-data="{selectDropdowntext: '', toggleDropdownList: false}">
                                 <div class="order-form__select-dropdown-top" @click="toggleDropdownList = !toggleDropdownList">
-                                    <span x-text="selectDropdowntext === '' ? 'Вариант' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">Вариант</span>
+                                    <span x-text="selectDropdowntext === '' ? '{{$product->outputShaft!=null?$product->outputShaft->name:('Вариант')}}' : selectDropdowntext" :class="{'active':selectDropdowntext != ''}">{{$product->outputShaft!=null?$product->outputShaft->name:'Вариант'}}</span>
                                     <svg :class="{'active': toggleDropdownList}" width="16" height="16">
                                         <use xlink:href="{{asset('resources/svgSprites/svgSprite.svg#icon-dropdown')}}"></use>
                                     </svg>
                                 </div>
                                 <select name="Вал выходной" style="display:none">
-                                    @foreach($product->series->outputShafts as $shaft)
-                                        <option value="{{$shaft->name}}">{{$shaft->name}}</option>
+                                    @foreach($product->outputShafts as $shaft)
+                                        <option value="{{$shaft->name}}" {{$product->outputShaft!=null?($product->outputShaft->name==$shaft->name?'selected':''):''}}>{{$shaft->name}}</option>
                                     @endforeach
                                 </select>
                                 <ul role="list" class="order-form__select-dropdown-list" x-ref="selectDropdownList" x-bind:style="toggleDropdownList === true ? 'height: ' + $refs.selectDropdownList.scrollHeight + 'px' : ''" :class="{'active': toggleDropdownList === true}">
-                                    @foreach($product->series->outputShafts as $shaft)
-                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал выходной" data-option = "{{$shaft->name}}"> <span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}" >{{$shaft->name}}</span></li>
+                                    @foreach($product->outputShafts as $shaft)
+                                        <li @click="selectDropdowntext = '{{$shaft->name}}';toggleNextStep = true" data-select="Вал выходной" data-option = "{{$shaft->name}}" {{$product->outputShaft!=null?($product->outputShaft->name==$shaft->name?'active':''):''}}> <span :class="{'active': selectDropdowntext === '{{$shaft->name}}'}" >{{$shaft->name}}</span></li>
                                     @endforeach
                                 </ul>
                             </div>

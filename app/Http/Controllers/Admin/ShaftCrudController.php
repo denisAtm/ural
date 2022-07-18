@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CategoriesOfArticlesRequest;
+use App\Http\Requests\ShaftRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CategoriesOfArticlesCrudController
+ * Class ShaftCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CategoriesOfArticlesCrudController extends CrudController
+class ShaftCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class CategoriesOfArticlesCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\CategoriesOfArticles::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/categories-of-articles');
-        CRUD::setEntityNameStrings('категорию', 'Категории статей');
+        CRUD::setModel(\App\Models\Shaft::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/shaft');
+        CRUD::setEntityNameStrings('shaft', 'shafts');
     }
 
     /**
@@ -37,20 +37,9 @@ class CategoriesOfArticlesCrudController extends CrudController
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
-
     protected function setupListOperation()
     {
-        CRUD::addColumn([
-            'name'=>'name',
-            'label'=>'Название',
-        ]);
-        CRUD::addColumn([
-            'name'=>'parent_id',
-            'label'=>'Родительская категория',
-            'entity'=>'parent',
-            'model'=>'App\Models\CategoriesOfArticles',
-            'attribute'=>'name'
-        ]);
+        CRUD::column('name')->label('Название');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -67,21 +56,9 @@ class CategoriesOfArticlesCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CategoriesOfArticlesRequest::class);
-        CRUD::addField([
-            'name'=>'name',
-            'label'=>'Название',
-            'type'=>'text'
-        ]);
-        CRUD::addField([
-            'name'=>'parent_id',
-            'label'=>'Родительская категория',
-            'type'=>'select2',
-            'entity'=>'parent',
-            'model'=>'App\Models\CategoriesOfArticles',
-            'attribute'=>'name'
-        ]);
+        CRUD::setValidation(ShaftRequest::class);
 
+        CRUD::field('name')->type('text')->label('Название');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

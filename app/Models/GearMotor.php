@@ -53,14 +53,14 @@ class GearMotor extends Model
     public function gearRatioRange(){
         return 'от '.$this->series->gearRatios()->orderBy('name','asc')->first()->name.' до '.$this->series->gearRatios()->orderBy('name','desc')->first()->name;
     }
-    public function details(){
-        echo '<li><span>Тип передачи</span><span>'.$this->category->name.'</span></li>';
-        if($this->numberOfTransferStages!=null) echo '<li><span>Передаточные ступени</span><span>'.$this->numberOfTransferStages->name.'</span></li>';
-        if($this->series->gearRatios->isNotEmpty()) echo '<li><span>Передаточное<br>отношение</span><span>'.$this->gearRatioRange().'</span></li>';
+    public function details($param = false){
+        if(!$param)echo '<li><p>Тип передачи</p><span>'.$this->category->name.'</span></li>';
+        if($this->numberOfTransferStages!=null) echo '<li><p>Передаточные ступени</p><span>'.$this->numberOfTransferStages->name.'</span></li>';
+        if($this->series->gearRatios->isNotEmpty()) echo '<li><p>Передаточное<br>отношение</p><span>'.$this->gearRatioRange().'</span></li>';
         if($this->locationOfAxes!=null)
-            echo '<li><span>Расположение осей</span><span>'.$this->locationOfAxes->name.'</span></li>';
-        echo '<li><span>Крутящий момент Н*м</span><span>'.$this->torque.'</span></li>
-<li><span>Масса</span><span>'.$this->weight.'</span></li>';
+            echo '<li><p>Расположение осей</p><span>'.$this->locationOfAxes->name.'</span></li>';
+        echo '<li><p>Крутящий момент Н*м</p><span>'.$this->torque.'</span></li>
+<li><p>Масса</p><span>'.$this->weight.'</span></li>';
     }
 
     /*
@@ -86,9 +86,11 @@ class GearMotor extends Model
     public function locationOfAxes(){
         return $this->belongsTo(LocationOfAxes::class,'location_of_axes_id');
     }
-
+    public function outputShaft(){
+        return $this->belongsTo(Shaft::class,'output_shaft_id');
+    }
     public function outputShafts(){
-        return $this->belongsToMany(Shaft::class,'output_shaft_gear_motor','motor_id','shaft_id');
+        return $this->belongsToMany(Shaft::class,'output_shaft_gear_motor','gear_motor_id','shaft_id');
     }
     public function paws(){
         return $this->belongsToMany(Paws::class,'mounting_position_on_the_paw_gear_motor','motor_id','paw_id');

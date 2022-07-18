@@ -39,4 +39,6 @@ Route::group([
     Route::crud('categories-of-articles', 'CategoriesOfArticlesCrudController');
     Route::crud('order', 'OrderCrudController');
     Route::crud('redirect', 'RedirectCrudController');
+    Route::crud('shaft', 'ShaftCrudController');
+
 }); // this should be the absolute last line of this file

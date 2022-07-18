@@ -65,23 +65,28 @@ class PageController extends Controller
         return view('news',['news'=>$news],['meta'=>$meta]);
     }
 
-    public function catalog($slug, CatalogFilter $filter){
-        $search= 'http://ural/catalog/';
-        $meta=MetaPage::where('meta_url','LIKE',"%{$search}%")->get();
-        $attr1 = TypeOfTransmission::get();
-        $attr2 = NumberOfTransferStages::get();
-        $attr3 = GearRatio::get();
-        $attr4 = LocationOfAxes::get();
-        $category = Categories::where('slug',$slug)->first();
-        $reducers = Reducer::filter($filter)->where('category_id',$category->id)->get();
-        $motors = GearMotor::filter($filter)->where('category_id',$category->id)->get();
-        $products = $reducers->merge($motors);
+    public function catalog( CatalogFilter $filter){
+        if(\request()->has('typeOfTransmission')){
+            $search= 'http://ural/catalog/';
+            $meta=MetaPage::where('meta_url','LIKE',"%{$search}%")->get();
+            $attr1 = TypeOfTransmission::get();
+            $attr2 = NumberOfTransferStages::get();
+            $attr3 = GearRatio::get();
+            $attr4 = LocationOfAxes::get();
+//        $category = Categories::where('slug',$slug)->first();
+            $reducers = Reducer::filter($filter)->get();
+            $motors = GearMotor::filter($filter)->get();
+            $products = $reducers->merge($motors);
 //        dd($products);
-        $products = $products->paginate(6);
+            $products = $products->paginate(6);
 //        if($products->isEmpty()){
 //            $products = GearMotor::filter($filter)->where('category_id',$category->id)->paginate(6);
 //        }
-        return view('catalog',compact(['attr1','attr2','attr3','attr4','slug','products','meta','category']));
+            return view('catalog',compact(['attr1','attr2','attr3','attr4','products','meta']));
+        }else{
+            return redirect('/catalog');
+        }
+
     }
 
     public function single($catSlug,$slug){

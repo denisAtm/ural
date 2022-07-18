@@ -91,9 +91,6 @@ class GearMotorCrudController extends CrudController
                 'class'=>'form-group col-md-6'
             ],
             'tab'=>'Основные',
-            'attributes'=>[
-                'required'=>'required'
-            ]
         ]);
         CRUD::addField([
             'name'=>'slug',
@@ -104,7 +101,6 @@ class GearMotorCrudController extends CrudController
             ],
             'attributes'=>[
                 'readonly'=>'readonly',
-                'required'=>'required'
 
             ],
             'tab'=>'Основные'
@@ -124,7 +120,7 @@ class GearMotorCrudController extends CrudController
 
         CRUD::addField([
             'name'=>'category_id',
-            'type'=>'select',
+            'type'=>'select2',
             'label'=>'Тип редуктора',
             'entity'=>'category',
             'model'=>'App\Models\Categories',
@@ -139,7 +135,7 @@ class GearMotorCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'series_id',
-            'type'=>'select',
+            'type'=>'select2',
             'label'=>'Серия',
             'entity'=>'series',
             'model'=>'App\Models\MotorSeries',
@@ -147,13 +143,10 @@ class GearMotorCrudController extends CrudController
                 'class'=>'form-group col-md-6'
             ],
             'tab'=>'Основные',
-            'attributes'=>[
-                'required'=>'required'
-            ]
         ]);
         CRUD::addField([
             'name'=>'number_of_transfer_stages_id',
-            'type'=>'select',
+            'type'=>'select2',
             'label'=>'Количество передаточных ступней',
             'entity'=>'NumberOfTransferStages',
             'model'=>'App\Models\NumberOfTransferStages',
@@ -164,7 +157,7 @@ class GearMotorCrudController extends CrudController
         ]);
         CRUD::addField([
             'name'=>'location_of_axes_id',
-            'type'=>'select',
+            'type'=>'select2',
             'label'=>'Расположение осей',
             'entity'=>'locationOfAxes',
             'model'=>'App\Models\locationOfAxes',
@@ -181,9 +174,6 @@ class GearMotorCrudController extends CrudController
             'wrapper'=>[
                 'class'=>'form-group col-md-3'
             ],
-            'attributes'=>[
-                'required'=>'required'
-            ],
             'tab'=>'Характеристики'
         ]);
 
@@ -192,47 +182,79 @@ class GearMotorCrudController extends CrudController
             'type'=>'text',
             'label'=>'Крутящий момент Н*м',
             'tab'=>'Характеристики',
-            'attributes'=>[
-                'required'=>'required'
-            ]
         ]);
-//        CRUD::addField([
-//            'name'=>'outputShafts',
-//            'type'=>'select_multiple',
-//            'label'=>'Выходной вал',
-//            'entity'=>'outputShafts',
-//            'attribute' => 'name',
-//            'wrapper'=>[
-//                'class'=>'form-group col-md-6'
-//            ]
-//        ]);
+            CRUD::addField([
+                'name'=>'paws',
+                'type'=>'select2_from_ajax_multiple',
+                'label'=>'Монтажное положение на лапах',
+                'tab'=>'Характеристики',
+                'entity'=>'paws',
+                'attribute'   => "name", // foreign key attribute that is shown to user
+                'wrapper'=>[
+                    'class'=>'col-md-6'
+                ],
+                'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'dependencies'         => ['series_id'],
+                'data_source'          => url('api/currentPaws'),
+                'model'=>'App\Models\Paws',
+                'method'=>'POST',
+                'ajax'=>true
+            ]);
+            CRUD::addField([
+                'name'=>'flanges',
+                'type'=>'select2_from_ajax_multiple',
+                'label'=>'Монтажное положение на фланце',
+                'tab'=>'Характеристики',
+                'entity'=>'flanges',
+                'attribute'   => "name", // foreign key attribute that is shown to user
+                'wrapper'=>[
+                    'class'=>'col-md-6'
+                ],
+                'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'dependencies'         => ['series_id'],
+                'data_source'          => url('api/currentFlanges'),
+                'model'=>'App\Models\Flange',
+                'method'=>'POST',
+                'ajax'=>true
+            ]);
         CRUD::addField([
-            'name'=>'paws',
-            'type'=>'select_multiple',
-            'label'=>'Монтажное положение на лапах',
-            'entity'=>'series.paws',
-            'attribute' => 'name',
-            'subfields'=>[
-                'name'=>'name'
-            ],
-            'wrapper'=>[
-                'class'=>'form-group col-md-6'
-            ],
-            'tab'=>'Характеристики'
-        ]);
-        CRUD::addField([
-            'name'=>'flanges',
-            'type'=>'select_multiple',
-            'label'=>'Монтажное положение на фланце',
-            'entity'=>'series.flanges',
-            'attribute' => 'name',
-            'wrapper'=>[
-                'class'=>'form-group col-md-6'
-            ],
+            'name'=>'outputShafts',
+            'type'=>'select2_from_ajax_multiple',
+            'label'=>'Выходной вал',
             'tab'=>'Характеристики',
+            'entity'=>'outputShafts',
+            'attribute'   => "name", // foreign key attribute that is shown to user
+            'wrapper'=>[
+                'class'=>'col-md-6'
+            ],
+            'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+            'minimum_input_length' => 0, // minimum characters to type before querying results
+            'dependencies'         => ['series_id'],
+            'data_source'          => url('api/currentOutputShaftsForGear'),
+            'model'=>'App\Models\Shaft',
+            'method'=>'POST',
+            'ajax'=>true
         ]);
-
-
+            CRUD::addField([
+                'name'=>'output_shaft_id',
+                'type'=>'select2_from_ajax',
+                'label'=>'Выходной вал по умолчанию',
+                'tab'=>'Характеристики',
+                'entity'=>'outputShaft',
+                'attribute'   => "name", // foreign key attribute that is shown to user
+                'wrapper'=>[
+                    'class'=>'col-md-6'
+                ],
+                'include_all_form_fields' => true, //sends the other form fields along with the request so it can be filtered.
+                'minimum_input_length' => 0, // minimum characters to type before querying results
+                'dependencies'         => ['series_id'],
+                'data_source'          => url('api/currentOutputShaftsForGear'),
+                'model'=>'App\Models\Shaft',
+                'method'=>'POST',
+                'ajax'=>true
+            ]);
         CRUD::addField([
             'name'=>'desc',
             'type'=>'summernote',

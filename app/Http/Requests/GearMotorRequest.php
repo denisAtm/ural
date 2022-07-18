@@ -25,8 +25,8 @@ class GearMotorRequest extends FormRequest
     public function rules()
     {
         return [
-             'name' => 'required|min:5|max:255',
-             'slug' => 'required|min:5|max:255',
+             'name' => 'required',
+             'slug' => 'required',
              'torque' => 'required',
              'weight' => 'required',
              'location_of_axes_id' => 'required',
@@ -54,12 +54,12 @@ class GearMotorRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Это обязательное поле',
-            'slug.required' => 'Проверьте название',
-            'torque.required' => 'Это обязательное поле',
-            'weight.required' => 'Это обязательное поле',
-            'location_of_axes_id.required' => 'Заполните расположение осей',
-            'number_of_transfer_stages_id.required' => 'Заполните количество передаточных ступней',
+            'name.required' => 'Введите название',
+            'slug.required' => 'Введите название',
+            'torque.required' => 'Добавьте значение крутящего момента ',
+            'weight.required' => 'Установите массу',
+            'location_of_axes_id.required' => 'Заполните расположение осей оси',
+            'number_of_transfer_stages_id.required' => 'Заполните количество передаточных ступней ступени',
         ];
     }
 }
